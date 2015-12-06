@@ -1,0 +1,354 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Raspberry Pi и контроль температуры - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="Я уже писал про самодельную "Time Capsule" на базе Raspberry Pi. Она работает хорошо, если не считать проблемы с перегревом. В корпусе устройства &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://arktur04.github.io/blog/2014/01/16/raspberry-pi-%25d0%25b8-%25d0%25ba%25d0%25be%25d0%25bd%25d1%2582%25d1%2580%25d0%25be%25d0%25bb%25d1%258c-%25d1%2582%25d0%25b5%25d0%25bc%25d0%25bf%25d0%25b5%25d1%2580%25d0%25b0%25d1%2582%25d1%2583%25d1%2580%25d1%258b/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="arktur04.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Raspberry Pi и контроль температуры</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-01-16T19:43:47+06:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>7:43 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Я уже <a href="http://32bit.me/?p=1768">писал</a> про самодельную "Time Capsule" на базе Raspberry Pi. Она работает хорошо, если не считать проблемы с перегревом. В корпусе устройства установлен вентилятор, но он издаёт при работе существенный шум.</p>
+<p>Итак, я решил подключить к RPi термодатчик и сделать автоматическое управление вентилятором.</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2014/01/temp1.png"><img class="alignnone size-medium wp-image-1790" title="temp1" src="/assets/temp1-300x225.png" alt="" width="300" height="225" /></a></p>
+<p>Далее под катом.<br />
+<!--more--><br />
+Схемотехнически тут всё очень просто: термодатчик Analog Devices ADT7301 с интерфейсом SPI, вентилятор 40х40 мм, подключенный через транзисторный ключ к выходу PWM.</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2014/01/термодатчик1.jpg"><img class="alignnone size-medium wp-image-1793" title="термодатчик" src="/assets/&#1090;&#1077;&#1088;&#1084;&#1086;&#1076;&#1072;&#1090;&#1095;&#1080;&#1082;1-300x198.jpg" alt="" width="300" height="198" /></a></p>
+<p>Плата с термодатчиком.</p>
+<p>Датчик приклеен к радиатору источника питания (самая горячая точка в устройстве).</p>
+<p>Использование PWM позволяет включать вентилятор не на полные обороты, что делает его очень тихим. Управление вентилятором осуществляет скрипт на Python.</p>
+<p>Перед тем, как запустить скрипт, нужно поставить библиотеки для доступа к SPI и PWM.</p>
+<p><a href="https://github.com/doceme/py-spidev">py-spidev</a>: библиотека для SPI</p>
+<p><a href="https://github.com/WiringPi">Wiring-Pi</a>: библиотека для доступа к GPIO и PWM.</p>
+<p>Для получения доступа к SPI нужно отредактировать файл /etc/modprobe.d/raspi-blacklist.conf.</p>
+<p>В нём находятся такие строки:</p>
+<p>blacklist spi -bcm2708</p>
+<p>blacklist i2c -bcm2708</p>
+<p>Эти строки закрывают доступ к spi и i2c соответственно. Нужно закомментировать строку для spi:</p>
+<p>#blacklist spi -bcm2708</p>
+<p>и перезапускаем систему: sudo reboot.</p>
+<p>Управление вентилятором ступенчатое: есть два порога включения вентилятора, на 50% и на 100%. Есть небольшая тонкость: если подать на выключенный вентилятор сигнал PWM c 50% -м заполнением, он просто не раскрутится: не хватит подаваемой мощности для пуска двигателя. Поэтому на двигатель подаётся сначала кратковременный импульс со 100% заполнением, которого хватает для пуска мотора.</p>
+<p>В принципе, всё работает, однако хочется ещё и визуализировать данные температуры и оборотов вентилятора. Для этого были поставлены библиотеки <a href="http://www.numpy.org/">Numpy</a> и <a href="http://matplotlib.org/">Matplotlib</a>. Библиотека Matplotlib позволяет строить любые типы графиков, доступных в Matlab (то есть просто любые, в том числе 3D). Но тут же выяснилась и оборотная сторона: эти библиотеки очень тяжелые для RPi. Формирование картинки размером 800х600 с 2-d графиком занимает до 2-3 секунд (!), при частоте опроса датчика 1 раз в 5 с загрузка процессора составляет почти 100%, и достигает момента, когда RPi перестает откликаться на мышь и клавиатуру.</p>
+<p>Пример получаемого графика температуры приведен в начале поста.</p>
+<p>Исходный тескт скрипта приведен здесь:</p>
+<pre lang="python">import spidev	#for spi
+import wiringpi #for pwm
+import time
+from pylab import * #for chart
+import matplotlib.pyplot as plt
+
+tempTreshold1On = 50.0
+tempTreshold1Off = 47.0
+tempTreshold2On = 55.0
+tempTreshold2Off = 52.0
+
+speed0 = 0     # off
+speed1 = 512   # 50% speed
+speed2 = 1024  # 100% speed
+
+#--------------------------------
+#import 
+
+# spi init
+spi = spidev.SpiDev()
+spi.open(0, 0)
+# pwm init
+wiringpi.wiringPiSetupGpio()
+wiringpi.pinMode(18, 2)
+wiringpi.pwmWrite(18, 1024)
+
+n = 0 #current quantity of point in a chart
+temp_points = [] #list of temperature points
+speed_points = [] #list of fan speed points
+
+speed = speed0
+try:
+	while True:
+		# get 3 temperature values
+		resp = spi.xfer2([0, 0])
+		temp1 = resp[0] * 8 + resp[1]/32.0
+		time.sleep(0.1)
+		resp = spi.xfer2([0, 0])
+		temp2 = resp[0] * 8 + resp[1]/32.0
+		time.sleep(0.1)
+		resp = spi.xfer2([0, 0])
+		temp3 = resp[0] * 8 + resp[1]/32.0
+		#----------------------
+		#get the middle point of three values
+		if ((temp1 >= temp2) and (temp1 = temp3)):
+			temp = temp1
+		elif ((temp2 >= temp1) and (temp2 = temp3)):
+			temp = temp2
+		else:
+			temp = temp3
+		#-------------------
+		#find the current speed
+		if temp < tempTreshold1Off:
+			speed = speed0
+		if (temp > tempTreshold1Off) and (temp < tempTreshold1On):
+			if speed == speed2:
+				speed = speed1
+		if (temp > tempTreshold1On) and (temp < tempTreshold2Off):
+			if speed == speed0:
+				wiringpi.pwmWrite(18, 1024) #turn on a motor at max speed
+				time.sleep(0.5)
+			speed = speed1
+		if (temp > tempTreshold2Off) and (temp < tempTreshold2On):
+			if speed == speed0:
+				wiringpi.pwmWrite(18, 1024) #turn on a motor at max speed
+				time.sleep(0.5)
+				speed = speed1
+		if temp > tempTreshold2On:
+			speed = speed2
+		#-----------------------------
+		# set the motor speed
+		wiringpi.pwmWrite(18, speed)
+
+		print temp1, temp2, temp3, "temp =", temp, speed
+		# -----------------------------
+		# draw a chart
+		MAX_POINT = 12 # max quantity of point in the chart
+		if n < MAX_POINT:
+			n = n + 1
+		else:
+			temp_points.pop(0) #remove the first point
+			speed_points.pop(0) #remove the first point
+		temp_points.append(temp)
+		speed_points.append(speed * 100.0 / 1024.0) #fan speed in percents
+
+		print temp_points
+
+		fig, host = plt.subplots()
+
+		par1 = host.twinx()
+		t = arange((n - 1) * -5.0, 5.0, 5)
+
+		print t
+
+		p1, = host.plot(t, temp_points, "-b")
+		p2, = par1.step(t, speed_points, "-r", where = "post")
+
+		host.set_xlim(-60, 0)
+		host.set_ylim(25, 75)
+		par1.set_ylim(-10, 110)
+
+		host.set_xlabel("Time, min")
+		host.set_ylabel("Temperature, C")
+		par1.set_ylabel("Speed, %")
+
+		host.yaxis.label.set_color(p1.get_color())
+		par1.yaxis.label.set_color(p2.get_color())
+
+		host.grid()
+		#host.text('temp = {}' .format(temp))
+		savefig("temp.png")
+		#show()
+
+		time.sleep(5 * 60)  # period = 5 min
+	#end while
+
+except KeyboardInterrupt:
+	spi.close()
+#end try</pre>
+<p>Скрипт нужно запускать командой sudo python spi.py</p>
+<p>Некоторые пояснения к скрипту:<br />
+Чтение термодатчика происходит 3 раза, после этого выбирается среднее значение (не среднее арифметическое, а значение, лежащее между двумя другими). Это позволяет отфильтровать случайные выбросы показаний датчика.</p>
+<p>Порог выключения вентилятора ниже порога включения на 3 градуса, то есть функция включения вентилятора имеет некоторый гистерезис, это позволяет избежать частых включений и выключений двигателя (кстати, на графике вверху видно, что двигатель включается и выключается периодически, чтобы этого не происходило, нужно изменить пороговые значения).<br />
+При включении двигателя на 50% мощности из выключенного состояния он кратковременно включается на полную мощность, причины поясняются выше.</p>
+<p>В итоге я оставил в устройстве простой вариант скрипта, без визуализации. Можно попробовать другую библиотеку, полегче, но есть и другой способ. В настоящее время существуют облачные сервисы логгинга данных с датчиков, например, <a href="http://www.sensorcloud.com/">SensorCloud</a>. У сервиса есть документированное API, позволяющее отправлять данные по протоколу https. Если объем данных не превышает 3 млн. точек в месяц, сервисом можно пользоваться бесплатно.</p>
+<p>Но это уже другая история.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">{"login"=>"arktur04", "email"=>"arktur04@mail.ru", "display_name"=>"arktur04", "first_name"=>"", "last_name"=>""}</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-01-16T19:43:47+06:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>7:43 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/mikrokontrolliery/'>микроконтроллеры</a>, <a class='category' href='/blog/categories/proghrammirovaniie/'>программирование</a>, <a class='category' href='/blog/categories/foto/'>фото</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://arktur04.github.io/blog/2014/01/16/raspberry-pi-%25d0%25b8-%25d0%25ba%25d0%25be%25d0%25bd%25d1%2582%25d1%2580%25d0%25be%25d0%25bb%25d1%258c-%25d1%2582%25d0%25b5%25d0%25bc%25d0%25bf%25d0%25b5%25d1%2580%25d0%25b0%25d1%2582%25d1%2583%25d1%2580%25d1%258b/" data-via="" data-counturl="http://arktur04.github.io/blog/2014/01/16/raspberry-pi-%25d0%25b8-%25d0%25ba%25d0%25be%25d0%25bd%25d1%2582%25d1%2580%25d0%25be%25d0%25bb%25d1%258c-%25d1%2582%25d0%25b5%25d0%25bc%25d0%25bf%25d0%25b5%25d1%2580%25d0%25b0%25d1%2582%25d1%2583%25d1%2580%25d1%258b/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2014/01/06/siemens-logo-%25d0%25be%25d0%25b1%25d0%25b7%25d0%25be%25d1%2580/" title="Previous Post: Siemens Logo! - обзор">&laquo; Siemens Logo! - обзор</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2014/04/17/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-gnu-compiler-collection-internals/" title="Next Post: Книга "GNU Compiler Collection Internals"">Книга "GNU Compiler Collection Internals" &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/12/02/title/">Zombie Ninjas Attack</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/23/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3/">Проект видеоадаптера. Часть 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/16/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-software-defined-radio-handbook-rodger-hosking/">Книга "Software Defined Radio Handbook", Rodger Hosking</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/05/vga-%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580-%25d0%25bd%25d0%25b0-fpga/">Проект видеоадаптера. Часть 2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/25/%25d0%25bf%25d1%2580%25d0%25be-llvm/">Про LLVM</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

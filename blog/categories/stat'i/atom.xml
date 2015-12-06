@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: статьи | My Octopress Blog]]></title>
+  <link href="http://arktur04.github.io/blog/categories/stat'i/atom.xml" rel="self"/>
+  <link href="http://arktur04.github.io/"/>
+  <updated>2015-12-06T14:37:44+05:00</updated>
+  <id>http://arktur04.github.io/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Про LLVM]]></title>
+    <link href="http://arktur04.github.io/blog/2015/10/25/%25d0%25bf%25d1%2580%25d0%25be-llvm/"/>
+    <updated>2015-10-25T09:03:32+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/10/25/%d0%bf%d1%80%d0%be-llvm</id>
+    <content type="html"><![CDATA[<p>LLVM (начало статьи)</p>
+
+
+<p>На сегодняшний день существует только два реалистичных пути разработки компилятора для собственной архитектуры: использование GCC либо использование LLVM. Другие проекты компиляторов с открытым исходным кодом либо не достигли той степени развития, как GCC и LLVM, либо устарели и перестали развиваться, они не обладают развитыми алгоритмами оптимизации, и могут не обеспечивать полной совместимости даже со стандартом языка С, не говоря уже о поддержке других языков программирования. Разработка собственного компилятора “с нуля", это самая большая ошибка, которую можно совершить. Результатом такой разработки, крайне долгой и дорогостоящей, будет компилятор с множеством ошибок, с множеством отклонений от стандарта языка, с плохой оптимизацией или вообще без неё, с поддержкой, может быть, только одного языка (например, С).</p>
+
+
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/10/DragonFull.png"><img class="alignnone size-medium wp-image-2153" alt="DragonFull" src="/assets/DragonFull-300x300.png" width="300" height="300" /></a></p>
+
+
+<p><!--more-->Какой из этих двух open-source проектов выбрать в качестве основы для своего компилятора? GCC (GNU Compiler Collection) является более старым проектом, первый релиз которого состоялся в 1987 году, его автором является Ричард Столлман, известный деятель open-source движения [1]. Он поддерживает множество языков программирования: C, C++, Objective C, Fortran, Java, Ada, Go. Также существуют фронтенды для многих других языков программирования, не включенных в основную сборку. Компилятор GCC поддерживает большое количество процессорных архитектур и операционных систем, и является в настоящее время наиболее распространённым компилятором. Сам GCC написан на языке С.</p>
+
+
+<p>LLVM гораздо "моложе", его первый релиз состоялся в 2003 году, он (а точнее, его фронтенд Clang) поддерживает языки программирования C, C++, Objective-C and Objective-C++, и также имеет фронтенды для языков Common Lisp, ActionScript, Ada, D, Fortran, OpenGL Shading Language, Go, Haskell, Java bytecode, Julia, Swift, Python, Ruby, Rust, Scala, C# и Lua. Он разработан в университете Иллинойса, в США, и является основным компилятором для разработки под операционную систему OS X. LLVM написан на языке С++ (С++11 для последних релизов) [2].</p>
+
+
+<p>Какой из двух вариантов выбрать? Относительная "молодость" LLVM не является недостатком, он достаточно зрелый, чтобы в нём не было критических багов, и при этом он не несёт в себе огромного груза устаревших архитектурных решений, как GCC. Модульная структура компилятора позволяет использовать фронтенд LLVM-GCC, который обеспечивает полную поддержку стандартов GCC, при этом генерация кода целевой платформы будет осуществляться LLC (бэкенд LLVM). Также можно использовать Clang - оригинальный фронтенд LLVM.</p>
+
+
+<p>Область применения LLVM не ограничивается разработкой компиляторов для новых процессоров, инфраструктура компиляторов LLVM также может применяться для разработки компиляторов новых языков программирования, новых алгоритмов оптимизации и специфических инструментов статического анализа программного кода (поиск ошибок, сбор статистики и т.п.).</p>
+
+
+<p>Продолжение следует...</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Статья "Ten C++11 Features Every C++ Developer Should Use"]]></title>
+    <link href="http://arktur04.github.io/blog/2015/06/29/%25d1%2581%25d1%2582%25d0%25b0%25d1%2582%25d1%258c%25d1%258f-ten-c11-features-every-c-developer-should-use/"/>
+    <updated>2015-06-29T15:50:11+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/06/29/%d1%81%d1%82%d0%b0%d1%82%d1%8c%d1%8f-ten-c11-features-every-c-developer-should-use</id>
+    <content type="html"><![CDATA[<p>Прочитал статью "Ten C++11 Features Every C++ Developer Should Use", автор Marius Bancila, ссылка: <a href="http://www.codeproject.com/Articles/570638/Ten-Cplusplus-Features-Every-Cplusplus-Developer">http://www.codeproject.com/Articles/570638/Ten-Cplusplus-Features-Every-Cplusplus-Developer</a>. Весьма интересно и познавательно. Я, конечно, основные моменты знал и ранее, но после прочтения познания в C++11 несколько упорядочились.<br />
+Вообще, <a href="http://www.codeproject.com">www.codeproject.com</a> - хороший сайт, надо почаще заглядывать.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[FPU. Часть 4. Умножитель, тест и RTL]]></title>
+    <link href="http://arktur04.github.io/blog/2015/04/23/fpu-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-4-%25d1%2583%25d0%25bc%25d0%25bd%25d0%25be%25d0%25b6%25d0%25b8%25d1%2582%25d0%25b5%25d0%25bb%25d1%258c-%25d1%2582%25d0%25b5%25d1%2581%25d1%2582-%25d0%25b8-rtl/"/>
+    <updated>2015-04-23T11:05:54+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/04/23/fpu-%d1%87%d0%b0%d1%81%d1%82%d1%8c-4-%d1%83%d0%bc%d0%bd%d0%be%d0%b6%d0%b8%d1%82%d0%b5%d0%bb%d1%8c-%d1%82%d0%b5%d1%81%d1%82-%d0%b8-rtl</id>
+    <content type="html"><![CDATA[<p>Предыдущая часть <a href="http://32bit.me/?p=1971">здесь</a>.</p>
+
+
+<p><a style="line-height: 1.5em;" href="http://32bit.me/wordpress/wp-content/uploads/2015/04/pic.png"><img class="alignnone size-large wp-image-2027" alt="pic" src="/assets/pic-1024x562.png" width="1024" height="562" /></a></p>
+
+
+<p>Продолжим разработку FPU. В предыдущих частях был рассмотрен делитель вещественных чисел Деление является самым сложным в реализации арифметическим действием. Следующим по сложности идёт сложение, а самой простой операцией является умножение. В этой части рассмотрен умножитель.</p>
+
+
+<p><!--more-->Тест умножителя полностью аналогичен тесту делителя. Напоминаю, что в данном проекте тест основан на текстовом файле, в котором записаны тройки чисел: операнды и результат. Текстовый файл формируется специальной программой, исходный текст которой (на C++) прилагается к проекту. В тестовом наборе присутствуют все комбинации "особых" значений, таких как NaN, +/-Inf, +/-0 и десять тысяч случайных пар операндов.</p>
+
+
+<p>В самом умножителе нет ничего сложного, для умножения двух вещественных чисел в формате IEEE 754 мы должны перемножить мантиссы чисел и сложить экспоненты. При перемножении мантисс целая часть результата может превышать 1, поэтому для целой части результата мы вводим дополнительный разряд и анализируем его после умножения. Если в этом разряде 1, то есть целая часть результата &gt;= 2, мы жолжны нормализовать результат, то есть сдвинуть его на 1 разряд вправо, и скорректировать экспоненту, прибавив к ней 1.</p>
+
+
+<p>Экспонента результата представляет собой сумму экспонент операндов минус величина сдвига экспоненты (1023 для 64-битного формата) плюс величина коррекции, 1 или 0, в зависимости от результата умножения мантисс. Почему нужно вычитать величину сдвига и что это вообще такое?</p>
+
+
+<p>В стандарте IEEE 754 экспонента числа записывается со со сдвигом. Т.е., если экспонента равна нулю, то в разряды экспоненты будет записано 1023, или 0x3ff (здесь и далее значения для 64-битных чисел). Если экспонента равна -1022, то в разряды экспоненты будет записано число 1, если экспонента равна 1023, то будет записано число 2066, или 0x7fe. То. есть, exp = exp_signed + shift, где exp - содержимое разрядов экспоненты, exp_signed - значение экспоненты, shift - константа сдвига. Для того, чтобы после сложения экспонент получился верный результат, из суммы нужно вычесть константу сдвига:</p>
+
+
+<p>exp_result = exp1 + exp2 - shift = (exp_signed1 + shift) + (exp_signed2 + shift) - shift = exp_signed1 + exp_signed2 - shift .</p>
+
+
+<p>Если в разрядах константы содержится ноль, то число, в соответствии со стандартом IEEE 754 является денормализованным. Наш FPU не обрабатывает денормализованные числа, считая их нулями. На практике, денормализованным числам соответствуют числа, имеющие порядок 2^-1023, т.е. 10^-308. Эти числа настолько малы, что очень редко применяются на практике, и для упрощения FPU их не обрабатывают в большинстве реализаций FPU.</p>
+
+
+<p>Если в разрядах экспоненты содержится 3ff, это является признаком бесконечности (Inf)  или нечисла (NaN), и обрабатывается отдельной логикой.</p>
+
+
+<p>При сложении экспонент мы считаем результат с двумя дополнительными разрядами. Это нужно для того, чтобы различать ситуации переполнения и антипереполнения. При переполнении в старшем разряде будет 0, в следующем за ним будет единица. Пример:</p>
+
+
+<p>0x7fe + 0x7fe - 0x3ff = 0xbfd= 0_1011_1111_1101</p>
+
+
+<p>При переполнении мы считаем, что результат равен Inf, и выставляем выходной сигнал overflow.</p>
+
+
+<p>При антипереполнении в старшем разряде будет единица, то есть экспонента меньше -1023:</p>
+
+
+<p>0x001 + 0x001 - 0x3ff = 1_1100_00_0000_0011</p>
+
+
+<p>При антипереполнении мы считаем, что результат равен нулю, и выставляем выходной сигнал underflow.</p>
+
+
+<p>Ситуации, когда один или оба операнда равны Inf, NaN или нулю, обрабатываются отдельной логикой.</p>
+
+
+<p>Умножитель работает в три такта: на такте 0 вычисляется сумма экспонент без коррекции и произведение мантисс, на такте 1 вычисляется коррекция экспоненты, и, при необходимости, сдвиг мантиссы, на такте 2 вычисляется мантисса с учётом округления, и значения выходных флагов nan_reg, overflow_reg, underflow_reg, zero_reg.</p>
+
+
+<p>Мантисса вычисляется путём простого умножения: frac1 * frac2, что может потребовать нескольких аппаратных умножителей в составе FPGA. Если это недопустимо, по тем или иным причинам, данную операцию можно разбить на несолько тактов, так, чтобы использовался только один аппаратный умножитель. Вообще, операцию умножения довольно легко ковейеризировать, существенно повысив при этом общее быстродействие системы.</p>
+
+
+<p>Ниже приведены фрагменты кода, отвечающие за такты 0, 1:</p>
+
+
+<pre lang="verilog" line="1">      if(stage_reg == 0)
+        begin
+         full_exp_sum_reg <= exp1 + exp2 - EXP_SHIFT;
+         full_frac_reg <= frac1 * frac2; 
+        end
+        else if(stage_reg == 1)
+        begin
+          //exp correction must be undertaken
+          full_exp_sum_after_correction_reg <= full_exp_sum_reg + full_frac_reg[PRODUCT_WIDTH - 1];
+          frac_res_before_rounding_reg <= full_frac_reg[PRODUCT_WIDTH - 1]? full_frac_reg[PRODUCT_WIDTH - 1: PRODUCT_WIDTH - FRACTION_WIDTH - 2] : full_frac_reg[PRODUCT_WIDTH - 2: PRODUCT_WIDTH - FRACTION_WIDTH - 3];
+        end</pre>
+
+
+<p>И за такт 2:</p>
+
+
+<pre lang="verilog" line="1">if(stage_reg == 2)
+    begin
+       if(is_nan_result)
+        begin
+          out_reg <= NAN_VALUE;
+        end
+        else if(is_zero_result)
+        begin
+          out_reg <= {sign_res, {(FRACTION_WIDTH + EXP_WIDTH){1'b0}}};
+        end
+        else if(is_inf_result)
+        begin
+          out_reg <= {sign_res,  {EXP_WIDTH{1'b1}}, {FRACTION_WIDTH{1'b0}}};
+        end
+        else
+        begin
+         out_reg <= {sign_res, exp_res, frac_res};
+        end
+     end</pre>
+
+
+<pre lang="verilog" line="1">    begin
+      if(stage_reg == 2)
+        begin
+          nan_reg <= is_nan_result;
+        overflow_reg <= is_overflow_result;
+        underflow_reg <= is_underflow_result;
+        zero_reg <= is_zero_result;
+        end
+    end</pre>
+
+
+<p>Код проекта доступен на Github: <a href="https://github.com/arktur04/FPU">https://github.com/arktur04/FPU</a></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Модель SRAM с таймингами]]></title>
+    <link href="http://arktur04.github.io/blog/2015/03/14/%25d0%25bc%25d0%25be%25d0%25b4%25d0%25b5%25d0%25bb%25d1%258c-sram-%25d1%2581-%25d1%2582%25d0%25b0%25d0%25b9%25d0%25bc%25d0%25b8%25d0%25bd%25d0%25b3%25d0%25b0%25d0%25bc%25d0%25b8/"/>
+    <updated>2015-03-14T04:55:29+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/03/14/%d0%bc%d0%be%d0%b4%d0%b5%d0%bb%d1%8c-sram-%d1%81-%d1%82%d0%b0%d0%b9%d0%bc%d0%b8%d0%bd%d0%b3%d0%b0%d0%bc%d0%b8</id>
+    <content type="html"><![CDATA[<p>Представляю вашему вниманию модель микросхемы памяти IS61WV102416 на verilog с учетом задержек.Модель предназначена для построения тестов устройств, содержащих SRAM. Модель не синтезируема.</p>
+
+
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/03/wave1.png"><img class="alignnone size-large wp-image-1980" alt="wave1" src="/assets/wave1-1024x261.png" width="1024" height="261" /></a></p>
+
+
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/03/is61wv102416bll-10tl-102416-tssop48.jpg"><img class="alignnone size-medium wp-image-1979" alt="is61wv102416bll-10tl-102416-tssop48" src="/assets/is61wv102416bll-10tl-102416-tssop48-300x221.jpg" width="300" height="221" /></a></p>
+
+
+<p><span style="line-height: 1.5em;">Микросхема IS61WV102416 является асинхронной быстродействующей статической памятью объемом 16М и организацией 1М х 16. Имеются варианты с временем доступа 8, 10 и 20 нс. В данной модели установлены тайминги для варианта 10нс.</span></p>
+
+
+<p><!--more--></p>
+
+
+<p>Исходник модели и теста можно скачать на GitHub: <a href="https://github.com/arktur04/SRAM">https://github.com/arktur04/SRAM</a>.</p>
+
+
+<p>При построении модели использовано следующее допущение: мы не используем сигналы /UB и /LB (открывающие верхний и нижний байты шины данных), предполагая, что оба сигнала всегда находятся в активном состоянии.</p>
+
+
+<p>Модуль параметризируемый, тайминги можно изменит при необходимости:</p>
+
+
+<pre lang="verilog" line="1">module sram_controller
+#(parameter
+SRAM_DATA_WIDTH = 16,
+SRAM_ADDR_WIDTH = 20,
+
+//timings for 10 ns version
+TAA = 9.9, // address access time 10 ns
+TOHA = 2.5, //output hold time 2.5 ns
+TACE = 9.9, // ce_n access time
+TDOE = 6.4, // oe_n access time
+THZOE = 3.9, //oe_n to High-Z output
+TLZOE = 0, // oe_n to Low-Z output
+THZCE = 3.9, //ce_n to High-Z output
+TLZCE = 3, // ce_n to Low-Z output
+THZWE = 4.9, //we_n to High-Z output
+TLZWE = 2 // we_n to Low-Z output
+)
+(
+// inputs
+input wire [SRAM_ADDR_WIDTH - 1: 0] sram_addr_in,
+input wire oe_n,
+input wire ce_n,
+input wire we_n,
+// bidirectional data bus
+inout wire [SRAM_DATA_WIDTH - 1: 0] sram_data_inout
+);</pre>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[FPU. Часть 3. Делитель, RTL]]></title>
+    <link href="http://arktur04.github.io/blog/2015/03/13/fpu-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3-%25d0%25b4%25d0%25b5%25d0%25bb%25d0%25b8%25d1%2582%25d0%25b5%25d0%25bb%25d1%258c-rtl/"/>
+    <updated>2015-03-13T03:59:18+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/03/13/fpu-%d1%87%d0%b0%d1%81%d1%82%d1%8c-3-%d0%b4%d0%b5%d0%bb%d0%b8%d1%82%d0%b5%d0%bb%d1%8c-rtl</id>
+    <content type="html"><![CDATA[<p><i>Продолжение. Начало здесь: <a href="http://32bit.me/?p=1902" data-cke-saved-href="http://32bit.me/?p=1902">часть 1</a>, <a href="http://32bit.me/?p=1936" data-cke-saved-href="http://32bit.me/?p=1936">часть 2</a>.</i></p>
+
+
+<p>Итак, тест готов, теперь можно написать сам код делителя.<br />
+Для удобства нарисуем интерфейс модуля в таком виде:</p>
+
+
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/03/pic1.png"><img class="alignnone size-full wp-image-1972" alt="pic1" src="/assets/pic1.png" width="929" height="384" /></a></p>
+
+
+<p><!--more--></p>
+
+
+<p>Итак, модуль div_float производит операцию деления над двумя вещественными числами разрядностью 64 или 32 бита, которые представлены в соответствии со стандартом IEEE754. Входными сигналами модуля являются:<br />
+rst_n - сигнал сброса (инверсный)<br />
+clk - тактовый сигнал<br />
+[FLOAT_WIDTH - 1: 0] op1, op2 - делимое и делитель соответственно. FLOAT_WIDTH - параметр, указывающий разрядность, 64 или 32.<br />
+Выходы:<br />
+[FLOAT_WIDTH - 1: 0] out_reg - результат деления<br />
+done_reg - деление завершено. Сигнал выставляется в 1 на последнем такте работы делителя, и по нему следующий по схеме модуль может забирать данные с выхода.<br />
+Следующие выходы указывают на различные ситуации, возникающие при делении, их использование необязательно, но может упростить обработку исключительных ситуаций в ряде случаев. Они были рассмотрены в предыдущей части, когда мы писали тест, поэтому сейчас ограничимся их перечислением:<br />
+divizion_by_zero_reg - признак деления на ноль.<br />
+nan_reg - признак возникновения нечисла (NaN) в результате.<br />
+overflow_reg - признак переполнения.<br />
+underflow_reg - признак потери точности.<br />
+zero_reg - признак нуля в результате.</p>
+
+
+<p>Деление происходит следующим образом. Разбиваем операнды op1 и op2  на дробную часть (мантиссу) frac1 и frac2 соответственно, экспоненту (exp1 и exp2) и знак (sign1 и sign2).</p>
+
+
+<p>Теперь мы должны сравнить мантиссы, чтобы вычислить поправку к экспоненте:</p>
+
+
+<pre lang="verilog" line="1"> op2_aligned = frac1 &lt; frac2;</pre>
+
+
+<p>И вычисляем экспоненту результата:</p>
+
+
+<pre lang="verilog" line="1">localparam EXP_SHIFT = (2 ** (EXP_WIDTH - 1)) - 1;
+
+wire [EXP_WIDTH: 0] result_exp_before_correction, temp_result;
+
+assign
+temp_result = EXP_SHIFT + exp1,
+result_exp_before_correction = temp_result - exp2;
+
+always@*
+begin
+  if(underflow_reg) begin
+    result_exp_reg = 0;
+  end
+  else if (overflow_reg) begin
+      result_exp_reg = EXP_MAX;
+    end
+  else
+  begin
+    result_exp_reg = result_exp_before_correction - op2_aligned;
+  end
+end</pre>
+
+
+<p>И знак:</p>
+
+
+<pre lang="verilog" line="1">  wire sign1 = op1[SIGN_BIT],
+  sign2 = op2[SIGN_BIT],
+  result_sign = sign1 ^ sign2;</pre>
+
+
+<p>До сих пор была чистая комбинаторика, однако мантиссу результата вычислять комбинаторной схемой не имеет смысла: она получится слишком большой и медленной для практической реализации. Она вычисляется итеративно. И здесь нас ждет самый большой сюрприз. Сколько итераций нужно для вычисления 52-разрядной мантиссы 64-разрядного числа? За одну итерацию вычисляется один бит мантиссы результата. Казалось бы, из этого следует, что нам потребуется 52 итерации. Однако это не так.<br />
+Во-первых, первая (или нулевая, если считать с нуля) итерация нам нужна, чтобы загрузить регистры op1frac_stage_reg и op2frac_stage_reg, которые используются в алгоритме деления. Обратите внимание, что эти регистры намного длиннее исходных мантисс. Слева к мантиссе мы дописываем 1, в соответствии со стандартом IEEE754, а справа дописываем FRACTION_WIDTH нулей. Эти нули справа - это место куда булет сдвигаться делитель в цикле. Если их не будет, правые цифры делителя будут теряться при сдвиге, и результат получится неточным. Таким образом, для деления 52-разрядных мантисс регистры должны иметь по 105 разрядов. Также не забываем, что мантиссу делителя нужно сдвинуть ещё на 1 вправо, если она меньше мантиссы делимого. Это нужно для того, чтобы в старшем разряде результата всегда была 1:</p>
+
+
+<pre lang="verilog" line="1">if(div_counter_reg == 0)
+begin
+  op1frac_stage_reg &lt;= {1'b1, frac1, {FRACTION_WIDTH {1'b0}}};
+  op2frac_stage_reg &lt;= (op2_aligned)? {2'b01, frac2[FRACTION_MSB: 0], {FRACTION_WIDTH - 1 {1'b0}}}: {1'b1, frac2, {FRACTION_WIDTH {1'b0}}};
+end</pre>
+
+
+<p>Дополнительная итерация понадобится ещё потому, что слева к мантиссам мы дописали 1 (см. предыдущий абзац). И ещё одна итерация нужна, чтобы вычислить дополнительный бит справа. Он не попадает в результат непосредственно, но может привести к округлению младшего бита результата. Без него в некоторых случаях мы имели бы ошибку в последнем бите результата. Таким образом, нам понадобятся дополнительные три итерации, и для 52-разрядных мантисс вычисления займут 55 тактов, и на последнем, 56-м такте мы выставляем бит done_reg и собираем результат из вычисленных значений мантиссы, экспоненты и знака. Если в результате получается бесконечность, нечисло или ноль, записываем нужное значение в регистр результата.</p>
+
+
+<p>Само деление мантисс происходит классическим "школьным" способом "в столбик" (естественно, в двоичном виде), на каждой итерации мы сравниваем мантиссу делителя и мантиссу делимого, если первая больше или равна второй, то производим их вычитание и пишем в ответ 1, если нет, то пишем ноль, после чего сдвигаем мантиссу делителя на 1 разряд вправо:</p>
+
+
+<pre lang="verilog" line="1">always@(negedge rst_n, posedge clk)
+  begin
+    if(!rst_n)
+    begin
+      op1frac_stage_reg &lt;= 0;
+      op2frac_stage_reg &lt;= 0;
+      div_counter_reg &lt;= 0;
+      result_frac_reg &lt;= 0;
+      done_reg &lt;= 0;
+    end
+    else
+    begin
+      if(start)
+      begin
+        op1frac_stage_reg &lt;= 0;
+        op2frac_stage_reg &lt;= 0;
+        div_counter_reg &lt;= 0;
+        result_frac_reg &lt;= 0;
+        done_reg &lt;= 0;
+      end
+      else 
+      begin
+        if(div_counter_reg == 0)
+        begin
+          op1frac_stage_reg &lt;= {1'b1, frac1, {FRACTION_WIDTH {1'b0}}};
+          op2frac_stage_reg &lt;= (op2_aligned)? {2'b01, frac2[FRACTION_MSB: 0], {FRACTION_WIDTH - 1 {1'b0}}}: {1'b1, frac2, {FRACTION_WIDTH {1'b0}}};
+        end
+        else
+        begin
+          if(div_counter_reg &lt; FRACTION_WIDTH + 3)           begin             if(op1frac_stage_reg &gt;= op2frac_stage_reg &amp;&amp; op1frac_stage_reg != 0)
+            begin
+              op1frac_stage_reg &lt;= op1frac_stage_reg - op2frac_stage_reg;
+              result_frac_reg &lt;= {result_frac_reg[FRACTION_WIDTH - 1: 0], 1'b1};
+            end
+            else
+            begin
+              result_frac_reg &lt;= {result_frac_reg[FRACTION_WIDTH - 1: 0], 1'b0};
+            end
+            op2frac_stage_reg &lt;= op2frac_stage_reg &gt;&gt; 1;
+          end  
+          else
+          begin
+            if(nan_reg)
+            begin
+              out_reg &lt;= NAN_VALUE;
+            end
+            else if(inf_out)
+              begin
+                out_reg &lt;= INF_VALUE | (result_sign &lt;&lt; SIGN_BIT);            
+              end
+              else if(zero_out)
+                begin
+                  out_reg &lt;= 0;
+                end
+                else
+                begin
+                  out_reg &lt;= {result_sign, result_exp_reg[EXP_WIDTH - 1: 0], result_frac_reg[FRACTION_WIDTH: 1]};
+                end
+            div_counter_reg &lt;= 0;
+            done_reg &lt;= 1;
+          end
+        end  
+        div_counter_reg &lt;= div_counter_reg + 1'b1;  
+      end
+    end
+  end</pre>
+
+
+<p>Сейчас мы получили делитель, который проходит набор из &gt; 10000 тестовых воздействий, описанных в предыдущих частях, при этом результат вычислений совпадает побитно с результатом, вычисленным FPU компьютера. Это очень хорошо, но это ещё не всё.<br />
+В следующий раз мы сделаем анализ кода на время выполнения, чтобы выяснить, на какой частоте он сможет работать в конкретной FPGA. По результатам станет ясно, можно ли (и нужно ли) как-либо улучшить код.</p>
+
+
+<p>Все исходные тексты к статье можно взять на GitHub: <a href="https://github.com/arktur04/FPU">https://github.com/arktur04/FPU</a></p>
+
+]]></content>
+  </entry>
+  
+</feed>

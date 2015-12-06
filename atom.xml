@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-06T14:27:50+05:00</updated>
+  <updated>2015-12-06T14:37:44+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -12,5 +12,525 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Zombie Ninjas Attack]]></title>
+    <link href="http://arktur04.github.io/blog/2015/12/02/title/"/>
+    <updated>2015-12-02T17:49:33+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/12/02/title</id>
+    <content type="html"><![CDATA[<h1>Header</h1>
+
+<h2>Second layer</h2>
+
+<!--more-->
+
+
+<p>some content</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Проект видеоадаптера. Часть 3]]></title>
+    <link href="http://arktur04.github.io/blog/2015/11/23/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3/"/>
+    <updated>2015-11-23T21:00:45+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/11/23/%d0%bf%d1%80%d0%be%d0%b5%d0%ba%d1%82-%d0%b2%d0%b8%d0%b4%d0%b5%d0%be%d0%b0%d0%b4%d0%b0%d0%bf%d1%82%d0%b5%d1%80%d0%b0-%d1%87%d0%b0%d1%81%d1%82%d1%8c-3</id>
+    <content type="html"><![CDATA[<p>Продолжение. <a href="http://32bit.me/?p=2156">Часть 2.</a></p>
+<p>Структурная схема видеоадаптера приведена на рис. 1 (кликабельно)</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/11/vga-card-big.jpg"><img class="alignnone size-medium wp-image-2175" alt="vga-card-big" src="http://arktur04.github.io/assets/vga-card-big-300x214.jpg" width="300" height="214" /></a></p>
+<p>&nbsp;</p>
+<p>Рис. 1. Структурная схема видеоадаптера.</p>
+<p>&nbsp;</p>
+<p>Пояснения к схеме:</p>
+<p>В первой версии видеоадаптер будет иметь только текстовый режим EGA, 80 * 25 символов 8 * 14 пикселов каждый символ. Таким образом, экранное разрешение составит 8 * 80 = 640 пикселов по горизонтали и 14 * 25 = 350 пикселов по вертикали. Частота пикселов в этом режиме составляет, по стандарту 25,175 МГц, фактическая частота будет 25 МГц, в связи с тем, что частота тактирования ПЛИС составляет 50 МГц. При этом на любом мониторе происходит нормальная синхронизация.</p>
+<p><!--more--></p>
+<p>Для аналогичного тектового видеорежима VGA разрешение составляет 720 * 400 пикселей, т.к. символы имеют размер 9*16 пикселей. Частота пикселов при этом должна быть 28,322 МГц, и нормальная синхронизация с частотой 25 МГц невозможна. Можно получить близкую частоту с помощью PLL, но тогда потребуются блоки для асинхронного сопряжения видеоадаптера с микропроцессорной частью проекта, т.к. микропроцессорная часть будет тактироваться частотой 50 МГц. Это будет следующим этапом проекта, пока вся схема будет тактироваться от 50 МГц.</p>
+<p>Графические режимы тоже будут позже, пока будет реализован максимально простой вариант.</p>
+<p>Некоторые пояснения по схеме:</p>
+<p><strong>sync_gen</strong> - генератор синхроимпульсов. Имеет выходы <em>h_coord_reg</em> и <em>v_coord_reg</em>, соответственно, текущие координаты пиксела по горизонтали и вертикали. <em>data_en</em> - сигнал разрешения данных. Этот же сигнал используется для "гашения" выходов ЦАП. <em>hsync_reg</em> и<em> vsync_reg</em> - сигналы горизонтальной и вертикальной синхронизации.</p>
+<p>Так как вся схема состоит из нескольких модулей, включенных последовательно, прохождение сигнала по ним занимает несколько тактов. В связи с этим сигналы <em>data_en, <em>hsync_reg</em> </em>и <em><em>vsync_reg</em></em> также должны быть задержаны, чтобы приходить на выход синхронно с сигналами соответствующего пиксела.</p>
+<p><strong>addr_decoder</strong> - так как видеоадаптер будет использовать в качестве видеопамяти внешнюю sdram, которая будет использоваться совместно с основным микропроцессором, <strong> </strong>необходимо иметь небольшую буферную память, чтобы избежать проблем, связанных с временем доступа к внешней памяти. Этот буфер будет двойным, пока идёт выборка из одного блока памяти, в другой загружаются данные из внешней памяти, затем они меняются местами. каждый блок памяти будет иметь размер 256*16 бит. 16-и битный выход позволит получит сразу и ком символа, и информацию об его цвете. Модуль <strong>addr_decoder</strong> вырабатывает текущий адрес в буфере <em>buffer_addr_reg</em>, исходя из текущей координаты пиксела и смещения буфера (т.е. адреса, который отображается на начало буфера). Также этот модуль вырабатывает сигналы <em>hmod_reg</em> и <em>vmod_reg</em>, которые являются координатой пиксела в текущем знакоместе (т.е. абсолютной координатой по модулю 8 и 14 соответственно).</p>
+<p><strong>buf_mem </strong> - буфер памяти, см. предыдущий абзац.</p>
+<p><strong>mem_controlle</strong>r - контроллер памяти. Должен обеспечивать подкачку содержимого буфера из внешней SDRAM. Также, в будущем, будет обеспечивать асинхронные взаимодействия видеоадаптера и основной части, при их работе на разной тактовой частоте.</p>
+<p><strong>mode_controller</strong> - контроллер видеорежима. Пока видеоадаптер будет иметь только один текстовый режим, но в будущем контроллер должен будет обесипечивать установку всех остальных модулей в состояние, соответствующее текущему видеорежиму. Также модуль выделяет код символа (<em>char_code_reg</em>), цвет символа (<em>char_color_reg</em>), цвет фона (<em>back_color_reg</em>) и признак мигания <em>blink</em>.</p>
+<p><strong>char_gen</strong> - знакогенератор. В данной версии представляет собой ПЗУ с таблицей символов EGA (8*14), но впоследствии будет содержать символы VGA (9*16) и символы 8*8, а также программируемые пользователем символы. На его вход поступает код символа (<em>char_code</em>) и номер строки символа (<em>vmod</em>), на выходе появляется строка текущего знакоместа (<em>char_data_reg</em>).</p>
+<p><strong>pixel_data_decode</strong>r - на основании сигналов <em>char_data, hmod, char_color, back_color, blink</em> определяет цвет текущего пиксела в палитре.</p>
+<p><strong>palette</strong> - регистры палитры. В данной версии представляет собой ПЗУ, в дальнейшем будет возможность его изменения пользовательской программой.</p>
+<p>Пока это черновик схемы, она будет дорабатываться и изменяться по мере продвижения проекта.</p>
+<p>&nbsp;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Книга "Software Defined Radio Handbook", Rodger Hosking]]></title>
+    <link href="http://arktur04.github.io/blog/2015/11/16/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-software-defined-radio-handbook-rodger-hosking/"/>
+    <updated>2015-11-16T19:03:04+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/11/16/%d0%ba%d0%bd%d0%b8%d0%b3%d0%b0-software-defined-radio-handbook-rodger-hosking</id>
+    <content type="html"><![CDATA[<p>Прочитал книгу "Software Defined Radio Handbook", 75 стр, англ. язык.</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/11/Pentek-SDR-Handbook.jpg"><img class="alignnone size-medium wp-image-2171" alt="Pentek-SDR-Handbook" src="http://arktur04.github.io/assets/Pentek-SDR-Handbook-221x300.jpg" width="221" height="300" /></a></p>
+<p>Собственно, название вводит в заблуждение. Это не столько handbook, сколько рекламный проспект фирмы Pentek, которая выпускает отладочные платы для SDR. Платы, например, такие: 2 канала АЦП по 3,6 ГГц и 4 канала по 1,8 ГГц + Virtex 6. Это для меня несколько неактуально. А теория SDR изложена очень поверхностно, хочется чего-то глубокого.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Проект видеоадаптера. Часть 2]]></title>
+    <link href="http://arktur04.github.io/blog/2015/11/05/vga-%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580-%25d0%25bd%25d0%25b0-fpga/"/>
+    <updated>2015-11-05T21:38:06+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/11/05/vga-%d0%b0%d0%b4%d0%b0%d0%bf%d1%82%d0%b5%d1%80-%d0%bd%d0%b0-fpga</id>
+    <content type="html"><![CDATA[<p>Продолжение. <a title="Начало" href="http://32bit.me/?p=2037">Начало</a>.</p>
+<p>Проект видеоадаптера переделан под использование видео ЦАП ADV7123. Схема подключения приведена на рисунке:</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/11/VGA_DAC.jpg"><img class="alignnone size-medium wp-image-2168" alt="VGA_DAC" src="http://arktur04.github.io/assets/VGA_DAC-300x190.jpg" width="300" height="190" /></a></p>
+<p>(по клику откроется полный размер).</p>
+<p>Код проекта приведён на гитхабе (<a href="https://github.com/arktur04/VideoCard">ссылка</a>). Это тестовый код, который выводит на монитор поле разноцветных квадратов.</p>
+<p>По сравнению с предыдущей версией, в которой использовался резистивный ЦАП, увеличена разрядность с 2-х до 8-и бит на цвет, и существенно улучшилось качество изображения.</p>
+<p>Фото тестовой картинки:</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/11/pic1.jpg"><img class="alignnone size-medium wp-image-2166" alt="pic" src="http://arktur04.github.io/assets/pic1-300x189.jpg" width="300" height="189" /></a></p>
+<p>&nbsp;</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Про LLVM]]></title>
+    <link href="http://arktur04.github.io/blog/2015/10/25/%25d0%25bf%25d1%2580%25d0%25be-llvm/"/>
+    <updated>2015-10-25T09:03:32+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/10/25/%d0%bf%d1%80%d0%be-llvm</id>
+    <content type="html"><![CDATA[<p>LLVM (начало статьи)</p>
+<p>На сегодняшний день существует только два реалистичных пути разработки компилятора для собственной архитектуры: использование GCC либо использование LLVM. Другие проекты компиляторов с открытым исходным кодом либо не достигли той степени развития, как GCC и LLVM, либо устарели и перестали развиваться, они не обладают развитыми алгоритмами оптимизации, и могут не обеспечивать полной совместимости даже со стандартом языка С, не говоря уже о поддержке других языков программирования. Разработка собственного компилятора “с нуля", это самая большая ошибка, которую можно совершить. Результатом такой разработки, крайне долгой и дорогостоящей, будет компилятор с множеством ошибок, с множеством отклонений от стандарта языка, с плохой оптимизацией или вообще без неё, с поддержкой, может быть, только одного языка (например, С).</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/10/DragonFull.png"><img class="alignnone size-medium wp-image-2153" alt="DragonFull" src="http://arktur04.github.io/assets/DragonFull-300x300.png" width="300" height="300" /></a></p>
+<p><!--more-->Какой из этих двух open-source проектов выбрать в качестве основы для своего компилятора? GCC (GNU Compiler Collection) является более старым проектом, первый релиз которого состоялся в 1987 году, его автором является Ричард Столлман, известный деятель open-source движения [1]. Он поддерживает множество языков программирования: C, C++, Objective C, Fortran, Java, Ada, Go. Также существуют фронтенды для многих других языков программирования, не включенных в основную сборку. Компилятор GCC поддерживает большое количество процессорных архитектур и операционных систем, и является в настоящее время наиболее распространённым компилятором. Сам GCC написан на языке С.</p>
+<p>LLVM гораздо "моложе", его первый релиз состоялся в 2003 году, он (а точнее, его фронтенд Clang) поддерживает языки программирования C, C++, Objective-C and Objective-C++, и также имеет фронтенды для языков Common Lisp, ActionScript, Ada, D, Fortran, OpenGL Shading Language, Go, Haskell, Java bytecode, Julia, Swift, Python, Ruby, Rust, Scala, C# и Lua. Он разработан в университете Иллинойса, в США, и является основным компилятором для разработки под операционную систему OS X. LLVM написан на языке С++ (С++11 для последних релизов) [2].</p>
+<p>Какой из двух вариантов выбрать? Относительная "молодость" LLVM не является недостатком, он достаточно зрелый, чтобы в нём не было критических багов, и при этом он не несёт в себе огромного груза устаревших архитектурных решений, как GCC. Модульная структура компилятора позволяет использовать фронтенд LLVM-GCC, который обеспечивает полную поддержку стандартов GCC, при этом генерация кода целевой платформы будет осуществляться LLC (бэкенд LLVM). Также можно использовать Clang - оригинальный фронтенд LLVM.</p>
+<p>Область применения LLVM не ограничивается разработкой компиляторов для новых процессоров, инфраструктура компиляторов LLVM также может применяться для разработки компиляторов новых языков программирования, новых алгоритмов оптимизации и специфических инструментов статического анализа программного кода (поиск ошибок, сбор статистики и т.п.).</p>
+<p>Продолжение следует...</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Драйвер для Linux: первый шаг]]></title>
+    <link href="http://arktur04.github.io/blog/2015/10/02/%25d0%25b4%25d1%2580%25d0%25b0%25d0%25b9%25d0%25b2%25d0%25b5%25d1%2580-%25d0%25b4%25d0%25bb%25d1%258f-linux-%25d0%25bf%25d0%25b5%25d1%2580%25d0%25b2%25d1%258b%25d0%25b9-%25d1%2588%25d0%25b0%25d0%25b3/"/>
+    <updated>2015-10-02T22:11:34+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/10/02/%d0%b4%d1%80%d0%b0%d0%b9%d0%b2%d0%b5%d1%80-%d0%b4%d0%bb%d1%8f-linux-%d0%bf%d0%b5%d1%80%d0%b2%d1%8b%d0%b9-%d1%88%d0%b0%d0%b3</id>
+    <content type="html"><![CDATA[<p>Продолжаю эксперименты с Altera Cyclone V. На этот раз объектом эксперимента стал драйвер для той прошивки FPGA, про которую я писал ранее. Сама прошивка простейшая: она просто мигает светодиодами с частотой, которую можно задавать программно. В прошлом посте на эту тему я сделал управление частотой мигания из обычной (user-space) программы, которая получает доступ к физической памяти через функции open("/dev/mem") и mmap().<br />
+Однако такой путь считается "hacky and unsafe". Поэтому следующим логичным шагом должно стать написание драйвера.</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/10/Tux-linux-and-ARM-multiplatform-support.jpg"><img class="alignnone size-full wp-image-2147" alt="Tux-linux-and-ARM-multiplatform-support" src="http://arktur04.github.io/assets/Tux-linux-and-ARM-multiplatform-support.jpg" width="672" height="370" /></a></p>
+<p>Я воспользовался готовым исходником драйвера (<a href="https://github.com/zhemao/sockit_test/tree/master/software/blinker">ссылка</a>) за авторством Howard Mao (он на самом деле не Howard, а Zhe Hao Mao). Конечно, для того, чтобы разобраться в работе кода, почитал отдельные главы книги Linux Device Drivers (есть русский перевод).</p>
+<p>Для компиляции пришлось вытаскивать архив Arrow SocKit 13.1 GSRD Linux отсюда: <a href="http://releases.rocketboards.org/release/2013.11/gsrd/src">http://releases.rocketboards.org/release/2013.11/gsrd/src</a>, файл linux-socfpga-gsrd-13.1-src.bsx. Объем архива около 1.1 Гб, но сервер очень медленный, качается несколько часов. Честно говоря, я впервые увидел файл с расширением bsx, оказалось, что это самораспаковывающийся архив. Просто запускаем его и он разворачивается в указанную папку. В ней в папке sources находится файл linux-socfpga.tgz. Его тоже нужно распаковать, естественно. Это и есть как таковое ядро системы, которое нужно указывать при компиляции драйвера.</p>
+<p>Однако всё не так просто. После компиляции записываем скомпилированный драйвер blinker.ko на SD-карту, после загрузки Linux пишем<strong> insmod blinker.ko</strong> и получаем следующее: "<em>blinker: version magic '3.9.0-00161-ged01b8c SMP mod_unload ARMv7 p2v8 ' should be '3.9.0 SMP mod_unload ARMv7 p2v8'</em>". Не совпали волшебные номерки. Причем версия одна и та же, просто зачем-то к ней приделан какой-то добавочный номер.</p>
+<p>Решений может быть три: 1. Скомпилировать Linux именно из этого скачанного исходника (очень неохота) или 2. Подправить номер в исходниках ядра Linux. 3. Использовать команду modprobe с ключом -f, который заставляет систему игнорировать "волшебные цифры".  Однако этот способ почему-то не заработал.<br />
+Итак, способ номер 2, подправить номер в исходнике ядра. Данный номер записан в файле /include/generated/utsrelease.h. Исправляем то, что там было, на "3.9.0", и перекомпилируем драйвер. На всякий случай смотрим hex-редактором файл blinker.ko, чтобы убедиться, что волшебные циферки такие, как нужно. Снова записываем драйвер на SD-карту, запускаем insmod, всё прошло гладко. Теперь можно проверить работу драйвера, посылая ему числа от 1 до 15 для управления частотой миганий: echo 1 &gt; blinker - мигает быстро, echo 15 &gt; blinker - мигает медленно. Пока всё. Немного, но путь в тысячу ли начинается с одного шага.</p>
+<p>Эксперименты продолжаются.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Управление FPGA из программы]]></title>
+    <link href="http://arktur04.github.io/blog/2015/09/23/%25d1%2583%25d0%25bf%25d1%2580%25d0%25b0%25d0%25b2%25d0%25bb%25d0%25b5%25d0%25bd%25d0%25b8%25d0%25b5-fpga-%25d0%25b8%25d0%25b7-%25d0%25bf%25d1%2580%25d0%25be%25d0%25b3%25d1%2580%25d0%25b0%25d0%25bc%25d0%25bc%25d1%258b/"/>
+    <updated>2015-09-23T20:51:35+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/09/23/%d1%83%d0%bf%d1%80%d0%b0%d0%b2%d0%bb%d0%b5%d0%bd%d0%b8%d0%b5-fpga-%d0%b8%d0%b7-%d0%bf%d1%80%d0%be%d0%b3%d1%80%d0%b0%d0%bc%d0%bc%d1%8b</id>
+    <content type="html"><![CDATA[<p>Приведённый ниже код писал не я, он взят отсюда:<a href="https://zhehaomao.com/blog/fpga/2013/12/27/sockit-3.html"> https://zhehaomao.com/blog/fpga/2013/12/27/sockit-3.html</a>, но я решил оставить его здесь, т.к. он пригодится для дальнейших экспериментов.</p>
+<p>Напоминаю, что данная программа работает в ОС Linux GSRD на SoC Altera Cyclone V (ядро ARM Cortex A9). Компилятор Linaro GCC, берём здесь: <a href="http://releases.linaro.org/latest/components/toolchain/binaries/4.8/arm-linux-gnueabihf/">http://releases.linaro.org/latest/components/toolchain/binaries/4.8/arm-linux-gnueabihf/</a></p>
+<pre lang="c" line="1">#include <sys/mman.h>;
+#include <sys/mman.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <stdint.h>
+
+#define PAGE_SIZE 4096
+#define LWHPS2FPGA_BRIDGE_BASE 0xff200000
+#define BLINK_OFFSET 0x0
+
+volatile unsigned char *blink_mem;
+void *bridge_map;
+
+int main(int argc, char *argv[])
+{
+	int fd, ret = EXIT_FAILURE;
+	unsigned char value;
+	off_t blink_base = LWHPS2FPGA_BRIDGE_BASE;
+
+	if (argc < 2) {
+		fprintf(stderr, "Usage: %s number\n", argv[0]);
+		exit(EXIT_FAILURE);
+	}
+
+	/* check the bounds of the value being set */
+	value = atoi(argv[1]);
+	if (value < 1 || value > 15) {
+		fprintf(stderr, "Invalid delay setting."
+				"Delay must be between 1 and 15, inclusive.\n");
+		exit(EXIT_FAILURE);
+	}
+
+	/* open the memory device file */
+	fd = open("/dev/mem", O_RDWR|O_SYNC);
+	if (fd < 0) {
+		perror("open");
+		exit(EXIT_FAILURE);
+	}
+
+	/* map the LWHPS2FPGA bridge into process memory */
+	bridge_map = mmap(NULL, PAGE_SIZE, PROT_WRITE, MAP_SHARED,
+				fd, blink_base);
+	if (bridge_map == MAP_FAILED) {
+		perror("mmap");
+		goto cleanup;
+	}
+
+	/* get the delay_ctrl peripheral's base address */
+	blink_mem = (unsigned char *) (bridge_map + BLINK_OFFSET);
+
+	/* write the value */
+	*blink_mem = value;
+
+	if (munmap(bridge_map, PAGE_SIZE) < 0) {
+		perror("munmap");
+		goto cleanup;
+	}
+
+	ret = 0;
+
+cleanup:
+	close(fd);
+	return ret;
+}</stdint.h></unistd.h></stdlib.h></stdio.h></fcntl.h></pre>
+<p>Программа управляет частотой мигания светодиода, сам делитель частоты расположен в FPGA, частота задаётся регистром.</p>
+<p><!--more--></p>
+<p>Если убрать все строки, отвечающие за обработку ошибок, то остаётся это:</p>
+<pre lang="c" line="1">bridge_map = mmap(NULL, PAGE_SIZE, PROT_WRITE, MAP_SHARED,
+			fd, blink_base);
+blink_mem = (unsigned char *) (bridge_map + BLINK_OFFSET);
+*blink_mem = value;</pre>
+<p>Здесь мы отображаем функцией mmap страницу памяти моста lwhps2fpga в пространство памяти процесса.</p>
+<pre lang="bash" line="1"># enable the lwhps2fpga bridge
+echo 1 > /sys/class/fpga-bridge/lwhps2fpga/enable
+# make it blink fast
+./blinker 1
+# make it blink slow
+./blinker 15</pre>
+<p>Продолжение следует.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Книга Mayur Pandey, Suyog Sarda "LLVM Cookbook"]]></title>
+    <link href="http://arktur04.github.io/blog/2015/09/11/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-mayur-pandey-suyog-sarda-llvm-cookbook/"/>
+    <updated>2015-09-11T17:18:08+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/09/11/%d0%ba%d0%bd%d0%b8%d0%b3%d0%b0-mayur-pandey-suyog-sarda-llvm-cookbook</id>
+    <content type="html"><![CDATA[<p>Прочитал книгу Mayur Pandey, Suyog Sarda "LLVM Cookbook", 284 стр, англ. язык.<br />
+Хорошая книга, описывает много интересных вещей об архитектуре и внутреннем устройстве инфраструктуры компиляторов LLVM.<br />
+Она дополняет другую книгу, "Getting Started with LLVM Core Libraries", про которую я уже <a href="http://32bit.me/?p=1880">писал</a>. Кстати,  Getting Started with LLVM Core Libraries переведена на русский язык и сейчас есть в продаже (я читал в оригинале).</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/09/5981OS_LLVM-Cookbook.jpg"><img class="alignnone size-medium wp-image-2137" alt="5981OS_LLVM Cookbook" src="http://arktur04.github.io/assets/5981OS_LLVM-Cookbook-243x300.jpg" width="243" height="300" /></a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Книга Р. Лав «Разработка ядра Linux» (второе издание)]]></title>
+    <link href="http://arktur04.github.io/blog/2015/09/05/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-%25d1%2580-%25d0%25bb%25d0%25b0%25d0%25b2-%25d1%2580%25d0%25b0%25d0%25b7%25d1%2580%25d0%25b0%25d0%25b1%25d0%25be%25d1%2582%25d0%25ba%25d0%25b0-%25d1%258f%25d0%25b4%25d1%2580%25d0%25b0-linux-%25d0%25b2%25d1%2582%25d0%25be%25d1%2580%25d0%25be%25d0%25b5/"/>
+    <updated>2015-09-05T17:08:22+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/09/05/%d0%ba%d0%bd%d0%b8%d0%b3%d0%b0-%d1%80-%d0%bb%d0%b0%d0%b2-%d1%80%d0%b0%d0%b7%d1%80%d0%b0%d0%b1%d0%be%d1%82%d0%ba%d0%b0-%d1%8f%d0%b4%d1%80%d0%b0-linux-%d0%b2%d1%82%d0%be%d1%80%d0%be%d0%b5</id>
+    <content type="html"><![CDATA[<p>Прочитал книгу «Разработка ядра Linux», автор Р. Лав.</p>
+<p>В книге подробно описывается внутренняя структура ядра Linux.</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/09/346326_razrabotka_yadra_linux.jpg"><img class="alignnone  wp-image-2122" alt="346326_razrabotka_yadra_linux" src="http://arktur04.github.io/assets/346326_razrabotka_yadra_linux.jpg" width="434" /></a></p>
+<p>&nbsp;</p>
+<p>Книга, без сомнения, достойна прочтения, если вы занимаетесь разработкой модулей ядра.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Книга Р. Лав "Linux. Системное программирование"]]></title>
+    <link href="http://arktur04.github.io/blog/2015/08/25/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-%25d1%2580-%25d0%25bb%25d0%25b0%25d0%25b2-linux-%25d1%2581%25d0%25b8%25d1%2581%25d1%2582%25d0%25b5%25d0%25bc%25d0%25bd%25d0%25be%25d0%25b5-%25d0%25bf%25d1%2580%25d0%25be%25d0%25b3%25d1%2580%25d0%25b0%25d0%25bc%25d0%25bc%25d0%25b8%25d1%2580%25d0%25be%25d0%25b2%25d0%25b0/"/>
+    <updated>2015-08-25T15:50:49+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/08/25/%d0%ba%d0%bd%d0%b8%d0%b3%d0%b0-%d1%80-%d0%bb%d0%b0%d0%b2-linux-%d1%81%d0%b8%d1%81%d1%82%d0%b5%d0%bc%d0%bd%d0%be%d0%b5-%d0%bf%d1%80%d0%be%d0%b3%d1%80%d0%b0%d0%bc%d0%bc%d0%b8%d1%80%d0%be%d0%b2%d0%b0</id>
+    <content type="html"><![CDATA[<p>Прочитал книгу Р. Лав "Linux. Системное программирование".<br />
+В книге описывается ряд системных вызовов для работы с файлами, процессами, временем, сигналами и распределением памяти. Приводятся сведения о работе этих вызовов по стандарту POSIX и по их реализации в ядре Linux.</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/08/3a56606f29e71f3a51b8c5fdd1d.jpg"><img class="alignnone size-full wp-image-2118" alt="3a56606f29e71f3a51b8c5fdd1d" src="http://arktur04.github.io/assets/3a56606f29e71f3a51b8c5fdd1d.jpg" width="407" height="600" /></a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Прошиваем FPGA в Run-time]]></title>
+    <link href="http://arktur04.github.io/blog/2015/08/21/%25d0%25bf%25d1%2580%25d0%25be%25d1%2588%25d0%25b8%25d0%25b2%25d0%25b0%25d0%25b5%25d0%25bc-fpga-%25d0%25b2-run-time/"/>
+    <updated>2015-08-21T22:22:04+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/08/21/%d0%bf%d1%80%d0%be%d1%88%d0%b8%d0%b2%d0%b0%d0%b5%d0%bc-fpga-%d0%b2-run-time</id>
+    <content type="html"><![CDATA[<p>В общем, ничего сложного.<br />
+Для того, чтобы заливать прошивку в FPGA из процессорного ядра, нужно сделать следующее:<br />
+1. Подготовить файл rbf, это и есть файл прошивки. Он делается из файла sof с помощью утилиты Quartus:</p>
+<p>quartus_cpf -c output_files/sockit_test.sof output_files/sockit_test.rbf</p>
+<p>Положить этот файл в основной раздел SD-карты, например, в корень.</p>
+<p>2. После загрузки linux, отключить мосты между FPGA и HPS (HPS - это процессорное ядро):</p>
+<p>echo 0 &gt; /sys/class/fpga-bridge/fpga2hps/enable<br />
+echo 0 &gt; /sys/class/fpga-bridge/hps2fpga/enable<br />
+echo 0 &gt; /sys/class/fpga-bridge/lwhps2fpga/enable</p>
+<p>И заливаем файл в FPGA:</p>
+<p>dd if=/sockit_test.rbf of=/dev/fpga0 bs=1M</p>
+<p>Собственно, всё. Мосты можно включить обратно, если нужно:</p>
+<p>echo 1 &gt; /sys/class/fpga-bridge/fpga2hps/enable<br />
+echo 1 &gt; /sys/class/fpga-bridge/hps2fpga/enable<br />
+echo 1 &gt; /sys/class/fpga-bridge/lwhps2fpga/enable</p>
+<p>Разумеется, всё это можно делать скриптом.<br />
+Пишем файл gsrd_init.sh:</p>
+<pre lang="bash" line="1">#!/bin/sh
+
+echo 0 > /sys/class/fpga-bridge/fpga2hps/enable
+echo 0 > /sys/class/fpga-bridge/hps2fpga/enable
+echo 0 > /sys/class/fpga-bridge/lwhps2fpga/enable
+dd if=/sockit_test.rbf of=/dev/fpga0 bs=1M
+echo 1 > /sys/class/fpga-bridge/fpga2hps/enable
+echo 1 > /sys/class/fpga-bridge/hps2fpga/enable
+echo 1 > /sys/class/fpga-bridge/lwhps2fpga/enable
+</pre>
+<p>Кладём его в /etc/init.d. Теперь после загрузки Linux прошивка FPGA будет загружаться автоматически.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Книга B. Stroustrup "a Tour of C++"]]></title>
+    <link href="http://arktur04.github.io/blog/2015/08/14/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-b-stroustrup-a-tour-of-c/"/>
+    <updated>2015-08-14T15:52:56+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/08/14/%d0%ba%d0%bd%d0%b8%d0%b3%d0%b0-b-stroustrup-a-tour-of-c</id>
+    <content type="html"><![CDATA[<p>Прочитал книгу B. Stroustrup "A Tour of C++", Addison-Wesley, 2013, 180 стр, англ. язык.</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/08/51xVLzxX4vL._SX370_BO1204203200_.jpg"><img class="alignnone size-full wp-image-2111" alt="51xVLzxX4vL._SX370_BO1,204,203,200_" src="http://arktur04.github.io/assets/51xVLzxX4vL._SX370_BO1204203200_.jpg" width="372" height="499" /></a></p>
+<p>Книга не является ни учебником по С++, ни полным справочником по С++, это именно "тур", обзор основных возможностей С++11, причем и тех, которые были в стандарте С++98, и новых. Рекомендую прочитать тем, кто знает язык, но хочет усовершенствовать эти знания.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Книга Scott Meyers "Effective Modern C++"]]></title>
+    <link href="http://arktur04.github.io/blog/2015/08/06/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-scott-meyers-effective-modern-c/"/>
+    <updated>2015-08-06T16:07:22+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/08/06/%d0%ba%d0%bd%d0%b8%d0%b3%d0%b0-scott-meyers-effective-modern-c</id>
+    <content type="html"><![CDATA[<p>Прочитал книгу Scott Meyers "Effective Modern C++", O'Reilly Media, 2014 г., 336 стр, англ. язык.</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/08/c38858a6d6b8.jpg"><img class="alignnone size-medium wp-image-2107" alt="c38858a6d6b8" src="http://arktur04.github.io/assets/c38858a6d6b8-221x300.jpg" width="221" height="300" /></a></p>
+<p>Замечательная книга, одна из лучших, которые я читал по С++.</p>
+<p>Во-первых, описывается современный стандарт С++11/С++14. С введением нового стандарта в 2011 году С++ стал совершенно другим, новым языком, как это отмечает и его автор, Б. Страуструп. Книги по С++, изданные до 2011 года, сейчас читать практически не имеет смысла.</p>
+<p>Во-вторых, у Мейерса подход к изложению гораздо более практический, чем у Страуструпа. Страуструп описывает язык с формальной точки зрения, перечисляет операторы, конструкции языка, синтаксис. Мейерс рассматривает новые возможности языка с точки зрения их применения на практике, рассматривает "подводные камни" и сложные места, предупреждает об опасностях, которые могут крыться в коде.</p>
+<p>Следует заметить, что книга не предназначена для чтения "с нуля", она подразумевает, что читатель знает С++98. Начинающим "с нуля" могу порекомендовать книгу Шилдт "<a href="http://32bit.me/?p=1996">С++ Базовый курс</a>".</p>
+<p>Рекомендую всем, кто любит С++.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[SoCKit Lab Instructions]]></title>
+    <link href="http://arktur04.github.io/blog/2015/07/28/sockit-lab-instructions/"/>
+    <updated>2015-07-28T18:46:23+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/07/28/sockit-lab-instructions</id>
+    <content type="html"><![CDATA[<p>Прочитал и освоил на практике воркбенч SoCKit Lab, две части, Hardware и Software.<br />
+Данная программа лабораторных работ основана на системе на кристалле (SoC) Altera Cyclone V. SoC состоит из двух процессорных ядер ARM Cortex A9 и FPGA, которые соединены мостами и могут взаимодействовать друг с другом. Первое руководство, Hardware, выполняется в Quartus II, и описывает конфигурирование и подключение периферии к процессору, а также симуляцию системы в ModelSim.<br />
+Вторая часть, Software, описывает процесс загрузки Linux, компиляцию простейшей программы (мигание светодиодом), отладку программы в ARM DS-5 Embedded Development Suite, и основы работы с SignalTap II Logic Analyzer в режиме совместной отладки программного кода и FPGA-проекта.</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/07/pic1.jpg"><img class="alignnone size-full wp-image-2101" alt="pic1" src="http://arktur04.github.io/assets/pic1.jpg" width="1000" height="328" /></a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Статья "Ten C++11 Features Every C++ Developer Should Use"]]></title>
+    <link href="http://arktur04.github.io/blog/2015/06/29/%25d1%2581%25d1%2582%25d0%25b0%25d1%2582%25d1%258c%25d1%258f-ten-c11-features-every-c-developer-should-use/"/>
+    <updated>2015-06-29T15:50:11+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/06/29/%d1%81%d1%82%d0%b0%d1%82%d1%8c%d1%8f-ten-c11-features-every-c-developer-should-use</id>
+    <content type="html"><![CDATA[<p>Прочитал статью "Ten C++11 Features Every C++ Developer Should Use", автор Marius Bancila, ссылка: <a href="http://www.codeproject.com/Articles/570638/Ten-Cplusplus-Features-Every-Cplusplus-Developer">http://www.codeproject.com/Articles/570638/Ten-Cplusplus-Features-Every-Cplusplus-Developer</a>. Весьма интересно и познавательно. Я, конечно, основные моменты знал и ранее, но после прочтения познания в C++11 несколько упорядочились.<br />
+Вообще, <a href="http://www.codeproject.com">www.codeproject.com</a> - хороший сайт, надо почаще заглядывать.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Генерация файлов .mif и Case-конструкций]]></title>
+    <link href="http://arktur04.github.io/blog/2015/06/21/%25d0%25b3%25d0%25b5%25d0%25bd%25d0%25b5%25d1%2580%25d0%25b0%25d1%2586%25d0%25b8%25d1%258f-%25d1%2584%25d0%25b0%25d0%25b9%25d0%25bb%25d0%25be%25d0%25b2-mif/"/>
+    <updated>2015-06-21T09:13:34+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/06/21/%d0%b3%d0%b5%d0%bd%d0%b5%d1%80%d0%b0%d1%86%d0%b8%d1%8f-%d1%84%d0%b0%d0%b9%d0%bb%d0%be%d0%b2-mif</id>
+    <content type="html"><![CDATA[<p>Пусть в проекте FPGA необходимо ПЗУ, в которое записана определённая информация, имеющаяся у нас в виде бинарного файла. ПЗУ, как правило, реализуются на блоках BRAM, в которые при инициализации FPGA записывается требуемое содержимое.<br />
+Файлы инициализации памяти BRAM для FPGA, могут иметь формат MIF (Memory Initialization File) или формат HEX. </p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/06/DSC_0522_EDIT.jpg"><img class="alignnone size-medium wp-image-2084" alt="DSC_0522_EDIT" src="http://arktur04.github.io/assets/DSC_0522_EDIT-300x200.jpg" width="300" height="200" /></a></p>
+<p>Нужный модуль памяти можно сгенерировать в Quartus II с помощью MegaWizard, в ISE - с помощью Xilinx Core Generator. Кроме этого, в QuartusII возможно использование специальной директивы:</p>
+<pre lang="verilog" line="1">reg [7:0] mem[0:2047] /* synthesis ram_init_file = "test.mif" */;</pre>
+<p>Эта директива позволяет создать RAM, инициированную значениями из файла .MIF. Использование RAM с предустановленными значениями, это очень плохая идея, но в качестве ROM такую память использовать вполне можно. Проблема в том, что эту директиву понимает только Quartus II, никакой кроссплатформенности.</p>
+<p>Quartus II предоставляет редактор файлов памяти, и возможность загрузки файлов .mif и .hex, Xilinx Core Generator требует загрузки файла .coe, имеющего другой формат, нежели MIF. Однако хочется иметь кроссплатформенное решение, которое не зависело бы от платформы.  Таким вариантом является генерация ROM в виде case-конструкции:</p>
+<pre lang="cpp" line="1">
+always@(posedge clk)
+begin
+  case(in)
+  ...
+  11'h00d: out = 8'h99;
+  11'h00e: out = 8'h81;
+  11'h00f: out = 8'h7e;
+  11'h010: out = 8'h7e;
+  11'h011: out = 8'hff;
+  11'h012: out = 8'hdb;
+  11'h013: out = 8'hff;
+  11'h014: out = 8'hc3;
+  11'h015: out = 8'he7;
+  11'h016: out = 8'hff;
+  ...
+  endcase
+end
+</pre>
+<p>Полезная ссылка: различные конструкции для генерации разных типов RAM, ROM и других модулей можно найти в руководстве Altera "Recommended HDL Coding Styles": <a href="https://www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/hb/qts/qts_qii51007.pdf">https://www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/hb/qts/qts_qii51007.pdf</a><br />
+Я написал две простые утилиты, которая преобразует бинарный файл в MIF и в тело конструкции case.</p>
+<p><!--more--></p>
+<p>Вот её полный исходник:</p>
+<pre lang="cpp" line="1">
+#include <fstream>
+#include <vector>
+#include <sstream>
+#include <string>
+#include <iostream>
+#include <iomanip>
+#include <math.h>
+
+std::vector<unsigned char> readFile(const char* filename)
+{
+    // open the file:
+    std::streampos fileSize;
+    std::ifstream file(filename, std::ios::binary);
+    // get its size:
+    file.seekg(0, std::ios::end);
+    fileSize = file.tellg();
+    file.seekg(0, std::ios::beg);
+    // read the data:
+	std::vector<unsigned char> fileData(fileSize);
+    file.read((char*) &fileData[0], fileSize);
+    return fileData;
+}
+
+unsigned getWidth(unsigned size)
+{
+	return size / 4 + ((size % 4)? 1: 0);
+}
+
+int main(int argc, char *argv[])
+{
+	if(argc < 5)
+	{
+		std::cout << "äîëæíû áûòü àðãóìåíòû: èìÿ_âõîäíîãî_ôàéëà èìÿ_âûõîäíîãî_ôàéëà ðàçìåð_âõîäíîé_ïåðåìåííîé ðàçìåð_âûõîäíîé_ïåðåìåííîé" << std::endl;
+		std::cout << "íàïðèìåð: out_file.v 11 8" << std::endl;
+		return 0;
+	}
+	std::vector<unsigned char> inputFile = readFile(argv[1]);
+	std::ofstream out(argv[2], std::ofstream::out);
+	unsigned num = 0;
+	unsigned inSize = atoi(argv[3]), outSize = atoi(argv[4]);
+	unsigned inWidth = getWidth(inSize),
+		depth = pow(2, inSize),
+		outWidth = getWidth(outSize);
+	out << "width=" << outSize << ";" << std::endl;
+	out << "depth=" << depth << ";" << std::endl;
+	out << "address_radix=hex;" << std::endl;
+	out << "data_radix=hex;" << std::endl;
+	out << "content begin" << std::endl;
+	out.fill('0');
+	for(auto ch:inputFile)
+	{
+		out << std::setw(inWidth) << std::hex << num++ << ": " << std::setw(outWidth) << std::right << std::hex << (int)ch << ";" << std::endl;
+	}
+	out << "end" << std::endl;
+	out.close();
+    return 0;
+}
+</unsigned></unsigned></unsigned></math.h></iomanip></iostream></string></sstream></vector></fstream></pre>
+<p>С её помощью можно преобразовать бинарный файл в MIF-формат, указав имя входного файла, имя выходного файла, размер переменной адреса в битах и размер данных в битах, например:</p>
+<pre lang="text" line="1">hex2mif "866.008" "008.mif" 11 8</pre>
+<p>Вторая утилита отличается незначительно:</p>
+<pre lang="cpp" line="1">
+  //основное отличие в этой строке:
+  out << std::dec << std::setw(0) << inSize << "'h" << std::setw(inWidth) << std::hex << num++ << ": " << std::dec << std::setw(0) << outName << " = " << outSize << "'h" << std::setw(outWidth) << std::hex << (int)ch << ";" << std::endl;
+</pre>
+<p>В качестве пятого параметра ей нужно указывать имя выходного регистра:</p>
+<pre lang="text" line="1">hex2case "866.008" "008.mif" 11 8 out</pre>
+<p>Обе утилиты кроссплатформенные и могут быть скомпилированы как в Windows, так и в Linux.</p>
+<p>Теперь можно использовать этот файл для инициализации памяти в verilog:</p>
+<pre lang="verilog" line="1">
+module rom_test(
+  input wire clk, rst_n,
+  input wire [10:0] in,
+  output reg [7:0] out
+);
+
+always@(posedge clk)
+begin
+  case(in)
+  `include "008.inc"
+  endcase
+end
+
+endmodule
+</pre>
+<p>Ссылка на Github: <a href="https://github.com/arktur04/bin2mif">https://github.com/arktur04/bin2mif</a></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[FPU. Часть 5. Сумматор, тест и RTL]]></title>
+    <link href="http://arktur04.github.io/blog/2015/06/19/fpu-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-5-%25d1%2581%25d1%2583%25d0%25bc%25d0%25bc%25d0%25b0%25d1%2582%25d0%25be%25d1%2580-%25d1%2582%25d0%25b5%25d1%2581%25d1%2582-%25d0%25b8-rtl/"/>
+    <updated>2015-06-19T21:44:03+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/06/19/fpu-%d1%87%d0%b0%d1%81%d1%82%d1%8c-5-%d1%81%d1%83%d0%bc%d0%bc%d0%b0%d1%82%d0%be%d1%80-%d1%82%d0%b5%d1%81%d1%82-%d0%b8-rtl</id>
+    <content type="html"><![CDATA[<p>Итак, сумматор чисел в формате IEEE 754 с разрядностью 32 или 64 бита.<br />
+Исходники можно скачать на Github: <a href="https://github.com/arktur04/FPU" data-cke-saved-href="https://github.com/arktur04/FPU">https://github.com/arktur04/FPU</a>.</p>
+<p>КДПВ (кликабельно):</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/06/pic1.png"><img class="alignnone size-medium wp-image-2078" alt="pic1" src="http://arktur04.github.io/assets/pic1-300x58.png" width="300" height="58" /></a></p>
+<p><!--more--></p>
+<p>При разработке модуля суммирования (он же модуль вычитания) был обнаружен ряд "подводных камней", которые отличают его от других модулей FPU. В первую очередь, это касается тестов. При тестировании модуля умножения и модуля деления мы использовали сгенерированную программно таблицу случайных значений 64-битных целых чисел, которые затем переводились в соответствующие вещественные значения. Легко видеть, что при равномерном распределении исходных (целочисленных) значений мы получим случайные вещественные числа с равномерным распределением экспонент, то есть два случайных числа, оказавшихся в одной паре, скорее всего, будут различаться на много порядков. Это не мешает тестам умножителя и делителя, но для сумматора это означает, что результат, скорее всего, будет просто равен большему значению, так как меньшее просто выйдет далеко за пределы младшего знака большего числа.</p>
+<p>Такие случаи тоже надо тестировать, конечно, но не они являются основным содержанием теста. Поэтому в тесте мы искусственно ограничиваем разброс двух операндов так, чтобы их экспоненты отличались не более чем на 53 (для 64-битных чисел). Это значение выбрано исходя из того, что 52 - длина мантиссы, и мы всё же оставляем некоторую вероятность (1/53) для "вырожденного" случая, когда одно из слагаемых меньше младшего разряда второго слагаемого.</p>
+<pre lang="cpp" line="1">    const unsigned MAX_EXP_DIFF = 53;
+    ...
+    for(int i = 0; i <= 10000; i++)
+    {
+    do
+    {
+        ll_x = randomInt64();
+        ll_y = randomInt64();
+    }
+    while(abs(exponent(ll_x) - exponent(ll_y)) > MAX_EXP_DIFF);
+    printLine(testfile, ll_x, ll_y, add);
+}</pre>
+<p>Второй подводный камень оказался в системе округления результата. Для того, чтобы уменьшить потери точности на последнем знаке числа, во всех модулях FPU происходит стандартное округление, мы считаем на 1 разряд больше, и затем прибавляем к нему 1. В конечный результат этот разряд не записывается. Если в этом дополнительном разряде был ноль, то он станет равным единице, но на конечном результате это не отразится. Если дополнительный разряд был равен 1, то произойдёт перенос в следующий разряд, который является младшим битом результата. Следуя этой схеме, в модулях умножения и деления удалось добиться полного побитового совпадения результата с рассчитанным на компьютере. Однако при суммировании младший разряд в некоторых случаях ведёт себя иначе: иногда не происходит округление там, где оно должно быть. Понять закономерность мне так и не удалось, поэтому я решил, что единица младшего разряда, это не такая уж большая погрешность, и добавил в тест условие, по которому два числа, отличающиеся на один младший бит, считаются равными.</p>
+<pre lang="verilog" line="1">is_equal = ((expected == actual) || (expected == actual + 1) || (expected == actual - 1)) || (expectedIsNaN && actualIsNaN) || (expectedIsZero && actualIsZero);</pre>
+<p>Также равными считаются числа +0 и -0:</p>
+<pre lang="verilog" line="1">is_equal = ... (expectedIsZero && actualIsZero);
+
+function is_zero;
+input [`DATA_WIDTH - 1: 0] value;
+begin
+  is_zero = value[`DATA_WIDTH - 2: `DATA_WIDTH - `EXP_WIDTH - 1] == {`EXP_WIDTH{1'b0}};
+end</pre>
+<p>Это происходит потому, что функция is_zero проверяет на равенство нулю все разряды, кроме value[`DATA_WIDTH - 1], который содержит знак.</p>
+<p>В остальном поведение модуля полностью соответствует стандартному FPU компьютера, что подтверждается тестом их &gt; 20.000 случайных пар чисел (10.000 для сложения и столько же для вычитания).</p>
+<p>Итак, у нас готовы основные арифметические операции, и можно сделать что-либо более интересное. Например, модуль вычисления синуса/косинуса. Но об этом я напишу в следующий раз.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ссылка от RS Components]]></title>
+    <link href="http://arktur04.github.io/blog/2015/06/17/%25d1%2581%25d1%2581%25d1%258b%25d0%25bb%25d0%25ba%25d0%25b0-%25d0%25be%25d1%2582-rs-components/"/>
+    <updated>2015-06-17T20:39:03+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/06/17/%d1%81%d1%81%d1%8b%d0%bb%d0%ba%d0%b0-%d0%be%d1%82-rs-components</id>
+    <content type="html"><![CDATA[<p>Инженерный портал <a href="http://www.rs-online.com/designspark/electronics/nodes/view/type:tool/slug:product-data-library">http://www.rs-online.com/designspark/electronics/nodes/view/type:tool/slug:product-data-library</a>, цель которого – предоставить инженеру техническую информацию от разных производителей – в одном месте.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Книга Б. Страуструп "Язык программирования С++"]]></title>
+    <link href="http://arktur04.github.io/blog/2015/06/16/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-%25d0%25b1-%25d1%2581%25d1%2582%25d1%2580%25d0%25b0%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d1%2583%25d0%25bf-%25d1%258f%25d0%25b7%25d1%258b%25d0%25ba-%25d0%25bf%25d1%2580%25d0%25be%25d0%25b3%25d1%2580%25d0%25b0%25d0%25bc%25d0%25bc%25d0%25b8%25d1%2580%25d0%25be%25d0%25b2/"/>
+    <updated>2015-06-16T18:11:17+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/06/16/%d0%ba%d0%bd%d0%b8%d0%b3%d0%b0-%d0%b1-%d1%81%d1%82%d1%80%d0%b0%d1%83%d1%81%d1%82%d1%80%d1%83%d0%bf-%d1%8f%d0%b7%d1%8b%d0%ba-%d0%bf%d1%80%d0%be%d0%b3%d1%80%d0%b0%d0%bc%d0%bc%d0%b8%d1%80%d0%be%d0%b2</id>
+    <content type="html"><![CDATA[<p>Прочитал книгу Б. Страуструп "Язык программирования С++".</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/06/1363474817_6q2alrlwncaa.jpg"><img class="alignnone size-full wp-image-2071" alt="1363474817_6q2alrlwncaa" src="http://arktur04.github.io/assets/1363474817_6q2alrlwncaa.jpg" width="450" height="636" /></a></p>
+<p>Книга очень хорошая, это не только справочник по синтаксису языка и библиотеке STL, это ещё и прекрасный учебник с множеством примеров кода. Также в книге есть рассуждения автора о процессе проектирования о организации процесса разработки ПО. Этим он отличается от многих авторов из "академической" среды, таких, как Н.Вирт. Не стоит забывать, что Б. Страуструп в первую очередь программист - практик, работающий в коммерческой организации над большими проектами, а не преподаватель кафедры программирования, чья самая большая программа не превышает ста строк.</p>
+<p>Не могу не привести цитату (гл. 23.5):</p>
+<p><em>"В организации, которая обращается со своими программистами как с полными идиотами, вскоре будут работать только те программисты, которые желают и способны вести себя как полные идиоты."</em></p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Цитата]]></title>
+    <link href="http://arktur04.github.io/blog/2015/06/15/%25d1%2586%25d0%25b8%25d1%2582%25d0%25b0%25d1%2582%25d0%25b0/"/>
+    <updated>2015-06-15T16:44:03+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/06/15/%d1%86%d0%b8%d1%82%d0%b0%d1%82%d0%b0</id>
+    <content type="html"><![CDATA[<p>Цитата из книги Б. Страуструп "Язык программирования С++" (гл.23.3) (текст выделен мной):<br />
+"<em>Обычный подход... заключается в том, чтобы свести разработку к задачам относительно низкого уровня, подгоняемых под общую грубую схему. То есть идея заключается в том, что создаётся класс быстро обучаемых (дешевых) взаимозаменяемых программистов низкого уровня ("кодировщиков") и класс не таких дешевых, но столь же взаимозаменяемых (и, стало быть, столь же малоценных) проектировщиков. Предполагается, что кодировщики не принимают проектных решений, в то время как проектировщики не утруждают себя грубой работой по вниканию в детали кодирования. <strong>Такой подход часто приводит к неудаче</strong>. Там, где он работает, в результате получаются чрезмерно громоздкие системы с низкой производительностью.</em><br />
+<em> ...</em><br />
+<em> По сути дела, такой системе не хватает механизма обратной связи, чтобы люди учились на чужом опыте. <strong>Это растрата человеческого таланта</strong>. Создание среды разработки, в рамках которой человек может <strong>проявлять разнообразные таланты, развивать новые способности, вносить идеи и радоваться своей работе</strong> - это не просто <strong>цель</strong>, достойная сама по себе, но вещь, <strong>приносящая</strong> практическую <strong>экономическую выгоду</strong>.</em>"</p>
+]]></content>
+  </entry>
   
 </feed>

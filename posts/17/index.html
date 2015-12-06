@@ -1,0 +1,497 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="Для поддержки протокола Modbus RTU программа должна принимать символы, поступающие в порт и размещать их в буфере приёма. Признаком окончания &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://arktur04.github.io/posts/17/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="arktur04.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/09/17/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-7/">Протокол Modbus в устройствах на базе микроконтроллеров. Часть 2.1. Программная поддержка протокола</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-09-17T23:41:28+06:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>11:41 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Для поддержки протокола Modbus RTU программа должна принимать символы, поступающие в порт и размещать их в буфере приёма. Признаком окончания сообщения служит тайм-аут, т.е. прекращение поступления символов в течение 3,5 - 4.5 длительностей передачи одиночного символа.</p>
+<p>По окончании приёма сообщения управление должно передаваться специальному обработчику, который декодирует команду протокола, исполняет её, и формирует строку ответа, которая размещается в буфере передачи.</p>
+<p>Передача ответа также ведётся с помощью прерываний. Начало передаваемого сообщения размещается в аппаратном буфере UART, при его исчерпании формируется прерывание, и буфер заполняется снова.</p>
+<p>Работа с сообщениями ModbusASCII происходит аналогичным образом, за исключением того, что признаком конца приёма сообщения служит не тайм-аут,  а специальный символ конца сообщения.</p>
+<p>В этой статье будет рассмотрен только режим Modbus RTU, как наиболее распространённый в настоящее время.</p>
+<p></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2010/09/17/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-7/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/09/13/%25d1%2581-%25d0%25b4%25d0%25bd%25d1%2591%25d0%25bc-%25d0%25bf%25d1%2580%25d0%25be%25d0%25b3%25d1%2580%25d0%25b0%25d0%25bc%25d0%25bc%25d0%25b8%25d1%2581%25d1%2582%25d0%25b0/">С днём программиста!</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-09-13T10:00:07+06:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>10:00 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>С днём программиста!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/08/24/%25d1%2580%25d0%25b0%25d1%2581%25d0%25bf%25d1%2580%25d0%25b5%25d0%25b4%25d0%25b5%25d0%25bb%25d0%25b5%25d0%25bd%25d0%25b8%25d0%25b5-%25d0%25bf%25d0%25b0%25d0%25bc%25d1%258f%25d1%2582%25d0%25b8-%25d0%25b2-iar/">Распределение памяти в IAR</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-08-24T03:33:58+06:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>3:33 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Для того, чтобы выяснить, как распределена память (и ОЗУ, и ПЗУ) в проекте под IAR, достаточно найти файл с расширением .map. Он содержит подробнейшую информацию о том, какое количество памяти занимает каждый отдельный модуль и каждая отдельная функция программы.</p>
+<p>Пример:</p>
+<pre>xdtento.o             452       72
+ xfdnorm.o             130
+ xfdscale.o            192
+ xfexp.o               352
+ xgetmemchunk.o         40                 4
+ xprintffull.o       3 266        8
+ xpurevirtual.o          6
+ xreportassert.o       116       48
+ xsprout.o              10
+ xstod.o               188       16
+ xstoflt.o             432       32
+ xstopfx.o             246
+ xstoul.o              280       80
+ xsyslock.o            136                20
+ xxmemxfree.o          136
+ xxmemxmalloc.o        188                 8
+</pre>
+<p>Здесь в первом столбце указаны имена функций, во втором размер кода, размещённого в ПЗУ, в третьем столбце указан размер данных, размещённых в ПЗУ (констант), в последнем столбце указан размер данных, размещённых в ОЗУ (переменных). Из этого фрагмента мы можем узнать, например, что модуль xprintffull (вероятно, содержащий реализации функций printf, sprintf и т.п.) занимает довольно существенный размер, больше 3 Кб.</p>
+<p>Вообще изучение данного файла может быть весьма познавательным. Если же ваша программа содержит много массивов данных, размещаемых в ПЗУ, то по этой таблице можно ещё раз убедиться в том, что ни один из них не попал случайно в ОЗУ (если перед объявлением массива пропущен модификатор <strong>const</strong>).</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/08/19/%25d0%25b8%25d0%25b7%25d0%25bc%25d0%25b5%25d1%2580%25d0%25b5%25d0%25bd%25d0%25b8%25d1%258f-%25d1%2582%25d0%25b5%25d0%25bf%25d0%25bb%25d0%25be%25d0%25b2%25d0%25be%25d0%25b3%25d0%25be-%25d1%2580%25d0%25b5%25d0%25b6%25d0%25b8%25d0%25bc%25d0%25b0-%25d0%25bf%25d1%2580%25d0%25be%25d0%25b4%25d0%25be%25d0%25bb%25d0%25b6%25d0%25b5/">Измерения теплового режима (продолжение)</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-08-19T19:10:04+06:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>7:10 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Продолжим тему, начатую в посте "<a href="http://32bit.me/?p=585" target="_self">измерения теплового режима</a>"</p>
+<p></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2010/08/19/%25d0%25b8%25d0%25b7%25d0%25bc%25d0%25b5%25d1%2580%25d0%25b5%25d0%25bd%25d0%25b8%25d1%258f-%25d1%2582%25d0%25b5%25d0%25bf%25d0%25bb%25d0%25be%25d0%25b2%25d0%25be%25d0%25b3%25d0%25be-%25d1%2580%25d0%25b5%25d0%25b6%25d0%25b8%25d0%25bc%25d0%25b0-%25d0%25bf%25d1%2580%25d0%25be%25d0%25b4%25d0%25be%25d0%25bb%25d0%25b6%25d0%25b5/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/08/19/%25d0%25bf%25d1%2580%25d0%25b8%25d0%25b1%25d0%25be%25d1%2580/">Прибор</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-08-19T02:31:07+06:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>2:31 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Собран экспериментальный образец прибора, на очереди его испытания</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2010/08/P1000972.jpg"><img class="alignnone size-medium wp-image-603" title="P1000972" src="/assets/P1000972-300x242.jpg" alt="" width="300" height="242" /></a></p>
+<p>Под катом ещё фотографии</p>
+<p></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2010/08/19/%25d0%25bf%25d1%2580%25d0%25b8%25d0%25b1%25d0%25be%25d1%2580/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/08/17/%25d0%25b8%25d0%25b7%25d0%25bc%25d0%25b5%25d1%2580%25d0%25b5%25d0%25bd%25d0%25b8%25d1%258f-%25d1%2582%25d0%25b5%25d0%25bf%25d0%25bb%25d0%25be%25d0%25b2%25d0%25be%25d0%25b3%25d0%25be-%25d1%2580%25d0%25b5%25d0%25b6%25d0%25b8%25d0%25bc%25d0%25b0/">Измерения теплового режима</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-08-17T20:41:05+06:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>8:41 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>В разрабатываемом приборе имеются силовые MOSFET-транзисторы, установленные на радиаторах SK104-50.8 (<a href="http://www.promelec.ru/catalog_info/59/156/638/692/" target="_blank">http://www.promelec.ru/catalog_info/59/156/638/692/</a>). Внешний вид радиатора приведён на рис. 1.</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2010/08/heatsink1.jpg"><img class="alignnone size-medium wp-image-587" title="heatsink1" src="/assets/heatsink1-300x141.jpg" alt="" width="300" height="141" /></a></p>
+<p>Рис. 1. Радиатор SK104</p>
+<p>Можно проверить, насколько соответствуют расчёты теплового режима транзисторов реальности.</p>
+<p></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2010/08/17/%25d0%25b8%25d0%25b7%25d0%25bc%25d0%25b5%25d1%2580%25d0%25b5%25d0%25bd%25d0%25b8%25d1%258f-%25d1%2582%25d0%25b5%25d0%25bf%25d0%25bb%25d0%25be%25d0%25b2%25d0%25be%25d0%25b3%25d0%25be-%25d1%2580%25d0%25b5%25d0%25b6%25d0%25b8%25d0%25bc%25d0%25b0/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/08/07/%25d0%25b4%25d1%2580%25d0%25b5%25d0%25b1%25d0%25b5%25d0%25b7%25d0%25b3-%25d0%25ba%25d0%25be%25d0%25bd%25d1%2582%25d0%25b0%25d0%25ba%25d1%2582%25d0%25be%25d0%25b2/">Дребезг контактов</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-08-07T02:23:48+06:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>2:23 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://32bit.me/wordpress/wp-content/uploads/2010/08/NewFile0.gif"><img class="alignnone size-full wp-image-574" title="NewFile0" src="/assets/NewFile0.gif" alt="" width="320" height="234" /></a></p>
+<p>Явление дребезга контактов плёночной клавиатуры. Нужно отметить, что дребезг контактов в плёночной клавиатуре наблюдается достаточно редко, один раз на несколько десятков нажатий, тем не менее, в программе необходимо предусматривать защиту от него.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/07/27/%25d0%25be%25d1%2582%25d0%25bb%25d0%25b0%25d0%25b4%25d0%25ba%25d0%25b0-%25d0%25bf%25d1%2580%25d0%25b8%25d0%25b1%25d0%25be%25d1%2580%25d0%25b0/">Отладка прибора</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-07-27T21:20:03+06:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>27</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>9:20 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://32bit.me/wordpress/wp-content/uploads/2010/07/958.jpg"><img class="alignnone size-medium wp-image-564" title="958" src="/assets/958-300x178.jpg" alt="" width="300" height="178" /></a></p>
+<p></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2010/07/27/%25d0%25be%25d1%2582%25d0%25bb%25d0%25b0%25d0%25b4%25d0%25ba%25d0%25b0-%25d0%25bf%25d1%2580%25d0%25b8%25d0%25b1%25d0%25be%25d1%2580%25d0%25b0/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/07/15/c-%25d0%25b8-c/">C и C++</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-07-15T20:15:39+06:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>8:15 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Что можно в С, но нельзя в С++?</p>
+<p>Отсюда: <a href="http://publib.boulder.ibm.com/infocenter/comphelp/v8v101/index.jsp?topic=/com.ibm.xlcpp8a.doc/language/ref/param_decl.htm">http://publib.boulder.ibm.com/infocenter/comphelp/v8v101/index.jsp?topic=/com.ibm.xlcpp8a.doc/language/ref/param_decl.htm</a></p>
+<blockquote><p>С: The user-defined type can also be defined within the parameter declaration.</p>
+<p> С++: The user-defined type can not be defined within the parameter declaration.</p>
+<p>void print(struct X { int i; } x);   // legal in C<br />
+void print(struct X { int i; } x);   // error in C++</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/07/15/%25d0%25ba%25d0%25be%25d0%25bd%25d1%2584%25d0%25b8%25d0%25b3%25d1%2583%25d1%2580%25d0%25b0%25d1%2586%25d0%25b8%25d1%258f-%25d0%25bf%25d0%25b0%25d0%25bc%25d1%258f%25d1%2582%25d0%25b8-%25d0%25b2-iar/">Конфигурация памяти в IAR</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-07-15T14:54:24+06:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>2:54 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Проект, написанный на С++ в IAR под микроконтролер LPC2368 (ядро ARM7TDMI), не заработал после перекомпиляции под LPC1768 (ядро Cortex M3). Предпринятые исследования показали, что программа падает на совершенно невинной строке:</p>
+<pre>AddControl(<strong>new</strong> usBmpButton(110, 9, 17, 18, 10, BTN_FORWARD, MSG_BTN_FORWARD));</pre>
+<p>то есть, как нетрудно догадаться, именно на операции выделения памяти <strong>new</strong>.</p>
+<p>Дальнейшее изучение проблемы привело к файлам конфигурации, хранящимся в папке config проекта. В файле LPC1768_Flash.icf есть строка:</p>
+<p>define symbol __ICFEDIT_size_heap__     = 0x400;</p>
+<p>то есть на "кучу" (динамически распределяемую память) отводится всего лишь 1 кбайт памяти! В старом проекте в аналогичном файле было указано значение 0x6000, т.е. 24 кбайта! После изменения значения программа заработала.</p>
+<p>Следует отметить также, что необдуманное применение динамически распределяемой памяти в встраиваемых системах чревато фрагментацией памяти и, как следствие, прекращенем работы программы. Но это уже другая тема.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/posts/18">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/posts/16">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/12/02/title/">Zombie Ninjas Attack</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/23/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3/">Проект видеоадаптера. Часть 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/16/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-software-defined-radio-handbook-rodger-hosking/">Книга "Software Defined Radio Handbook", Rodger Hosking</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/05/vga-%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580-%25d0%25bd%25d0%25b0-fpga/">Проект видеоадаптера. Часть 2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/25/%25d0%25bf%25d1%2580%25d0%25be-llvm/">Про LLVM</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,234 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Усилитель с коэффициентом усиления, переключаемым с помощью микроконтроллера - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="Если в системе требуется программно переключить коэффициент усиления (Ку) усилителя, необязательно применять цифровой потенциометр. Если не требуется &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://arktur04.github.io/blog/2010/01/31/%25d1%2583%25d1%2581%25d0%25b8%25d0%25bb%25d0%25b8%25d1%2582%25d0%25b5%25d0%25bb%25d1%258c-%25d1%2581-%25d0%25ba%25d0%25be%25d1%258d%25d1%2584%25d1%2584%25d0%25b8%25d1%2586%25d0%25b8%25d0%25b5%25d0%25bd%25d1%2582%25d0%25be%25d0%25bc-%25d1%2583%25d1%2581%25d0%25b8%25d0%25bb%25d0%25b5%25d0%25bd%25d0%25b8%25d1%258f-%25d0%25bf/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="arktur04.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Усилитель с коэффициентом усиления, переключаемым с помощью микроконтроллера</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-01-31T23:39:00+05:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2010</span></span> <span class='time'>11:39 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Если в системе требуется программно переключить коэффициент усиления (Ку) усилителя, необязательно применять цифровой потенциометр. Если не требуется плавного изменения Ку, то достаточно и обычного операционного усилителя.<br />
+<a name="more"></a>В статье показан способ реализации усилителя, коэффициент которого можно выбирать из нескольких значений с помощью микроконтроллера. В качестве примера применения такого усилителя можно привести узел аналогового ввода на базе встроенного в микроконтроллер АЦП, диапазон входных сигналов которого можно изменять программно, например, для подключения нескольких типов датчиков.</p>
+<div style="border-bottom:medium none;border-left:medium none;border-right:medium none;border-top:medium none;"><!--more-->Порты ввода-вывода микроконтроллеров (GPIO), как правило, имеют следующую структуру (рис. 1).</div>
+<div style="border-bottom:medium none;border-left:medium none;border-right:medium none;border-top:medium none;"><img class="alignleft size-full wp-image-193" title="Рис1" src="/assets/pic1.png" alt="Рис1" width="216" height="189" /></div>
+<div style="border-bottom:medium none;border-left:medium none;border-right:medium none;border-top:medium none;"> </div>
+<div class="separator" style="clear:both;text-align:none;"><a style="clear:left;float:left;margin-bottom:1em;margin-right:1em;" href="http://arktur04.files.wordpress.com/2010/01/d0a0d0b8d1811.png"></a></div>
+<div style="border-bottom:medium none;border-left:medium none;border-right:medium none;border-top:medium none;">Рис.1. Упрощенная структура линии порта микроконтроллера.</div>
+<div style="border-bottom:medium none;border-left:medium none;border-right:medium none;border-top:medium none;"> </div>
+<div style="border-bottom:medium none;border-left:medium none;border-right:medium none;border-top:medium none;">В зависимости от устанавливаемого программно состояния выхода замыкается либо ключ 1, либо ключ 2 (на самом деле, конечно, это полевые транзисторы). Если линия порта сконфигурирована как выход, и он находится в состоянии лог. 0, то замкнут ключ К2, если в состоянии лог. 1, то ключ К1, если линия порта сконфигурирована как входная, то оба ключа разомкнуты. Таким образом, программно переключая линию порта из состояния входа в состояние «выход, лог. 0», можно управлять ключом К2, оставляя К1 постоянно разомкнутым.</div>
+<p><a style="margin-left:1em;margin-right:1em;" href="http://arktur04.files.wordpress.com/2010/01/d0a0d0b8d1812.png"></a></p>
+<p><img class="size-full wp-image-191 alignnone" title="Рис 2" src="/assets/pic2.png" alt="Рис 2" width="300" height="169" /></p>
+<p> </p>
+<p>Рис. 2. Схема усилителя с выбором одного из двух значений Ку.</p>
+<p>На рис.2. приведен пример схемы усилителя, у которого Ку можно изменять программно, выбирая одно из двух значений.</p>
+<p>Когда линия порта сконфигурирована как вход, то есть находится в состоянии высокого импеданса,</p>
+<p>Ky = (R2 + R3)/ R3;</p>
+<p>Когда линия порта находится в состоянии лог. 0,</p>
+<p>Ky = (R3 R2 + R1R2 + R1R3)/(R1R3);</p>
+<p>Если R3 отсутствует, то:</p>
+<p>если линия порта находится в состоянии высокого импеданса, то Ky = 1;</p>
+<p>если линия порта находится в состоянии лог. 0, то</p>
+<p>Ky = (R2 + R1)/ R1;</p>
+<p>Можно получить больше градаций изменения Kу, если использовать несколько линий порта, как показано на рис. 3.</p>
+<p style="text-align: center;"><a style="clear:left;float:left;margin-bottom:1em;margin-right:1em;" href="http://arktur04.files.wordpress.com/2010/01/d0a0d0b8d1813.png"></a></p>
+<p>  <img class="size-full wp-image-192 alignnone" title="Рис 3" src="/assets/pic3.png" alt="Рис 3" width="360" height="203" /></p>
+<p>Рис. 3. Схема усилителя с выбором одного из множества значений Ку.</p>
+<p><strong>Заключение</strong></p>
+<p>В статье рассмотрена схемотехника и принцип действия, приведены расчетные формулы усилителя с коэффициентом усиления, который может выбираться из ряда значений с помощью микроконтроллера.</p>
+<p><strong>Литература</strong></p>
+<p>Хоровиц П., Хилл У. Искусство схемотехники: В 3-х томах: Т. 1. Пер. с англ.— 4-е изд., перераб. и доп.— М.: Мир, 1993.—413 с, ил. ISBN 5-03-002337-2</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">{"login"=>"admin", "email"=>"", "display_name"=>"admin", "first_name"=>"", "last_name"=>""}</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2010-01-31T23:39:00+05:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2010</span></span> <span class='time'>11:39 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/analoghovaia-eliektronika/'>аналоговая электроника</a>, <a class='category' href='/blog/categories/mikrokontrolliery/'>микроконтроллеры</a>, <a class='category' href='/blog/categories/stat'i/'>статьи</a>, <a class='category' href='/blog/categories/skhiemotiekhnika/'>схемотехника</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://arktur04.github.io/blog/2010/01/31/%25d1%2583%25d1%2581%25d0%25b8%25d0%25bb%25d0%25b8%25d1%2582%25d0%25b5%25d0%25bb%25d1%258c-%25d1%2581-%25d0%25ba%25d0%25be%25d1%258d%25d1%2584%25d1%2584%25d0%25b8%25d1%2586%25d0%25b8%25d0%25b5%25d0%25bd%25d1%2582%25d0%25be%25d0%25bc-%25d1%2583%25d1%2581%25d0%25b8%25d0%25bb%25d0%25b5%25d0%25bd%25d0%25b8%25d1%258f-%25d0%25bf/" data-via="" data-counturl="http://arktur04.github.io/blog/2010/01/31/%25d1%2583%25d1%2581%25d0%25b8%25d0%25bb%25d0%25b8%25d1%2582%25d0%25b5%25d0%25bb%25d1%258c-%25d1%2581-%25d0%25ba%25d0%25be%25d1%258d%25d1%2584%25d1%2584%25d0%25b8%25d1%2586%25d0%25b8%25d0%25b5%25d0%25bd%25d1%2582%25d0%25be%25d0%25bc-%25d1%2583%25d1%2581%25d0%25b8%25d0%25bb%25d0%25b5%25d0%25bd%25d0%25b8%25d1%258f-%25d0%25bf/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2010/01/25/%25d0%25bc%25d0%25b0%25d0%25ba%25d0%25b5%25d1%2582-%25d0%25b0%25d1%2586%25d0%25bf/" title="Previous Post: Макет АЦП">&laquo; Макет АЦП</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2010/03/22/write-in-c/" title="Next Post: Write in C">Write in C &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/12/02/title/">Zombie Ninjas Attack</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/23/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3/">Проект видеоадаптера. Часть 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/16/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-software-defined-radio-handbook-rodger-hosking/">Книга "Software Defined Radio Handbook", Rodger Hosking</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/05/vga-%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580-%25d0%25bd%25d0%25b0-fpga/">Проект видеоадаптера. Часть 2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/25/%25d0%25bf%25d1%2580%25d0%25be-llvm/">Про LLVM</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,254 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>FPU. Часть 1 - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="Не задумывались ли вы о том, как работает FPU процессора? Казалось бы, там всё довольно просто. Есть стандарт представления чисел с плавающей точкой &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://arktur04.github.io/blog/2015/02/17/fpu-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-1/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="arktur04.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">FPU. Часть 1</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-02-17T20:33:30+05:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>8:33 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Не задумывались ли вы о том, как работает FPU процессора? Казалось бы, там всё довольно просто. Есть стандарт представления чисел с плавающей точкой, IEEE754, а сама реализация арифметических операций очевидна.<br />
+Но на самом деле, за кажущейся простотой скрыто множество нюансов.</p>
+<p><!--more-->Во-первых, как это ни странно звучит, FPU оперирует не только с числами. Среди всех возможных значений кодов стандартом предусматриваются <em>нечисла</em>, выделенные значения, образующиеся в результате некоторых операций. Нечисла обозначаются как NaN (not a number). Например, нечисло образуется в результате деления ноля на ноль. Нечисло может иметь в знаковом разряде 0 или 1, однако особого смысла он не несёт, нечисла рассматриваются как беззнаковые. Еще одним выделенным значением является бесконечность. Бесконечность имеет знак, и может получаться как результат переполнения показателя степени числа, или, например, как результат деления ненулевого числа на ноль. Также числа могут быть нормализованными (и обычно ими и являются), и денормализованными. У денормализованного (subnormal, denormal) числа в разрядах экспоненты содержатся только нули, что соответствует минимально возможному показателю степени (2^-1022 для 64-битных чисел). Это крайне маленькие значения, порядка 10^-308, в реальном мире такие величины практически не применяются, поэтому в упрощенных реализациях FPU можно позволить себе некоторое отступление от стандарта и заменять их нулями (ноль, формально, тоже денормализованное число). И ещё, в стандарте IEEE754 нули имеют знак.</p>
+<p>Вот и всё, что нам нужно знать для начала. За описанием стандарта добро пожаловать в википедию, здесь я его переписывать не буду.</p>
+<p>Рассмотрим операцию деления, и начнем именно с "особых" значений. Для того, чтобы хорошо понять особенности работы FPU, я написал небольшую программу, которая выполняет деление различных чисел в 64-битном формате и выводит их двоичные коды. Вот что получилось:</p>
+<pre>0000000000000000 0000000000000000 fff8000000000000 //0 / 0 = nan
+ 0000000000000000 8000000000000000 fff8000000000000 //0 / -0 = nan
+ 0000000000000000 7ff8000000000000 7ff8000000000000 //0 / nan = nan
+ 0000000000000000 fff8000000000000 fff8000000000000 //0 / nan = nan
+ 0000000000000000 7ff0000000000000 0000000000000000 //0 / +inf = 0
+ 0000000000000000 fff0000000000000 8000000000000000 //0 / -inf = -0
+ 8000000000000000 0000000000000000 fff8000000000000 //-0 / 0 = nan
+ 8000000000000000 8000000000000000 fff8000000000000 //-0 / -0 = nan
+ 8000000000000000 7ff8000000000000 7ff8000000000000 //-0 / nan = nan
+ 8000000000000000 fff8000000000000 fff8000000000000 //-0 / nan = nan
+ 8000000000000000 7ff0000000000000 8000000000000000 //-0 / +inf = -0
+ 8000000000000000 fff0000000000000 0000000000000000 //-0 / -inf = 0
+ 7ff8000000000000 0000000000000000 7ff8000000000000 //nan / 0 = nan
+ 7ff8000000000000 8000000000000000 7ff8000000000000 //nan / -0 = nan
+ 7ff8000000000000 7ff8000000000000 7ff8000000000000 //nan / nan = nan
+ 7ff8000000000000 fff8000000000000 7ff8000000000000 //nan / nan = nan
+ 7ff8000000000000 7ff0000000000000 7ff8000000000000 //nan / +inf = nan
+ 7ff8000000000000 fff0000000000000 7ff8000000000000 //nan / -inf = nan
+ fff8000000000000 0000000000000000 fff8000000000000 //nan / 0 = nan
+ fff8000000000000 8000000000000000 fff8000000000000 //nan / -0 = nan
+ fff8000000000000 7ff8000000000000 fff8000000000000 //nan / nan = nan
+ fff8000000000000 fff8000000000000 fff8000000000000 //nan / nan = nan
+ fff8000000000000 7ff0000000000000 fff8000000000000 //nan / +inf = nan
+ fff8000000000000 fff0000000000000 fff8000000000000 //nan / -inf = nan
+ 7ff0000000000000 0000000000000000 7ff0000000000000 //+inf / 0 = +inf
+ 7ff0000000000000 8000000000000000 fff0000000000000 //+inf / -0 = -inf
+ 7ff0000000000000 7ff8000000000000 7ff8000000000000 //+inf / nan = nan
+ 7ff0000000000000 fff8000000000000 fff8000000000000 //+inf / nan = nan
+ 7ff0000000000000 7ff0000000000000 fff8000000000000 //+inf / +inf = nan
+ 7ff0000000000000 fff0000000000000 fff8000000000000 //+inf / -inf = nan
+ fff0000000000000 0000000000000000 fff0000000000000 //-inf / 0 = -inf
+ fff0000000000000 8000000000000000 7ff0000000000000 //-inf / -0 = +inf
+ fff0000000000000 7ff8000000000000 7ff8000000000000 //-inf / nan = nan
+ fff0000000000000 fff8000000000000 fff8000000000000 //-inf / nan = nan
+ fff0000000000000 7ff0000000000000 fff8000000000000 //-inf / +inf = nan
+ fff0000000000000 fff0000000000000 fff8000000000000 //-inf / -inf = nan</pre>
+<p>Здесь проверяется деление всех комбинаций значений: +0, -0, NaN, -NaN (как я уже писал, знаковый разряд не имеет особого смысла для NaN, но хотелось проверить все варианты), +Inf (бесконечность), -Inf. В общем, довольно логично. 0/0 = NaN, Inf/Inf = NaN, любая операция с NaN даёт в результате NaN. По умолчанию, NaN имеет 1 в знаковом разряде, то есть +0/+0 = (-)NaN, как ни странно, однако если NaN является одним из операндов, то процессор просто копирует его код в результат, никак не изменяя его. Это подтверждается и такими результатами:</p>
+<pre>bb5580277b40413e fff4d91fa8a5b9e5 fffcd91fa8a5b9e5 //-7.11395e-23 / nan = nan
+7ffc143b0befe6ff 730a54668a546338 7ffc143b0befe6ff //nan / 1.43824e+246 = nan</pre>
+<p>Программа генерации тестового файла сначала перебирает все варианты, приведенные ниже, а затем генерирует 10000 пар случайных вещественных чисел и результат их деления. Если в результате получается денормализованное число, оно заменяется нулём с соответствующим знаком. Для операндов замены не производится.</p>
+<p>Также я написал небольшую программу с GUI, "калькулятор", позволяющий производить операции с бинарным представлением чисел с плавающей точкой.<em style="line-height: 1.5em;">Продолжение следует</em><span style="line-height: 1.5em;">.</span></p>
+<p>Ссылка на гитхаб: <a href="https://github.com/arktur04/FPU">https://github.com/arktur04/FPU</a></p>
+<p>В репозитории содержится исходный текст программы генерации тестового файла (на C++), сам тестовый файл, и программа-калькулятор, позволяющая переводить числа из hex-вида во float и наоборот и производить с числами арифметические действия.</p>
+<p>По мере продвижения я буду пополнять репозиторий.</p>
+<p>В следующий раз мы напишем простой тестбенч для операции деления.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">{"login"=>"arktur04", "email"=>"arktur04@mail.ru", "display_name"=>"arktur04", "first_name"=>"", "last_name"=>""}</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-02-17T20:33:30+05:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>8:33 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/c-sharp/'>c sharp</a>, <a class='category' href='/blog/categories/c-i-c-plus-plus/'>c и c++</a>, <a class='category' href='/blog/categories/fpga/'>fpga</a>, <a class='category' href='/blog/categories/verilog/'>verilog</a>, <a class='category' href='/blog/categories/plis/'>плис</a>, <a class='category' href='/blog/categories/proghrammirovaniie/'>программирование</a>, <a class='category' href='/blog/categories/stat'i/'>статьи</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://arktur04.github.io/blog/2015/02/17/fpu-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-1/" data-via="" data-counturl="http://arktur04.github.io/blog/2015/02/17/fpu-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-1/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/02/15/%25d0%25bf%25d0%25bb%25d0%25b0%25d1%2582%25d0%25b0-%25d0%25bf%25d1%2580%25d0%25b5%25d1%2586%25d0%25b8%25d0%25b7%25d0%25b8%25d0%25be%25d0%25bd%25d0%25bd%25d0%25be%25d0%25b3%25d0%25be-%25d0%25b0%25d1%2586%25d0%25bf-2/" title="Previous Post: Плата прецизионного АЦП - 2">&laquo; Плата прецизионного АЦП - 2</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/02/22/1927/" title="Next Post: Интересная ссылка: GNU Radio">Интересная ссылка: GNU Radio &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/12/02/title/">Zombie Ninjas Attack</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/23/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3/">Проект видеоадаптера. Часть 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/16/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-software-defined-radio-handbook-rodger-hosking/">Книга "Software Defined Radio Handbook", Rodger Hosking</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/05/vga-%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580-%25d0%25bd%25d0%25b0-fpga/">Проект видеоадаптера. Часть 2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/25/%25d0%25bf%25d1%2580%25d0%25be-llvm/">Про LLVM</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

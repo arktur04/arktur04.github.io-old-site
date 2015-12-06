@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Python | My Octopress Blog]]></title>
+  <link href="http://arktur04.github.io/blog/categories/python/atom.xml" rel="self"/>
+  <link href="http://arktur04.github.io/"/>
+  <updated>2015-12-06T14:37:44+05:00</updated>
+  <id>http://arktur04.github.io/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Raspberry Pi и контроль температуры]]></title>
+    <link href="http://arktur04.github.io/blog/2014/01/16/raspberry-pi-%25d0%25b8-%25d0%25ba%25d0%25be%25d0%25bd%25d1%2582%25d1%2580%25d0%25be%25d0%25bb%25d1%258c-%25d1%2582%25d0%25b5%25d0%25bc%25d0%25bf%25d0%25b5%25d1%2580%25d0%25b0%25d1%2582%25d1%2583%25d1%2580%25d1%258b/"/>
+    <updated>2014-01-16T19:43:47+06:00</updated>
+    <id>http://arktur04.github.io/blog/2014/01/16/raspberry-pi-%d0%b8-%d0%ba%d0%be%d0%bd%d1%82%d1%80%d0%be%d0%bb%d1%8c-%d1%82%d0%b5%d0%bc%d0%bf%d0%b5%d1%80%d0%b0%d1%82%d1%83%d1%80%d1%8b</id>
+    <content type="html"><![CDATA[<p>Я уже <a href="http://32bit.me/?p=1768">писал</a> про самодельную "Time Capsule" на базе Raspberry Pi. Она работает хорошо, если не считать проблемы с перегревом. В корпусе устройства установлен вентилятор, но он издаёт при работе существенный шум.</p>
+
+
+<p>Итак, я решил подключить к RPi термодатчик и сделать автоматическое управление вентилятором.</p>
+
+
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2014/01/temp1.png"><img class="alignnone size-medium wp-image-1790" title="temp1" src="/assets/temp1-300x225.png" alt="" width="300" height="225" /></a></p>
+
+
+<p>Далее под катом.<br />
+<!--more--><br />
+Схемотехнически тут всё очень просто: термодатчик Analog Devices ADT7301 с интерфейсом SPI, вентилятор 40х40 мм, подключенный через транзисторный ключ к выходу PWM.</p>
+
+
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2014/01/термодатчик1.jpg"><img class="alignnone size-medium wp-image-1793" title="термодатчик" src="/assets/&#1090;&#1077;&#1088;&#1084;&#1086;&#1076;&#1072;&#1090;&#1095;&#1080;&#1082;1-300x198.jpg" alt="" width="300" height="198" /></a></p>
+
+
+<p>Плата с термодатчиком.</p>
+
+
+<p>Датчик приклеен к радиатору источника питания (самая горячая точка в устройстве).</p>
+
+
+<p>Использование PWM позволяет включать вентилятор не на полные обороты, что делает его очень тихим. Управление вентилятором осуществляет скрипт на Python.</p>
+
+
+<p>Перед тем, как запустить скрипт, нужно поставить библиотеки для доступа к SPI и PWM.</p>
+
+
+<p><a href="https://github.com/doceme/py-spidev">py-spidev</a>: библиотека для SPI</p>
+
+
+<p><a href="https://github.com/WiringPi">Wiring-Pi</a>: библиотека для доступа к GPIO и PWM.</p>
+
+
+<p>Для получения доступа к SPI нужно отредактировать файл /etc/modprobe.d/raspi-blacklist.conf.</p>
+
+
+<p>В нём находятся такие строки:</p>
+
+
+<p>blacklist spi -bcm2708</p>
+
+
+<p>blacklist i2c -bcm2708</p>
+
+
+<p>Эти строки закрывают доступ к spi и i2c соответственно. Нужно закомментировать строку для spi:</p>
+
+
+<p>#blacklist spi -bcm2708</p>
+
+
+<p>и перезапускаем систему: sudo reboot.</p>
+
+
+<p>Управление вентилятором ступенчатое: есть два порога включения вентилятора, на 50% и на 100%. Есть небольшая тонкость: если подать на выключенный вентилятор сигнал PWM c 50% -м заполнением, он просто не раскрутится: не хватит подаваемой мощности для пуска двигателя. Поэтому на двигатель подаётся сначала кратковременный импульс со 100% заполнением, которого хватает для пуска мотора.</p>
+
+
+<p>В принципе, всё работает, однако хочется ещё и визуализировать данные температуры и оборотов вентилятора. Для этого были поставлены библиотеки <a href="http://www.numpy.org/">Numpy</a> и <a href="http://matplotlib.org/">Matplotlib</a>. Библиотека Matplotlib позволяет строить любые типы графиков, доступных в Matlab (то есть просто любые, в том числе 3D). Но тут же выяснилась и оборотная сторона: эти библиотеки очень тяжелые для RPi. Формирование картинки размером 800х600 с 2-d графиком занимает до 2-3 секунд (!), при частоте опроса датчика 1 раз в 5 с загрузка процессора составляет почти 100%, и достигает момента, когда RPi перестает откликаться на мышь и клавиатуру.</p>
+
+
+<p>Пример получаемого графика температуры приведен в начале поста.</p>
+
+
+<p>Исходный тескт скрипта приведен здесь:</p>
+
+
+<pre lang="python">import spidev    #for spi
+import wiringpi #for pwm
+import time
+from pylab import * #for chart
+import matplotlib.pyplot as plt
+
+tempTreshold1On = 50.0
+tempTreshold1Off = 47.0
+tempTreshold2On = 55.0
+tempTreshold2Off = 52.0
+
+speed0 = 0     # off
+speed1 = 512   # 50% speed
+speed2 = 1024  # 100% speed
+
+#--------------------------------
+#import 
+
+# spi init
+spi = spidev.SpiDev()
+spi.open(0, 0)
+# pwm init
+wiringpi.wiringPiSetupGpio()
+wiringpi.pinMode(18, 2)
+wiringpi.pwmWrite(18, 1024)
+
+n = 0 #current quantity of point in a chart
+temp_points = [] #list of temperature points
+speed_points = [] #list of fan speed points
+
+speed = speed0
+try:
+    while True:
+        # get 3 temperature values
+        resp = spi.xfer2([0, 0])
+        temp1 = resp[0] * 8 + resp[1]/32.0
+        time.sleep(0.1)
+        resp = spi.xfer2([0, 0])
+        temp2 = resp[0] * 8 + resp[1]/32.0
+        time.sleep(0.1)
+        resp = spi.xfer2([0, 0])
+        temp3 = resp[0] * 8 + resp[1]/32.0
+        #----------------------
+        #get the middle point of three values
+        if ((temp1 >= temp2) and (temp1 = temp3)):
+            temp = temp1
+        elif ((temp2 >= temp1) and (temp2 = temp3)):
+            temp = temp2
+        else:
+            temp = temp3
+        #-------------------
+        #find the current speed
+        if temp < tempTreshold1Off:
+            speed = speed0
+        if (temp > tempTreshold1Off) and (temp < tempTreshold1On):
+            if speed == speed2:
+                speed = speed1
+        if (temp > tempTreshold1On) and (temp < tempTreshold2Off):
+            if speed == speed0:
+                wiringpi.pwmWrite(18, 1024) #turn on a motor at max speed
+                time.sleep(0.5)
+            speed = speed1
+        if (temp > tempTreshold2Off) and (temp < tempTreshold2On):
+            if speed == speed0:
+                wiringpi.pwmWrite(18, 1024) #turn on a motor at max speed
+                time.sleep(0.5)
+                speed = speed1
+        if temp > tempTreshold2On:
+            speed = speed2
+        #-----------------------------
+        # set the motor speed
+        wiringpi.pwmWrite(18, speed)
+
+        print temp1, temp2, temp3, "temp =", temp, speed
+        # -----------------------------
+        # draw a chart
+        MAX_POINT = 12 # max quantity of point in the chart
+        if n < MAX_POINT:
+            n = n + 1
+        else:
+            temp_points.pop(0) #remove the first point
+            speed_points.pop(0) #remove the first point
+        temp_points.append(temp)
+        speed_points.append(speed * 100.0 / 1024.0) #fan speed in percents
+
+        print temp_points
+
+        fig, host = plt.subplots()
+
+        par1 = host.twinx()
+        t = arange((n - 1) * -5.0, 5.0, 5)
+
+        print t
+
+        p1, = host.plot(t, temp_points, "-b")
+        p2, = par1.step(t, speed_points, "-r", where = "post")
+
+        host.set_xlim(-60, 0)
+        host.set_ylim(25, 75)
+        par1.set_ylim(-10, 110)
+
+        host.set_xlabel("Time, min")
+        host.set_ylabel("Temperature, C")
+        par1.set_ylabel("Speed, %")
+
+        host.yaxis.label.set_color(p1.get_color())
+        par1.yaxis.label.set_color(p2.get_color())
+
+        host.grid()
+        #host.text('temp = {}' .format(temp))
+        savefig("temp.png")
+        #show()
+
+        time.sleep(5 * 60)  # period = 5 min
+    #end while
+
+except KeyboardInterrupt:
+    spi.close()
+#end try</pre>
+
+
+<p>Скрипт нужно запускать командой sudo python spi.py</p>
+
+
+<p>Некоторые пояснения к скрипту:<br />
+Чтение термодатчика происходит 3 раза, после этого выбирается среднее значение (не среднее арифметическое, а значение, лежащее между двумя другими). Это позволяет отфильтровать случайные выбросы показаний датчика.</p>
+
+
+<p>Порог выключения вентилятора ниже порога включения на 3 градуса, то есть функция включения вентилятора имеет некоторый гистерезис, это позволяет избежать частых включений и выключений двигателя (кстати, на графике вверху видно, что двигатель включается и выключается периодически, чтобы этого не происходило, нужно изменить пороговые значения).<br />
+При включении двигателя на 50% мощности из выключенного состояния он кратковременно включается на полную мощность, причины поясняются выше.</p>
+
+
+<p>В итоге я оставил в устройстве простой вариант скрипта, без визуализации. Можно попробовать другую библиотеку, полегче, но есть и другой способ. В настоящее время существуют облачные сервисы логгинга данных с датчиков, например, <a href="http://www.sensorcloud.com/">SensorCloud</a>. У сервиса есть документированное API, позволяющее отправлять данные по протоколу https. Если объем данных не превышает 3 млн. точек в месяц, сервисом можно пользоваться бесплатно.</p>
+
+
+<p>Но это уже другая история.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Python и Urllib]]></title>
+    <link href="http://arktur04.github.io/blog/2011/04/10/python-%25d0%25b8-urllib/"/>
+    <updated>2011-04-10T07:32:01+06:00</updated>
+    <id>http://arktur04.github.io/blog/2011/04/10/python-%d0%b8-urllib</id>
+    <content type="html"><![CDATA[<p>Столкнулся с неожиданной проблемой при использовании библиотеки urllib (язык Python 3).</p>
+
+
+<p>Допустим, нужно получить html-код документа, лежащего по определённому адресу. Для этого предназначена функция urllib.request.urlopen(url), возвращающая объект, имеющий интерфейс файла (т.е. поддерживающий те же функции, что и обычные файловые объекты). Далее можно просто прочитать из него текст в соответствующей кодировке: <em>fileobj</em>.read().decode('utf-8'), где <em>fileobj</em> - объект, возвращённый функцией urlopen().</p>
+
+
+<p>При возникновении ошибки при открытии url функция urlopen() вызывает исключение. Поэтому его нужно обработать и повторять попытку открытия url до тех пор, пока операция не завершится без вызова исключения:</p>
+
+
+<pre lang="python" line="1">while 1:
+  try:
+    html = urllib.request.urlopen(url).read().decode('utf-8')
+  except: print('Url Open Error') #Здесь можно записывать сообщения об ошибке в консоль или в лог
+  else:
+    break</pre>
+
+
+<p>Однако, проблема состоит в том, что urlopen() не всегда вызывает исключение. Если сервер не отвечает, она просто висит, полностью блокируя работу программы. При этом, при перезапуска программы вручную, документ нормально открывается. Поэтому в качестве параметра ей нужно передавать ещё и величину тайм-аута в секундах:</p>
+
+
+<pre lang="python" line="1">while 1:
+  try:
+    html = urllib.request.urlopen(url, timeout = 10).read().decode('utf-8')
+  except: print('Url Open Error') #Здесь можно записывать сообщения об ошибке в консоль или в лог
+  else:
+    break</pre>
+
+
+<p>Теперь всё работает правильно.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Книга "Изучаем Python"]]></title>
+    <link href="http://arktur04.github.io/blog/2011/04/06/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-%25d0%25b8%25d0%25b7%25d1%2583%25d1%2587%25d0%25b0%25d0%25b5%25d0%25bc-python/"/>
+    <updated>2011-04-06T02:46:13+06:00</updated>
+    <id>http://arktur04.github.io/blog/2011/04/06/%d0%ba%d0%bd%d0%b8%d0%b3%d0%b0-%d0%b8%d0%b7%d1%83%d1%87%d0%b0%d0%b5%d0%bc-python</id>
+    <content type="html"><![CDATA[<p>Книга "Изучаем Python", автор Марк Лутц, является весьма объёмным (848 стр.) введением в язык Python.</p>
+
+
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2011/04/23654604.jpg"><img class="alignnone size-medium wp-image-1142" title="23654604" src="/assets/23654604-208x300.jpg" alt="" width="208" height="300" /></a></p>
+
+
+<p>В книге рассмотрена версия Python 2.5, текущая версия Python 3.2, поэтому при чтении текста  выполнении тестовых заданий придётся вносить некоторые коррективы в излагаемый материал. Однако эти отличия не очень велики.</p>
+
+
+<p>Плюсы книги: синтаксис языка изложен очень подробно, с множеством примеров.</p>
+
+
+<p>Минусы: в книге не рассматриваются библиотеки Python, и не рассматриваются какие-либо прикладные задачи, поэтому после её прочтения всё равно потребуется дополнительная литература.</p>
+
+
+<p>Цитата из книги (стр. 747): "Если вы забрались так далеко, что читаете эти строки, можете смело считать себя Официальным Программистом на языке Python (и можете не стесняться упоминать о знании этого языка в своих резюме)".</p>
+
+]]></content>
+  </entry>
+  
+</feed>

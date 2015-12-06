@@ -1,0 +1,325 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Протокол Modbus в устройствах на базе микроконтроллеров. Часть 2.1. Программная поддержка протокола - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="Для поддержки протокола Modbus RTU программа должна принимать символы, поступающие в порт и размещать их в буфере приёма. Признаком окончания &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://arktur04.github.io/blog/2010/09/17/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-7/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="arktur04.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Протокол Modbus в устройствах на базе микроконтроллеров. Часть 2.1. Программная поддержка протокола</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-09-17T23:41:28+06:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>11:41 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Для поддержки протокола Modbus RTU программа должна принимать символы, поступающие в порт и размещать их в буфере приёма. Признаком окончания сообщения служит тайм-аут, т.е. прекращение поступления символов в течение 3,5 - 4.5 длительностей передачи одиночного символа.</p>
+<p>По окончании приёма сообщения управление должно передаваться специальному обработчику, который декодирует команду протокола, исполняет её, и формирует строку ответа, которая размещается в буфере передачи.</p>
+<p>Передача ответа также ведётся с помощью прерываний. Начало передаваемого сообщения размещается в аппаратном буфере UART, при его исчерпании формируется прерывание, и буфер заполняется снова.</p>
+<p>Работа с сообщениями ModbusASCII происходит аналогичным образом, за исключением того, что признаком конца приёма сообщения служит не тайм-аут,  а специальный символ конца сообщения.</p>
+<p>В этой статье будет рассмотрен только режим Modbus RTU, как наиболее распространённый в настоящее время.</p>
+<p><!--more--></p>
+<p>Итак, всю задачу можно условно разбить на три части, начиная с самого нижнего уровня:</p>
+<ol>
+<li>Функции      работы с UART</li>
+<li>Функции,      относящиеся к протоколу Modbus</li>
+<li>Функции,      относящиеся к основному алгоритму работы контроллера (функции исполнения      команд Modbus)</li>
+</ol>
+<p><strong>Функции работы с </strong><strong>UART в микроконтроллере на ядре </strong><strong>Cortex </strong><strong>M3 (</strong><strong>LPC1768)</strong></p>
+<p>Как и большинство микроконтроллеров, LPC1768 предусматривает три основных способа работы с UART: по опросу флагов, по прерыванию, и в режиме прямого доступа к памяти. Работа с UART путём опроса флагов означает, что программа должна ожидать наступления события, такого как поступление символа в буфер приёма или освобождение буфера передачи. Во время ожидания контроллер должен непрерывно, в цикле проверять состояние соответствующих регистров UART. Работа с UART по опросу флагов малопригодна для реальных приложений, обычно используется работа с UART по прерываниям. В данном примере будет рассмотрена работа с UART именно с помощью прерываний. Работа с UART в режиме прямого доступа к памяти несколько сложнее в реализации и (пока) рассматриваться не будет.</p>
+<p>Микроконтроллер LPC1768 содержит 4 порта UART, и, если мы используем в устройстве несколько портов, то для каждого из них нам понадобится свой собственный обработчик прерывания и свой набор буферов приёма и передачи.</p>
+<p>Следует отметить, что порты UART0 и UART1 в LPC1768 не абсолютно одинаковы, UART1 имеет специальный режим, упрощающий работу с портом RS-485, он будет рассмотрен в дальнейшем. Порты UART0, UART2 и UART3 идентичны и полностью взаимозаменяемы.</p>
+<p>Содержимое заголовочного файла модуля LPC_Uart.h приведено ниже. Он содержит функции работы с UART0 и UART1. При необходимости, он может быть дополнен функциями работы с UART2 и UART3.</p>
+<pre lang="cpp" line="1">
+/*************************************************************************
+*  UART functions
+*  32bit.me (c)2010  
+**************************************************************************/
+
+#ifndef __LPC_UART_H
+#define __LPC_UART_H
+
+#include "type.h"
+
+#define FIFODEEP    16
+
+#define RXBUFSIZE  1024
+#define TXBUFSIZE  1024
+
+#define BD115200    115200
+#define BD38400     38400
+#define BD19200     19200
+#define BD9600      9600
+
+/* Uart line control register bit descriptions */
+#define LCR_WORDLENTH_BIT         0
+#define LCR_STOPBITSEL_BIT        2
+#define LCR_PARITYENBALE_BIT      3
+#define LCR_PARITYSEL_BIT         4
+#define LCR_BREAKCONTROL_BIT      6
+#define LCR_DLAB_BIT              7
+
+// Uart Interrupt Identification
+#define IIR_RSL                   0x3
+#define IIR_RDA                   0x2
+#define IIR_CTI                   0x6
+#define IIR_THRE                  0x1
+
+// Uart Interrupt Enable Type
+#define IER_RBR                   0x1
+#define IER_THRE                  0x2
+#define IER_RLS                   0x4
+
+/* Uart Receiver Errors*/
+#define RC_FIFO_OVERRUN_ERR       0x1
+#define RC_OVERRUN_ERR            0x2
+#define RC_PARITY_ERR             0x4
+#define RC_FRAMING_ERR            0x8
+#define RC_BREAK_IND              0x10
+
+typedef enum {
+ UART0 = 0,
+ UART1
+} LPC_UartChanel_t;
+
+// Word Lenth type
+typedef enum {
+ WordLength5 = 0,
+ WordLength6,
+ WordLength7,
+ WordLength8
+} LPC_Uart_WordLenth_t;
+
+// Parity Select type
+typedef enum {
+ ParitySelOdd = 0,
+ ParitySelEven,
+ ParitySelStickHigh,
+ ParitySelEvenLow
+} LPC_Uart_ParitySelect_t;
+
+// FIFO Rx Trigger Level type
+typedef enum {
+ FIFORXLEV0 = 0,    // 0x1
+ FIFORXLEV1,        // 0x4
+ FIFORXLEV2,        // 0x8
+ FIFORXLEV3        // 0xe
+} LPC_Uart_FIFORxTriggerLevel_t;
+
+typedef struct {
+ unsigned long BaudRate;            // Baud Rate
+
+ LPC_Uart_WordLenth_t WordLenth;    // Frame format
+ BOOL TwoStopBitsSelect;
+ BOOL ParityEnable;
+ LPC_Uart_ParitySelect_t ParitySelect;
+} LPC_Uart_Config_t;
+
+void SetUart0RxHandler(void (*_rx_handler)(char *buf, int length));
+
+char Uart0Init(void);
+
+int Uart0Transmit(int length);
+
+char* GetUart0TxBuffer(void);
+
+void SetUart1RxHandler(void (*_rx_handler)(char *buf, int length));
+
+char Uart1Init(void);
+
+int Uart1Transmit(int lenght);
+
+char* GetUart1TxBuffer(void);
+
+#endif //__LPC_UART_H</pre>
+<p>В следующей части будут рассмотрены функции работы с UART1 (функции работы с UART0 аналогичны, за исключением особенностей, которые будут оговорены далее).</p>
+<p><strong>Владимир Татарчевский</strong></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">{"login"=>"arktur04", "email"=>"arktur04@mail.ru", "display_name"=>"arktur04", "first_name"=>"", "last_name"=>""}</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2010-09-17T23:41:28+06:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>11:41 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/modbus/'>modbus</a>, <a class='category' href='/blog/categories/mikrokontrolliery/'>микроконтроллеры</a>, <a class='category' href='/blog/categories/proghrammirovaniie/'>программирование</a>, <a class='category' href='/blog/categories/stat'i/'>статьи</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://arktur04.github.io/blog/2010/09/17/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-7/" data-via="" data-counturl="http://arktur04.github.io/blog/2010/09/17/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-7/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2010/09/13/%25d1%2581-%25d0%25b4%25d0%25bd%25d1%2591%25d0%25bc-%25d0%25bf%25d1%2580%25d0%25be%25d0%25b3%25d1%2580%25d0%25b0%25d0%25bc%25d0%25bc%25d0%25b8%25d1%2581%25d1%2582%25d0%25b0/" title="Previous Post: С днём программиста!">&laquo; С днём программиста!</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2010/09/27/computer-science-club/" title="Next Post: Computer Science Club">Computer Science Club &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/12/02/title/">Zombie Ninjas Attack</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/23/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3/">Проект видеоадаптера. Часть 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/16/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-software-defined-radio-handbook-rodger-hosking/">Книга "Software Defined Radio Handbook", Rodger Hosking</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/05/vga-%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580-%25d0%25bd%25d0%25b0-fpga/">Проект видеоадаптера. Часть 2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/25/%25d0%25bf%25d1%2580%25d0%25be-llvm/">Про LLVM</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

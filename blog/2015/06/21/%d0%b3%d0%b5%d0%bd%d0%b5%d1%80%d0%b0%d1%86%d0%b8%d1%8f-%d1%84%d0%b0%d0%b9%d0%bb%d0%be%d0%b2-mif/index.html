@@ -1,0 +1,321 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Генерация файлов .mif и Case-конструкций - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="Пусть в проекте FPGA необходимо ПЗУ, в которое записана определённая информация, имеющаяся у нас в виде бинарного файла. ПЗУ, как правило, &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://arktur04.github.io/blog/2015/06/21/%25d0%25b3%25d0%25b5%25d0%25bd%25d0%25b5%25d1%2580%25d0%25b0%25d1%2586%25d0%25b8%25d1%258f-%25d1%2584%25d0%25b0%25d0%25b9%25d0%25bb%25d0%25be%25d0%25b2-mif/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="arktur04.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Генерация файлов .mif и Case-конструкций</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-21T09:13:34+05:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>9:13 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Пусть в проекте FPGA необходимо ПЗУ, в которое записана определённая информация, имеющаяся у нас в виде бинарного файла. ПЗУ, как правило, реализуются на блоках BRAM, в которые при инициализации FPGA записывается требуемое содержимое.<br />
+Файлы инициализации памяти BRAM для FPGA, могут иметь формат MIF (Memory Initialization File) или формат HEX. </p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/06/DSC_0522_EDIT.jpg"><img class="alignnone size-medium wp-image-2084" alt="DSC_0522_EDIT" src="/assets/DSC_0522_EDIT-300x200.jpg" width="300" height="200" /></a></p>
+<p>Нужный модуль памяти можно сгенерировать в Quartus II с помощью MegaWizard, в ISE - с помощью Xilinx Core Generator. Кроме этого, в QuartusII возможно использование специальной директивы:</p>
+<pre lang="verilog" line="1">reg [7:0] mem[0:2047] /* synthesis ram_init_file = "test.mif" */;</pre>
+<p>Эта директива позволяет создать RAM, инициированную значениями из файла .MIF. Использование RAM с предустановленными значениями, это очень плохая идея, но в качестве ROM такую память использовать вполне можно. Проблема в том, что эту директиву понимает только Quartus II, никакой кроссплатформенности.</p>
+<p>Quartus II предоставляет редактор файлов памяти, и возможность загрузки файлов .mif и .hex, Xilinx Core Generator требует загрузки файла .coe, имеющего другой формат, нежели MIF. Однако хочется иметь кроссплатформенное решение, которое не зависело бы от платформы.  Таким вариантом является генерация ROM в виде case-конструкции:</p>
+<pre lang="cpp" line="1">
+always@(posedge clk)
+begin
+  case(in)
+  ...
+  11'h00d: out = 8'h99;
+  11'h00e: out = 8'h81;
+  11'h00f: out = 8'h7e;
+  11'h010: out = 8'h7e;
+  11'h011: out = 8'hff;
+  11'h012: out = 8'hdb;
+  11'h013: out = 8'hff;
+  11'h014: out = 8'hc3;
+  11'h015: out = 8'he7;
+  11'h016: out = 8'hff;
+  ...
+  endcase
+end
+</pre>
+<p>Полезная ссылка: различные конструкции для генерации разных типов RAM, ROM и других модулей можно найти в руководстве Altera "Recommended HDL Coding Styles": <a href="https://www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/hb/qts/qts_qii51007.pdf">https://www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/hb/qts/qts_qii51007.pdf</a><br />
+Я написал две простые утилиты, которая преобразует бинарный файл в MIF и в тело конструкции case.</p>
+<p><!--more--></p>
+<p>Вот её полный исходник:</p>
+<pre lang="cpp" line="1">
+#include <fstream>
+#include <vector>
+#include <sstream>
+#include <string>
+#include <iostream>
+#include <iomanip>
+#include <math.h>
+
+std::vector<unsigned char> readFile(const char* filename)
+{
+    // open the file:
+    std::streampos fileSize;
+    std::ifstream file(filename, std::ios::binary);
+    // get its size:
+    file.seekg(0, std::ios::end);
+    fileSize = file.tellg();
+    file.seekg(0, std::ios::beg);
+    // read the data:
+	std::vector<unsigned char> fileData(fileSize);
+    file.read((char*) &fileData[0], fileSize);
+    return fileData;
+}
+
+unsigned getWidth(unsigned size)
+{
+	return size / 4 + ((size % 4)? 1: 0);
+}
+
+int main(int argc, char *argv[])
+{
+	if(argc < 5)
+	{
+		std::cout << "äîëæíû áûòü àðãóìåíòû: èìÿ_âõîäíîãî_ôàéëà èìÿ_âûõîäíîãî_ôàéëà ðàçìåð_âõîäíîé_ïåðåìåííîé ðàçìåð_âûõîäíîé_ïåðåìåííîé" << std::endl;
+		std::cout << "íàïðèìåð: out_file.v 11 8" << std::endl;
+		return 0;
+	}
+	std::vector<unsigned char> inputFile = readFile(argv[1]);
+	std::ofstream out(argv[2], std::ofstream::out);
+	unsigned num = 0;
+	unsigned inSize = atoi(argv[3]), outSize = atoi(argv[4]);
+	unsigned inWidth = getWidth(inSize),
+		depth = pow(2, inSize),
+		outWidth = getWidth(outSize);
+	out << "width=" << outSize << ";" << std::endl;
+	out << "depth=" << depth << ";" << std::endl;
+	out << "address_radix=hex;" << std::endl;
+	out << "data_radix=hex;" << std::endl;
+	out << "content begin" << std::endl;
+	out.fill('0');
+	for(auto ch:inputFile)
+	{
+		out << std::setw(inWidth) << std::hex << num++ << ": " << std::setw(outWidth) << std::right << std::hex << (int)ch << ";" << std::endl;
+	}
+	out << "end" << std::endl;
+	out.close();
+    return 0;
+}
+</unsigned></unsigned></unsigned></math.h></iomanip></iostream></string></sstream></vector></fstream></pre>
+<p>С её помощью можно преобразовать бинарный файл в MIF-формат, указав имя входного файла, имя выходного файла, размер переменной адреса в битах и размер данных в битах, например:</p>
+<pre lang="text" line="1">hex2mif "866.008" "008.mif" 11 8</pre>
+<p>Вторая утилита отличается незначительно:</p>
+<pre lang="cpp" line="1">
+  //основное отличие в этой строке:
+  out << std::dec << std::setw(0) << inSize << "'h" << std::setw(inWidth) << std::hex << num++ << ": " << std::dec << std::setw(0) << outName << " = " << outSize << "'h" << std::setw(outWidth) << std::hex << (int)ch << ";" << std::endl;
+</pre>
+<p>В качестве пятого параметра ей нужно указывать имя выходного регистра:</p>
+<pre lang="text" line="1">hex2case "866.008" "008.mif" 11 8 out</pre>
+<p>Обе утилиты кроссплатформенные и могут быть скомпилированы как в Windows, так и в Linux.</p>
+<p>Теперь можно использовать этот файл для инициализации памяти в verilog:</p>
+<pre lang="verilog" line="1">
+module rom_test(
+  input wire clk, rst_n,
+  input wire [10:0] in,
+  output reg [7:0] out
+);
+
+always@(posedge clk)
+begin
+  case(in)
+  `include "008.inc"
+  endcase
+end
+
+endmodule
+</pre>
+<p>Ссылка на Github: <a href="https://github.com/arktur04/bin2mif">https://github.com/arktur04/bin2mif</a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">{"login"=>"arktur04", "email"=>"arktur04@mail.ru", "display_name"=>"arktur04", "first_name"=>"", "last_name"=>""}</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-06-21T09:13:34+05:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>9:13 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/c-i-c-plus-plus/'>c и c++</a>, <a class='category' href='/blog/categories/fpga/'>fpga</a>, <a class='category' href='/blog/categories/linux/'>linux</a>, <a class='category' href='/blog/categories/verilog/'>verilog</a>, <a class='category' href='/blog/categories/intieriesnyie-ssylki/'>интересные ссылки</a>, <a class='category' href='/blog/categories/plis/'>плис</a>, <a class='category' href='/blog/categories/proghrammirovaniie/'>программирование</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://arktur04.github.io/blog/2015/06/21/%25d0%25b3%25d0%25b5%25d0%25bd%25d0%25b5%25d1%2580%25d0%25b0%25d1%2586%25d0%25b8%25d1%258f-%25d1%2584%25d0%25b0%25d0%25b9%25d0%25bb%25d0%25be%25d0%25b2-mif/" data-via="" data-counturl="http://arktur04.github.io/blog/2015/06/21/%25d0%25b3%25d0%25b5%25d0%25bd%25d0%25b5%25d1%2580%25d0%25b0%25d1%2586%25d0%25b8%25d1%258f-%25d1%2584%25d0%25b0%25d0%25b9%25d0%25bb%25d0%25be%25d0%25b2-mif/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/06/19/fpu-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-5-%25d1%2581%25d1%2583%25d0%25bc%25d0%25bc%25d0%25b0%25d1%2582%25d0%25be%25d1%2580-%25d1%2582%25d0%25b5%25d1%2581%25d1%2582-%25d0%25b8-rtl/" title="Previous Post: FPU. Часть 5. Сумматор, тест и RTL">&laquo; FPU. Часть 5. Сумматор, тест и RTL</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/06/29/%25d1%2581%25d1%2582%25d0%25b0%25d1%2582%25d1%258c%25d1%258f-ten-c11-features-every-c-developer-should-use/" title="Next Post: Статья "Ten C++11 Features Every C++ Developer Should Use"">Статья "Ten C++11 Features Every C++ Developer Should Use" &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/12/02/title/">Zombie Ninjas Attack</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/23/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3/">Проект видеоадаптера. Часть 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/16/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-software-defined-radio-handbook-rodger-hosking/">Книга "Software Defined Radio Handbook", Rodger Hosking</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/05/vga-%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580-%25d0%25bd%25d0%25b0-fpga/">Проект видеоадаптера. Часть 2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/25/%25d0%25bf%25d1%2580%25d0%25be-llvm/">Про LLVM</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

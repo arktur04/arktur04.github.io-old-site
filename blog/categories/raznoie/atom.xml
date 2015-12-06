@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: разное | My Octopress Blog]]></title>
+  <link href="http://arktur04.github.io/blog/categories/raznoie/atom.xml" rel="self"/>
+  <link href="http://arktur04.github.io/"/>
+  <updated>2015-12-06T14:37:44+05:00</updated>
+  <id>http://arktur04.github.io/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Бесплатные САПР от RS Components]]></title>
+    <link href="http://arktur04.github.io/blog/2015/06/02/2049/"/>
+    <updated>2015-06-02T18:57:16+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/06/02/2049</id>
+    <content type="html"><![CDATA[<p>С сайта RS Components можно скачать две системы автоматизированного проектирования: одна предназначена для разработки принципиальных схем и печатных плат (DesignSpark PCB), вторая для 3D-моделирования (DesignSpark Mechanical). Обе системы полностью бесплатны, то есть это не урезанные демо-версии. Ссылка: <a href="http://www.rs-online.com/designspark/electronics/eng/page/mechanical">http://www.rs-online.com/designspark/electronics/eng/page/mechanical</a></p>
+
+
+<p>Я скачал обе и немного попробовал что-нибудь сделать. Сразу могу сказать, что я сравниваю возможности и удобство использования с теми программами, которыми пользуюсь сам: с Altium Designer и Solid Works.</p>
+
+
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/06/pic1.jpg"><img class="alignnone size-medium wp-image-2050" alt="pic1" src="/assets/pic1-300x225.jpg" width="300" height="225" /></a></p>
+
+
+<p>Редактор схем.</p>
+
+
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/06/pic2.jpg"><img class="alignnone size-medium wp-image-2051" alt="pic2" src="/assets/pic2-300x195.jpg" width="300" height="195" /></a></p>
+
+
+<p>&nbsp;</p>
+
+
+<p>Редактор 3D.</p>
+
+
+<p>В общем, первое впечатление хорошее, есть большие библиотеки компонентов и для редактора схем/плат, и для 3D.</p>
+
+
+<p>Библиотека условных графических обозначений большая, но не соответствует ГОСТ, поэтому на производстве её использовать не получится, только "для себя". Редактор PCB тоже есть, там есть разные возможности, поддержка DRC и другое.</p>
+
+
+<p>Разобраться сходу не удалось, но времени на освоение у меня сейчас просто нет. Надо читать документацию.</p>
+
+
+<p>Библиотека 3D большая и удобная, с поиском по каталогу, можно скачать какую-либо деталь и экспортировать её в формат STL. Экспортировать в Solid Works получилось, только без цвета, увы. Больше распространённых форматов 3D не предусмотрено, формата STEP нет, экспорт только через Solid Works или другой пакет 3D-моделирования.</p>
+
+
+<p>Само по себе моделирование в 3D происходит совсем не так, как в Solid Works или Компас 3D. Если честно, совсем не так. Вероятно, нужно читать документацию и руководства, чтобы освоить эту программу, но я попробую это сделать в будущем. Если у вас есть задачи по разработке плат и 3D-моделей, можете попробовать скачать и разобраться.</p>
+
+
+<p><!--more-->Хотя, например, Компас 3D хоть и не бесплатен, но стоит всего 1400 рублей в Home-версии, не такие уж большие деньги.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Интересная ссылка: GNU Radio]]></title>
+    <link href="http://arktur04.github.io/blog/2015/02/22/1927/"/>
+    <updated>2015-02-22T09:48:53+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/02/22/1927</id>
+    <content type="html"><![CDATA[<p>GNU Radio под лицензией GPLv3.<br />
+Набор программ и библиотек для реализации различных радиосистем.<br />
+Содержит различные фильтры, модуляторы, демодуляторы, смесители, кодеки и другие блоки.<br />
+Домашняя страница <a href="http://gnuradio.org/redmine/" target="_self" rel="nofollow">http://gnuradio.org/redmine/</a><br />
+Пример использования.<br />
+<iframe src="https://www.youtube.com/embed/N9SLAnGlGQs" height="750" width="1280" allowfullscreen="" frameborder="0"></iframe><br />
+<!--more--><br />
+<iframe src="https://www.youtube.com/embed/05i9C5lhorY" height="750" width="1280" allowfullscreen="" frameborder="0"></iframe></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Индикатор Futaba M04SD02A в 3D]]></title>
+    <link href="http://arktur04.github.io/blog/2014/10/12/%25d0%25b8%25d0%25bd%25d0%25b4%25d0%25b8%25d0%25ba%25d0%25b0%25d1%2582%25d0%25be%25d1%2580-futaba-m04sd02a-%25d0%25b2-3d/"/>
+    <updated>2014-10-12T11:39:40+06:00</updated>
+    <id>http://arktur04.github.io/blog/2014/10/12/%d0%b8%d0%bd%d0%b4%d0%b8%d0%ba%d0%b0%d1%82%d0%be%d1%80-futaba-m04sd02a-%d0%b2-3d</id>
+    <content type="html"><![CDATA[<p><a href="http://32bit.me/wordpress/wp-content/uploads/2014/10/Futaba-M04SD02A.jpg"><img class="alignnone size-full wp-image-1856" alt="Futaba M04SD02A-600" src="/assets/Futaba-M04SD02A-600.jpg" width="600" height="328" /></a></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Индикатор MI0600AT в 3D]]></title>
+    <link href="http://arktur04.github.io/blog/2014/10/12/%25d0%25b8%25d0%25bd%25d0%25b4%25d0%25b8%25d0%25ba%25d0%25b0%25d1%2582%25d0%25be%25d1%2580-mi0600at-%25d0%25b2-3d/"/>
+    <updated>2014-10-12T09:35:22+06:00</updated>
+    <id>http://arktur04.github.io/blog/2014/10/12/%d0%b8%d0%bd%d0%b4%d0%b8%d0%ba%d0%b0%d1%82%d0%be%d1%80-mi0600at-%d0%b2-3d</id>
+    <content type="html"><![CDATA[<p><a href="http://32bit.me/wordpress/wp-content/uploads/2014/10/MI0600AT-600.jpg"><img class="alignnone size-full wp-image-1853" alt="MI0600AT-600" src="/assets/MI0600AT-600.jpg" width="600" height="325" /></a></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Time Capsule своими руками]]></title>
+    <link href="http://arktur04.github.io/blog/2013/09/14/time-capsule-%25d1%2581%25d0%25b2%25d0%25be%25d0%25b8%25d0%25bc%25d0%25b8-%25d1%2580%25d1%2583%25d0%25ba%25d0%25b0%25d0%25bc%25d0%25b8/"/>
+    <updated>2013-09-14T13:35:45+06:00</updated>
+    <id>http://arktur04.github.io/blog/2013/09/14/time-capsule-%d1%81%d0%b2%d0%be%d0%b8%d0%bc%d0%b8-%d1%80%d1%83%d0%ba%d0%b0%d0%bc%d0%b8</id>
+    <content type="html"><![CDATA[<p>Для бэкапа содержимого жесткого диска в OS X, как известно, используется приложение Time Machine, очень удобное и качественное. Однако для его работы нужно устройство Time Capsule. В этом посте я хочу рассказать о том, как я сделал свою Time Capsule на основе Raspberry Pi.</p>
+
+
+<p>Итак, нам понадобятся следующие компоненты:</p>
+
+
+<p>1. Raspberry Pi и SD-карта для него;</p>
+
+
+<p>2. HDD (я использовал HDD на 1 Tb, но можно взять жесткий диск и другого объёма);</p>
+
+
+<p>3. переходник USB-SATA (от коробки для внешнего диска);</p>
+
+
+<p>4. источник питания с напряжениями +5В и +12В, который может обеспечить силу тока по каналу +5В не менее 1,7А, по каналу 12В не менее 0,6А;</p>
+
+
+<p>5. Wi-Fi адаптер для USB;</p>
+
+
+<p>6. вентилятор (я использовал вентилятор 40 мм);</p>
+
+
+<p>7. корпус;</p>
+
+
+<p>Собираем всё вместе:</p>
+
+
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2013/09/pic1.jpg"><img class="alignnone size-medium wp-image-1769" title="pic1" src="/assets/pic1-300x225.jpg" alt="" width="300" height="225" /></a></p>
+
+
+<p>(все картинки кликабельны)</p>
+
+
+<p><!--more-->Перед установкой жесткого диска его необходимо отформатировать с файловой системой HFS+. Я воспользовался для этого утилитой MacDrive.</p>
+
+
+<p>Итак, устанавливаем на SD-карту Linux Debian Wheezy и настраиваем всё согласно инструкции отсюда: <a href="http://www.raspberrypi.org/phpBB3/viewtopic.php?=63&amp;t=31511">http://www.raspberrypi.org/phpBB3/viewtopic.php?=63&amp;t=31511</a>.</p>
+
+
+<p>Итак, всё готово, теперь Time Machine видит устройство и предлагает сделать резервную копию.</p>
+
+
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2013/09/pic2.jpg"><img class="alignnone size-medium wp-image-1770" title="pic2" src="/assets/pic2-300x186.jpg" alt="" width="300" height="186" /></a></p>
+
+
+<p>Теперь остался последний штрих. Устройство потребляет (и, соответственно, рассеивает) довольно существенную мощность для такого маленького корпуса, поэтому нужно проверить температуру, до которой нагреваются наиболее горячие части устройства. Я проверял температуру радиатора блока питания (он нагревается сильнее всего, на втором месте винчестер).</p>
+
+
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2013/09/pic3.jpg"><img class="alignnone size-medium wp-image-1771" title="pic3" src="/assets/pic3-300x225.jpg" alt="" width="300" height="225" /></a></p>
+
+
+<p>Максимальная температура, до которой нагревался радиатор при работе составила: с выключенным вентилятором &gt;60 °C, с включенным вентилятором ~40-42 °C. Проблема в том, что вентилятор издает довольно громкий звук. В принципе, 60 градусов можно считать приемлемой температурой, так что вентилятор можно отключить, но наиболее подходящим решением мне представляется следующее: подключить датчик температуры к RPi, подключить к нему же управление вентилятором (простой транзисторный ключ), и написать скрипт, который будет включать вентилятор по достижению порогового значения температуры (например, 50 °С), и выключать его при снижении температуры ниже другого порога (например, 45°С). Но это уже другая история.</p>
+
+]]></content>
+  </entry>
+  
+</feed>

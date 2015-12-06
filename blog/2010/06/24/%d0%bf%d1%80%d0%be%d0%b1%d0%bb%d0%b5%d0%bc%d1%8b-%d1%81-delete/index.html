@@ -1,0 +1,444 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Проблемы с Delete[]? - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="Недавно в блоге Алёны (http://alenacpp.blogspot.com/2010/06/delete.html) был опубликован пост "Проблемы с delete[]", где был приведён пример вот &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://arktur04.github.io/blog/2010/06/24/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b1%25d0%25bb%25d0%25b5%25d0%25bc%25d1%258b-%25d1%2581-delete/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="arktur04.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Проблемы с Delete[]?</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-06-24T21:09:48+06:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>9:09 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Недавно в блоге Алёны (<a href="http://alenacpp.blogspot.com/2010/06/delete.html">http://alenacpp.blogspot.com/2010/06/delete.html</a>) был опубликован пост "Проблемы с delete[]", где был приведён пример вот такого кода:</p>
+<pre>A* a = new B[T];
+delete[] a;</pre>
+<p>представляющего собой отрывок более длинного кода, приведённого в другом блоге (под девизом "Программирование - это просто!"): <a href="http://easy-coding.blogspot.com/2010/06/delete.html">http://easy-coding.blogspot.com/2010/06/delete.html</a>.<br />
+Адепты, достигшие просветления, уже поняли, что это работать не будет, а остальные могут читать дальше, и убедиться в том, что программирование - это не всегда просто.</p>
+<p>Вот код из начального поста:</p>
+<pre>Листинг 1.
+
+#define T 2
+class A {
+  public:
+    virtual ~A() {
+      p = 0;
+    }
+    int p;
+  };
+class B: public A {
+  int a;
+};
+int main() {
+  A* a = new B[T];
+  delete[] a;
+  return 0;
+}</pre>
+<p>При запуске программа падает практически на любом компиляторе, кроме VisualStudio (и некоторых других).</p>
+<p>Давайте разбёремся в том, что здесь неправильного, почему программа падает, и, самое главное, в том, почему она кое-где НЕ падает (хотя должна).</p>
+<p>Примечание: в комментариях к блогу Алёны некто soonts пишет:</p>
+<blockquote><p>Как обычно, нормальные ОС + IDE этой проблемой не затронуты: в мире Windows всё работает.</p></blockquote>
+<p>Вот вам и объяснение: программа работает исключительно благодаря магической силе MS Windows и лично Билла Гейтса. Я надеюсь, что среди моих читателей не будет столь <a href="http://lurkmore.ru/%D0%9C%D0%B0%D0%BB%D0%BE%D0%BB%D0%B5%D1%82%D0%BD%D0%B8%D0%B9_%D0%B4%D0%BE%D0%BB%D0%B1%D0%BE%D0%B5%D0%B1" target="_blank">малообразованных молодых людей</a>, которые делают такие обобщения, не разобравшись в сути вопроса.</p>
+<p><!--more-->Итак, давайте по порядку.</p>
+<h2>1. Что здесь не так?</h2>
+<p> Здесь не так то, что мы создаём массив объектов класса А, а фактически записываем в него объекты класса В:</p>
+<pre>A* a = new B[T];</pre>
+<p>При этом В &gt; А по размеру, так как в В добавлена переменная-член int а, но компилятор записывает объекты класса В по адресам, вычисленным исходя из размера объекта класса А (так как массив объявлен как A*a). То есть проблема вовсе не с delete[] a, проблема именно с A* a = new B[T]. Давайте посмотрим, что происходит. Для этого перепишем код, переименовав для большего удобства некоторые переменные и увеличив массив до 5 элементов (пока делаем "правильно", создавая массив объектов класса А: A* a = new A[5]):</p>
+<pre>Листинг 2.
+#include "stdafx.h"
+#include
+  static int i = 0; //вспомогательная переменная
+class A {
+  public:
+    A(){foo = i++;}; //"нумеруем" объекты при их создании
+    virtual ~A() {
+      foo = 0;
+    }
+    int foo;
+};
+class B: public A {
+  public:
+    int bar;
+};
+int _tmain(int argc, _TCHAR* argv[])
+{
+  using namespace std;
+  int* pc; //вспомогательный указатель
+  A* a = new A[5];
+  //выводим в консоль содержимое памяти, с начала массива а
+  pc = (int*)a;
+  hex(cout);
+  for(int i = 0; i &lt; 20; i++)
+    cout &lt;&lt; *(pc + i) &lt;&lt; ' ';
+  system("PAUSE");
+  return 0;
+}</pre>
+<p>Запускаем программу в Microsoft Visual C++ 2010.</p>
+<p>Вывод программы:</p>
+<pre>41783c 0 41783c 1 41783c 2 41783c 3 41783c 4 fdfdfdfd abababab abababab 0 0 d000
+a 1c0710 347a68 345430 104822b0 Для продолжения нажмите любую клавишу . . .</pre>
+<p>Здесь:<br />
+41783c - адрес таблицы виртуальных функций a[0]<br />
+0 - значение a[0].foo<br />
+41783c - адрес таблицы виртуальных функций a[1]<br />
+1 - значение a[1].foo<br />
+...<br />
+41783c - адрес таблицы виртуальных функций a[4]<br />
+4 - значение a[4].foo<br />
+дальше в памяти идёт "мусор"</p>
+<p>Пока всё нормально и логично. Теперь заменим строку A* a = new A[5]; на A* a = new В[5], и посмотрим, что будет:</p>
+<pre>41783c 0 cdcdcdcd 41783c 1 cdcdcdcd 41783c 2 cdcdcdcd 41783c 3 cdcdcdcd 41783c 4
+cdcdcdcd fdfdfdfd abababab abababab feeefeee 0 Для продолжения нажмите любую кл
+авишу . . .</pre>
+<p>41783c - адрес таблицы виртуальных функций a[0]<br />
+0 - значение foo<br />
+cdcdcdcd - значение bar<br />
+41783c - адрес таблицы виртуальных функций a[1]<br />
+1 - значение a[1].foo<br />
+cdcdcdcd - значение bar<br />
+...<br />
+41783c - адрес таблицы виртуальных функций a[4]<br />
+4 - значение a[4].foo<br />
+cdcdcdcd - значение bar</p>
+<p>дальше в памяти идёт "мусор" (тот же самый, что и в прошлый раз, что наводит на мысль, что это вовсе не мусор).</p>
+<h2>2. Почему она падает?</h2>
+<p>Проделаем ещё один эксперимент, удалим конструктор класса А (в исходной задаче он и был без конструктора), и поместим в main() цикл, в котором нумеруютя поля foo объектов:</p>
+<pre>Листинг 3.
+
+#include "stdafx.h"
+#include
+  static int i = 0;
+class A {
+  public:
+    virtual ~A() {
+      foo = 0;
+    }
+  int foo;
+};
+class B: public A {
+  public:
+    int bar;
+};
+int _tmain(int argc, _TCHAR* argv[])
+{
+  using namespace std;
+  int* pc;
+  A* a = new B[5];
+  for(int i = 0; i &lt; 5; ссi++)
+    a[i].foo = i;
+  pc = (int*)a;
+  hex(cout);
+  for(int i = 0; i &lt; 20; i++)
+    cout &lt;&lt; *(pc + i) &lt;&lt; ' ';
+  system("PAUSE");
+  return 0;
+}</pre>
+<pre>Результат:
+41783c 0 cdcdcdcd 1 cdcdcdcd 2 41783c 3 cdcdcdcd 4 cdcdcdcd cdcdcdcd 41783c cdcd
+cdcd cdcdcdcd fdfdfdfd abababab abababab feeefeee 0 Для продолжения нажмите любу
+ю клавишу . . .</pre>
+<p>Без вызова конструктора класса А произошла настоящая катастрофа: адреса виртуальных таблиц объектов произвольным образом затёрты полями bar (принявшими, по прихоти компилятора, значение cdcdcdcd).</p>
+<p>Теперь понятно, что вызов любого виртуального метода приведёт к немедленному падению программы. Добавим в класс А виртуальный метод и попытаемся вызвать его из main():</p>
+<pre>Листинг 4.
+#include "stdafx.h"
+#include
+  static int i = 0;
+class A {
+  public:
+    virtual void DoSomething() // &lt;--- добавляем виртуальный метод
+    {};
+    virtual ~A() {
+      foo = 0;
+    }
+  int foo;
+};
+class B: public A {
+  public:
+    int bar;
+};
+int _tmain(int argc, _TCHAR* argv[])
+{
+  using namespace std;
+  int* pc;
+  A* a = new B[5];
+  for(int i = 0; i &lt; 5; i++)
+    a[i].DoSomething(); // &lt;--- вызываем виртуальный метод
+  pc = (int*)a;
+  hex(cout);
+  for(int i = 0; i &lt; 20; i++)
+    cout &lt;&lt; *(pc + i) &lt;&lt; ' ';
+  system("PAUSE");
+  return 0;
+}</pre>
+<p>Результат:</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2010/06/scr1.jpg"><img class="alignnone size-medium wp-image-505" title="scr1" src="/assets/scr1-300x135.jpg" alt="" width="300" height="135" /></a></p>
+<p>Вот так. A* a = new B[5] - это неверно, вне зависимости от того, под Windows мы работаем или нет.</p>
+<p>Но delete[] же работает! Внутри delete[] вызываются деструкторы объектов, и правильно вызываются, я проверял! Как это возможно при затёртых адресах таблиц виртуальных функций? Ведь деструктор тоже виртуальный. его адрес хранится в той же таблице!</p>
+<p>Во-первых, не всё так радужно и с деструкторами. Если мы добавляем виртуальный деструктор к объекту В, то программа рушится, как ей и положено.</p>
+<h2>3. Почему она НЕ падает?</h2>
+<p>А теперь мы подобрались к самой сути вопроса: почему не падает программа, приведённая на листинге 1. Посмотрим ещё раз на результат работы программы на листинге 3:</p>
+<pre>41783c 0 cdcdcdcd 1 cdcdcdcd 2 41783c 3 cdcdcdcd 4 cdcdcdcd cdcdcdcd 41783c cdcd
+cdcd cdcdcdcd fdfdfdfd abababab abababab feeefeee 0</pre>
+<p>Как он образуется? Сначала в памяти размещаются объекты типа В:</p>
+<pre>41783c cdcdcdcd cdcdcdcd 41783c cdcdcdcd cdcdcdcd 41783c cdcdcdcd cdcdcdcd 41783c cdcdcdcd cdcdcdcd 41783c cdcdcdcd cdcdcdcd</pre>
+<p>где 41783c - адрес виртуальной таблицы В<br />
+cdcdcdcd - поле foo<br />
+сdcdcdcd - поле bar</p>
+<p>После этого код</p>
+<pre>for(int i = 0; i &lt; 5; ссi++)
+a[i].foo = i;</pre>
+<p>переписывает поля foo по адресам, соответствующим класс А, а не В:</p>
+<pre>41783c 0 cdcdcdcd 1 cdcdcdcd 2 41783c 3 cdcdcdcd 4 cdcdcdcd cdcdcdcd 41783c cdcdcdcd cdcdcdcd</pre>
+<p>И, так как А меньше В по размеру, "хвост" массива оказался неиспорчен, и адрес виртуальной таблицы последнего объекта а[4] оказался цел и невридим</p>
+<p>41783c 0 cdcdcdcd 1 cdcdcdcd 2 41783c 3 cdcdcdcd 4 cdcdcdcd cdcdcdcd <strong>41783c</strong> cdcdcdcd cdcdcdcd</p>
+<p>А уничтожение массива оператор delete[] начинает с конца!</p>
+<p>Перепишем программу так, чтобы видеть память после каждого вызова деструктора ~A()</p>
+<pre>Листинг 5
+
+// Console WIN32.cpp: определяет точку входа для консольного приложения.
+//
+#include "stdafx.h"
+#include
+using namespace std;
+static int i = 0;
+static int* pc;
+class A {
+  public:
+    virtual ~A() {
+      foo = 0;
+      for(int i = 0; i &lt; 20; i++)
+        cout &lt;&lt; *(pc + i) &lt;&lt; ' ';
+      cout &lt;&lt; endl &lt;&lt; endl;
+    }
+    int foo;
+};
+class B: public A {
+  public:
+  int bar;
+};
+int _tmain(int argc, _TCHAR* argv[])
+{
+  A* a = new B[5];
+  for(int i = 0; i &lt; 5; i++) // &lt;--- намеренно "портим" память
+    a[i].foo = i;
+  pc = (int*)a;
+  hex(cout);
+  for(int i = 0; i &lt; 20; i++)
+    cout &lt;&lt; *(pc + i) &lt;&lt; ' ';
+  cout &lt;&lt; endl &lt;&lt; endl;
+  delete[] a;
+  for(int i = 0; i &lt; 20; i++)
+    cout &lt;&lt; *(pc + i) &lt;&lt; ' ';
+  cout &lt;&lt; endl &lt;&lt; endl;
+  system("PAUSE");
+  return 0;
+}</pre>
+<p>Результат (для удобства чтения выровнен и снабжён комментариями)</p>
+<pre>41783c 0 cdcdcdcd 1 cdcdcdcd 2 41783c 3 cdcdcdcd 4 cdcdcdcd cdcdcdcd 41783c cdcdcdcd cdcdcdcd // до вызова delete[]</pre>
+<pre>41783c 0 cdcdcdcd 1 cdcdcdcd 2 41783c 3 cdcdcdcd 4 cdcdcdcd cdcdcdcd 417848 0 cdcdcdcd // вызов деструктора ~A[4]</pre>
+<pre>41783c 0 cdcdcdcd 1 cdcdcdcd 2 41783c 3 cdcdcdcd 417848 0 cdcdcdcd 417848 0 cdcdcdcd// вызов деструктора ~A[3]</pre>
+<pre>41783c 0 cdcdcdcd 1 cdcdcdcd 2 417848 0 cdcdcdcd 417848 0 cdcdcdcd 417848 0 cdcdcdcd // вызов деструктора ~A[2]</pre>
+<pre>41783c 0 cdcdcdcd 417848 0 2 417848 0 cdcdcdcd 417848 0 cdcdcdcd 417848 0 cdcdcdcd // вызов деструктора ~A[1]</pre>
+<pre>417848 0 cdcdcdcd 417848 0 2 417848 0 cdcdcdcd 417848 0 cdcdcdcd 417848 0 cdcdcdcd // вызов деструктора ~A[0]</pre>
+<pre>feeefeee feeefeee feeefeee feeefeee feeefeee feeefeee feeefeee feeefeee feeefeee feeefeee feeefeee feeefeee feeefeee feeefeee feeefeee // после delete[]</pre>
+<p>Здесь хорошо виден механизм вызова деструкторов объектов в массиве: начиная с последненего объекта, вызывается его деструктор, который заменяет содержимое ячейки памяти, соответствующей адресу виртуальной таблицы <em>предыдущего</em> объекта на верный адрес таблицы, и из неё вызывается следующий по счёту деструктор!</p>
+<p>Вот и разгадка. Деструкторы в массивах вызываются совсем не так, как виртуальные методы, и, если последний объект в массиве не испорчен, то деструкторы отработают правильно, даже если испорчены все остальные объекты!</p>
+<p>А вообще, так делать нельзя, конечно. Автор исходного поста нашёл, похоже, чуть ли не единственную комбинацию, при которой код</p>
+<pre>A* a = new B[T];
+delete[] a;</pre>
+<p>будет работать, причём именно в MS Visual C++.</p>
+<p>Так писать нельзя! В литературе ясно написано: Arrays are evil. Массивы - зло! Массивы являются злом, но, во-первых, только в С++ (в С им нет альтернативы), во-вторых, их всё же можно применять, но не для объектов с полиморфизмом, в любом случае.</p>
+<h2>4. А как нужно?</h2>
+<p>Применяйте контейнеры STL! Но это совсем другая история.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">{"login"=>"arktur04", "email"=>"arktur04@mail.ru", "display_name"=>"arktur04", "first_name"=>"", "last_name"=>""}</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2010-06-24T21:09:48+06:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>9:09 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/c-i-c-plus-plus/'>c и c++</a>, <a class='category' href='/blog/categories/proghrammirovaniie/'>программирование</a>, <a class='category' href='/blog/categories/stat'i/'>статьи</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://arktur04.github.io/blog/2010/06/24/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b1%25d0%25bb%25d0%25b5%25d0%25bc%25d1%258b-%25d1%2581-delete/" data-via="" data-counturl="http://arktur04.github.io/blog/2010/06/24/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b1%25d0%25bb%25d0%25b5%25d0%25bc%25d1%258b-%25d1%2581-delete/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2010/06/09/%25d0%25ba%25d0%25b0%25d0%25ba-%25d1%258d%25d1%2582%25d0%25be-%25d1%2580%25d0%25b0%25d0%25b1%25d0%25be%25d1%2582%25d0%25b0%25d0%25b5%25d1%2582/" title="Previous Post: Как это работает?">&laquo; Как это работает?</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2010/07/03/%25d0%25bf%25d0%25bb%25d0%25b0%25d1%2582%25d1%258b-%25d0%25bd%25d0%25be%25d0%25b2%25d0%25be%25d0%25b3%25d0%25be-%25d0%25bf%25d1%2580%25d0%25b8%25d0%25b1%25d0%25be%25d1%2580%25d0%25b0/" title="Next Post: Платы нового прибора">Платы нового прибора &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/12/02/title/">Zombie Ninjas Attack</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/23/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3/">Проект видеоадаптера. Часть 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/16/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-software-defined-radio-handbook-rodger-hosking/">Книга "Software Defined Radio Handbook", Rodger Hosking</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/05/vga-%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580-%25d0%25bd%25d0%25b0-fpga/">Проект видеоадаптера. Часть 2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/25/%25d0%25bf%25d1%2580%25d0%25be-llvm/">Про LLVM</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

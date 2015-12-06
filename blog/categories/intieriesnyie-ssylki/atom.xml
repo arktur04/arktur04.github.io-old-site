@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: интересные ссылки | My Octopress Blog]]></title>
+  <link href="http://arktur04.github.io/blog/categories/intieriesnyie-ssylki/atom.xml" rel="self"/>
+  <link href="http://arktur04.github.io/"/>
+  <updated>2015-12-06T14:37:44+05:00</updated>
+  <id>http://arktur04.github.io/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Драйвер для Linux: первый шаг]]></title>
+    <link href="http://arktur04.github.io/blog/2015/10/02/%25d0%25b4%25d1%2580%25d0%25b0%25d0%25b9%25d0%25b2%25d0%25b5%25d1%2580-%25d0%25b4%25d0%25bb%25d1%258f-linux-%25d0%25bf%25d0%25b5%25d1%2580%25d0%25b2%25d1%258b%25d0%25b9-%25d1%2588%25d0%25b0%25d0%25b3/"/>
+    <updated>2015-10-02T22:11:34+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/10/02/%d0%b4%d1%80%d0%b0%d0%b9%d0%b2%d0%b5%d1%80-%d0%b4%d0%bb%d1%8f-linux-%d0%bf%d0%b5%d1%80%d0%b2%d1%8b%d0%b9-%d1%88%d0%b0%d0%b3</id>
+    <content type="html"><![CDATA[<p>Продолжаю эксперименты с Altera Cyclone V. На этот раз объектом эксперимента стал драйвер для той прошивки FPGA, про которую я писал ранее. Сама прошивка простейшая: она просто мигает светодиодами с частотой, которую можно задавать программно. В прошлом посте на эту тему я сделал управление частотой мигания из обычной (user-space) программы, которая получает доступ к физической памяти через функции open("/dev/mem") и mmap().<br />
+Однако такой путь считается "hacky and unsafe". Поэтому следующим логичным шагом должно стать написание драйвера.</p>
+
+
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/10/Tux-linux-and-ARM-multiplatform-support.jpg"><img class="alignnone size-full wp-image-2147" alt="Tux-linux-and-ARM-multiplatform-support" src="/assets/Tux-linux-and-ARM-multiplatform-support.jpg" width="672" height="370" /></a></p>
+
+
+<p>Я воспользовался готовым исходником драйвера (<a href="https://github.com/zhemao/sockit_test/tree/master/software/blinker">ссылка</a>) за авторством Howard Mao (он на самом деле не Howard, а Zhe Hao Mao). Конечно, для того, чтобы разобраться в работе кода, почитал отдельные главы книги Linux Device Drivers (есть русский перевод).</p>
+
+
+<p>Для компиляции пришлось вытаскивать архив Arrow SocKit 13.1 GSRD Linux отсюда: <a href="http://releases.rocketboards.org/release/2013.11/gsrd/src">http://releases.rocketboards.org/release/2013.11/gsrd/src</a>, файл linux-socfpga-gsrd-13.1-src.bsx. Объем архива около 1.1 Гб, но сервер очень медленный, качается несколько часов. Честно говоря, я впервые увидел файл с расширением bsx, оказалось, что это самораспаковывающийся архив. Просто запускаем его и он разворачивается в указанную папку. В ней в папке sources находится файл linux-socfpga.tgz. Его тоже нужно распаковать, естественно. Это и есть как таковое ядро системы, которое нужно указывать при компиляции драйвера.</p>
+
+
+<p>Однако всё не так просто. После компиляции записываем скомпилированный драйвер blinker.ko на SD-карту, после загрузки Linux пишем<strong> insmod blinker.ko</strong> и получаем следующее: "<em>blinker: version magic '3.9.0-00161-ged01b8c SMP mod_unload ARMv7 p2v8 ' should be '3.9.0 SMP mod_unload ARMv7 p2v8'</em>". Не совпали волшебные номерки. Причем версия одна и та же, просто зачем-то к ней приделан какой-то добавочный номер.</p>
+
+
+<p>Решений может быть три: 1. Скомпилировать Linux именно из этого скачанного исходника (очень неохота) или 2. Подправить номер в исходниках ядра Linux. 3. Использовать команду modprobe с ключом -f, который заставляет систему игнорировать "волшебные цифры".  Однако этот способ почему-то не заработал.<br />
+Итак, способ номер 2, подправить номер в исходнике ядра. Данный номер записан в файле /include/generated/utsrelease.h. Исправляем то, что там было, на "3.9.0", и перекомпилируем драйвер. На всякий случай смотрим hex-редактором файл blinker.ko, чтобы убедиться, что волшебные циферки такие, как нужно. Снова записываем драйвер на SD-карту, запускаем insmod, всё прошло гладко. Теперь можно проверить работу драйвера, посылая ему числа от 1 до 15 для управления частотой миганий: echo 1 &gt; blinker - мигает быстро, echo 15 &gt; blinker - мигает медленно. Пока всё. Немного, но путь в тысячу ли начинается с одного шага.</p>
+
+
+<p>Эксперименты продолжаются.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Генерация файлов .mif и Case-конструкций]]></title>
+    <link href="http://arktur04.github.io/blog/2015/06/21/%25d0%25b3%25d0%25b5%25d0%25bd%25d0%25b5%25d1%2580%25d0%25b0%25d1%2586%25d0%25b8%25d1%258f-%25d1%2584%25d0%25b0%25d0%25b9%25d0%25bb%25d0%25be%25d0%25b2-mif/"/>
+    <updated>2015-06-21T09:13:34+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/06/21/%d0%b3%d0%b5%d0%bd%d0%b5%d1%80%d0%b0%d1%86%d0%b8%d1%8f-%d1%84%d0%b0%d0%b9%d0%bb%d0%be%d0%b2-mif</id>
+    <content type="html"><![CDATA[<p>Пусть в проекте FPGA необходимо ПЗУ, в которое записана определённая информация, имеющаяся у нас в виде бинарного файла. ПЗУ, как правило, реализуются на блоках BRAM, в которые при инициализации FPGA записывается требуемое содержимое.<br />
+Файлы инициализации памяти BRAM для FPGA, могут иметь формат MIF (Memory Initialization File) или формат HEX. </p>
+
+
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/06/DSC_0522_EDIT.jpg"><img class="alignnone size-medium wp-image-2084" alt="DSC_0522_EDIT" src="/assets/DSC_0522_EDIT-300x200.jpg" width="300" height="200" /></a></p>
+
+
+<p>Нужный модуль памяти можно сгенерировать в Quartus II с помощью MegaWizard, в ISE - с помощью Xilinx Core Generator. Кроме этого, в QuartusII возможно использование специальной директивы:</p>
+
+
+<pre lang="verilog" line="1">reg [7:0] mem[0:2047] /* synthesis ram_init_file = "test.mif" */;</pre>
+
+
+<p>Эта директива позволяет создать RAM, инициированную значениями из файла .MIF. Использование RAM с предустановленными значениями, это очень плохая идея, но в качестве ROM такую память использовать вполне можно. Проблема в том, что эту директиву понимает только Quartus II, никакой кроссплатформенности.</p>
+
+
+<p>Quartus II предоставляет редактор файлов памяти, и возможность загрузки файлов .mif и .hex, Xilinx Core Generator требует загрузки файла .coe, имеющего другой формат, нежели MIF. Однако хочется иметь кроссплатформенное решение, которое не зависело бы от платформы.  Таким вариантом является генерация ROM в виде case-конструкции:</p>
+
+
+<pre lang="cpp" line="1">
+always@(posedge clk)
+begin
+  case(in)
+  ...
+  11'h00d: out = 8'h99;
+  11'h00e: out = 8'h81;
+  11'h00f: out = 8'h7e;
+  11'h010: out = 8'h7e;
+  11'h011: out = 8'hff;
+  11'h012: out = 8'hdb;
+  11'h013: out = 8'hff;
+  11'h014: out = 8'hc3;
+  11'h015: out = 8'he7;
+  11'h016: out = 8'hff;
+  ...
+  endcase
+end
+</pre>
+
+
+<p>Полезная ссылка: различные конструкции для генерации разных типов RAM, ROM и других модулей можно найти в руководстве Altera "Recommended HDL Coding Styles": <a href="https://www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/hb/qts/qts_qii51007.pdf">https://www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/hb/qts/qts_qii51007.pdf</a><br />
+Я написал две простые утилиты, которая преобразует бинарный файл в MIF и в тело конструкции case.</p>
+
+
+<p><!--more--></p>
+
+
+<p>Вот её полный исходник:</p>
+
+
+<pre lang="cpp" line="1">
+#include <fstream>
+#include <vector>
+#include <sstream>
+#include <string>
+#include <iostream>
+#include <iomanip>
+#include <math.h>
+
+std::vector<unsigned char> readFile(const char* filename)
+{
+    // open the file:
+    std::streampos fileSize;
+    std::ifstream file(filename, std::ios::binary);
+    // get its size:
+    file.seekg(0, std::ios::end);
+    fileSize = file.tellg();
+    file.seekg(0, std::ios::beg);
+    // read the data:
+    std::vector<unsigned char> fileData(fileSize);
+    file.read((char*) &fileData[0], fileSize);
+    return fileData;
+}
+
+unsigned getWidth(unsigned size)
+{
+    return size / 4 + ((size % 4)? 1: 0);
+}
+
+int main(int argc, char *argv[])
+{
+    if(argc < 5)
+    {
+        std::cout << "äîëæíû áûòü àðãóìåíòû: èìÿ_âõîäíîãî_ôàéëà èìÿ_âûõîäíîãî_ôàéëà ðàçìåð_âõîäíîé_ïåðåìåííîé ðàçìåð_âûõîäíîé_ïåðåìåííîé" << std::endl;
+        std::cout << "íàïðèìåð: out_file.v 11 8" << std::endl;
+        return 0;
+    }
+    std::vector<unsigned char> inputFile = readFile(argv[1]);
+    std::ofstream out(argv[2], std::ofstream::out);
+    unsigned num = 0;
+    unsigned inSize = atoi(argv[3]), outSize = atoi(argv[4]);
+    unsigned inWidth = getWidth(inSize),
+        depth = pow(2, inSize),
+        outWidth = getWidth(outSize);
+    out << "width=" << outSize << ";" << std::endl;
+    out << "depth=" << depth << ";" << std::endl;
+    out << "address_radix=hex;" << std::endl;
+    out << "data_radix=hex;" << std::endl;
+    out << "content begin" << std::endl;
+    out.fill('0');
+    for(auto ch:inputFile)
+    {
+        out << std::setw(inWidth) << std::hex << num++ << ": " << std::setw(outWidth) << std::right << std::hex << (int)ch << ";" << std::endl;
+    }
+    out << "end" << std::endl;
+    out.close();
+    return 0;
+}
+</unsigned></unsigned></unsigned></math.h></iomanip></iostream></string></sstream></vector></fstream></pre>
+
+
+<p>С её помощью можно преобразовать бинарный файл в MIF-формат, указав имя входного файла, имя выходного файла, размер переменной адреса в битах и размер данных в битах, например:</p>
+
+
+<pre lang="text" line="1">hex2mif "866.008" "008.mif" 11 8</pre>
+
+
+<p>Вторая утилита отличается незначительно:</p>
+
+
+<pre lang="cpp" line="1">
+  //основное отличие в этой строке:
+  out << std::dec << std::setw(0) << inSize << "'h" << std::setw(inWidth) << std::hex << num++ << ": " << std::dec << std::setw(0) << outName << " = " << outSize << "'h" << std::setw(outWidth) << std::hex << (int)ch << ";" << std::endl;
+</pre>
+
+
+<p>В качестве пятого параметра ей нужно указывать имя выходного регистра:</p>
+
+
+<pre lang="text" line="1">hex2case "866.008" "008.mif" 11 8 out</pre>
+
+
+<p>Обе утилиты кроссплатформенные и могут быть скомпилированы как в Windows, так и в Linux.</p>
+
+
+<p>Теперь можно использовать этот файл для инициализации памяти в verilog:</p>
+
+
+<pre lang="verilog" line="1">
+module rom_test(
+  input wire clk, rst_n,
+  input wire [10:0] in,
+  output reg [7:0] out
+);
+
+always@(posedge clk)
+begin
+  case(in)
+  `include "008.inc"
+  endcase
+end
+
+endmodule
+</pre>
+
+
+<p>Ссылка на Github: <a href="https://github.com/arktur04/bin2mif">https://github.com/arktur04/bin2mif</a></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Ссылка от RS Components]]></title>
+    <link href="http://arktur04.github.io/blog/2015/06/17/%25d1%2581%25d1%2581%25d1%258b%25d0%25bb%25d0%25ba%25d0%25b0-%25d0%25be%25d1%2582-rs-components/"/>
+    <updated>2015-06-17T20:39:03+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/06/17/%d1%81%d1%81%d1%8b%d0%bb%d0%ba%d0%b0-%d0%be%d1%82-rs-components</id>
+    <content type="html"><![CDATA[<p>Инженерный портал <a href="http://www.rs-online.com/designspark/electronics/nodes/view/type:tool/slug:product-data-library">http://www.rs-online.com/designspark/electronics/nodes/view/type:tool/slug:product-data-library</a>, цель которого – предоставить инженеру техническую информацию от разных производителей – в одном месте.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Бесплатные САПР от RS Components]]></title>
+    <link href="http://arktur04.github.io/blog/2015/06/02/2049/"/>
+    <updated>2015-06-02T18:57:16+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/06/02/2049</id>
+    <content type="html"><![CDATA[<p>С сайта RS Components можно скачать две системы автоматизированного проектирования: одна предназначена для разработки принципиальных схем и печатных плат (DesignSpark PCB), вторая для 3D-моделирования (DesignSpark Mechanical). Обе системы полностью бесплатны, то есть это не урезанные демо-версии. Ссылка: <a href="http://www.rs-online.com/designspark/electronics/eng/page/mechanical">http://www.rs-online.com/designspark/electronics/eng/page/mechanical</a></p>
+
+
+<p>Я скачал обе и немного попробовал что-нибудь сделать. Сразу могу сказать, что я сравниваю возможности и удобство использования с теми программами, которыми пользуюсь сам: с Altium Designer и Solid Works.</p>
+
+
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/06/pic1.jpg"><img class="alignnone size-medium wp-image-2050" alt="pic1" src="/assets/pic1-300x225.jpg" width="300" height="225" /></a></p>
+
+
+<p>Редактор схем.</p>
+
+
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/06/pic2.jpg"><img class="alignnone size-medium wp-image-2051" alt="pic2" src="/assets/pic2-300x195.jpg" width="300" height="195" /></a></p>
+
+
+<p>&nbsp;</p>
+
+
+<p>Редактор 3D.</p>
+
+
+<p>В общем, первое впечатление хорошее, есть большие библиотеки компонентов и для редактора схем/плат, и для 3D.</p>
+
+
+<p>Библиотека условных графических обозначений большая, но не соответствует ГОСТ, поэтому на производстве её использовать не получится, только "для себя". Редактор PCB тоже есть, там есть разные возможности, поддержка DRC и другое.</p>
+
+
+<p>Разобраться сходу не удалось, но времени на освоение у меня сейчас просто нет. Надо читать документацию.</p>
+
+
+<p>Библиотека 3D большая и удобная, с поиском по каталогу, можно скачать какую-либо деталь и экспортировать её в формат STL. Экспортировать в Solid Works получилось, только без цвета, увы. Больше распространённых форматов 3D не предусмотрено, формата STEP нет, экспорт только через Solid Works или другой пакет 3D-моделирования.</p>
+
+
+<p>Само по себе моделирование в 3D происходит совсем не так, как в Solid Works или Компас 3D. Если честно, совсем не так. Вероятно, нужно читать документацию и руководства, чтобы освоить эту программу, но я попробую это сделать в будущем. Если у вас есть задачи по разработке плат и 3D-моделей, можете попробовать скачать и разобраться.</p>
+
+
+<p><!--more-->Хотя, например, Компас 3D хоть и не бесплатен, но стоит всего 1400 рублей в Home-версии, не такие уж большие деньги.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Интересная ссылка: GNU Radio]]></title>
+    <link href="http://arktur04.github.io/blog/2015/02/22/1927/"/>
+    <updated>2015-02-22T09:48:53+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/02/22/1927</id>
+    <content type="html"><![CDATA[<p>GNU Radio под лицензией GPLv3.<br />
+Набор программ и библиотек для реализации различных радиосистем.<br />
+Содержит различные фильтры, модуляторы, демодуляторы, смесители, кодеки и другие блоки.<br />
+Домашняя страница <a href="http://gnuradio.org/redmine/" target="_self" rel="nofollow">http://gnuradio.org/redmine/</a><br />
+Пример использования.<br />
+<iframe src="https://www.youtube.com/embed/N9SLAnGlGQs" height="750" width="1280" allowfullscreen="" frameborder="0"></iframe><br />
+<!--more--><br />
+<iframe src="https://www.youtube.com/embed/05i9C5lhorY" height="750" width="1280" allowfullscreen="" frameborder="0"></iframe></p>
+
+]]></content>
+  </entry>
+  
+</feed>

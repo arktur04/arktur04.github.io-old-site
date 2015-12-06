@@ -1,0 +1,239 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Протокол Modbus в устройствах на базе микроконтроллеров. Часть 1.1 - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="Продолжение. Начало здесь: http://32bit.me/?p=355 - введение; http://32bit.me/?p=373 - часть 1.0.
+Продолжим эксперименты по исследованию протокола &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://arktur04.github.io/blog/2010/05/12/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-3/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="arktur04.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Протокол Modbus в устройствах на базе микроконтроллеров. Часть 1.1</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-05-12T21:48:10+06:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>9:48 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><em><a href="http://32bit.me/wordpress/wp-content/uploads/2010/05/Рис-1.jpg"></a>Продолжение. </em><em>Начало здесь: </em><em> </em><a href="http://32bit.me/?p=355"><em>http://32bit.me/?p=355</em></a><em> - введение; </em><a href="http://32bit.me/?p=373"><em>http://32bit.me/?p=373</em></a><em> - часть 1.0.</em></p>
+<p>Продолжим эксперименты по исследованию протокола Modbus. Для этого воспользуемся контроллером ICP-DAS i7188EGD:</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2010/05/i-7188egd.jpg"><img title="i-7188egd" src="/assets/i-7188egd.jpg" alt="" width="169" height="200" /></a></p>
+<p>Он может служить ведомым устройством с поддержкой протокола Modbus RTU.</p>
+<p style="padding-left: 30px;"><!--more--><em>Этот контроллер может также служить ведомым устройством в сети Modbus TCP, для чего у него имеется порт Eternet. Но контроллер данной модели не может служить ведущим устройством в сети Modbus, для связи со своими модулями расширения он использует собственный протокол, называемый DCON. Однако фирма ICP выпускает аналогичные контроллеры с полной поддержкой потокола Modbus.</em></p>
+<p>Этот контроллер программируется с помощью среды ISaGRAF. Создадим в проекте переменные, с такими же адресами, как в проекте панели и соединим контроллер с панелью через COM-порт. Подключая линию RX COM-порта компьютера поочерёдно к линиям RX и TX контроллера, мы сможем наблюдать посылки, отправляемые панелью и контроллером соответственно (рис. 1).</p>
+<p><em><a href="http://32bit.me/wordpress/wp-content/uploads/2010/05/Рис-1.jpg"><img class="alignnone size-medium wp-image-383" title="Рис 1" src="/assets/&#1056;&#1080;&#1089;-1-300x220.jpg" alt="" width="300" height="220" /></a></em></p>
+<p>Рис 1. "Прослушивание" линий COM-порта.</p>
+<p>Для эксперимента  загрузим в контроллер простую программу, сделанную в среде ISaGRAF (сама программа на FBD, языке функциональных блоковых диаграмм). Она изображена на рис. 2:</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2010/05/fbd.jpg"><img class="alignnone size-medium wp-image-384" title="fbd" src="/assets/fbd-300x257.jpg" alt="" width="300" height="257" /></a></p>
+<p>Рис. 2. Программа контроллера.</p>
+<p>Переменные a1, a10-a14, a30 имеют соответствующие адреса (т.е. 1, 10-14, 30). В переменные a1, a10-13 записываются соответствующие константы, в переменную a14 записывается значение переменной a30 (по этому адресу записывается значение, привязанное к кнопке а программе панели).</p>
+<p>После подключения контроллера к панели мы видим, что все переменные отображаются на панели (рис. 3):</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2010/05/P1000928.jpg"><img class="alignnone size-medium wp-image-385" title="P1000928" src="/assets/P1000928-300x206.jpg" alt="" width="300" height="206" /></a></p>
+<p>Рис. 3.</p>
+<p>Теперь пожно "подслушать" диалог контроллера и панели.</p>
+<p>Запросы панели:</p>
+<p>01 03 00 00 00 01 84 0A - запрос на чтение 1  переменной в регистре 0.</p>
+<p>01 03 00 09 00 05 55 CB - запрос на чтение 5 переменных, начиная с регистра 9.</p>
+<p>Ответы контроллера:</p>
+<p>01 03 02 00 01 79 84</p>
+<p>Этим контроллер говорит буквально следующее: "устройство 01 отвечает на запрос с командой 03 и передаёт 02 байта: 00 01. Контрольная сумма сообщения равна 79 84". Это ответ на запрос значения переменной в регистре 0: её значение равно 1 (байты 00 01 в сообщении).</p>
+<p>На второй запрос контроллер отвечает:</p>
+<p>01 03 0A 00 0A 00 0B 00 0C 00 0D 00 00 61 14</p>
+<p>что значит: "устройство 01 отвечает на запрос с командой 03 и передаёт 0A байт:  00 0A 00 0B 00 0C 00 0D 00 00. Контрольная сумма сообщения равна 61 14".  Действительно, значения переменных в регистрах с 09 по 13 равны 10 -14 соответственно, т.е. 000A - 000D в 16-ричном коде.</p>
+<p>Теперь посмотрим, что будет, если нажать на кнопку на панели. Запрос, отправляемый панелью, мы уже видели: 01 10 00 1D 00 01 02 15 B3 EA F8. Контроллер отвечает на это следующим сообщением: "01 10 00 1D 00 01 91 CF". Это означает:</p>
+<p>01 - адрес контроллера</p>
+<p>10 - номер функции протокола (Preset Multiple Registers).</p>
+<p>001D - начальный адрес, с которого была произведена перезапись регистров 1D<sub>16</sub> = 29<sub>10</sub>, т.е. переменная с адресом 30 (адрес = номер регистра + 1).</p>
+<p>0001 - количество переписанных регистров</p>
+<p>91CF - контрольная сумма.</p>
+<p>В следующей части мы продолжим эксперименты с контроллером.</p>
+<p><em>Продолжение следует.</em></p>
+<p><strong>Владимир Татарчевский</strong></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">{"login"=>"arktur04", "email"=>"arktur04@mail.ru", "display_name"=>"arktur04", "first_name"=>"", "last_name"=>""}</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2010-05-12T21:48:10+06:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>9:48 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/modbus/'>modbus</a>, <a class='category' href='/blog/categories/scada/'>scada</a>, <a class='category' href='/blog/categories/plk/'>ПЛК</a>, <a class='category' href='/blog/categories/intieriesnyie-ssylki/'>интересные ссылки</a>, <a class='category' href='/blog/categories/mikrokontrolliery/'>микроконтроллеры</a>, <a class='category' href='/blog/categories/proghrammirovaniie/'>программирование</a>, <a class='category' href='/blog/categories/stat'i/'>статьи</a>, <a class='category' href='/blog/categories/foto/'>фото</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://arktur04.github.io/blog/2010/05/12/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-3/" data-via="" data-counturl="http://arktur04.github.io/blog/2010/05/12/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-3/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2010/05/12/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-2/" title="Previous Post: Протокол Modbus в устройствах на базе микроконтроллеров. Часть 1.0">&laquo; Протокол Modbus в устройствах на базе микроконтроллеров. Часть 1.0</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2010/05/13/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-4/" title="Next Post: Протокол Modbus в устройствах на базе микроконтроллеров. Часть 1.2">Протокол Modbus в устройствах на базе микроконтроллеров. Часть 1.2 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/12/02/title/">Zombie Ninjas Attack</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/23/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3/">Проект видеоадаптера. Часть 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/16/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-software-defined-radio-handbook-rodger-hosking/">Книга "Software Defined Radio Handbook", Rodger Hosking</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/05/vga-%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580-%25d0%25bd%25d0%25b0-fpga/">Проект видеоадаптера. Часть 2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/25/%25d0%25bf%25d1%2580%25d0%25be-llvm/">Про LLVM</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

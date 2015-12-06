@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Dsp | My Octopress Blog]]></title>
+  <link href="http://arktur04.github.io/blog/categories/dsp/atom.xml" rel="self"/>
+  <link href="http://arktur04.github.io/"/>
+  <updated>2015-12-06T14:37:44+05:00</updated>
+  <id>http://arktur04.github.io/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Книга "Software Defined Radio Handbook", Rodger Hosking]]></title>
+    <link href="http://arktur04.github.io/blog/2015/11/16/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-software-defined-radio-handbook-rodger-hosking/"/>
+    <updated>2015-11-16T19:03:04+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/11/16/%d0%ba%d0%bd%d0%b8%d0%b3%d0%b0-software-defined-radio-handbook-rodger-hosking</id>
+    <content type="html"><![CDATA[<p>Прочитал книгу "Software Defined Radio Handbook", 75 стр, англ. язык.</p>
+
+
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/11/Pentek-SDR-Handbook.jpg"><img class="alignnone size-medium wp-image-2171" alt="Pentek-SDR-Handbook" src="/assets/Pentek-SDR-Handbook-221x300.jpg" width="221" height="300" /></a></p>
+
+
+<p>Собственно, название вводит в заблуждение. Это не столько handbook, сколько рекламный проспект фирмы Pentek, которая выпускает отладочные платы для SDR. Платы, например, такие: 2 канала АЦП по 3,6 ГГц и 4 канала по 1,8 ГГц + Virtex 6. Это для меня несколько неактуально. А теория SDR изложена очень поверхностно, хочется чего-то глубокого.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Интерфейс прибора]]></title>
+    <link href="http://arktur04.github.io/blog/2010/12/12/%25d0%25b8%25d0%25bd%25d1%2582%25d0%25b5%25d1%2580%25d1%2584%25d0%25b5%25d0%25b9%25d1%2581-%25d0%25bf%25d1%2580%25d0%25b8%25d0%25b1%25d0%25be%25d1%2580%25d0%25b0/"/>
+    <updated>2010-12-12T15:11:37+05:00</updated>
+    <id>http://arktur04.github.io/blog/2010/12/12/%d0%b8%d0%bd%d1%82%d0%b5%d1%80%d1%84%d0%b5%d0%b9%d1%81-%d0%bf%d1%80%d0%b8%d0%b1%d0%be%d1%80%d0%b0</id>
+    <content type="html"><![CDATA[<p>Интерфейс прибора реализован на базе монохромного индикатора разрешением 128х64, и включает в себя 35 различных экранов, в которых выполняются все манипуляции с прибором, включая его наладку и тестирование всех узлов (ЦАП, АЦП, все дискретные входы и выходы), установку параметров алгоритма обработки сигналов (DSP), а также все переменные настройки прибора (более 200 переменных).</p>
+
+
+<p>Программно интерфейс реализован в виде библиотеки классов C++, представляющих элементы управления (кнопки, поля ввода, текстовые поля и пр.)</p>
+
+
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2010/12/main.png"><img class="alignnone size-full wp-image-938" title="main" src="/assets/main.png" alt="" width="256" height="128" /></a></p>
+
+
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2010/12/ethernet.png"><img class="alignnone size-full wp-image-939" title="ethernet" src="/assets/ethernet.png" alt="" width="256" height="128" /></a></p>
+
+
+<p>Так это выглядит в натуральном виде:</p>
+
+
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2010/12/mainscr.gif"><img class="alignnone size-medium wp-image-946" title="mainscr" src="/assets/mainscr-300x213.gif" alt="" width="300" height="213" /></a></p>
+
+
+<p>Ещё  несколько картинок под катом.</p>
+
+
+<p><!--more--><a href="http://32bit.me/wordpress/wp-content/uploads/2010/12/menu1.png"><img class="alignnone size-full wp-image-940" title="menu1" src="/assets/menu1.png" alt="" width="256" height="128" /></a></p>
+
+
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2010/12/param1.png"><img class="alignnone size-full wp-image-941" title="param1" src="/assets/param1.png" alt="" width="256" height="128" /></a></p>
+
+
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2010/12/rs485.png"><img class="alignnone size-full wp-image-942" title="rs485" src="/assets/rs485.png" alt="" width="256" height="128" /></a></p>
+
+
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2010/12/test_ai.png"><img class="alignnone size-full wp-image-943" title="test_ai" src="/assets/test_ai.png" alt="" width="256" height="128" /></a></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Система сбора данных]]></title>
+    <link href="http://arktur04.github.io/blog/2009/12/07/%25d1%2581%25d0%25b8%25d1%2581%25d1%2582%25d0%25b5%25d0%25bc%25d0%25b0-%25d1%2581%25d0%25b1%25d0%25be%25d1%2580%25d0%25b0-%25d0%25b4%25d0%25b0%25d0%25bd%25d0%25bd%25d1%258b%25d1%2585/"/>
+    <updated>2009-12-07T20:41:00+05:00</updated>
+    <id>http://arktur04.github.io/blog/2009/12/07/%d1%81%d0%b8%d1%81%d1%82%d0%b5%d0%bc%d0%b0-%d1%81%d0%b1%d0%be%d1%80%d0%b0-%d0%b4%d0%b0%d0%bd%d0%bd%d1%8b%d1%85</id>
+    <content type="html"><![CDATA[<p>Модуль аналогового ввода позволяет подключать до 24 аналоговых сигналов. Плата АЦП построена на основе четырех АЦП AD73360, каждая из которых имеет 6 независимых 16-и битных АЦП (речь идет не о мультиплексировании, а именно об отдельных АЦП). Частота опросов задается программно, максимальная скорость составляет 64ksps.</p>
+
+
+<div class="separator" style="clear: both; text-align: center;"><a style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;" href="http://32bit.me/wordpress/wp-content/uploads/2010/01/post30/das-big.jpg"><img style="border: 0px;" src="/assets/das-small.jpg" border="0" alt="" /></a></div>
+
+
+<div class="separator" style="clear: both; text-align: left;">Всего в устройстве могут быть две такие платы, образующие 48-канальную систему сбора данных. Плата подключается к компьютеру по USB, который работает в режиме Hi-speed (одна плата АЦП при работе генерирует поток данных 24*16*64000 = 24Мбит/c, что выходит за рамки обычного Full-speed). Интерфейс USB и процессор находятся на нижней плате (фото под катом).</div>
+
+
+<p><a name="more"></a><!--more--></p>
+
+
+<div class="separator" style="clear: both; text-align: center;"><a style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;" href="http://32bit.me/wordpress/wp-content/uploads/2010/01/post30/das2-big.jpg"><img style="border: 0px;" src="/assets/das2-small.jpg" border="0" alt="" /></a></div>
+
+
+<div class="separator" style="clear: both; text-align: left;">Плата USB-2185 выпущена компанией R-Technology (<a href="http://www.r-technology.ru/">http://www.r-technology.ru/</a>), и содержит сигнальный процессор ADSP-2185, микроконтроллер Atmega8515, ПЛИС Altera и контроллер USB ISP1581. Хорошую статью про эту плату можно найти здесь: <a href="http://www.compitech.ru/html.cgi/arhiv/04_03/stat_36.htm">http://www.compitech.ru/html.cgi/arhiv/04_03/stat_36.htm</a>.</div>
+
+
+<div class="separator" style="clear: both; text-align: left;">Особенность устройства состоит в том, что программа DSP не хранится в ПЗУ на плате, а загружается по USB при каждом запуске. У такого подхода есть свой плюс: для обновления ПО не нужно ничего перепрошивать, достаточно заменить файл с скомпилированной программой DSP. Минус также очевиден: невозможна автономная работа платы, однако при отсутствии "бортовой" памяти она все равно невозможна: плата всегда должна быть подключена к компьютеру. С платой поставляются драйвера (с заголовочными файлами, конечно), и исходник программы, загружаемой в DSP (на ассемблере ADSP), представляющий собой шаблон, к которому пользователь должен дописать свою программу.</div>
+
+
+<div class="separator" style="clear: both; text-align: left;">В рамках работы над проектом была разработана программа для цифрового сигнального процессора и программа сбора и отображения данных для ПК (описание будет позднее).</div>
+
+]]></content>
+  </entry>
+  
+</feed>

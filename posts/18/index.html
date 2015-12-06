@@ -1,0 +1,515 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="При перетаскивании проекта с LPC2368 (ядро ARM7TDMI) на LPC1768, который является pin-to-pin совместимым с LPC2368, но на ядре Cortex M3, столкнулся &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://arktur04.github.io/posts/18/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="arktur04.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/07/09/iar-cortex-m3-%25d0%25b8-c/">IAR, Cortex M3 и C++</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-07-09T05:11:31+06:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>5:11 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>При перетаскивании проекта с LPC2368 (ядро ARM7TDMI) на LPC1768, который является pin-to-pin совместимым с LPC2368, но на ядре Cortex M3, столкнулся со следующими проблемами и особенностями:</p>
+<p></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2010/07/09/iar-cortex-m3-%25d0%25b8-c/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/07/03/%25d0%25bf%25d0%25bb%25d0%25b0%25d1%2582%25d1%258b-%25d0%25bd%25d0%25be%25d0%25b2%25d0%25be%25d0%25b3%25d0%25be-%25d0%25bf%25d1%2580%25d0%25b8%25d0%25b1%25d0%25be%25d1%2580%25d0%25b0/">Платы нового прибора</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-07-03T00:32:04+06:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2010</span></span> <span class='time'>12:32 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Сборка из двух плат будет устанавливаться в корпус прибора.</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2010/07/ph2.jpg"><img class="alignnone size-medium wp-image-529" title="ph2" src="/assets/ph2-269x300.jpg" alt="" width="269" height="300" /></a></p>
+<p>Платы содержат: микроконтроллер, 4 канала ЦАП, 4 канала АЦП (24 бит), с контролем обрыва цепей датчиков, 6 дискретных переключающих выходов,  силовые ключи управления ТЭНами. порты USB, RS-232, RS-485, возмжность установки интерфейса Ethernet. Все аналоговые и дискретные входы и выходы имеют гальваническую развязку друг от друга и от микроконтроллера. </p>
+<p>Платы по отдельности:</p>
+<p>нижняя, с АЦП, дискретными выходами и силовыми ключами - <a href="http://32bit.me/?p=452">http://32bit.me/?p=452</a></p>
+<p>верхняя, с ЦАП имикроконтроллером - <a href="http://32bit.me/?p=444">http://32bit.me/?p=444</a></p>
+<p>К верхней плате подключается дисплей (монохромный графический 128х64) и клавиатура - <a href="http://32bit.me/?p=457">http://32bit.me/?p=457</a></p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2010/07/ph4.jpg"></a></p>
+<p>Под катом ещё фотки.</p>
+<p></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2010/07/03/%25d0%25bf%25d0%25bb%25d0%25b0%25d1%2582%25d1%258b-%25d0%25bd%25d0%25be%25d0%25b2%25d0%25be%25d0%25b3%25d0%25be-%25d0%25bf%25d1%2580%25d0%25b8%25d0%25b1%25d0%25be%25d1%2580%25d0%25b0/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/06/24/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b1%25d0%25bb%25d0%25b5%25d0%25bc%25d1%258b-%25d1%2581-delete/">Проблемы с Delete[]?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-06-24T21:09:48+06:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>9:09 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Недавно в блоге Алёны (<a href="http://alenacpp.blogspot.com/2010/06/delete.html">http://alenacpp.blogspot.com/2010/06/delete.html</a>) был опубликован пост "Проблемы с delete[]", где был приведён пример вот такого кода:</p>
+<pre>A* a = new B[T];
+delete[] a;</pre>
+<p>представляющего собой отрывок более длинного кода, приведённого в другом блоге (под девизом "Программирование - это просто!"): <a href="http://easy-coding.blogspot.com/2010/06/delete.html">http://easy-coding.blogspot.com/2010/06/delete.html</a>.<br />
+Адепты, достигшие просветления, уже поняли, что это работать не будет, а остальные могут читать дальше, и убедиться в том, что программирование - это не всегда просто.</p>
+<p>Вот код из начального поста:</p>
+<pre>Листинг 1.
+
+#define T 2
+class A {
+  public:
+    virtual ~A() {
+      p = 0;
+    }
+    int p;
+  };
+class B: public A {
+  int a;
+};
+int main() {
+  A* a = new B[T];
+  delete[] a;
+  return 0;
+}</pre>
+<p>При запуске программа падает практически на любом компиляторе, кроме VisualStudio (и некоторых других).</p>
+<p>Давайте разбёремся в том, что здесь неправильного, почему программа падает, и, самое главное, в том, почему она кое-где НЕ падает (хотя должна).</p>
+<p>Примечание: в комментариях к блогу Алёны некто soonts пишет:</p>
+<blockquote><p>Как обычно, нормальные ОС + IDE этой проблемой не затронуты: в мире Windows всё работает.</p></blockquote>
+<p>Вот вам и объяснение: программа работает исключительно благодаря магической силе MS Windows и лично Билла Гейтса. Я надеюсь, что среди моих читателей не будет столь <a href="http://lurkmore.ru/%D0%9C%D0%B0%D0%BB%D0%BE%D0%BB%D0%B5%D1%82%D0%BD%D0%B8%D0%B9_%D0%B4%D0%BE%D0%BB%D0%B1%D0%BE%D0%B5%D0%B1" target="_blank">малообразованных молодых людей</a>, которые делают такие обобщения, не разобравшись в сути вопроса.</p>
+<p></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2010/06/24/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b1%25d0%25bb%25d0%25b5%25d0%25bc%25d1%258b-%25d1%2581-delete/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/06/09/%25d0%25ba%25d0%25b0%25d0%25ba-%25d1%258d%25d1%2582%25d0%25be-%25d1%2580%25d0%25b0%25d0%25b1%25d0%25be%25d1%2582%25d0%25b0%25d0%25b5%25d1%2582/">Как это работает?</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-06-09T09:01:48+06:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>9:01 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><pre>switch ((rand() &gt;&gt; 8) % 3) 
+//the "&gt;&gt; 8" (typically) improves the period of the lowest 2 bits
+       case 0: DoSmth();
+       case 1: DoSmth1();
+       case 2: DoSmth2();
+     }</pre>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/06/02/%25d0%25bf%25d0%25bb%25d0%25b0%25d1%2582%25d0%25b0-%25d0%25ba%25d0%25bb%25d0%25b0%25d0%25b2%25d0%25b8%25d0%25b0%25d1%2582%25d1%2583%25d1%2580%25d1%258b-%25d0%25b8-%25d0%25b4%25d0%25b8%25d1%2581%25d0%25bf%25d0%25bb%25d0%25b5%25d1%258f/">Плата клавиатуры и дисплея</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-06-02T13:15:45+06:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2010</span></span> <span class='time'>1:15 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Плата дисплея и клавиатуры для нового прибора. Дисплей монохромный графический 128х64. По бокам от клавиатуры находятся энкодеры, служащие для управления прибором (наряду с клавиатурой).</p>
+<p>Пока клавиатура приделана к плате с помощью картонок и скотча, но потом она будет приклеена к передней панели прибора.</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2010/06/P1000933.jpg"><img class="alignnone size-medium wp-image-460" title="P1000933" src="/assets/P1000933-210x300.jpg" alt="" width="210" height="300" /></a></p>
+<p>Под катом ещё фотографии.</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2010/06/02/%25d0%25bf%25d0%25bb%25d0%25b0%25d1%2582%25d0%25b0-%25d0%25ba%25d0%25bb%25d0%25b0%25d0%25b2%25d0%25b8%25d0%25b0%25d1%2582%25d1%2583%25d1%2580%25d1%258b-%25d0%25b8-%25d0%25b4%25d0%25b8%25d1%2581%25d0%25bf%25d0%25bb%25d0%25b5%25d1%258f/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/06/01/%25d0%25b5%25d1%2589%25d1%2591-%25d0%25be%25d0%25b4%25d0%25bd%25d0%25b0-%25d0%25bf%25d0%25bb%25d0%25b0%25d1%2582%25d0%25b0-%25d0%25bd%25d0%25be%25d0%25b2%25d0%25be%25d0%25b3%25d0%25be-%25d0%25bf%25d1%2580%25d0%25b8%25d0%25b1%25d0%25be%25d1%2580%25d0%25b0/">Ещё одна плата нового прибора</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-06-01T15:41:46+06:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2010</span></span> <span class='time'>3:41 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Ещё одна плата нового прибора, который я разрабатываю.</p>
+<p>Плата содержит 4 гальванически изолированных АЦП (24 бита) с контролем обрыва линий датчиков, 6 дискретных выходов (твердотельные реле с переключающими контактами), а также цепи управления силовыми ключами (управление ТЭНами). Также на плату монтируются сами силовые ключи и источник питания (AC/DC  преобразователь 220/24 в). Ключи и источник питания пока не установлены.</p>
+<p>Плата является рабочим макетом, поэтому содержит макетные поля на всех свободных участках, куда при необходимости могут быть смонтированы дополнительные компоненты.<a href="http://32bit.me/wordpress/wp-content/uploads/2010/06/bot_brd1.jpg"></a></p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2010/06/bot_brd1.jpg"><img class="alignnone size-medium wp-image-451" title="bot_brd1" src="/assets/bot_brd1-182x300.jpg" alt="" width="182" height="300" /></a></p>
+<p>А вот так она выглядела на экране компьютера: <a href="http://32bit.me/?p=291">http://32bit.me/?p=291</a>.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/06/01/%25d0%25bf%25d0%25bb%25d0%25b0%25d1%2582%25d0%25b0-%25d0%25bd%25d0%25be%25d0%25b2%25d0%25be%25d0%25b3%25d0%25be-%25d0%25bf%25d1%2580%25d0%25b8%25d0%25b1%25d0%25be%25d1%2580%25d0%25b0-2/">Плата нового прибора</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-06-01T09:51:03+06:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>1</span><span class='date-suffix'>st</span>, <span class='date-year'>2010</span></span> <span class='time'>9:51 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://32bit.me/wordpress/wp-content/uploads/2010/06/top_brd11.jpg"></a></p>
+<p>Плата прибора, разработкой которого я сейчас занимаюсь. Плата содержит микроконтроллер LPC1768 и четыре гальванически изолированных (друг от друга и от процессора) каналов ЦАП (токовые выходы 4-20 мА, 12 разрядов), а также различные порты (USB, RS-232, RS-485).</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2010/06/top_brd1.jpg"><img class="alignnone size-medium wp-image-446" title="top_brd1" src="/assets/top_brd1-278x300.jpg" alt="" width="278" height="300" /></a><a href="http://32bit.me/wordpress/wp-content/uploads/2010/06/top_brd11.jpg"></a></p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2010/06/top_brd1.jpg"></a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/05/18/%25d1%2581%25d0%25b5%25d0%25bc%25d0%25b8%25d0%25bd%25d0%25b0%25d1%2580-nxparm/">Семинар NXP/ARM</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-05-18T23:36:41+06:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>11:36 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Вчера в Екатеринбурге состоялся семинар, посвящённый продукции фирмы NXP - микроконтроллерам с ядром Cortex M3.</p>
+<p>Семинар проводила фирма SIMECS из Санкт-Петербурга (<a href="http://www.microcontroller.ru">www.microcontroller.ru</a>) и фирма "Радиоэлектроника", г. Екатеринбург (<a href="http://www.radioel.ru">www.radioel.ru</a>).</p>
+<p>Был прочитан доклад по архитектуре Cortex M3, по среде разработки Keil, а также проведён тренинг на базе отладочного набора Keil с микроконтроллером LPC1768.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/05/16/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-6/">Протокол Modbus в устройствах на базе микроконтроллеров. Часть 1.4</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-05-16T19:11:37+06:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>7:11 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><em><a href="http://32bit.me/wordpress/wp-content/uploads/2010/05/Рис-1.jpg"></a>Продолжение. </em><em>Начало здесь: </em><em> </em><a href="http://32bit.me/?p=355"><em>http://32bit.me/?p=355</em></a><em> - введение; </em><a href="http://32bit.me/?p=373"><em>http://32bit.me/?p=373</em></a><em> - часть 1.0; <a href="http://32bit.me/?p=377">http://32bit.me/?p=377</a> - часть 1.1; <a href="http://32bit.me/?p=395">http://32bit.me/?p=395</a> - часть 1.2; <a href="http://32bit.me/?p=406">http://32bit.me/?p=406</a> - часть 1.3.</em></p>
+<p>Перед тем, как перейти к программной реализации поддержки протокола Modbus, необходимо прояснить ещё один вопрос.</p>
+<p>Регистры протокола (3х и 4х) имеют разрядность 16 бит, а значения переменных, которые требуется передавать, часто имеют разрядность 32 бита. Каким образом 32-битные переменные передаются в 16-битных регистрах?</p>
+<p></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2010/05/16/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-6/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/05/16/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-5/">Протокол Modbus в устройствах на базе микроконтроллеров. Часть 1.3</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-05-16T01:54:45+06:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>1:54 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><em><a href="http://32bit.me/wordpress/wp-content/uploads/2010/05/Рис-1.jpg"></a>Продолжение. </em><em>Начало здесь: </em><em> </em><a href="http://32bit.me/?p=355"><em>http://32bit.me/?p=355</em></a><em> - введение; </em><a href="http://32bit.me/?p=373"><em>http://32bit.me/?p=373</em></a><em> - часть 1.0; <a href="http://32bit.me/?p=377">http://32bit.me/?p=377</a> - часть 1.1; <a href="http://32bit.me/?p=395">http://32bit.me/?p=395</a> - часть 1.2.</em></p>
+<p>Кратко рассмотрим обмен данными между ведущим и ведомым устройством для других типов регистров.</p>
+<p></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2010/05/16/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-5/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/posts/19">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/posts/17">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/12/02/title/">Zombie Ninjas Attack</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/23/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3/">Проект видеоадаптера. Часть 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/16/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-software-defined-radio-handbook-rodger-hosking/">Книга "Software Defined Radio Handbook", Rodger Hosking</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/05/vga-%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580-%25d0%25bd%25d0%25b0-fpga/">Проект видеоадаптера. Часть 2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/25/%25d0%25bf%25d1%2580%25d0%25be-llvm/">Про LLVM</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,253 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Обмен данными между контроллерами ICP DAS в программах ISAGraf - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="Рассмотрены способы обмена данными и контроля целостности линии связи.
+Пусть существует система, состоящая из нескольких (двух или более) ПЛК, &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://arktur04.github.io/blog/2011/12/11/%25d0%25be%25d0%25b1%25d0%25bc%25d0%25b5%25d0%25bd-%25d0%25b4%25d0%25b0%25d0%25bd%25d0%25bd%25d1%258b%25d0%25bc%25d0%25b8-%25d0%25bc%25d0%25b5%25d0%25b6%25d0%25b4%25d1%2583-%25d0%25ba%25d0%25be%25d0%25bd%25d1%2582%25d1%2580%25d0%25be%25d0%25bb%25d0%25bb%25d0%25b5%25d1%2580%25d0%25b0%25d0%25bc%25d0%25b8-icp-das-%25d0%25b2/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="arktur04.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Обмен данными между контроллерами ICP DAS в программах ISAGraf</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-12-11T09:29:30+06:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>9:29 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Рассмотрены способы обмена данными и контроля целостности линии связи.</p>
+<p>Пусть существует система, состоящая из нескольких (двух или более) ПЛК, которые взаимодействуют друг с другом путем обмена переменными.</p>
+<p>При этом один из ПЛК является ведущим (управляющим), а второй – ведомым (управляемым). Управляемый контроллер реализует локальные регуляторы объекта, получая задания от ведущего контроллера. При этом ключевое значение имеет контроль целостности линии связи, при обрыве линии связи ведомый контроллер должен перевести объект в некоторое заданное «безопасное» состояние. Ниже рассмотрены способы контроля целостности линии при различных способах взаимодействия контроллеров.</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2011/12/Fig-controllers11.jpg"><img class="alignnone size-medium wp-image-1426" title="Fig-controllers1" src="/assets/Fig-controllers11-300x84.jpg" alt="" width="300" height="84" /></a></p>
+<p>Рис. 1. Пример системы из двух контроллеров</p>
+<p><!--more--></p>
+<p><strong>Способ 1. Протокол </strong><strong>EBus</strong></p>
+<p>Протокол Ebus обеспечивает передачу данных по линии Ethernet.</p>
+<p>При обмене данными по протоколу EBus один из контроллеров выступает в роли ведущего (master), второй – в роли ведомого (slave). Передача данных ведется пакетами по 8 переменных, за передачу данных отвечают функции ebus_b_w, ebus_n_w, ebus_f_w (булевые, целочисленные и вещественные переменные соответственно), прием данных осуществляется с помощью функций ebus_b_r, ebus_n_r, ebus_f_r. Каждому блоку из 8-и переменных присваивается идентификационный номер.</p>
+<p>Для контроля состояния принятого пакета данных служит функция ebus_sts, которая возвращает true, если пакет принят успешно, и false в обратном случае.</p>
+<p>На передающей стороне функция ebus_sts всегда возвращает true, то есть для контроля состояния и в ведущем, и в ведомом контроллере нужно, чтобы данные передавались в обе стороны (даже если это будут фиктивные переменные, фактически не используемые в программе).</p>
+<p>Пример использования функции ebus_sts показан на рис. 2.</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2011/12/Controllers-Fig2.gif"><img class="alignnone size-medium wp-image-1427" title="Controllers - Fig2" src="/assets/Controllers-Fig2-300x170.gif" alt="" width="300" height="170" /></a></p>
+<p>Рис. 2. Пример использования функции ebus_sts. (Нажмите для увеличения)</p>
+<p>Величина тайм-аута составляет 2 с и не может быть изменена пользователем. Таким образом, ведомый контроллер узнает о потере связи минимум через 2 с (реальноая величина может быть гораздо больше), что недопустимо во многих приложениях.</p>
+<p>&nbsp;</p>
+<p><strong>Способ 2. Протокол </strong><strong>FBus</strong></p>
+<p>Протокол FBus обеспечивает передачу данных по линии RS-485. Функции, обеспечивающие передачу и прием данных по этому протоколу, аналогичны функциям EBus, но их названия начинаются с fbus: ebus_b_r, ebus_b_w и т. п.</p>
+<p>Для контроля состояния принятого пакета служит функция fbus_sts, полностью аналогичная функции ebus_sts.</p>
+<p>Величина тайм-аута также составляет 2 с и не может быть изменена.</p>
+<p>&nbsp;</p>
+<p><strong>Способ 3. Соединение через панель</strong></p>
+<p>Пусть к сети контроллеров подключена операторская панель, например, Weintek (рис. 3).</p>
+<p>&nbsp;</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2011/12/Fig-controllers2.jpg"><img class="alignnone size-medium wp-image-1428" title="Fig-controllers2" src="/assets/Fig-controllers2-300x174.jpg" alt="" width="300" height="174" /></a></p>
+<p>Рис. 3. Пример системы из двух контроллеров и операторской панели. (Нажмите для увеличения)</p>
+<p>&nbsp;</p>
+<p>Такие панели позволяют пересылать данные из одного контроллера в другой. Для этого в проект панели вводится Data Transfer Object, в настройках которого .указывается адрес источника данных и адрес приемника данных, а также интервал передачи данных (от 0,5 с). Передача данных ведется по протоколу Modbus TCP.</p>
+<p>Панель позволяет осуществлять контроль состояния соединения Ethernet (см. раздел 22.17 «Communication Status with PLC (Ethernet)» руководства пользователя [1]). Состояние соединения отображается на системные тэги панели, однако, если соединение с одним из контроллеров разорвано, он не сможет получить доступ к этим системным тэгам, поэтому такой способ контроля состояния линии также не подходит.</p>
+<p><strong>Способ 4. Имитация сторожевого таймера</strong></p>
+<p>Способ заключается в том, что один из контроллеров передает по протоколу EBus переменную, значение которой периодически изменяется. Второй контроллер отслеживает изменение значения переменной, и, если оно не меняется определенное время, фиксирует состояние разрыва соединения.</p>
+<p>Можно контролировать состояние линии связи в обоих контроллеров, вставив в их программы как передающий, так и принимающий блок.</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2011/12/Controllers-Fig-4.gif"><img class="alignnone size-medium wp-image-1429" title="Controllers - Fig 4" src="/assets/Controllers-Fig-4-300x94.gif" alt="" width="300" height="94" /></a></p>
+<p>Рис. 4.  Программа (FBD) передающей стороны. (Нажмите для увеличения)</p>
+<p>&nbsp;</p>
+<p>На рис. 4 приведена программа (FBD) передающей стороны. Она тривиальна и не требует особых пояснений.</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2011/12/Controllers-Fig-5.gif"><img class="alignnone size-medium wp-image-1430" title="Controllers - Fig 5" src="/assets/Controllers-Fig-5-300x78.gif" alt="" width="300" height="78" /></a></p>
+<p>Рис. 5. Программа (FBD) принимающей стороны. (Нажмите для увеличения)</p>
+<p>На рис. 5 приведена программа (FBD) принимающей стороны. Она также достаточно проста. Время срабатывания задается входным параметром таймера TOF, переменная state2 показывает состояние линии связи. Опытным путем можно установить, что устойчивая работа обеспечивается при времени срабатывания таймера ~1с (если контроллер не загружен другими задачами). Однако если в контроллере выполняется некая программа с существенным временем цикла, время срабатывания данного сторожевого таймера может также существенно увеличиться.</p>
+<p><strong>Использование других функций связи</strong></p>
+<p>Контроллеры ICP DAS i7000/i8000 поддерживают также другие функции связи в системе ISAGraf. Ниже приведен их краткий обзор.</p>
+<p>udp_send, udp_recv – прием и передача сообщения по UDP. Однако получить стабильную работу этих функций не удалось.</p>
+<p>tcp_send, tcp_recv – прием и передача сообщения по TCP. Эти функции входят в библиотеку функций ICP DAS, но поддерживаются только контроллерами WP-8xx7, VP-8 xx7 и XP-8xx7.</p>
+<p>eth_send, eth_recv - прием и передача массива по TCP или UDP. Эти функции входят в библиотеку функций ICP DAS, но поддерживаются только контроллерами WP-8xx7, VP-8 xx7 и XP-8xx7.</p>
+<p>&nbsp;</p>
+<p><strong>Литература</strong></p>
+<p>[1]. EB8000 User Manual. Weintek corp.</p>
+<p>&nbsp;</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">{"login"=>"arktur04", "email"=>"arktur04@mail.ru", "display_name"=>"arktur04", "first_name"=>"", "last_name"=>""}</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2011-12-11T09:29:30+06:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>9:29 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/plk/'>ПЛК</a>, <a class='category' href='/blog/categories/proghrammirovaniie/'>программирование</a>, <a class='category' href='/blog/categories/stat'i/'>статьи</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://arktur04.github.io/blog/2011/12/11/%25d0%25be%25d0%25b1%25d0%25bc%25d0%25b5%25d0%25bd-%25d0%25b4%25d0%25b0%25d0%25bd%25d0%25bd%25d1%258b%25d0%25bc%25d0%25b8-%25d0%25bc%25d0%25b5%25d0%25b6%25d0%25b4%25d1%2583-%25d0%25ba%25d0%25be%25d0%25bd%25d1%2582%25d1%2580%25d0%25be%25d0%25bb%25d0%25bb%25d0%25b5%25d1%2580%25d0%25b0%25d0%25bc%25d0%25b8-icp-das-%25d0%25b2/" data-via="" data-counturl="http://arktur04.github.io/blog/2011/12/11/%25d0%25be%25d0%25b1%25d0%25bc%25d0%25b5%25d0%25bd-%25d0%25b4%25d0%25b0%25d0%25bd%25d0%25bd%25d1%258b%25d0%25bc%25d0%25b8-%25d0%25bc%25d0%25b5%25d0%25b6%25d0%25b4%25d1%2583-%25d0%25ba%25d0%25be%25d0%25bd%25d1%2582%25d1%2580%25d0%25be%25d0%25bb%25d0%25bb%25d0%25b5%25d1%2580%25d0%25b0%25d0%25bc%25d0%25b8-icp-das-%25d0%25b2/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/12/09/%25d0%25bf%25d0%25b8%25d1%2582%25d0%25b0%25d0%25bd%25d0%25b8%25d0%25b5-%25d0%25bf%25d0%25be%25d0%25b4%25d1%2581%25d0%25b2%25d0%25b5%25d1%2582%25d0%25ba%25d0%25b8-lcd/" title="Previous Post: Питание подсветки LCD">&laquo; Питание подсветки LCD</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/12/31/%25d0%25b7%25d0%25b4%25d0%25b5%25d1%2581%25d1%258c-%25d1%2580%25d0%25b0%25d0%25b1%25d0%25be%25d1%2582%25d0%25b0%25d1%258e%25d1%2582-%25d0%25bd%25d0%25b0%25d1%2588%25d0%25b8-%25d0%25bf%25d1%2580%25d0%25b8%25d0%25b1%25d0%25be%25d1%2580%25d1%258b/" title="Next Post: Здесь работают наши приборы">Здесь работают наши приборы &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/12/02/title/">Zombie Ninjas Attack</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/23/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3/">Проект видеоадаптера. Часть 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/16/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-software-defined-radio-handbook-rodger-hosking/">Книга "Software Defined Radio Handbook", Rodger Hosking</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/05/vga-%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580-%25d0%25bd%25d0%25b0-fpga/">Проект видеоадаптера. Часть 2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/25/%25d0%25bf%25d1%2580%25d0%25be-llvm/">Про LLVM</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

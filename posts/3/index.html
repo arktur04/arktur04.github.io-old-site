@@ -1,0 +1,502 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="В задачах, связанных с арифметическими функциями, часто необходимо подсчитать количество нулей в старших разрядах числа. Эту функцию можно &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://arktur04.github.io/posts/3/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="arktur04.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/12/%25d0%25be-%25d0%25bf%25d0%25be%25d0%25b4%25d1%2581%25d1%2587%25d0%25b5%25d1%2582%25d0%25b5-%25d0%25bd%25d1%2583%25d0%25bb%25d0%25b5%25d0%25b9/">О подсчете нулей</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-12T14:30:05+05:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>2:30 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>В задачах, связанных с арифметическими функциями, часто необходимо подсчитать количество нулей в старших разрядах числа. Эту функцию можно реализовать по-разному.</p>
+<p>Итак, вариант 1:</p>
+<pre lang="verilog" line="1">function [ZERO_DATA_WIDTH - 1: 0] zero_cnt;
+input [DATA_WIDTH - 1: 0] in;
+integer i;
+begin
+  zero_cnt = DATA_WIDTH;
+  for(i = DATA_WIDTH - 1; i >= 0; i = i - 1)
+  begin
+    if(in[i] && zero_cnt == DATA_WIDTH)
+	   zero_cnt = DATA_WIDTH - i - 1;
+  end
+end
+endfunction</pre>
+<p></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/06/12/%25d0%25be-%25d0%25bf%25d0%25be%25d0%25b4%25d1%2581%25d1%2587%25d0%25b5%25d1%2582%25d0%25b5-%25d0%25bd%25d1%2583%25d0%25bb%25d0%25b5%25d0%25b9/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/02/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-jane-smith-verilog-coding-guidelines/">Книга Jane Smith "Verilog Coding Guidelines"</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-02T20:05:53+05:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2015</span></span> <span class='time'>8:05 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Это не совсем книга, впрочем, это просто документ, стилевой гайд по Verilog  фирмы Cisco System.</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/06/pic.png"><img class="alignnone size-medium wp-image-2056" alt="pic" src="/assets/pic-300x102.png" width="300" height="102" /></a></p>
+<p>Объём небольшой, всего 17 страниц. Описывается стиль кода, отступы, именование сигналов и регистров, и т.п.</p>
+<p>Лично мне не вполне нравится тот стиль, который описан в документе, например, документ рекомендует выравнивать все декларации сигналов, комментарии и т.п. "в столбик", да ещё с использованием табуляций.  Но наличие любого стайлгайда лучше, чем отсутствие такового, тем более при командной работе.</p>
+<p>Любой стиль кодирования есть всего лишь отражение чьих-то вкусов, не существует "единственно верного" стиля.</p>
+<p>Такой документ, даже если вы придерживаетесь другого стиля кодирования, может послужить образцом для составления вашего собственного стилевого руководства.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/02/2049/">Бесплатные САПР от RS Components</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-02T18:57:16+05:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2015</span></span> <span class='time'>6:57 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>С сайта RS Components можно скачать две системы автоматизированного проектирования: одна предназначена для разработки принципиальных схем и печатных плат (DesignSpark PCB), вторая для 3D-моделирования (DesignSpark Mechanical). Обе системы полностью бесплатны, то есть это не урезанные демо-версии. Ссылка: <a href="http://www.rs-online.com/designspark/electronics/eng/page/mechanical">http://www.rs-online.com/designspark/electronics/eng/page/mechanical</a></p>
+<p>Я скачал обе и немного попробовал что-нибудь сделать. Сразу могу сказать, что я сравниваю возможности и удобство использования с теми программами, которыми пользуюсь сам: с Altium Designer и Solid Works.</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/06/pic1.jpg"><img class="alignnone size-medium wp-image-2050" alt="pic1" src="/assets/pic1-300x225.jpg" width="300" height="225" /></a></p>
+<p>Редактор схем.</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/06/pic2.jpg"><img class="alignnone size-medium wp-image-2051" alt="pic2" src="/assets/pic2-300x195.jpg" width="300" height="195" /></a></p>
+<p>&nbsp;</p>
+<p>Редактор 3D.</p>
+<p>В общем, первое впечатление хорошее, есть большие библиотеки компонентов и для редактора схем/плат, и для 3D.</p>
+<p>Библиотека условных графических обозначений большая, но не соответствует ГОСТ, поэтому на производстве её использовать не получится, только "для себя". Редактор PCB тоже есть, там есть разные возможности, поддержка DRC и другое.</p>
+<p>Разобраться сходу не удалось, но времени на освоение у меня сейчас просто нет. Надо читать документацию.</p>
+<p>Библиотека 3D большая и удобная, с поиском по каталогу, можно скачать какую-либо деталь и экспортировать её в формат STL. Экспортировать в Solid Works получилось, только без цвета, увы. Больше распространённых форматов 3D не предусмотрено, формата STEP нет, экспорт только через Solid Works или другой пакет 3D-моделирования.</p>
+<p>Само по себе моделирование в 3D происходит совсем не так, как в Solid Works или Компас 3D. Если честно, совсем не так. Вероятно, нужно читать документацию и руководства, чтобы освоить эту программу, но я попробую это сделать в будущем. Если у вас есть задачи по разработке плат и 3D-моделей, можете попробовать скачать и разобраться.</p>
+<p></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/06/02/2049/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/05/28/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-pong-p-chu-fpga-prototyping-by-verilog-examples/">Книга Pong P. Chu "FPGA Prototyping by Verilog Examples"</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-05-28T04:06:33+05:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:06 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Прочитал книгу "FPGA prototyping by Verilog examples", очень понравилось.<br />
+Обычно в таких книгах приводится синтаксис языка и какие-либо примеры проектов, часто далёкие от практики. В этой книге описываюься примеры взаимодействия с периферийными устройствами: клавиатурой, мышью, VGA-мониторм, памятью SRAM. Примеры приведены в расчёте на плату фирмы Digilent с FPGA семейства Spartan-3, но приведённые примеры практически не содержат чего-то специфического именно для данного семейства FPGA.</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/05/fpga_vlog_front.jpg"><img class="alignnone size-medium wp-image-2047" alt="fpga_vlog_front" src="/assets/fpga_vlog_front-208x300.jpg" width="208" height="300" /></a></p>
+<p>Во второй половине книги рассмотрен встраиваемый микроконтроллер PicoBlaze, его ассемблер, и приводятся примеры программ на нём.</p>
+<p>В книге рассматривается метод синтеза RTL-кода из ASMD-диаграмм (представление алгоритма, сочетающее в себе графическую блок-схему алгоритма и граф конечного автомата).</p>
+<p>Также в книге рассматривается проект простой видеоигры, которую можно сделать на плате Digilent (или на любой другой, если позволяют аппаратные возможности).</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/05/13/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-1/">Проект видеоадаптера. Часть 1</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-05-13T22:21:00+05:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:21 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Целью проекта является разработка видеоадаптера на FPGA. Выходом видеоадаптера является VGA, на данный момент поддерживается глубина цвета 6 бит (по 2 бита на цвет RGB).<br />
+Разъём VGA подключен к FPGA по следующей схеме:</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/05/schematics.jpg"><img class="alignnone  wp-image-2038" alt="schematics" src="/assets/schematics.jpg" width="475" height="358" /></a></p>
+<p>&nbsp;</p>
+<p>Резисторы R1-R6 образуют простейший ЦАП, для начала хватит такого, если нужна большая глубина цвета, то лучше использовать специализированные микросхемы видеоЦАП, например ADV7123.</p>
+<p></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/05/13/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-1/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/05/06/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-%25d0%25b1-%25d1%2581%25d1%2582%25d1%2580%25d0%25b0%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d1%2583%25d0%25bf-%25d0%25b4%25d0%25b8%25d0%25b7%25d0%25b0%25d0%25b9%25d0%25bd-%25d0%25b8-%25d1%258d%25d0%25b2%25d0%25be%25d0%25bb%25d1%258e%25d1%2586%25d0%25b8%25d1%258f-c/">Книга Б. Страуструп "Дизайн и эволюция C++"</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-05-06T15:25:31+05:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:25 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Дочитал книгу "Дизайн и эволюция С++".</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/05/1231405218_dizajjn-i-jevoljucija.jpg"><img class="alignnone size-full wp-image-2035" alt="1231405218_dizajjn-i-jevoljucija" src="/assets/1231405218_dizajjn-i-jevoljucija.jpg" width="350" height="489" /></a></p>
+<p>Книга не является учебником по С++, это очень интересный рассказ автора языка о причинах, по которым в язык были введены или не были введены те или иные конструкции.<br />
+Рекомендуется тем, кто интересуется языком С++ в его глубоких аспектах (несмотря на кажущуюся простоту, это очень глубокий язык с множеством подводных камней).</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/04/23/fpu-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-4-%25d1%2583%25d0%25bc%25d0%25bd%25d0%25be%25d0%25b6%25d0%25b8%25d1%2582%25d0%25b5%25d0%25bb%25d1%258c-%25d1%2582%25d0%25b5%25d1%2581%25d1%2582-%25d0%25b8-rtl/">FPU. Часть 4. Умножитель, тест и RTL</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-04-23T11:05:54+05:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2015</span></span> <span class='time'>11:05 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Предыдущая часть <a href="http://32bit.me/?p=1971">здесь</a>.</p>
+<p><a style="line-height: 1.5em;" href="http://32bit.me/wordpress/wp-content/uploads/2015/04/pic.png"><img class="alignnone size-large wp-image-2027" alt="pic" src="/assets/pic-1024x562.png" width="1024" height="562" /></a></p>
+<p>Продолжим разработку FPU. В предыдущих частях был рассмотрен делитель вещественных чисел Деление является самым сложным в реализации арифметическим действием. Следующим по сложности идёт сложение, а самой простой операцией является умножение. В этой части рассмотрен умножитель.</p>
+<p></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/04/23/fpu-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-4-%25d1%2583%25d0%25bc%25d0%25bd%25d0%25be%25d0%25b6%25d0%25b8%25d1%2582%25d0%25b5%25d0%25bb%25d1%258c-%25d1%2582%25d0%25b5%25d1%2581%25d1%2582-%25d0%25b8-rtl/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/04/22/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-%25d0%25ba%25d0%25b0%25d0%25ba-%25d0%25bf%25d1%2580%25d0%25be%25d0%25b3%25d1%2580%25d0%25b0%25d0%25bc%25d0%25bc%25d0%25b8%25d1%2580%25d0%25be%25d0%25b2%25d0%25b0%25d1%2582%25d1%258c-%25d0%25bd%25d0%25b0-c/">Книга "Как программировать на C++"</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-04-22T08:25:07+05:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2015</span></span> <span class='time'>8:25 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><span style="line-height: 1.5em;">Дочитал книгу "Как программировать на C++", авторы Х. Дейтел, П. Дейтел (C++ How To Program. H.M.Deitel, P.J.Deitel).</span></p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/04/IMG_20150422_091531.jpg"><img class="alignnone size-medium wp-image-2019" alt="IMG_20150422_091531" src="/assets/IMG_20150422_091531-205x300.jpg" width="205" height="300" /></a></p>
+<p>Не могу сказать, что узнал что-то новое, но хотя бы повторил некоторые нюансы библиотеки STL. Книга большая, 1152 с.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/04/05/%25d0%25bc%25d0%25b0%25d0%25ba%25d0%25b5%25d1%2582-%25d0%25b0%25d0%25bd%25d0%25b0%25d0%25bb%25d0%25be%25d0%25b3%25d0%25be%25d0%25b2%25d0%25be%25d0%25b9-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d0%25b8/">Макет аналоговой части</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-04-05T16:30:52+05:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>5</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>4:30 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Макет аналоговой части несложного прибора. Предназначен, в основном, для того, чтобы запустить устройство и отладить ПО, в дальнейшем он будет переделан на нормальной плате. Макетная плата была изготовлена давно, для другого проекта, и содержит, кроме макетного поля, различные узлы аналоговой схемотехники: двухполярный источник питания, источник опорного напряжения, инструментальный усилитель, АЦП, и т.п, но в данном случае эти узлы не используются и не смонтированы. Вентилятор предназначен для охлаждения платы, которая находится под этой платой и содержит цифровую часть, а также ЦАП и АЦП.</p>
+<p>&nbsp;</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/04/prototype.jpg"><img class="alignnone size-medium wp-image-2011" alt="prototype" src="/assets/prototype-300x198.jpg" width="300" height="198" /></a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/03/31/zynq-7000-all-programmable-soc-pcb-design-guide/">Zynq-7000 All Programmable SoC PCB Design Guide</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-03-31T04:38:24+05:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>4:38 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Прочитал руководство по разработке печатных плат для Zynq 7000.<br />
+На самом деле, конечно, информация, приведенная в руководстве, относится не только к Zynq 7000, а вообще ко всем быстродействующим цифровым схемам, просто приведена на примере Zynq 7000. Приведены сведения, касающиеся проектирования системы питания (номиналы и количество конденсаторов), сведения по согласованию импедансов линий, по интерфейсам (интерфейс с памятью DDR2, DDR3, LPDDR2, SD-card, Ethernet, IIC и др.).<br />
+В общем, очень полезное руководство.</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/03/zynq7000.png"><img class="alignnone size-medium wp-image-2006" alt="zynq7000" src="/assets/zynq7000-232x300.png" width="232" height="300" /></a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/posts/4">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/posts/2">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/12/02/title/">Zombie Ninjas Attack</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/23/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3/">Проект видеоадаптера. Часть 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/16/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-software-defined-radio-handbook-rodger-hosking/">Книга "Software Defined Radio Handbook", Rodger Hosking</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/05/vga-%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580-%25d0%25bd%25d0%25b0-fpga/">Проект видеоадаптера. Часть 2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/25/%25d0%25bf%25d1%2580%25d0%25be-llvm/">Про LLVM</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

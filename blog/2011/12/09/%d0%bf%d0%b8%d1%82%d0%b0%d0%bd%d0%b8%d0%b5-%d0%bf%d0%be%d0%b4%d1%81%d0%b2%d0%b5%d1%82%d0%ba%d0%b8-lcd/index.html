@@ -1,0 +1,357 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Питание подсветки LCD - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="LCD-индикатор MI0350CT-3 имеет подсветку из соединенных последовательно светодиодов. Для питания такой подсветки необходим преобразователь напряжения &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://arktur04.github.io/blog/2011/12/09/%25d0%25bf%25d0%25b8%25d1%2582%25d0%25b0%25d0%25bd%25d0%25b8%25d0%25b5-%25d0%25bf%25d0%25be%25d0%25b4%25d1%2581%25d0%25b2%25d0%25b5%25d1%2582%25d0%25ba%25d0%25b8-lcd/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="arktur04.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Питание подсветки LCD</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-12-09T22:27:48+06:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>10:27 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>LCD-индикатор MI0350CT-3 имеет подсветку из соединенных последовательно светодиодов. Для питания такой подсветки необходим преобразователь напряжения с выходным напряжением от 16,8В до 21,6В и током до 20мА. Кроме этого, необходимо иметь возможность программного регулирования яркости подсветки.</p>
+<p>На рисунке показана схема повышающего преобразователя, питающего нагрузку стабильным током 20мА. Преобразователь построен на основе микросхемы LM2733XMF.</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2011/12/Fig1.jpg"><img class="alignnone size-medium wp-image-1404" title="Fig1" src="/assets/Fig1-300x133.jpg" alt="" width="300" height="133" /></a></p>
+<p>Рис. 1. Принципиальная схема преобразователя (нажмите для увеличения).</p>
+<p>Ток в нагрузке (в режиме стабилизации тока) задается резистором R4, делитель напряжения R2 R3 служит для ограничения выходного напряжения при разомкнутом выходе (режим стабилизации напряжения). Без цепи R2 R3 напряжение на выходе при отсутствии нагрузки будет неограниченно расти до выхода из строя микросхемы преобразователя.</p>
+<p><!--more-->Номиналы R1, L1, C1, C2, C3 выбраны в соответствии с Data sheet на LM 2733.</p>
+<p>Номиналы резисторов R2, R3, R4 рассчитываются по достаточно простым формулам. Пусть выходное напряжение при отключенной нагрузке должно быт Vout=24 В. Тогда</p>
+<p>R2 = R2 (Vout/Vfb - 1)</p>
+<p>Напряжение Vfb = 1.23 В (см. data sheet). Выберем значение R2 = 12.1 кОм, получаем R2 = 220 кОм.</p>
+<p>Значение R4 получаем, исходя из требуемого выходного тока.</p>
+<p>Выходной ток Iout = 20 мА, R4 = (Vfb + Vf)/Iout = (1.23 + 0.2)/20e-3 = 71.5 Ом,</p>
+<p>где Vf = 0.2 В - падение напряжения на диоде Шоттки (VD2).</p>
+<p>Выбираем значение R4 = 72 Ом.</p>
+<p>Таким образом, при сопротивлении нагрузки &lt; R = (Vout - (R4 * I out + Vf))/Iout = (24 - (72 * 20e-3 + 0.2))/20e-3 = 1128 Ом преобразователь работает в режиме стабилизации тока, определяемого резистором R4, при большем сопротивлении нагрузки преобразователь переходит в редим стабилизации напряжения, определяемого делителем R2 R4.</p>
+<p>Управление яркостью подсветки может осуществляться ШИМ-сигналом, подаваемым на вход /SHDN преобразователя.</p>
+<p>Были проведены испытания преобразователя при различных сопротивлениях нагрузки. Результаты испытаний приведены в таблице 1.</p>
+<p>Таблица 1. Результаты испытаний преобразователя.</p>
+<table width="501" border="1" cellspacing="0" cellpadding="0">
+<tbody>
+<tr>
+<td valign="bottom" nowrap="nowrap" width="64">Rн, Ом</td>
+<td valign="bottom" nowrap="nowrap" width="64">Iвх, мА</td>
+<td valign="bottom" nowrap="nowrap" width="64">Iн, мА</td>
+<td valign="bottom" nowrap="nowrap" width="92">Uн, В</td>
+<td valign="bottom" nowrap="nowrap" width="66">Pн, мВт</td>
+<td valign="bottom" nowrap="nowrap" width="76">Pвх, мВт</td>
+<td valign="bottom" nowrap="nowrap" width="76">КПД, %</td>
+</tr>
+<tr>
+<td valign="bottom" nowrap="nowrap" width="64">
+<p align="right">749</p>
+</td>
+<td valign="bottom" nowrap="nowrap" width="64">
+<p align="right">118</p>
+</td>
+<td valign="bottom" nowrap="nowrap" width="64">
+<p align="right">21,5</p>
+</td>
+<td valign="bottom" nowrap="nowrap" width="92">
+<p align="right">16,1</p>
+</td>
+<td valign="bottom" nowrap="nowrap" width="66">
+<p align="right">346</p>
+</td>
+<td valign="bottom" nowrap="nowrap" width="76">
+<p align="right">590</p>
+</td>
+<td valign="bottom" nowrap="nowrap" width="76">
+<p align="right">58,7</p>
+</td>
+</tr>
+<tr>
+<td valign="bottom" nowrap="nowrap" width="64">
+<p align="right">844</p>
+</td>
+<td valign="bottom" nowrap="nowrap" width="64">
+<p align="right">124</p>
+</td>
+<td valign="bottom" nowrap="nowrap" width="64">
+<p align="right">21,2</p>
+</td>
+<td valign="bottom" nowrap="nowrap" width="92">
+<p align="right">17,9</p>
+</td>
+<td valign="bottom" nowrap="nowrap" width="66">
+<p align="right">379</p>
+</td>
+<td valign="bottom" nowrap="nowrap" width="76">
+<p align="right">620</p>
+</td>
+<td valign="bottom" nowrap="nowrap" width="76">
+<p align="right">61,2</p>
+</td>
+</tr>
+<tr>
+<td valign="bottom" nowrap="nowrap" width="64">
+<p align="right">984</p>
+</td>
+<td valign="bottom" nowrap="nowrap" width="64">
+<p align="right">129</p>
+</td>
+<td valign="bottom" nowrap="nowrap" width="64">
+<p align="right">20</p>
+</td>
+<td valign="bottom" nowrap="nowrap" width="92">
+<p align="right">19,7</p>
+</td>
+<td valign="bottom" nowrap="nowrap" width="66">
+<p align="right">393</p>
+</td>
+<td valign="bottom" nowrap="nowrap" width="76">
+<p align="right">645</p>
+</td>
+<td valign="bottom" nowrap="nowrap" width="76">
+<p align="right">61,0</p>
+</td>
+</tr>
+<tr>
+<td valign="bottom" nowrap="nowrap" width="64">
+<p align="right">1119</p>
+</td>
+<td valign="bottom" nowrap="nowrap" width="64">
+<p align="right">132</p>
+</td>
+<td valign="bottom" nowrap="nowrap" width="64">
+<p align="right">19,3</p>
+</td>
+<td valign="bottom" nowrap="nowrap" width="92">
+<p align="right">21,6</p>
+</td>
+<td valign="bottom" nowrap="nowrap" width="66">
+<p align="right">416</p>
+</td>
+<td valign="bottom" nowrap="nowrap" width="76">
+<p align="right">660</p>
+</td>
+<td valign="bottom" nowrap="nowrap" width="76">
+<p align="right">63,2</p>
+</td>
+</tr>
+<tr>
+<td valign="bottom" nowrap="nowrap" width="64">
+<p align="right">1243</p>
+</td>
+<td valign="bottom" nowrap="nowrap" width="64">
+<p align="right">128</p>
+</td>
+<td valign="bottom" nowrap="nowrap" width="64">
+<p align="right">18,1</p>
+</td>
+<td valign="bottom" nowrap="nowrap" width="92">
+<p align="right">22,5</p>
+</td>
+<td valign="bottom" nowrap="nowrap" width="66">
+<p align="right">407</p>
+</td>
+<td valign="bottom" nowrap="nowrap" width="76">
+<p align="right">640</p>
+</td>
+<td valign="bottom" nowrap="nowrap" width="76">
+<p align="right">63,6</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>&nbsp;</p>
+<p>Выходное напряжение при разомкнутом выходе равно 24.2В.</p>
+<p>На рис. 2 приведен график зависимости КПД от выходной мощности.</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2011/12/Fig-21.jpg"><img class="alignnone size-full wp-image-1403" title="Fig 2" src="/assets/Fig-21.jpg" alt="" width="500" height="279" /></a></p>
+<p>Рис. 2. Зависимость КПД от выходной мощности.</p>
+<p>Из таблицы 1 и рис. 2 видно, что КПД преобразователя не очень большой, порядка 60%. Согласно data sheet, максимум КПД приходится на выходной ток около 80мА и достигает почти 90%, при более низком токе выхода КПД резко падает.</p>
+<p>При подключении цепи подсветки индикатора MI0350CT-3 ток составил 21мА, напряжение выхода 18,4В, что соответствует спецификациям индикатора.</p>
+<p>По результатам испытаний можно сделать заключение, что ток в нагрузке поддерживается с достаточной точностью. К сожалению, очень маленький выходной ток не позволяет получить хороший КПД, но здесь, вероятно, ничего уже сделать нельзя.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">{"login"=>"arktur04", "email"=>"arktur04@mail.ru", "display_name"=>"arktur04", "first_name"=>"", "last_name"=>""}</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2011-12-09T22:27:48+06:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>10:27 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/lcd-demo-board/'>lcd demo board</a>, <a class='category' href='/blog/categories/analoghovaia-eliektronika/'>аналоговая электроника</a>, <a class='category' href='/blog/categories/stat'i/'>статьи</a>, <a class='category' href='/blog/categories/skhiemotiekhnika/'>схемотехника</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://arktur04.github.io/blog/2011/12/09/%25d0%25bf%25d0%25b8%25d1%2582%25d0%25b0%25d0%25bd%25d0%25b8%25d0%25b5-%25d0%25bf%25d0%25be%25d0%25b4%25d1%2581%25d0%25b2%25d0%25b5%25d1%2582%25d0%25ba%25d0%25b8-lcd/" data-via="" data-counturl="http://arktur04.github.io/blog/2011/12/09/%25d0%25bf%25d0%25b8%25d1%2582%25d0%25b0%25d0%25bd%25d0%25b8%25d0%25b5-%25d0%25bf%25d0%25be%25d0%25b4%25d1%2581%25d0%25b2%25d0%25b5%25d1%2582%25d0%25ba%25d0%25b8-lcd/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2011/10/28/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-%25d0%25b4%25d1%258c%25d1%258f%25d0%25ba%25d0%25be%25d0%25bd%25d0%25be%25d0%25b2-%25d0%25b2-%25d0%25bf-matlab-7-r2006r2007-%25d1%2581%25d0%25b0%25d0%25bc%25d0%25be%25d1%2583%25d1%2587%25d0%25b8%25d1%2582%25d0%25b5%25d0%25bb%25d1%258c/" title="Previous Post: Книга Дьяконов В. П. "Matlab 7.*/R2006/R2007. Самоучитель"">&laquo; Книга Дьяконов В. П. "Matlab 7.*/R2006/R2007. Самоучитель"</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2011/12/11/%25d0%25be%25d0%25b1%25d0%25bc%25d0%25b5%25d0%25bd-%25d0%25b4%25d0%25b0%25d0%25bd%25d0%25bd%25d1%258b%25d0%25bc%25d0%25b8-%25d0%25bc%25d0%25b5%25d0%25b6%25d0%25b4%25d1%2583-%25d0%25ba%25d0%25be%25d0%25bd%25d1%2582%25d1%2580%25d0%25be%25d0%25bb%25d0%25bb%25d0%25b5%25d1%2580%25d0%25b0%25d0%25bc%25d0%25b8-icp-das-%25d0%25b2/" title="Next Post: Обмен данными между контроллерами ICP DAS в программах ISAGraf">Обмен данными между контроллерами ICP DAS в программах ISAGraf &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/12/02/title/">Zombie Ninjas Attack</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/23/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3/">Проект видеоадаптера. Часть 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/16/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-software-defined-radio-handbook-rodger-hosking/">Книга "Software Defined Radio Handbook", Rodger Hosking</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/05/vga-%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580-%25d0%25bd%25d0%25b0-fpga/">Проект видеоадаптера. Часть 2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/25/%25d0%25bf%25d1%2580%25d0%25be-llvm/">Про LLVM</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

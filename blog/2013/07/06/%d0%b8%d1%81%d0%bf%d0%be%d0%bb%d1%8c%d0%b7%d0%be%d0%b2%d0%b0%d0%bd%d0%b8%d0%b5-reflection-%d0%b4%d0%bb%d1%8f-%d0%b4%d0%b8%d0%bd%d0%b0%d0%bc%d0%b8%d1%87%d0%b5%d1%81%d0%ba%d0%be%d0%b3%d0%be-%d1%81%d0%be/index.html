@@ -1,0 +1,313 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Использование Reflection для динамического создания компонентов в C# - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="Пусть есть следующая задача: нужно, чтобы форма приложения создавалась динамически в run-time, на основе конфигурационного файла, например, в формате &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://arktur04.github.io/blog/2013/07/06/%25d0%25b8%25d1%2581%25d0%25bf%25d0%25be%25d0%25bb%25d1%258c%25d0%25b7%25d0%25be%25d0%25b2%25d0%25b0%25d0%25bd%25d0%25b8%25d0%25b5-reflection-%25d0%25b4%25d0%25bb%25d1%258f-%25d0%25b4%25d0%25b8%25d0%25bd%25d0%25b0%25d0%25bc%25d0%25b8%25d1%2587%25d0%25b5%25d1%2581%25d0%25ba%25d0%25be%25d0%25b3%25d0%25be-%25d1%2581%25d0%25be/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="arktur04.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Использование Reflection для динамического создания компонентов в C#</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-07-06T09:46:08+06:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>9:46 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Пусть есть следующая задача: нужно, чтобы форма приложения создавалась динамически в run-time, на основе конфигурационного файла, например, в формате xml. Подобные задачи могут решаться разными способами, например, с помощью XAML (основан на XML, технология Microsoft), или QML (основан на Java Script, технология Qt). Ниже приводится пример реализации такого подхода на основе XML и механизма Reflection, доступного в С#.</p>
+<p>Итак, Reflection - это часть платформы .Net, позволяющая использовать метаданные сборки в run-time. Это означает, что мы можем создать экземпляр класса, зная его имя, и присвоить значения его свойствам, зная их имена и значения. Помимо перечисленного, Reflection включает в себя еще много возможностей, но пока нам хватит этих.</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2013/07/198213.jpg"><img class="alignnone  wp-image-1735" title="198213" src="/assets/198213.jpg" alt="" width="500" height="388" /></a></p>
+<p>Далее под катом</p>
+<p><!--more--></p>
+<p>Итак, нам нужен конфигурационный файл.</p>
+<pre lang="xml">
+<?xml version="1.0"?>
+  <defaultnamespace name="System.Windows.Forms" />
+  
+  <controllist>
+    <control class="Label">
+      <property name="Name" value="label2" />
+      <property name="Text" value="text_label2" />
+      <classproperty name="Location" class="System.Drawing.Point"> <!--имя_сборки.имя_класса-->
+        <parameter name="X" typename="int" value="100" />
+        <parameter name="Y" typename="int" value="200" />
+      </classproperty>
+    </control>
+    <control class="System.Windows.Forms.Label"> <!--можно указывать namespace в явном виде-->
+      <property name="Name" value="label3" />
+      <property name="Text" value="text_label3" />
+      <classproperty name="Location" class="System.Drawing.Point"> <!--имя_сборки.имя_класса-->
+        <parameter name="X" typename="int" value="100" />
+        <parameter name="Y" typename="int" value="250" />
+      </classproperty>
+      <!-- здесь могут находиться вложенные контролы, образующие иерархию-->
+    </control>
+  </controllist>
+
+</pre>
+<p>Программа будет состоять из двух основных частей: одна читает xml-файл и строит по нему структуру данных. Ниже приведен фрагмент программы, представляющий структуру данных:</p>
+<pre lang="csharp">using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace ControlDescriptorClass
+{
+    public class PropDescriptor
+    {
+        public string name { set; get; }
+        public string value { set; get; }
+    }
+
+    public class ParameterDescriptor
+    {
+        public string name { set; get; }
+        public string typeName { set; get; }
+        public string value { set; get; }
+    }
+
+    public class ClassPropertyDescriptor
+    {
+        public string name { set; get; }
+        public string className { set; get; }
+        // ctor parameter list
+        public List< ParameterDescriptor > parameterList { set; get; } //parameter name  parameter value pair
+        //properties of an object
+        public List< PropDescriptor > propertyList { set; get; } //property name  property value pair
+        //class properties of an object
+        public List< ClassPropertyDescriptor > classPropertyList { set; get; } //property name  property value pair
+    }
+
+    public class ControlDescriptor
+    {
+        public string typeName { set; get; }
+        public List< PropDescriptor > propertyList {set; get;} //property name  property value pair
+        public List classPropertyList { set; get; } //property name  property value pair
+        public List< ControlDescriptor > childControlList { set; get; }
+    }
+}</pre>
+<p>Здесь:<br />
+класс PropDescriptor - описание свойства объекта, пара имя-значение, оба поля являются строками,<br />
+класс ClassPropertyDescriptor описание свойства объекта, которое в свою очередь является объектом. Здесь name - имя свойства, className - имя класса, представляющего свойство, parameterList - список аргументов конструктора класса (см. ниже), propertyList - список свойств объекта, classPropertyList - список свойств объекта, которые, в свою очередь, являются объектами.<br />
+класс ParameterDescriptor - описание аргумента конструктора объекта. Состоит из имени аргумента name, имени типа аргумента typeName и строкового представления значения аргумента value.<br />
+класс ControlDescriptor - описание контрола. Состоит из имени класса typeName и трех списков: propertyList - список свойств, classPropertyList - список свойств, являющихся классами, childControlList - список вложенных контролов.</p>
+<p>В этой структуре данных имеется два типа свойств объекта: "обычные" свойства, имеющие один из базовых типов, и свойства, представляющие собой объект. Для таких свойств нужно, соответственно, вызывать конструктор с определенными параметрами. Например,  контрол Label имеет свойство Text, имеющее тип string, и свойство Location, имеющее тип Point. Point является классом, в его конструктор должны передаваться параметры X и Y типа Int32 (вернее, Point является структурой, но в данном контексте разница не имеет значения).</p>
+<p>Основная часть программы занимается построением контролов по имеющимся их описанием, и делает это с помощью Reflection.</p>
+<p>Для того, чтобы создать в run-time контрол через Reflection,  используется следующий код:</p>
+<pre lang="csharp">Type t = getAssemblyNameContainingType(nameSpace + cd.typeName);
+Control control = (Control)Activator.CreateInstance(t);</pre>
+<p>Здесь nameSpace - пространство имён, по умолчанию System.Windows.Forms. Пространство имен по умолчанию может быть изменено в xml-файле, если имя класса контрола содержит точку, то имя пространства имен по умолчанию не подставляется, используется имя, указанное для данного контрола.</p>
+<p>Значения свойств контрола присваиваются следующим образом:</p>
+<pre lang="csharp">Object obj = control;
+foreach (PropDescriptor property in cd.propertyList)
+{
+  string[] propertyName = property.name.Split('.');
+
+  PropertyInfo prop;
+  for (int i = 0; i < propertyName.Length - 1; i++)
+  {
+    prop = obj.GetType().GetProperty(propertyName[i]);
+    obj = prop.GetValue(obj, null);
+  }
+  prop = obj.GetType().GetProperty(propertyName.Last());
+  prop.SetValue(obj, Convert.ChangeType(property.value, prop.PropertyType), null);
+}</pre>
+<p>Здесь подразумевается, что свойство может иметь "длинное" имя вида name1.name2.name3... Тип, в который происходит преобразование строкового представления значения свойства берётся из структуры PropertyInfo (это тоже часть Reflection).<br />
+Однако если попытаться таки образом присвоить значение, например, Location.X, ничего не получено, так как структуру Location нужно создать, вызвав её конструктор, причем сразу с параметрами X и Y.</p>
+<p>Свойства такого вида конструируются так:</p>
+<pre lang="csharp">foreach (ClassPropertyDescriptor cpd in cd.classPropertyList)
+{
+  Type objType = getAssemblyNameContainingType(cpd.className);
+
+  List</pre>
+<p>&nbsp;</p>
+<p>Здесь преобразование типов строкового представления значения аргумента конструктора происходит в тот тип, который мы должны явно указать в xml. Так как у класса может быть множество конструкторов с различными сигнатурами, автоматически выбрать из них нужный было бы затруднительно. В приведенном коде предусмотрено преобразование типа только в типы Int32 и string, для использования других типов этот код нужно будет соответственно дополнять.</p>
+<p>Исходники на github: <a href="https://github.com/arktur04/ComponentAdapterTest.git">https://github.com/arktur04/ComponentAdapterTest.git</a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">{"login"=>"arktur04", "email"=>"arktur04@mail.ru", "display_name"=>"arktur04", "first_name"=>"", "last_name"=>""}</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2013-07-06T09:46:08+06:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>9:46 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/c-sharp/'>c sharp</a>, <a class='category' href='/blog/categories/proghrammirovaniie/'>программирование</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://arktur04.github.io/blog/2013/07/06/%25d0%25b8%25d1%2581%25d0%25bf%25d0%25be%25d0%25bb%25d1%258c%25d0%25b7%25d0%25be%25d0%25b2%25d0%25b0%25d0%25bd%25d0%25b8%25d0%25b5-reflection-%25d0%25b4%25d0%25bb%25d1%258f-%25d0%25b4%25d0%25b8%25d0%25bd%25d0%25b0%25d0%25bc%25d0%25b8%25d1%2587%25d0%25b5%25d1%2581%25d0%25ba%25d0%25be%25d0%25b3%25d0%25be-%25d1%2581%25d0%25be/" data-via="" data-counturl="http://arktur04.github.io/blog/2013/07/06/%25d0%25b8%25d1%2581%25d0%25bf%25d0%25be%25d0%25bb%25d1%258c%25d0%25b7%25d0%25be%25d0%25b2%25d0%25b0%25d0%25bd%25d0%25b8%25d0%25b5-reflection-%25d0%25b4%25d0%25bb%25d1%258f-%25d0%25b4%25d0%25b8%25d0%25bd%25d0%25b0%25d0%25bc%25d0%25b8%25d1%2587%25d0%25b5%25d1%2581%25d0%25ba%25d0%25be%25d0%25b3%25d0%25be-%25d1%2581%25d0%25be/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/05/14/%25d1%2583%25d1%2582%25d0%25b8%25d0%25bb%25d0%25b8%25d1%2582%25d0%25b0-%25d0%25b4%25d0%25bb%25d1%258f-%25d1%2580%25d0%25b0%25d0%25b1%25d0%25be%25d1%2582%25d1%258b-%25d1%2581-%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb%25d0%25be%25d0%25bc-modbus/" title="Previous Post: Утилита для работы с протоколом Modbus">&laquo; Утилита для работы с протоколом Modbus</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2013/09/13/%25d1%2581-%25d0%25b4%25d0%25bd%25d1%2591%25d0%25bc-%25d0%25bf%25d1%2580%25d0%25be%25d0%25b3%25d1%2580%25d0%25b0%25d0%25bc%25d0%25bc%25d0%25b8%25d1%2581%25d1%2582%25d0%25b0-2/" title="Next Post: С днём программиста!">С днём программиста! &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/12/02/title/">Zombie Ninjas Attack</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/23/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3/">Проект видеоадаптера. Часть 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/16/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-software-defined-radio-handbook-rodger-hosking/">Книга "Software Defined Radio Handbook", Rodger Hosking</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/05/vga-%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580-%25d0%25bd%25d0%25b0-fpga/">Проект видеоадаптера. Часть 2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/25/%25d0%25bf%25d1%2580%25d0%25be-llvm/">Про LLVM</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Протокол Modbus в устройствах на базе микроконтроллеров. Часть 1.2 - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="Продолжение. Начало здесь: http://32bit.me/?p=355 - введение; http://32bit.me/?p=373 - часть 1.0; http://32bit.me/?p=377 - часть 1.1.
+Перед тем, как &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://arktur04.github.io/blog/2010/05/13/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-4/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="arktur04.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Протокол Modbus в устройствах на базе микроконтроллеров. Часть 1.2</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-05-13T17:51:44+06:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>5:51 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><em><a href="http://32bit.me/wordpress/wp-content/uploads/2010/05/Рис-1.jpg"></a>Продолжение. </em><em>Начало здесь: </em><em> </em><a href="http://32bit.me/?p=355"><em>http://32bit.me/?p=355</em></a><em> - введение; </em><a href="http://32bit.me/?p=373"><em>http://32bit.me/?p=373</em></a><em> - часть 1.0; <a href="http://32bit.me/?p=377">http://32bit.me/?p=377</a> - часть 1.1.</em></p>
+<p>Перед тем, как приступить к дальнейшим экспериментам с протоколом Modbus, разберёмся с ещё одной темой, относящейся к этому протоколу: с регистрами Modbus.</p>
+<p><!--more-->Каждая переменная, которую ведущее устройство считывает/записывает из ведомого устройства, имеет 16-битный адрес. Но помимо адреса, есть ещё тип регистра, обозначаеый обычно цифрой от 0 до 6 и буквой x, например 4х. Часто адрес переменной записывается, например, так: 400001. Это означает, что адрес переменной равен 1, и она относится к типу 4. Максимальное значение адреса равно 65535, поэтому для переменных типа 4 полные адреса будут находиться в диапазоне от 400001 до 465535 (от 40001<sub>16</sub> до 4FFFF<sub>16</sub>).</p>
+<p>Что означает тип переменной? Итак:</p>
+<p>0  - Output coil (дискретные выходы)</p>
+<p>1 - Discrete Inputs (дискретные входы)</p>
+<p>3 - Input Registers (входные регистры)</p>
+<p>4 - Holding Registers (регистры хранения)</p>
+<p>5 - фактически используются регистры типа 4, но производится перестановка байт, она будет рассмотрена ниже.</p>
+<p>6 - Extended Memory File. Используется крайне редко, и здесь рассматриваться не будет.</p>
+<p>Как мы видим, типа 2 не существует. Также, мы уже упоминали о том, что адрес, передающийся в посылке протокола, на 1 меньше, чем адрес регистра. Поэтому адреса Modbus нумеруются, начиная с 1, а не с 0. Максимальное же значенме адреса регистра равно 65535, а не 65536, как можно было бы подумать. Однако такое ограничение не очень существенно, так как реальные устройства редко имеют 65536 переменных, передаваемых по Modbus.</p>
+<p>На практике обычно используются регистры тиов 0х и 1х для дискретных входов-выходов (1-битных), 3х и 4х для 16-битных переменных. Тип 5х фактически заменяется на тип 4х.</p>
+<p>Формально, переменные с адресами 100001 и 400001 - разные переменные, так как, хотя они имеют одинаковый адрес регистра (1), они относятся к разным типам, к разным адресным пространствам. На практике же это не так. Сделать в одном устройстве переменные разных типов с одинаковыми адресами - грубая ошибка. Почему это так?</p>
+<p>Откроем среду разработки ISaGRAF, зайдём в Словарь переменных, и попробуем добавить 2 переменные с одним и тем же адресом, скажем, 10, но одну в раздел "Целые/Действительные", а другую в раздел "Булевские". Теперь откроем карту адресов Modbus. Что мы видим? Там отображается только одна из введённых нами переменных, другим адрес просто не назначен. Более того, ISaGRAF просто отображает адресные пространства всех типов в на одну, общую карту адресов. Вы можете записать переменную типа 0х по адресу 10, а потом считать её значение по адресу 400010.</p>
+<p>И если в вашем устройстве будут 2 переменные с адресами 10 и 400010, то контроллер под управлением ISaGRAF не сможет с ним работать.</p>
+<p>И, хотя многие другие контроллеры разделяют переменные в различных типах регистров, лучше всего будет, если вы не будете рисковать, создавая переменные с одним адресом, но в разных типах регистров.</p>
+<p>Из вышесказанного можно сделать важный вывод: мы можем сильно упростить задачу реализации ведомого устройства Modbus (т.е. Modbus slave), если ограничимся поддержкой только регистров типа 4х, самых универсальных, допускающих как чтение, так и запись. В описанных выше экспериментах с контроллером и панелью использовались именно регистры типа 4х.</p>
+<p>Приведём список функций протокола Modbus</p>
+<p>1 - Read coil (Чтение состояния выходов, регистры 0х)</p>
+<p>2 - Read Discrete input (Чтение состояния входов, регистры 1х)</p>
+<p>3 - Read holding register (Чтение регистров 4х)</p>
+<p>4 - Read input register (Чтение регистров 3х)</p>
+<p>5 - Write single coil (Запись состояния выходов, регистры 0х)</p>
+<p>6 - Write single register (Запись одного регистра 4х)</p>
+<p>10<sub>16</sub> (16) - Write multiple register (Запись множества регистров 4х)</p>
+<p>Остальные функции протокола используются крайне редко и здесь рассматриваться не будут.</p>
+<p>Регистры типа 1х и 3х не поддерживают операции записи. Изначально они задумывались как регистры для входных переменных, однако никто не мешает использовать в качестве входных переменных регистры 0x и 4x. Именно поэтому чаще всего используются именно  0x и 4x, причём наиболее универсальными регистрами являются регистры 4x.</p>
+<p>В описанных выше экспериментах мы наблюдали, что при обмене данными между панелью и контроллером использовались функции 3 и 10<sub>16</sub> .  Протоколом также предусмотрена функция 6 - запись одиночного регистра 4х, она используется редко, но некоторые ведущие устройства и OPC-сервера всё-таки могут её использовать.</p>
+<p><em>OPC-сервер - это промежуточное звено, своего рода посредник между системой сбора данных (SCADA-системой) и сетью промышленных контроллеров.  ОРС-сервер представляет собой программу, поддерживающую тот или ной протокол (например, Modbus), с одной стороны, и предоставляющую унифицированный прогаммный интерфейс доступа к данным с другой стороны. OPC-сервера - тема отдельной статьи, здесь они подробно рассматриваться не будут.</em></p>
+<p>Самый важный вывод, который можно сделать из перечисленного, состоит в том, что для реализации протокола Modbus в slave-устройстве достаточно поддерживать всего три функции: 3, 6 и 10<sub>16</sub>. Это позволит записывать и считывать как целочисленные 16-битные, так и однобитные переменные, представляя последние как нулевое либо ненулевое значение регистра.</p>
+<p>Многие ведущие (masters) также предоставляют возможность работы с регистрами 3x и 4x как с набором из 16-и дискретных переменных, в этом случае для каждой переменной указывается адрес регистра и номер бита от 0 до 15.</p>
+<p><em>Продолжение следует.</em></p>
+<p><strong>Владимир Татарчевский</strong></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">{"login"=>"arktur04", "email"=>"arktur04@mail.ru", "display_name"=>"arktur04", "first_name"=>"", "last_name"=>""}</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2010-05-13T17:51:44+06:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>5:51 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/modbus/'>modbus</a>, <a class='category' href='/blog/categories/scada/'>scada</a>, <a class='category' href='/blog/categories/plk/'>ПЛК</a>, <a class='category' href='/blog/categories/intieriesnyie-ssylki/'>интересные ссылки</a>, <a class='category' href='/blog/categories/mikrokontrolliery/'>микроконтроллеры</a>, <a class='category' href='/blog/categories/proghrammirovaniie/'>программирование</a>, <a class='category' href='/blog/categories/stat'i/'>статьи</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://arktur04.github.io/blog/2010/05/13/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-4/" data-via="" data-counturl="http://arktur04.github.io/blog/2010/05/13/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-4/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2010/05/12/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-3/" title="Previous Post: Протокол Modbus в устройствах на базе микроконтроллеров. Часть 1.1">&laquo; Протокол Modbus в устройствах на базе микроконтроллеров. Часть 1.1</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2010/05/16/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-5/" title="Next Post: Протокол Modbus в устройствах на базе микроконтроллеров. Часть 1.3">Протокол Modbus в устройствах на базе микроконтроллеров. Часть 1.3 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/12/02/title/">Zombie Ninjas Attack</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/23/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3/">Проект видеоадаптера. Часть 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/16/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-software-defined-radio-handbook-rodger-hosking/">Книга "Software Defined Radio Handbook", Rodger Hosking</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/05/vga-%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580-%25d0%25bd%25d0%25b0-fpga/">Проект видеоадаптера. Часть 2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/25/%25d0%25bf%25d1%2580%25d0%25be-llvm/">Про LLVM</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

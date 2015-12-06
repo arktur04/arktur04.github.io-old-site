@@ -1,0 +1,293 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Прерывания в Cortex M3. Часть 2 - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="В первой части (http://32bit.me/?p=839) были приведены некоторые сведения о структуре контроллера прерываний Cortex M3. В этой части будут &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://arktur04.github.io/blog/2010/11/17/%25d0%25bf%25d1%2580%25d0%25b5%25d1%2580%25d1%258b%25d0%25b2%25d0%25b0%25d0%25bd%25d0%25b8%25d1%258f-%25d0%25b2-cortex-m3-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-2/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="arktur04.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Прерывания в Cortex M3. Часть 2</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-11-17T20:19:09+05:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>8:19 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>В первой части (<a href="http://32bit.me/?p=839">http://32bit.me/?p=839</a>) были приведены некоторые сведения о структуре контроллера прерываний Cortex M3. В этой части будут рассматриваться примеры обработки прерываний в этой архитектуре.</p>
+<p><!--more-->Обработка большинства прерываний происходит следующим образом: в файле cstartup_M.s находится таблица векторов прерываний следующего вида:</p>
+<pre lang="c" line="1">
+__vector_table_0x1c
+DCD     0                           ; Reserved
+DCD     0                           ; Reserved
+DCD     0                           ; Reserved
+DCD     0                           ; Reserved
+DCD     SVC_Handler                 ; SVCall Handler
+DCD     DebugMon_Handler            ; Debug Monitor Handler
+DCD     0                           ; Reserved
+DCD     PendSV_Handler              ; PendSV Handler
+DCD     SysTick_Handler             ; SysTick Handler
+DCD     WDT_IRQHandler              ; Watchdog Handler
+DCD     TMR0_IRQHandler             ; TIMER0 Handler
+DCD     TMR1_IRQHandler             ; TIMER1 Handler
+</pre>
+<p>Она устанавливает связь между самим прерыванием и его обработчиком. По умолчанию все обработчики установлены в Default_Handler, эта команда приводит к останову программы. Для того, чтобы задействовать свой обработчик прерывания, нужно скопировать из cstartup_M.s нужное имя функции, например:</p>
+<pre lang="c" line="1">
+void TMR0_IRQHandler(void)
+{
+//тело обработчика
+}
+</pre>
+<p>Но, для того, чтобы обработчик работал правильно, нужно сделать ещё две вещи: присвоить прерыванию приоритет и в теле обработчика снять флаг обработки прерывания. Последнее действие информирует контроллер прерывания, что данное прерывание уже обработано.</p>
+<p>Итак, приоритет прерывания устанавливается следующим образом:</p>
+<pre lang="c" line="1">
+void NVIC_IntPri(Int32U IntNumber, Int8U Priority)
+{
+//pNVIC - указатель на таблицу приоритетов прерываний.
+volatile Int8U * pNVIC_IntPri = (Int8U *)&IP0;
+//проверка того, что номер прерывания не выходит за пределы таблицы
+assert((NVIC_WDT < IntNumber) && (NVIC_PLL1 >= IntNumber));
+//получаем смещение в таблице
+IntNumber -= NVIC_WDT;
+//получаем указатель на регистр приоритета прерывания
+pNVIC_IntPri += IntNumber;
+// устанавливаем приоритет
+*pNVIC_IntPri = Priority;
+}</pre>
+<p>В рассмотренном коде наибольшие затруднения может вызвать действие IntNumber -= NVIC_WDT. Проясним его смысл. Дело в том, что формально таблица прерываний начинаются именно с прерывания NVIC_WDT. Всё, что находится выше NVIC_WDT, считается не прерыванием, а системным исключением. NVIC_WDT имеет в таблице прерываний 16-й номер, однако в таблице приоритетов прерываний оно имеет номер 0. Чтобы получить из номера прерывания смещение в таблице приоритетов, мы должны из номера прерывания вычесть значение NVIC_WDT. Дальнейшие действия понятны: мы прибавляем смещение в таблице к адресу самой таблицы приоритетов и в полученный регистр записываем значение приоритета прерывания.  Так как регистры приоритета имеют разрядность 8 бит, все операции с адресами здесь производятся с указателями на байты (Int8U *).</p>
+<p>По умолчанию все прерывания имеют приоритет 0 (самый высокий).</p>
+<p>Однако, для корректной работы обработчика требуется сообщить контроллеру прерываний, что прерывание обработано, для того, чтобы снять флаг "отложено" (pending). Делается это с помощью аналогичной функции:</p>
+<pre lang="c" line="1">void NVIC_ClrPend(Int32U IntNumber)
+{
+//pNVIC - указатель на таблицу Interrupt Clear-Pending Register
+volatile unsigned long * pNVIC_ClrPend = &CLRPEND0;
+//проверка того, что номер прерывания не выходит за пределы таблицы
+assert((NVIC_WDT <= IntNumber) && (NVIC_PLL1 >= IntNumber));
+//получаем смещение в таблице
+IntNumber -= NVIC_WDT;
+//получаем указатель на нужный регистр
+//сейчас регистры 32-битные,
+//флаг очистки каждого прерывания занимает 1 бит
+//поэтому номер прерывания делим на 32
+pNVIC_ClrPend += IntNumber/32;
+*pNVIC_ClrPend = (1UL<<(IntNumber%32));
+}
+</pre>
+<p>Как видно из приведённого кода, он аналогичен коду функции установки приоритета прерывания, за исключением следующих особенностей: указатель вычисляется  в 32-битной арифметике, поэтому мы здесь оперируем с типом (unsigned long*), указатель pNVIC расположен по базовому адресу ICPR0 (Interrupt Clear-Pending Register 0), и номер прерывания делим на 32, так как в каждом регистре находятся флаги 32-х прерываний.</p>
+<p>Этот код обязательно должен находиться в конце каждого обработчика прерывания (но у этого правила есть исключение, которое будет рассмотрено ниже).</p>
+<p>В случае, если логика работы программы требует запрета и разрешения прерываний, то и эти операции производятся аналогично.<br />
+Разрешение прерывания:</p>
+<pre lang="c" line="1">
+void NVIC_IntEnable(Int32U IntNumber)
+{
+volatile unsigned long * pNVIC_SetEn = &SETENA0;
+
+assert((NVIC_WDT <= IntNumber) && (NVIC_PLL1 >= IntNumber));
+IntNumber -= NVIC_WDT;
+
+pNVIC_SetEn += IntNumber/32;
+*pNVIC_SetEn = (1UL << (IntNumber%32));
+}
+</pre>
+<p>Запрет прерывания:</p>
+<pre lang="c" line="1">
+void NVIC_IntDisable(Int32U IntNumber)
+{
+volatile unsigned long * pNVIC_ClrEn = & CLRENA0;
+
+assert((NVIC_WDT <= IntNumber) && (NVIC_PLL1 >= IntNumber));
+IntNumber -= NVIC_WDT;
+
+pNVIC_ClrEn += IntNumber/32;
+*pNVIC_ClrEn = (1UL << (IntNumber%32));
+}
+</pre>
+<p>Ранее говорилось о том, что системные исключения располагаются в таблице векторов прерываний выше, чем NVIC_WDT. Однако, приведённые функции работают только с прерываниями, начиная с NVIC_WDT. В самом деле, для работы с системными прерываниями нужны другие функции.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">{"login"=>"arktur04", "email"=>"arktur04@mail.ru", "display_name"=>"arktur04", "first_name"=>"", "last_name"=>""}</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2010-11-17T20:19:09+05:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>8:19 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/arm/'>arm</a>, <a class='category' href='/blog/categories/cortex-m3/'>cortex m3</a>, <a class='category' href='/blog/categories/mikrokontrolliery/'>микроконтроллеры</a>, <a class='category' href='/blog/categories/proghrammirovaniie/'>программирование</a>, <a class='category' href='/blog/categories/stat'i/'>статьи</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://arktur04.github.io/blog/2010/11/17/%25d0%25bf%25d1%2580%25d0%25b5%25d1%2580%25d1%258b%25d0%25b2%25d0%25b0%25d0%25bd%25d0%25b8%25d1%258f-%25d0%25b2-cortex-m3-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-2/" data-via="" data-counturl="http://arktur04.github.io/blog/2010/11/17/%25d0%25bf%25d1%2580%25d0%25b5%25d1%2580%25d1%258b%25d0%25b2%25d0%25b0%25d0%25bd%25d0%25b8%25d1%258f-%25d0%25b2-cortex-m3-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-2/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2010/11/12/%25d0%25bf%25d1%2580%25d0%25b5%25d1%2580%25d1%258b%25d0%25b2%25d0%25b0%25d0%25bd%25d0%25b8%25d1%258f-%25d0%25b2-cortex-m3-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-1/" title="Previous Post: Прерывания в Cortex M3. Часть 1">&laquo; Прерывания в Cortex M3. Часть 1</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2010/11/18/%25d1%2581%25d1%2582%25d1%2580%25d1%2583%25d0%25ba%25d1%2582%25d1%2583%25d1%2580%25d0%25b0-%25d1%2581%25d0%25b5%25d1%2582%25d0%25b8-%25d0%25ba%25d0%25be%25d0%25bd%25d1%2582%25d1%2580%25d0%25be%25d0%25bb%25d0%25bb%25d0%25b5%25d1%2580%25d0%25be%25d0%25b2/" title="Next Post: Структура сети контроллеров">Структура сети контроллеров &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/12/02/title/">Zombie Ninjas Attack</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/23/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3/">Проект видеоадаптера. Часть 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/16/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-software-defined-radio-handbook-rodger-hosking/">Книга "Software Defined Radio Handbook", Rodger Hosking</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/05/vga-%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580-%25d0%25bd%25d0%25b0-fpga/">Проект видеоадаптера. Часть 2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/25/%25d0%25bf%25d1%2580%25d0%25be-llvm/">Про LLVM</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

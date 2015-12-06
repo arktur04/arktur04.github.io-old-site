@@ -1,0 +1,331 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>FPU. Часть 3. Делитель, RTL - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="Продолжение. Начало здесь: часть 1, часть 2.
+Итак, тест готов, теперь можно написать сам код делителя.
+Для удобства нарисуем интерфейс модуля в таком &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://arktur04.github.io/blog/2015/03/13/fpu-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3-%25d0%25b4%25d0%25b5%25d0%25bb%25d0%25b8%25d1%2582%25d0%25b5%25d0%25bb%25d1%258c-rtl/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="arktur04.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">FPU. Часть 3. Делитель, RTL</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-03-13T03:59:18+05:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:59 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><i>Продолжение. Начало здесь: <a href="http://32bit.me/?p=1902" data-cke-saved-href="http://32bit.me/?p=1902">часть 1</a>, <a href="http://32bit.me/?p=1936" data-cke-saved-href="http://32bit.me/?p=1936">часть 2</a>.</i></p>
+<p>Итак, тест готов, теперь можно написать сам код делителя.<br />
+Для удобства нарисуем интерфейс модуля в таком виде:</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/03/pic1.png"><img class="alignnone size-full wp-image-1972" alt="pic1" src="/assets/pic1.png" width="929" height="384" /></a></p>
+<p><!--more--></p>
+<p>Итак, модуль div_float производит операцию деления над двумя вещественными числами разрядностью 64 или 32 бита, которые представлены в соответствии со стандартом IEEE754. Входными сигналами модуля являются:<br />
+rst_n - сигнал сброса (инверсный)<br />
+clk - тактовый сигнал<br />
+[FLOAT_WIDTH - 1: 0] op1, op2 - делимое и делитель соответственно. FLOAT_WIDTH - параметр, указывающий разрядность, 64 или 32.<br />
+Выходы:<br />
+[FLOAT_WIDTH - 1: 0] out_reg - результат деления<br />
+done_reg - деление завершено. Сигнал выставляется в 1 на последнем такте работы делителя, и по нему следующий по схеме модуль может забирать данные с выхода.<br />
+Следующие выходы указывают на различные ситуации, возникающие при делении, их использование необязательно, но может упростить обработку исключительных ситуаций в ряде случаев. Они были рассмотрены в предыдущей части, когда мы писали тест, поэтому сейчас ограничимся их перечислением:<br />
+divizion_by_zero_reg - признак деления на ноль.<br />
+nan_reg - признак возникновения нечисла (NaN) в результате.<br />
+overflow_reg - признак переполнения.<br />
+underflow_reg - признак потери точности.<br />
+zero_reg - признак нуля в результате.</p>
+<p>Деление происходит следующим образом. Разбиваем операнды op1 и op2  на дробную часть (мантиссу) frac1 и frac2 соответственно, экспоненту (exp1 и exp2) и знак (sign1 и sign2).</p>
+<p>Теперь мы должны сравнить мантиссы, чтобы вычислить поправку к экспоненте:</p>
+<pre lang="verilog" line="1"> op2_aligned = frac1 &lt; frac2;</pre>
+<p>И вычисляем экспоненту результата:</p>
+<pre lang="verilog" line="1">localparam EXP_SHIFT = (2 ** (EXP_WIDTH - 1)) - 1;
+
+wire [EXP_WIDTH: 0] result_exp_before_correction, temp_result;
+
+assign
+temp_result = EXP_SHIFT + exp1,
+result_exp_before_correction = temp_result - exp2;
+
+always@*
+begin
+  if(underflow_reg) begin
+    result_exp_reg = 0;
+  end
+  else if (overflow_reg) begin
+      result_exp_reg = EXP_MAX;
+    end
+  else
+  begin
+    result_exp_reg = result_exp_before_correction - op2_aligned;
+  end
+end</pre>
+<p>И знак:</p>
+<pre lang="verilog" line="1">  wire sign1 = op1[SIGN_BIT],
+  sign2 = op2[SIGN_BIT],
+  result_sign = sign1 ^ sign2;</pre>
+<p>До сих пор была чистая комбинаторика, однако мантиссу результата вычислять комбинаторной схемой не имеет смысла: она получится слишком большой и медленной для практической реализации. Она вычисляется итеративно. И здесь нас ждет самый большой сюрприз. Сколько итераций нужно для вычисления 52-разрядной мантиссы 64-разрядного числа? За одну итерацию вычисляется один бит мантиссы результата. Казалось бы, из этого следует, что нам потребуется 52 итерации. Однако это не так.<br />
+Во-первых, первая (или нулевая, если считать с нуля) итерация нам нужна, чтобы загрузить регистры op1frac_stage_reg и op2frac_stage_reg, которые используются в алгоритме деления. Обратите внимание, что эти регистры намного длиннее исходных мантисс. Слева к мантиссе мы дописываем 1, в соответствии со стандартом IEEE754, а справа дописываем FRACTION_WIDTH нулей. Эти нули справа - это место куда булет сдвигаться делитель в цикле. Если их не будет, правые цифры делителя будут теряться при сдвиге, и результат получится неточным. Таким образом, для деления 52-разрядных мантисс регистры должны иметь по 105 разрядов. Также не забываем, что мантиссу делителя нужно сдвинуть ещё на 1 вправо, если она меньше мантиссы делимого. Это нужно для того, чтобы в старшем разряде результата всегда была 1:</p>
+<pre lang="verilog" line="1">if(div_counter_reg == 0)
+begin
+  op1frac_stage_reg &lt;= {1'b1, frac1, {FRACTION_WIDTH {1'b0}}};
+  op2frac_stage_reg &lt;= (op2_aligned)? {2'b01, frac2[FRACTION_MSB: 0], {FRACTION_WIDTH - 1 {1'b0}}}: {1'b1, frac2, {FRACTION_WIDTH {1'b0}}};
+end</pre>
+<p>Дополнительная итерация понадобится ещё потому, что слева к мантиссам мы дописали 1 (см. предыдущий абзац). И ещё одна итерация нужна, чтобы вычислить дополнительный бит справа. Он не попадает в результат непосредственно, но может привести к округлению младшего бита результата. Без него в некоторых случаях мы имели бы ошибку в последнем бите результата. Таким образом, нам понадобятся дополнительные три итерации, и для 52-разрядных мантисс вычисления займут 55 тактов, и на последнем, 56-м такте мы выставляем бит done_reg и собираем результат из вычисленных значений мантиссы, экспоненты и знака. Если в результате получается бесконечность, нечисло или ноль, записываем нужное значение в регистр результата.</p>
+<p>Само деление мантисс происходит классическим "школьным" способом "в столбик" (естественно, в двоичном виде), на каждой итерации мы сравниваем мантиссу делителя и мантиссу делимого, если первая больше или равна второй, то производим их вычитание и пишем в ответ 1, если нет, то пишем ноль, после чего сдвигаем мантиссу делителя на 1 разряд вправо:</p>
+<pre lang="verilog" line="1">always@(negedge rst_n, posedge clk)
+  begin
+    if(!rst_n)
+    begin
+      op1frac_stage_reg &lt;= 0;
+      op2frac_stage_reg &lt;= 0;
+      div_counter_reg &lt;= 0;
+      result_frac_reg &lt;= 0;
+      done_reg &lt;= 0;
+    end
+    else
+    begin
+      if(start)
+      begin
+        op1frac_stage_reg &lt;= 0;
+        op2frac_stage_reg &lt;= 0;
+        div_counter_reg &lt;= 0;
+        result_frac_reg &lt;= 0;
+        done_reg &lt;= 0;
+      end
+      else 
+      begin
+        if(div_counter_reg == 0)
+        begin
+          op1frac_stage_reg &lt;= {1'b1, frac1, {FRACTION_WIDTH {1'b0}}};
+          op2frac_stage_reg &lt;= (op2_aligned)? {2'b01, frac2[FRACTION_MSB: 0], {FRACTION_WIDTH - 1 {1'b0}}}: {1'b1, frac2, {FRACTION_WIDTH {1'b0}}};
+        end
+        else
+        begin
+          if(div_counter_reg &lt; FRACTION_WIDTH + 3)           begin             if(op1frac_stage_reg &gt;= op2frac_stage_reg &amp;&amp; op1frac_stage_reg != 0)
+            begin
+              op1frac_stage_reg &lt;= op1frac_stage_reg - op2frac_stage_reg;
+              result_frac_reg &lt;= {result_frac_reg[FRACTION_WIDTH - 1: 0], 1'b1};
+            end
+            else
+            begin
+              result_frac_reg &lt;= {result_frac_reg[FRACTION_WIDTH - 1: 0], 1'b0};
+            end
+            op2frac_stage_reg &lt;= op2frac_stage_reg &gt;&gt; 1;
+          end  
+          else
+          begin
+            if(nan_reg)
+            begin
+              out_reg &lt;= NAN_VALUE;
+            end
+            else if(inf_out)
+              begin
+                out_reg &lt;= INF_VALUE | (result_sign &lt;&lt; SIGN_BIT);            
+              end
+              else if(zero_out)
+                begin
+                  out_reg &lt;= 0;
+                end
+                else
+                begin
+                  out_reg &lt;= {result_sign, result_exp_reg[EXP_WIDTH - 1: 0], result_frac_reg[FRACTION_WIDTH: 1]};
+                end
+            div_counter_reg &lt;= 0;
+            done_reg &lt;= 1;
+          end
+        end  
+        div_counter_reg &lt;= div_counter_reg + 1'b1;  
+      end
+    end
+  end</pre>
+<p>Сейчас мы получили делитель, который проходит набор из &gt; 10000 тестовых воздействий, описанных в предыдущих частях, при этом результат вычислений совпадает побитно с результатом, вычисленным FPU компьютера. Это очень хорошо, но это ещё не всё.<br />
+В следующий раз мы сделаем анализ кода на время выполнения, чтобы выяснить, на какой частоте он сможет работать в конкретной FPGA. По результатам станет ясно, можно ли (и нужно ли) как-либо улучшить код.</p>
+<p>Все исходные тексты к статье можно взять на GitHub: <a href="https://github.com/arktur04/FPU">https://github.com/arktur04/FPU</a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">{"login"=>"arktur04", "email"=>"arktur04@mail.ru", "display_name"=>"arktur04", "first_name"=>"", "last_name"=>""}</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-03-13T03:59:18+05:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:59 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/fpga/'>fpga</a>, <a class='category' href='/blog/categories/verilog/'>verilog</a>, <a class='category' href='/blog/categories/stat'i/'>статьи</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://arktur04.github.io/blog/2015/03/13/fpu-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3-%25d0%25b4%25d0%25b5%25d0%25bb%25d0%25b8%25d1%2582%25d0%25b5%25d0%25bb%25d1%258c-rtl/" data-via="" data-counturl="http://arktur04.github.io/blog/2015/03/13/fpu-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3-%25d0%25b4%25d0%25b5%25d0%25bb%25d0%25b8%25d1%2582%25d0%25b5%25d0%25bb%25d1%258c-rtl/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/03/08/%25d0%25b7%25d0%25b0%25d1%2589%25d0%25b8%25d1%2582%25d0%25b0-%25d0%25be%25d1%2582-%25d0%25bf%25d0%25b5%25d1%2580%25d0%25b5%25d0%25bf%25d0%25be%25d0%25bb%25d1%258e%25d1%2581%25d0%25be%25d0%25b2%25d0%25ba%25d0%25b8-%25d0%25bf%25d0%25be-%25d0%25bf%25d0%25b8%25d1%2582%25d0%25b0%25d0%25bd%25d0%25b8%25d1%258e/" title="Previous Post: Защита от переполюсовки по питанию">&laquo; Защита от переполюсовки по питанию</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/03/14/%25d0%25bc%25d0%25be%25d0%25b4%25d0%25b5%25d0%25bb%25d1%258c-sram-%25d1%2581-%25d1%2582%25d0%25b0%25d0%25b9%25d0%25bc%25d0%25b8%25d0%25bd%25d0%25b3%25d0%25b0%25d0%25bc%25d0%25b8/" title="Next Post: Модель SRAM с таймингами">Модель SRAM с таймингами &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/12/02/title/">Zombie Ninjas Attack</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/23/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3/">Проект видеоадаптера. Часть 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/16/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-software-defined-radio-handbook-rodger-hosking/">Книга "Software Defined Radio Handbook", Rodger Hosking</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/05/vga-%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580-%25d0%25bd%25d0%25b0-fpga/">Проект видеоадаптера. Часть 2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/25/%25d0%25bf%25d1%2580%25d0%25be-llvm/">Про LLVM</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

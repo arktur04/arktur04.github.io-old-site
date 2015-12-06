@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Проект видеоадаптера. Часть 3 - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="Продолжение. Часть 2.
+Структурная схема видеоадаптера приведена на рис. 1 (кликабельно) &nbsp;
+Рис. 1. Структурная схема видеоадаптера.
+&nbsp; &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://arktur04.github.io/blog/2015/11/23/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="arktur04.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Проект видеоадаптера. Часть 3</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-11-23T21:00:45+05:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2015</span></span> <span class='time'>9:00 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Продолжение. <a href="http://32bit.me/?p=2156">Часть 2.</a></p>
+<p>Структурная схема видеоадаптера приведена на рис. 1 (кликабельно)</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/11/vga-card-big.jpg"><img class="alignnone size-medium wp-image-2175" alt="vga-card-big" src="/assets/vga-card-big-300x214.jpg" width="300" height="214" /></a></p>
+<p>&nbsp;</p>
+<p>Рис. 1. Структурная схема видеоадаптера.</p>
+<p>&nbsp;</p>
+<p>Пояснения к схеме:</p>
+<p>В первой версии видеоадаптер будет иметь только текстовый режим EGA, 80 * 25 символов 8 * 14 пикселов каждый символ. Таким образом, экранное разрешение составит 8 * 80 = 640 пикселов по горизонтали и 14 * 25 = 350 пикселов по вертикали. Частота пикселов в этом режиме составляет, по стандарту 25,175 МГц, фактическая частота будет 25 МГц, в связи с тем, что частота тактирования ПЛИС составляет 50 МГц. При этом на любом мониторе происходит нормальная синхронизация.</p>
+<p><!--more--></p>
+<p>Для аналогичного тектового видеорежима VGA разрешение составляет 720 * 400 пикселей, т.к. символы имеют размер 9*16 пикселей. Частота пикселов при этом должна быть 28,322 МГц, и нормальная синхронизация с частотой 25 МГц невозможна. Можно получить близкую частоту с помощью PLL, но тогда потребуются блоки для асинхронного сопряжения видеоадаптера с микропроцессорной частью проекта, т.к. микропроцессорная часть будет тактироваться частотой 50 МГц. Это будет следующим этапом проекта, пока вся схема будет тактироваться от 50 МГц.</p>
+<p>Графические режимы тоже будут позже, пока будет реализован максимально простой вариант.</p>
+<p>Некоторые пояснения по схеме:</p>
+<p><strong>sync_gen</strong> - генератор синхроимпульсов. Имеет выходы <em>h_coord_reg</em> и <em>v_coord_reg</em>, соответственно, текущие координаты пиксела по горизонтали и вертикали. <em>data_en</em> - сигнал разрешения данных. Этот же сигнал используется для "гашения" выходов ЦАП. <em>hsync_reg</em> и<em> vsync_reg</em> - сигналы горизонтальной и вертикальной синхронизации.</p>
+<p>Так как вся схема состоит из нескольких модулей, включенных последовательно, прохождение сигнала по ним занимает несколько тактов. В связи с этим сигналы <em>data_en, <em>hsync_reg</em> </em>и <em><em>vsync_reg</em></em> также должны быть задержаны, чтобы приходить на выход синхронно с сигналами соответствующего пиксела.</p>
+<p><strong>addr_decoder</strong> - так как видеоадаптер будет использовать в качестве видеопамяти внешнюю sdram, которая будет использоваться совместно с основным микропроцессором, <strong> </strong>необходимо иметь небольшую буферную память, чтобы избежать проблем, связанных с временем доступа к внешней памяти. Этот буфер будет двойным, пока идёт выборка из одного блока памяти, в другой загружаются данные из внешней памяти, затем они меняются местами. каждый блок памяти будет иметь размер 256*16 бит. 16-и битный выход позволит получит сразу и ком символа, и информацию об его цвете. Модуль <strong>addr_decoder</strong> вырабатывает текущий адрес в буфере <em>buffer_addr_reg</em>, исходя из текущей координаты пиксела и смещения буфера (т.е. адреса, который отображается на начало буфера). Также этот модуль вырабатывает сигналы <em>hmod_reg</em> и <em>vmod_reg</em>, которые являются координатой пиксела в текущем знакоместе (т.е. абсолютной координатой по модулю 8 и 14 соответственно).</p>
+<p><strong>buf_mem </strong> - буфер памяти, см. предыдущий абзац.</p>
+<p><strong>mem_controlle</strong>r - контроллер памяти. Должен обеспечивать подкачку содержимого буфера из внешней SDRAM. Также, в будущем, будет обеспечивать асинхронные взаимодействия видеоадаптера и основной части, при их работе на разной тактовой частоте.</p>
+<p><strong>mode_controller</strong> - контроллер видеорежима. Пока видеоадаптер будет иметь только один текстовый режим, но в будущем контроллер должен будет обесипечивать установку всех остальных модулей в состояние, соответствующее текущему видеорежиму. Также модуль выделяет код символа (<em>char_code_reg</em>), цвет символа (<em>char_color_reg</em>), цвет фона (<em>back_color_reg</em>) и признак мигания <em>blink</em>.</p>
+<p><strong>char_gen</strong> - знакогенератор. В данной версии представляет собой ПЗУ с таблицей символов EGA (8*14), но впоследствии будет содержать символы VGA (9*16) и символы 8*8, а также программируемые пользователем символы. На его вход поступает код символа (<em>char_code</em>) и номер строки символа (<em>vmod</em>), на выходе появляется строка текущего знакоместа (<em>char_data_reg</em>).</p>
+<p><strong>pixel_data_decode</strong>r - на основании сигналов <em>char_data, hmod, char_color, back_color, blink</em> определяет цвет текущего пиксела в палитре.</p>
+<p><strong>palette</strong> - регистры палитры. В данной версии представляет собой ПЗУ, в дальнейшем будет возможность его изменения пользовательской программой.</p>
+<p>Пока это черновик схемы, она будет дорабатываться и изменяться по мере продвижения проекта.</p>
+<p>&nbsp;</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">{"login"=>"arktur04", "email"=>"arktur04@mail.ru", "display_name"=>"arktur04", "first_name"=>"", "last_name"=>""}</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-11-23T21:00:45+05:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2015</span></span> <span class='time'>9:00 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/fpga/'>fpga</a>, <a class='category' href='/blog/categories/verilog/'>verilog</a>, <a class='category' href='/blog/categories/plis/'>плис</a>, <a class='category' href='/blog/categories/skhiemotiekhnika/'>схемотехника</a>, <a class='category' href='/blog/categories/tsap/'>цап</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://arktur04.github.io/blog/2015/11/23/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3/" data-via="" data-counturl="http://arktur04.github.io/blog/2015/11/23/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/11/16/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-software-defined-radio-handbook-rodger-hosking/" title="Previous Post: Книга "Software Defined Radio Handbook", Rodger Hosking">&laquo; Книга "Software Defined Radio Handbook", Rodger Hosking</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/12/02/title/" title="Next Post: Zombie Ninjas Attack">Zombie Ninjas Attack &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/12/02/title/">Zombie Ninjas Attack</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/23/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3/">Проект видеоадаптера. Часть 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/16/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-software-defined-radio-handbook-rodger-hosking/">Книга "Software Defined Radio Handbook", Rodger Hosking</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/05/vga-%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580-%25d0%25bd%25d0%25b0-fpga/">Проект видеоадаптера. Часть 2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/25/%25d0%25bf%25d1%2580%25d0%25be-llvm/">Про LLVM</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

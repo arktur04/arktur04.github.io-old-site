@@ -1,0 +1,251 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Прерывания в Cortex M3. Часть 1 - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="По сравнению с микроконтроллерами ARM7, такими как LPC2368, в архитектуре Cortex M3 наибольшей модернизации подверглась система прерываний. Она стала &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://arktur04.github.io/blog/2010/11/12/%25d0%25bf%25d1%2580%25d0%25b5%25d1%2580%25d1%258b%25d0%25b2%25d0%25b0%25d0%25bd%25d0%25b8%25d1%258f-%25d0%25b2-cortex-m3-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-1/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="arktur04.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Прерывания в Cortex M3. Часть 1</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-11-12T23:31:52+05:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>11:31 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>По сравнению с микроконтроллерами ARM7, такими как LPC2368, в архитектуре Cortex M3 наибольшей модернизации подверглась система прерываний. Она стала существенно более сложной и гибкой. Ниже будут рассмотрены некоторые особенности нового контроллера прерываний (Nested Vectored Interrupt Controller, NVIC).</p>
+<p><strong><!--more-->Общие сведения</strong> о NVIC таковы:</p>
+<ul>
+<li> поддержка 35 векторных прерываний (в LPC17xx), всего ядро Cortex M3 может поддерживать до 112 прерываний</li>
+<li>поддержка как прерываний от периферии, так и системных исключений</li>
+<li> 32 программируемых уровней приоритета с возможностью маскирования</li>
+<li> перемещаемая таблица векторов</li>
+<li> поддержка программного прерывания</li>
+</ul>
+<p>Также NVIC поддерживает одно немаскируемое прерывание (NMI) от входа P2.10/NMI.</p>
+<p>Прерывания пронумерованы от 0 до 34, и включают в себя прерывания от таймеров, UART, внешние прерывания, а также прерывания от других периферийных устройств.</p>
+<p>Каждое прерывание может находится в одном из 4-х состояний:</p>
+<ul>
+<li>Неактивное/Inactive</li>
+<li>Отложенное/Pending</li>
+<li>Активное/Active</li>
+<li>Активное и отложенное/Active and pending (состояние возникает, когда во время обработки прерывания наступило прерывание от того же источника).</li>
+</ul>
+<p>Контроллер прерываний включает в себя следующие регистры:</p>
+<p>ISER0, ISER1 - Interrupt Set-Enable Registers</p>
+<p>ICER0-ICER1 - Interrupt Clear-Enable Registers</p>
+<p>ISPR0-ISPR1 - Interrupt Set-Pending Registers</p>
+<p>ICPR0-ICPR1 - Interrupt Clear-Pending Registers</p>
+<p>IABR0-IABR1 - Interrupt Active Bit Registers</p>
+<p>IPR0 - IPR8 - Interrupt Priority Registers (каждый регистр приоритета содержит 5-битные поля приоритета для 4-х прерываний)</p>
+<p>STIR - Software Trigger Interrupt Registers</p>
+<p>Подробное описание регистров NVIC приведено в документации на микроконтроллер.</p>
+<p><strong>Исключения (Exception)</strong></p>
+<p>Каждое прерывание является исключением, однако не каждое исключение является прерыванием. Помимо обычных прерываний, имеются системные исключения. Одно из таких исключений, SysTick, было рассмотрено здесь: <a href="http://32bit.me/?p=796">http://32bit.me/?p=796</a>. Системные исключения не входят в число 35 прерываний, которыми мы можем управлять через регистры NVIC, управление ими происходит через другие регистры, такие как System Handler Priority Registers (SHPR1 - SHPR3). Системные исключения также имеют приоритеты, однако у некоторых из них приоритеты фиксированы и <em>имеют отрицательные значения</em>. Это означает, что никакое прерывание с программируемым приоритетом не может иметь более высокий приоритет, чем прерывание с фиксированным отрицательным приоритетом.</p>
+<p>Однако никакой принципиальной разницы между прерываниями и системными исключениями нет.</p>
+<p><strong>Группирование прерываний по приоритетам</strong></p>
+<p>Самой интересной особенностью NVIC в Cortex M3 является возможность группирования прерываний по приоритетам.</p>
+<p>Что это такое? Каждому прерыванию может быть назначен приоритет и субприоритет. Допустим, у нас задействованы 4 прерывания таймеров: TIMER0-TIMER3, которым назначены следующие приоритеты и субприоритеты (обозначим их как P и S соответственно):</p>
+<p>TIMER0 - P = 0, S = 0</p>
+<p>TIMER1 - P = 1, S = 0</p>
+<p>TIMER2 - P = 1, S = 1</p>
+<p>TIMER3 - P = 2 S = 0</p>
+<p>Высшим приоритетом является нулевой, чем больше номер приоритета, тем приоритет ниже. Субприоритеты нумеруются аналогично: высшим субприоритетом является нулевой.</p>
+<p>Прерывания подчиняются следующим правилам:</p>
+<p>Прерывания с высшим приоритетом всегда прерывает обработку прерывания с более низким приоритетом. В рассмотренном примере прерывание TIMER0 прервёт обработку TIMER2, но TIMER1 не прервёт обработку TIMER2, так как они имеют одинаковый приоритет. Номер субприоритета при этом не имеет значения.</p>
+<p>Если выполняется обработка TIMER0, и в это время возникают прерывания TIMER1, TIMER2 и TIMER3, то их выполнение откладывается (pending). По окончании обработки TIMER0 контроллер прерываний начинает выполнение одного из отложенных прерываний, исходя из его приоритета и субприоритета. В рассмотренном примере после выполнения обработки TIMER0 отложенные прерывания будут выполняться в следующем порядке: TIMER1, TIMER2 и TIMER3.</p>
+<p>Выше упоминалось о том, что приоритет задаётся 5-битным полем в регистрах IPR0 - IPR8. Как задаётся субприоритет?</p>
+<p>Приоритет и субприоритет задаются в одном и том же 5-битном поле, при этом количество бит, отводимых на номер субприоритета задаётся программно в регистре AIRCR (Application Interrupt and Reset Control Register). Трёхбитовое поле PRIGROUP этого регистра определяет, сколько бит в поле приоритета будет отводиться под субприоритет (от 0 до 5). Для записи в этот регистр его необходимо "отпереть" ключом, записав в поле VECTKEYSTAT "магическое" число 0x5FA.</p>
+<p>Подробная информация по прерываниям и исключениям приведена в [1]: Chapter 34: Appendix: Cortex-M3 User Guide/3.3 Exception model</p>
+<p>Описание NVIC приведено в [1]: Chapter 6: LPC17xx Nested Vectored Interrupt Controller (NVIC)</p>
+<p><strong>Литература:</strong></p>
+<p>1. UM10360. LPC17xx User Manual. Rev 01 — 4 January 2010.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">{"login"=>"arktur04", "email"=>"arktur04@mail.ru", "display_name"=>"arktur04", "first_name"=>"", "last_name"=>""}</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2010-11-12T23:31:52+05:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>11:31 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/arm/'>arm</a>, <a class='category' href='/blog/categories/cortex-m3/'>cortex m3</a>, <a class='category' href='/blog/categories/mikrokontrolliery/'>микроконтроллеры</a>, <a class='category' href='/blog/categories/proghrammirovaniie/'>программирование</a>, <a class='category' href='/blog/categories/stat'i/'>статьи</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://arktur04.github.io/blog/2010/11/12/%25d0%25bf%25d1%2580%25d0%25b5%25d1%2580%25d1%258b%25d0%25b2%25d0%25b0%25d0%25bd%25d0%25b8%25d1%258f-%25d0%25b2-cortex-m3-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-1/" data-via="" data-counturl="http://arktur04.github.io/blog/2010/11/12/%25d0%25bf%25d1%2580%25d0%25b5%25d1%2580%25d1%258b%25d0%25b2%25d0%25b0%25d0%25bd%25d0%25b8%25d1%258f-%25d0%25b2-cortex-m3-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-1/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2010/11/11/repetitive-interrupt-timer/" title="Previous Post: Repetitive Interrupt Timer">&laquo; Repetitive Interrupt Timer</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2010/11/17/%25d0%25bf%25d1%2580%25d0%25b5%25d1%2580%25d1%258b%25d0%25b2%25d0%25b0%25d0%25bd%25d0%25b8%25d1%258f-%25d0%25b2-cortex-m3-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-2/" title="Next Post: Прерывания в Cortex M3. Часть 2">Прерывания в Cortex M3. Часть 2 &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/12/02/title/">Zombie Ninjas Attack</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/23/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3/">Проект видеоадаптера. Часть 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/16/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-software-defined-radio-handbook-rodger-hosking/">Книга "Software Defined Radio Handbook", Rodger Hosking</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/05/vga-%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580-%25d0%25bd%25d0%25b0-fpga/">Проект видеоадаптера. Часть 2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/25/%25d0%25bf%25d1%2580%25d0%25be-llvm/">Про LLVM</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

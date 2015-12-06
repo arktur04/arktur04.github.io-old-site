@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: микроконтроллеры | My Octopress Blog]]></title>
+  <link href="http://arktur04.github.io/blog/categories/mikrokontrolliery/atom.xml" rel="self"/>
+  <link href="http://arktur04.github.io/"/>
+  <updated>2015-12-06T14:37:44+05:00</updated>
+  <id>http://arktur04.github.io/</id>
+  <author>
+    <name><![CDATA[Your Name]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Плата прецизионного АЦП]]></title>
+    <link href="http://arktur04.github.io/blog/2015/02/14/%25d0%25bf%25d0%25bb%25d0%25b0%25d1%2582%25d0%25b0-%25d0%25bf%25d1%2580%25d0%25b5%25d1%2586%25d0%25b8%25d0%25b7%25d0%25b8%25d0%25be%25d0%25bd%25d0%25bd%25d0%25be%25d0%25b3%25d0%25be-%25d0%25b0%25d1%2586%25d0%25bf/"/>
+    <updated>2015-02-14T16:54:35+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/02/14/%d0%bf%d0%bb%d0%b0%d1%82%d0%b0-%d0%bf%d1%80%d0%b5%d1%86%d0%b8%d0%b7%d0%b8%d0%be%d0%bd%d0%bd%d0%be%d0%b3%d0%be-%d0%b0%d1%86%d0%bf</id>
+    <content type="html"><![CDATA[<p>Плата прецизионного АЦП на базе AD7760 (24 бита, 2,5 MSPS). Плата содержит сам АЦП, все необходимые стабилизаторы питания и фильтры, тактовый генератор, два источника опорного напряжения (4096 мВ и 2500 мВ) с возможностью выбора и выходом на другие узлы измерительной системы, цепи сброса и синхронизации с возможностью подключения внешних источников сигналов.</p>
+
+
+<p>Плата предназначена для использования совместно с платой микроконтроллера, для этого на плате установлены преобразователи уровня 2,5В &lt;-&gt; 3.3В. Есть возможность не устанавливать преобразователи уровня, и непосредственно использовать уровни 2,5В, что может быть полезно при использовании данной платы совместно с FPGA или DSP, имеющими логические уровни 2,5В.</p>
+
+
+<p>Входные цепи допускают установку прецизионных резисторов как в SMT, так и в выводном исполнении, что даёт возможность использовать отечественные резисторы C2-29.</p>
+
+
+<p>Плата имеет 4 слоя.</p>
+
+
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/02/top-2.jpg"><img class="alignnone size-medium wp-image-1915" alt="top-2" src="/assets/top-2-300x172.jpg" width="300" height="172" /></a></p>
+
+
+<p>Далее под катом <!--more--></p>
+
+
+<p><a style="line-height: 1.5em;" href="http://32bit.me/wordpress/wp-content/uploads/2015/02/top-1.jpg"><img class="alignnone size-medium wp-image-1916" alt="top-1" src="/assets/top-1-300x170.jpg" width="300" height="170" /></a></p>
+
+
+<p>Вид сверху.</p>
+
+
+<p>&nbsp;</p>
+
+
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/02/bottom-1.jpg"><img class="alignnone size-medium wp-image-1917" alt="bottom-1" src="/assets/bottom-1-300x201.jpg" width="300" height="201" /></a></p>
+
+
+<p>Вид снизу.</p>
+
+
+<p>&nbsp;</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Epyphany E16G301]]></title>
+    <link href="http://arktur04.github.io/blog/2014/10/14/epyphany-e16g301/"/>
+    <updated>2014-10-14T19:11:13+06:00</updated>
+    <id>http://arktur04.github.io/blog/2014/10/14/epyphany-e16g301</id>
+    <content type="html"><![CDATA[<p>Интересная микросхема. Матричный FPU с 16 ядрами, объединенными в массив 4х4. Есть поддержка gcc и gdb. Предназначена для применения совместно с fpga и микропроцессорами в задачах обработки сигналов и других, требующих высокой производительности вычислений с плавающей точкой.</p>
+
+
+<p>Допускается объединение микросхем в массив, содержащий в общей сложности до 64х64 = 4096 ядер.</p>
+
+
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2014/10/epiphany.jpg"><img class="alignnone size-full wp-image-1861" alt="epiphany" src="/assets/epiphany.jpg" width="721" height="353" /></a></p>
+
+
+<p>&nbsp;</p>
+
+
+<p>Прочитал доки:<br />
+1. Epiphany Architecture Reference<br />
+2. Epiphany SDK Reference</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Книга "Computer Organization and Design" D. Patterson, J. Hennessy]]></title>
+    <link href="http://arktur04.github.io/blog/2014/06/03/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-computer-organization-and-design-d-patterson-j-hennessy/"/>
+    <updated>2014-06-03T16:44:15+06:00</updated>
+    <id>http://arktur04.github.io/blog/2014/06/03/%d0%ba%d0%bd%d0%b8%d0%b3%d0%b0-computer-organization-and-design-d-patterson-j-hennessy</id>
+    <content type="html"><![CDATA[<p>В книге подробно рассматривается архитектура современных вычислительных систем, процессоров, рассматриваются проблемы и сложности, возникающие при разработке процессоров с конвейерной архитектурой, с параллелизмом вычислений, с предсказанием переходов и опережающим исполнением. Рассматриваются архитектуры MIPS и IA-64.</p>
+
+
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2014/06/2computer_organization_and_design.jpg"><img class="alignnone size-medium wp-image-1810" alt="2computer_organization_and_design" src="/assets/2computer_organization_and_design-268x300.jpg" width="268" height="300" /></a></p>
+
+
+<p>Достаточно интересная книга для тех, кто занимается разработкой вычислительных систем.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Raspberry Pi и контроль температуры]]></title>
+    <link href="http://arktur04.github.io/blog/2014/01/16/raspberry-pi-%25d0%25b8-%25d0%25ba%25d0%25be%25d0%25bd%25d1%2582%25d1%2580%25d0%25be%25d0%25bb%25d1%258c-%25d1%2582%25d0%25b5%25d0%25bc%25d0%25bf%25d0%25b5%25d1%2580%25d0%25b0%25d1%2582%25d1%2583%25d1%2580%25d1%258b/"/>
+    <updated>2014-01-16T19:43:47+06:00</updated>
+    <id>http://arktur04.github.io/blog/2014/01/16/raspberry-pi-%d0%b8-%d0%ba%d0%be%d0%bd%d1%82%d1%80%d0%be%d0%bb%d1%8c-%d1%82%d0%b5%d0%bc%d0%bf%d0%b5%d1%80%d0%b0%d1%82%d1%83%d1%80%d1%8b</id>
+    <content type="html"><![CDATA[<p>Я уже <a href="http://32bit.me/?p=1768">писал</a> про самодельную "Time Capsule" на базе Raspberry Pi. Она работает хорошо, если не считать проблемы с перегревом. В корпусе устройства установлен вентилятор, но он издаёт при работе существенный шум.</p>
+
+
+<p>Итак, я решил подключить к RPi термодатчик и сделать автоматическое управление вентилятором.</p>
+
+
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2014/01/temp1.png"><img class="alignnone size-medium wp-image-1790" title="temp1" src="/assets/temp1-300x225.png" alt="" width="300" height="225" /></a></p>
+
+
+<p>Далее под катом.<br />
+<!--more--><br />
+Схемотехнически тут всё очень просто: термодатчик Analog Devices ADT7301 с интерфейсом SPI, вентилятор 40х40 мм, подключенный через транзисторный ключ к выходу PWM.</p>
+
+
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2014/01/термодатчик1.jpg"><img class="alignnone size-medium wp-image-1793" title="термодатчик" src="/assets/&#1090;&#1077;&#1088;&#1084;&#1086;&#1076;&#1072;&#1090;&#1095;&#1080;&#1082;1-300x198.jpg" alt="" width="300" height="198" /></a></p>
+
+
+<p>Плата с термодатчиком.</p>
+
+
+<p>Датчик приклеен к радиатору источника питания (самая горячая точка в устройстве).</p>
+
+
+<p>Использование PWM позволяет включать вентилятор не на полные обороты, что делает его очень тихим. Управление вентилятором осуществляет скрипт на Python.</p>
+
+
+<p>Перед тем, как запустить скрипт, нужно поставить библиотеки для доступа к SPI и PWM.</p>
+
+
+<p><a href="https://github.com/doceme/py-spidev">py-spidev</a>: библиотека для SPI</p>
+
+
+<p><a href="https://github.com/WiringPi">Wiring-Pi</a>: библиотека для доступа к GPIO и PWM.</p>
+
+
+<p>Для получения доступа к SPI нужно отредактировать файл /etc/modprobe.d/raspi-blacklist.conf.</p>
+
+
+<p>В нём находятся такие строки:</p>
+
+
+<p>blacklist spi -bcm2708</p>
+
+
+<p>blacklist i2c -bcm2708</p>
+
+
+<p>Эти строки закрывают доступ к spi и i2c соответственно. Нужно закомментировать строку для spi:</p>
+
+
+<p>#blacklist spi -bcm2708</p>
+
+
+<p>и перезапускаем систему: sudo reboot.</p>
+
+
+<p>Управление вентилятором ступенчатое: есть два порога включения вентилятора, на 50% и на 100%. Есть небольшая тонкость: если подать на выключенный вентилятор сигнал PWM c 50% -м заполнением, он просто не раскрутится: не хватит подаваемой мощности для пуска двигателя. Поэтому на двигатель подаётся сначала кратковременный импульс со 100% заполнением, которого хватает для пуска мотора.</p>
+
+
+<p>В принципе, всё работает, однако хочется ещё и визуализировать данные температуры и оборотов вентилятора. Для этого были поставлены библиотеки <a href="http://www.numpy.org/">Numpy</a> и <a href="http://matplotlib.org/">Matplotlib</a>. Библиотека Matplotlib позволяет строить любые типы графиков, доступных в Matlab (то есть просто любые, в том числе 3D). Но тут же выяснилась и оборотная сторона: эти библиотеки очень тяжелые для RPi. Формирование картинки размером 800х600 с 2-d графиком занимает до 2-3 секунд (!), при частоте опроса датчика 1 раз в 5 с загрузка процессора составляет почти 100%, и достигает момента, когда RPi перестает откликаться на мышь и клавиатуру.</p>
+
+
+<p>Пример получаемого графика температуры приведен в начале поста.</p>
+
+
+<p>Исходный тескт скрипта приведен здесь:</p>
+
+
+<pre lang="python">import spidev    #for spi
+import wiringpi #for pwm
+import time
+from pylab import * #for chart
+import matplotlib.pyplot as plt
+
+tempTreshold1On = 50.0
+tempTreshold1Off = 47.0
+tempTreshold2On = 55.0
+tempTreshold2Off = 52.0
+
+speed0 = 0     # off
+speed1 = 512   # 50% speed
+speed2 = 1024  # 100% speed
+
+#--------------------------------
+#import 
+
+# spi init
+spi = spidev.SpiDev()
+spi.open(0, 0)
+# pwm init
+wiringpi.wiringPiSetupGpio()
+wiringpi.pinMode(18, 2)
+wiringpi.pwmWrite(18, 1024)
+
+n = 0 #current quantity of point in a chart
+temp_points = [] #list of temperature points
+speed_points = [] #list of fan speed points
+
+speed = speed0
+try:
+    while True:
+        # get 3 temperature values
+        resp = spi.xfer2([0, 0])
+        temp1 = resp[0] * 8 + resp[1]/32.0
+        time.sleep(0.1)
+        resp = spi.xfer2([0, 0])
+        temp2 = resp[0] * 8 + resp[1]/32.0
+        time.sleep(0.1)
+        resp = spi.xfer2([0, 0])
+        temp3 = resp[0] * 8 + resp[1]/32.0
+        #----------------------
+        #get the middle point of three values
+        if ((temp1 >= temp2) and (temp1 = temp3)):
+            temp = temp1
+        elif ((temp2 >= temp1) and (temp2 = temp3)):
+            temp = temp2
+        else:
+            temp = temp3
+        #-------------------
+        #find the current speed
+        if temp < tempTreshold1Off:
+            speed = speed0
+        if (temp > tempTreshold1Off) and (temp < tempTreshold1On):
+            if speed == speed2:
+                speed = speed1
+        if (temp > tempTreshold1On) and (temp < tempTreshold2Off):
+            if speed == speed0:
+                wiringpi.pwmWrite(18, 1024) #turn on a motor at max speed
+                time.sleep(0.5)
+            speed = speed1
+        if (temp > tempTreshold2Off) and (temp < tempTreshold2On):
+            if speed == speed0:
+                wiringpi.pwmWrite(18, 1024) #turn on a motor at max speed
+                time.sleep(0.5)
+                speed = speed1
+        if temp > tempTreshold2On:
+            speed = speed2
+        #-----------------------------
+        # set the motor speed
+        wiringpi.pwmWrite(18, speed)
+
+        print temp1, temp2, temp3, "temp =", temp, speed
+        # -----------------------------
+        # draw a chart
+        MAX_POINT = 12 # max quantity of point in the chart
+        if n < MAX_POINT:
+            n = n + 1
+        else:
+            temp_points.pop(0) #remove the first point
+            speed_points.pop(0) #remove the first point
+        temp_points.append(temp)
+        speed_points.append(speed * 100.0 / 1024.0) #fan speed in percents
+
+        print temp_points
+
+        fig, host = plt.subplots()
+
+        par1 = host.twinx()
+        t = arange((n - 1) * -5.0, 5.0, 5)
+
+        print t
+
+        p1, = host.plot(t, temp_points, "-b")
+        p2, = par1.step(t, speed_points, "-r", where = "post")
+
+        host.set_xlim(-60, 0)
+        host.set_ylim(25, 75)
+        par1.set_ylim(-10, 110)
+
+        host.set_xlabel("Time, min")
+        host.set_ylabel("Temperature, C")
+        par1.set_ylabel("Speed, %")
+
+        host.yaxis.label.set_color(p1.get_color())
+        par1.yaxis.label.set_color(p2.get_color())
+
+        host.grid()
+        #host.text('temp = {}' .format(temp))
+        savefig("temp.png")
+        #show()
+
+        time.sleep(5 * 60)  # period = 5 min
+    #end while
+
+except KeyboardInterrupt:
+    spi.close()
+#end try</pre>
+
+
+<p>Скрипт нужно запускать командой sudo python spi.py</p>
+
+
+<p>Некоторые пояснения к скрипту:<br />
+Чтение термодатчика происходит 3 раза, после этого выбирается среднее значение (не среднее арифметическое, а значение, лежащее между двумя другими). Это позволяет отфильтровать случайные выбросы показаний датчика.</p>
+
+
+<p>Порог выключения вентилятора ниже порога включения на 3 градуса, то есть функция включения вентилятора имеет некоторый гистерезис, это позволяет избежать частых включений и выключений двигателя (кстати, на графике вверху видно, что двигатель включается и выключается периодически, чтобы этого не происходило, нужно изменить пороговые значения).<br />
+При включении двигателя на 50% мощности из выключенного состояния он кратковременно включается на полную мощность, причины поясняются выше.</p>
+
+
+<p>В итоге я оставил в устройстве простой вариант скрипта, без визуализации. Можно попробовать другую библиотеку, полегче, но есть и другой способ. В настоящее время существуют облачные сервисы логгинга данных с датчиков, например, <a href="http://www.sensorcloud.com/">SensorCloud</a>. У сервиса есть документированное API, позволяющее отправлять данные по протоколу https. Если объем данных не превышает 3 млн. точек в месяц, сервисом можно пользоваться бесплатно.</p>
+
+
+<p>Но это уже другая история.</p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Об отладке Arduino и VisualMicro]]></title>
+    <link href="http://arktur04.github.io/blog/2013/12/31/%25d0%25be%25d0%25b1-%25d0%25be%25d1%2582%25d0%25bb%25d0%25b0%25d0%25b4%25d0%25ba%25d0%25b5-arduino-%25d0%25b8-visualmicro/"/>
+    <updated>2013-12-31T10:04:46+06:00</updated>
+    <id>http://arktur04.github.io/blog/2013/12/31/%d0%be%d0%b1-%d0%be%d1%82%d0%bb%d0%b0%d0%b4%d0%ba%d0%b5-arduino-%d0%b8-visualmicro</id>
+    <content type="html"><![CDATA[<p>Решил поиграться с Arduino. Для того, чтобы писать и отлаживать код, решил поставить что-либо более приспособленное для этой цели, чем Arduino IDE. Первое, что пришло в голову, это Eclipse + avr-gcc. Увы, настроить эту связку очень непросто.</p>
+
+
+<p>В итоге без проблем установился только Arduino Eclipse Plugin отсюда: <a href="http://www.baeyens.it/eclipse/">http://www.baeyens.it/eclipse/</a>. Но, к сожалению, он не имеет возможности установки breakpoint-ов и просмотра переменных в программе.</p>
+
+
+<p>Второй попыткой стала связка Microsoft Visual Studio 2012 и плагина Visual Micro. Всё поставилось без проблем (подсказка: на VS2013 плагин не ставится). Для наиболее простой установки плагина на VS2012 нужно сделать следующее: Установить Visual Micro, в VS вызвать add-in manager (меню Tools), в нем поставить чекбокс на Visual Micro Arduino. Потом идём в папку установки Visual Micro (например, C:\Program Files (x86)\Visual Micro\Visual Micro for Arduino) и запускаем MicroManager.exe. Нажимаем на кнопку Reset напротив надписи Visual Studio 2012. Установка готова.</p>
+
+
+<p>Открываем новый скетч (File-&gt;New-&gt;Scetch Project), копируем что-нибудь из примеров, подключаем Arduino и нажимаем F5. Скетч компилируется и загружается в ардуино. Теперь о точках останова.</p>
+
+
+<p>Для того, чтобы все возможности отладки работали, выбираем проект в SolutionExplorer, в окне Properties ставим Misc-&gt;(MicroDebug) = Full. Также можно настроить раздел Micro Debug Reporting, если вы хотите видеть состояние дискретных и аналоговых портов.</p>
+
+
+<p>Ставим брейкпоинт, как обычно, и снова загружаем код в плату по F5. Код загружается и останавливается на брейкпоинте. Для того, чтобы продолжить выполнение кода, нужно снова нажать на F5. Теперь самое интересное. При запуске появляется окно Test | Expressions, в котором можно просматривать значения переменных и выражений, но оно пустое. Для того, чтобы в нем отображались значения переменных в точке останова, нажимаем правой кнопкой мыши на красный кружочек, нажимаем When Hit..., ставим галочку на "Print a message", и вписываем, например, следующее: i={i=?}, n={n=?}, где i и n - имена переменных, которые нам нужно просматривать. Снова загружаем код в плату, всё работает, значения переменных отображаются.</p>
+
+
+<p>Разумеется, можно указывать и условия для точки останова, и сообщения, которые будут выводиться при попадании в точку останова.</p>
+
+
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2013/12/screen.jpg"><img class="alignnone size-medium wp-image-1781" title="screen" src="/assets/screen-300x225.jpg" alt="" width="300" height="225" /></a></p>
+
+
+<p>Нажмите на картинку для увеличения.</p>
+
+]]></content>
+  </entry>
+  
+</feed>

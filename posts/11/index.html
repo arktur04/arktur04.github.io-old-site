@@ -1,0 +1,511 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="Программа для перевода изображений в массив С. Переводит изображение в массивы чисел 32 бита, 16 бит (5+5+5), а также 8 бит с палитрой (также &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://arktur04.github.io/posts/11/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="arktur04.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div class="blog-index">
+  
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/02/29/%25d0%25ba%25d0%25be%25d0%25bd%25d0%25b2%25d0%25b5%25d1%2580%25d1%2582%25d0%25be%25d1%2580-%25d0%25b8%25d0%25b7%25d0%25be%25d0%25b1%25d1%2580%25d0%25b0%25d0%25b6%25d0%25b5%25d0%25bd%25d0%25b8%25d1%258f-%25d0%25b2-%25d0%25ba%25d0%25be%25d0%25b4/">Конвертор изображения в код</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-02-29T23:49:41+06:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>11:49 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Программа для перевода изображений в массив С. Переводит изображение в массивы чисел 32 бита, 16 бит (5+5+5), а также 8 бит с палитрой (также создается массив палитры).</p>
+<p>Загружаем картинку:</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2012/02/scr1.jpg"><img class="alignnone size-medium wp-image-1510" title="scr1" src="/assets/scr1-268x300.jpg" alt="" width="268" height="300" /></a></p>
+<p>Выбираем палитру (если хотим сконвертировать изображение в 8-битный формат):</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2012/02/scr2.jpg"><img class="alignnone size-medium wp-image-1512" title="scr2" src="/assets/scr2-300x162.jpg" alt="" width="300" height="162" /></a></p>
+<p>Получаем:</p>
+<pre lang="c" line="1">
+{
+0x52, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF,
+0xFF, 0xFF, 0xFF, 0xFF, 0xAD, 0x49, 0xFF, 0xFF, 0x52, 0x09, 0xAD, 0xA4, 0x5B,
+0xFF, 0xFF, 0xFF, 0xA4, 0x00, 0xF6, 0xFF, 0xAD, 0x09, 0x09, 0x09, 0x52, 0xAD,
+0xFF, 0xFF, 0xF6, 0x00, 0x09, 0x09, 0x09, 0x00, 0xA4, 0xFF, 0xF6, 0x5B, 0x09,
+0x49, 0x00, 0x5B, 0xF6, 0xFF, 0xFF, 0x52, 0x09, 0x09, 0x09, 0x09, 0x5B, 0xFF,
+0xFF, 0xF6, 0x52, 0x09, 0x49, 0x00, 0xA4, 0xFF, 0xFF, 0xFF, 0xAD, 0x00, 0x09,</pre>
+<p>Получаемый код отформатирован по ширине (в колонку не более 80 символов шириной).</p>
+<p>Язык C#, среда разработки Visual Studio 2010.</p>
+<p>Ссылка для скачивания программы и исходников: <a href="https://bitbucket.org/arktur04/pictureencoder">https://bitbucket.org/arktur04/pictureencoder</a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2012/02/21/%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580-ethernet/">Адаптер Ethernet</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-02-21T21:12:44+06:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2012</span></span> <span class='time'>9:12 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Плата расширения для прибора, включает в себя адаптер Ethernet, слот для SD-карты и некоторую дополнительную логику на CPLD Altera.</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2012/02/pic2.jpg"><img class="alignnone size-medium wp-image-1498" title="pic2" src="/assets/pic2-300x180.jpg" alt="" width="300" height="180" /></a></p>
+<p></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2012/02/21/%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580-ethernet/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/12/31/%25d0%25b7%25d0%25b4%25d0%25b5%25d1%2581%25d1%258c-%25d1%2580%25d0%25b0%25d0%25b1%25d0%25be%25d1%2582%25d0%25b0%25d1%258e%25d1%2582-%25d0%25bd%25d0%25b0%25d1%2588%25d0%25b8-%25d0%25bf%25d1%2580%25d0%25b8%25d0%25b1%25d0%25be%25d1%2580%25d1%258b/">Здесь работают наши приборы</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-12-31T01:16:38+06:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2011</span></span> <span class='time'>1:16 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://32bit.me/wordpress/wp-content/uploads/2011/12/IMG031.jpg"><img class="alignnone size-medium wp-image-1481" title="IMG031" src="/assets/IMG031-300x225.jpg" alt="" width="300" height="225" /></a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/12/11/%25d0%25be%25d0%25b1%25d0%25bc%25d0%25b5%25d0%25bd-%25d0%25b4%25d0%25b0%25d0%25bd%25d0%25bd%25d1%258b%25d0%25bc%25d0%25b8-%25d0%25bc%25d0%25b5%25d0%25b6%25d0%25b4%25d1%2583-%25d0%25ba%25d0%25be%25d0%25bd%25d1%2582%25d1%2580%25d0%25be%25d0%25bb%25d0%25bb%25d0%25b5%25d1%2580%25d0%25b0%25d0%25bc%25d0%25b8-icp-das-%25d0%25b2/">Обмен данными между контроллерами ICP DAS в программах ISAGraf</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-12-11T09:29:30+06:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>9:29 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Рассмотрены способы обмена данными и контроля целостности линии связи.</p>
+<p>Пусть существует система, состоящая из нескольких (двух или более) ПЛК, которые взаимодействуют друг с другом путем обмена переменными.</p>
+<p>При этом один из ПЛК является ведущим (управляющим), а второй – ведомым (управляемым). Управляемый контроллер реализует локальные регуляторы объекта, получая задания от ведущего контроллера. При этом ключевое значение имеет контроль целостности линии связи, при обрыве линии связи ведомый контроллер должен перевести объект в некоторое заданное «безопасное» состояние. Ниже рассмотрены способы контроля целостности линии при различных способах взаимодействия контроллеров.</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2011/12/Fig-controllers11.jpg"><img class="alignnone size-medium wp-image-1426" title="Fig-controllers1" src="/assets/Fig-controllers11-300x84.jpg" alt="" width="300" height="84" /></a></p>
+<p>Рис. 1. Пример системы из двух контроллеров</p>
+<p></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2011/12/11/%25d0%25be%25d0%25b1%25d0%25bc%25d0%25b5%25d0%25bd-%25d0%25b4%25d0%25b0%25d0%25bd%25d0%25bd%25d1%258b%25d0%25bc%25d0%25b8-%25d0%25bc%25d0%25b5%25d0%25b6%25d0%25b4%25d1%2583-%25d0%25ba%25d0%25be%25d0%25bd%25d1%2582%25d1%2580%25d0%25be%25d0%25bb%25d0%25bb%25d0%25b5%25d1%2580%25d0%25b0%25d0%25bc%25d0%25b8-icp-das-%25d0%25b2/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/12/09/%25d0%25bf%25d0%25b8%25d1%2582%25d0%25b0%25d0%25bd%25d0%25b8%25d0%25b5-%25d0%25bf%25d0%25be%25d0%25b4%25d1%2581%25d0%25b2%25d0%25b5%25d1%2582%25d0%25ba%25d0%25b8-lcd/">Питание подсветки LCD</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-12-09T22:27:48+06:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>10:27 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>LCD-индикатор MI0350CT-3 имеет подсветку из соединенных последовательно светодиодов. Для питания такой подсветки необходим преобразователь напряжения с выходным напряжением от 16,8В до 21,6В и током до 20мА. Кроме этого, необходимо иметь возможность программного регулирования яркости подсветки.</p>
+<p>На рисунке показана схема повышающего преобразователя, питающего нагрузку стабильным током 20мА. Преобразователь построен на основе микросхемы LM2733XMF.</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2011/12/Fig1.jpg"><img class="alignnone size-medium wp-image-1404" title="Fig1" src="/assets/Fig1-300x133.jpg" alt="" width="300" height="133" /></a></p>
+<p>Рис. 1. Принципиальная схема преобразователя (нажмите для увеличения).</p>
+<p>Ток в нагрузке (в режиме стабилизации тока) задается резистором R4, делитель напряжения R2 R3 служит для ограничения выходного напряжения при разомкнутом выходе (режим стабилизации напряжения). Без цепи R2 R3 напряжение на выходе при отсутствии нагрузки будет неограниченно расти до выхода из строя микросхемы преобразователя.</p>
+<p></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2011/12/09/%25d0%25bf%25d0%25b8%25d1%2582%25d0%25b0%25d0%25bd%25d0%25b8%25d0%25b5-%25d0%25bf%25d0%25be%25d0%25b4%25d1%2581%25d0%25b2%25d0%25b5%25d1%2582%25d0%25ba%25d0%25b8-lcd/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/10/28/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-%25d0%25b4%25d1%258c%25d1%258f%25d0%25ba%25d0%25be%25d0%25bd%25d0%25be%25d0%25b2-%25d0%25b2-%25d0%25bf-matlab-7-r2006r2007-%25d1%2581%25d0%25b0%25d0%25bc%25d0%25be%25d1%2583%25d1%2587%25d0%25b8%25d1%2582%25d0%25b5%25d0%25bb%25d1%258c/">Книга Дьяконов В. П. "Matlab 7.*/R2006/R2007. Самоучитель"</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-10-28T20:40:33+06:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>8:40 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Хороший учебник, позволяющий несколько упорядочить знание Matlab. Большое внимание уделено визуализации различных функций (в 2D и 3D). Однако расширения Matlab, и, в первую очередь, Simulink, рассмотрены в виде "обзора", без углубления в тему.</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2011/10/matlab_pic.jpg"><img class="alignnone size-medium wp-image-1368" title="matlab_pic" src="/assets/matlab_pic-209x300.jpg" alt="" width="209" height="300" /></a></p>
+<p>В целом книга хороша для первого знакомства с Matlab, однако для более детального изучения нужна дополнительная литература.<br />
+Книга содержит 768 страниц.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/10/22/%25d0%25bf%25d1%2580%25d0%25b8%25d0%25b1%25d0%25be%25d1%2580-%25d0%25bd%25d0%25b0-%25d0%25be%25d0%25b1%25d1%258a%25d0%25b5%25d0%25ba%25d1%2582%25d0%25b5/">Прибор на объекте</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-10-22T13:56:58+06:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2011</span></span> <span class='time'>1:56 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Фото прибора на объекте.</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2011/10/pic2.jpg"><img class="alignnone size-medium wp-image-1364" title="pic2" src="/assets/pic2-300x225.jpg" alt="" width="300" height="225" /></a></p>
+<p>Квадратный ящик сверху - самописец, подключенный к выходу 4-20 мА прибора.</p>
+<p>Под катом еще фото.</p>
+<p></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2011/10/22/%25d0%25bf%25d1%2580%25d0%25b8%25d0%25b1%25d0%25be%25d1%2580-%25d0%25bd%25d0%25b0-%25d0%25be%25d0%25b1%25d1%258a%25d0%25b5%25d0%25ba%25d1%2582%25d0%25b5/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/10/13/%25d1%2581%25d0%25ba%25d1%2580%25d0%25b8%25d0%25bd%25d1%2588%25d0%25be%25d1%2582%25d1%258b-%25d1%2581-%25d1%258d%25d0%25ba%25d1%2580%25d0%25b0%25d0%25bd%25d0%25b0-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0/">Скриншоты с экрана устройства</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-10-13T19:05:54+06:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>7:05 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Для получения скриншотов с экранов устройств была разработана маленькая утилитка, получающая текущее изображение по Rs-232.</p>
+<p><img class="alignnone size-full wp-image-1342" title="new-2" src="/assets/new-2.png" alt="" width="170" height="209" /></p>
+<p>Сама утилитка написана на C#, в программу устройства был добавлен небольшой фрагмент, отправляющий в UART изображение из буфера:</p>
+<pre lang="c">switch(buf[1])
+{
+case 0x03: //read multiple holding registers (0x04)
+  ...
+  break;
+//Другие команды Modbus
+...
+
+case 0xFF: //  Команда получения скриншота
+
+...
+  return PrintScreen(uartNum);
+};</pre>
+<p>Таким образом, стандартные команды Modbus "расширяются" специальной командой с кодом 0xFF, при получении которой устройство посылает в порт копию экрана (для монохромного экрана 128*64 это составляет ровно 1 кбайт данных).</p>
+<p>Утилитка очень простая, небольшое (но, как оказалось, легко решаемое) затруднение вызвал тот факт, что С# работает с COM-портом не так, как другие системы (например, Delphi).</p>
+<p>C# создает отдельный поток исполнения для обработчика события приема сообщения COM-порта. А раз это отдельный поток, в нем нельзя отрисовывать изображение (операции с графикой не являются в .Net потокобезопасными).</p>
+<p>Проблему можно решить двумя путями: верным и неверным.</p>
+<p></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2011/10/13/%25d1%2581%25d0%25ba%25d1%2580%25d0%25b8%25d0%25bd%25d1%2588%25d0%25be%25d1%2582%25d1%258b-%25d1%2581-%25d1%258d%25d0%25ba%25d1%2580%25d0%25b0%25d0%25bd%25d0%25b0-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/10/10/%25d1%2581%25d1%2582%25d0%25b5%25d0%25ba-%25d0%25b8-%25d0%25ba%25d1%2583%25d1%2587%25d0%25b0/">Стек и куча</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-10-10T20:16:57+06:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>8:16 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Вообще-то это уже было здесь в комментариях, но, чтобы не забыть, выложу это в посте.</p>
+<p>Настройки размера кучи и стека в IAR делаются здесь:</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2011/10/pic.jpg"><img class="alignnone size-medium wp-image-1339" title="pic" src="/assets/pic-300x271.jpg" alt="" width="300" height="271" /></a></p>
+<p>Под кучей (heap) понимается динамически распределяемая память (цитата из Википедии: "<em><strong>Ку́ча</strong> (англ. heap) в информатике и программировании — название структуры данных, с помощью которой реализована динамически распределяемая память приложения</em>"), хотя настоящие снобы должны знать, что куча - это совсем другое (цитата из англоязычной Википедии: "<em>In computer science, a <strong>heap</strong> is a specialized tree-based data structure that satisfies the heap property: if B is a child node of A, then key(A) ≥ key(B).</em>")</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/10/03/%25d0%25b0%25d0%25bd%25d0%25b0%25d0%25bb%25d0%25be%25d0%25b3%25d0%25be-%25d1%2586%25d0%25b8%25d1%2584%25d1%2580%25d0%25be%25d0%25b2%25d0%25be%25d0%25b5-%25d0%25bf%25d1%2580%25d0%25b5%25d0%25be%25d0%25b1%25d1%2580%25d0%25b0%25d0%25b7%25d0%25be%25d0%25b2%25d0%25b0%25d0%25bd%25d0%25b8%25d0%25b5-%25d0%25b4%25d0%25bb%25d1%258f-2/">Аналого-цифровое преобразование для начинающих</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-10-03T20:35:44+06:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2011</span></span> <span class='time'>8:35 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>В этой статье рассмотрены основные вопросы, касающиеся принципа действия АЦП различных типов. При этом некоторые важные теоретические выкладки, касающиеся математического описания аналого-цифрового преобразования остались за рамками статьи, но приведены ссылки, по которым заинтересованный читатель сможет найти более глубокое рассмотрение теоретических аспектов работы АЦП. Таким образом, статья касается в большей степени понимания общих принципов функционирования АЦП, чем теоретического анализа их работы.</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2011/10/2c166541.jpg"><img class="alignnone size-medium wp-image-1332" title="2c166541" src="/assets/2c166541-300x113.jpg" alt="" width="300" height="113" /></a></p>
+<p><em>Полный текст опубликован на Хабрахабре: <a href="http://habrahabr.ru/blogs/easyelectronics/125029/">http://habrahabr.ru/blogs/easyelectronics/125029/</a></em></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  <div class="pagination">
+    
+      <a class="prev" href="/posts/12">&larr; Older</a>
+    
+    <a href="/blog/archives">Blog Archives</a>
+    
+    <a class="next" href="/posts/10">Newer &rarr;</a>
+    
+  </div>
+</div>
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/12/02/title/">Zombie Ninjas Attack</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/23/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3/">Проект видеоадаптера. Часть 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/16/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-software-defined-radio-handbook-rodger-hosking/">Книга "Software Defined Radio Handbook", Rodger Hosking</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/05/vga-%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580-%25d0%25bd%25d0%25b0-fpga/">Проект видеоадаптера. Часть 2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/25/%25d0%25bf%25d1%2580%25d0%25be-llvm/">Про LLVM</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

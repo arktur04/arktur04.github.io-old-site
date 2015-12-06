@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Старый проект - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="Когда-то давно была идея разработать собственный программируемый логический контроллер (ПЛК). Тогда эта идея казалась вполне здравой, и ряд подобных &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://arktur04.github.io/blog/2012/04/04/%25d1%2581%25d1%2582%25d0%25b0%25d1%2580%25d1%258b%25d0%25b9-%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="arktur04.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Старый проект</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2012-04-04T23:21:32+06:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>11:21 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Когда-то давно была идея разработать собственный программируемый логический контроллер (ПЛК). Тогда эта идея казалась вполне здравой, и ряд подобных отечественных разработок существовал.<br />
+Понятно, что аппаратная составляющая ПЛК довольно проста, и затруднений с ее реализацией не возникло. Самое сложное - программная часть.</p>
+<p>Известные мне ПЛК работают либо в стандарте IEC-61131-3 (самый распространенный вариант), либо программируются иными способами: в среде Matlab (некоторые контроллеры ICP DAS), в собственной среде разработки (Siemens Logo), на языке С (фактически, контроллеры под IEC61131-3 очень часто поддерживают написание собственных функций на С).</p>
+<p>В общем, было решено, что наиболее удобным для пользователей, не имеющих подготовки в области программирования, является графическая среда разработки, похожая на язык FBD стандарта IEC 61131-3 (FBD - Functional Block Diagram), или на среду разработки Siemens Logo.</p>
+<p>Такая среда была мной разработана, носила название MicroSwitch и включала в себя графические редакторы диаграмм двух видов: FBD и конечных автоматов. Скриншоты приведены ниже.</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2012/04/Screen_fbd.png"><img class="alignnone size-medium wp-image-1554" title="Screen_fbd" src="/assets/Screen_fbd-300x219.png" alt="" width="300" height="219" /></a><br />
+Рис. 1. Редактор диаграмм функциональных блоков. (нажмите на картинку для увеличения)</p>
+<p><!--more--></p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2012/04/Screen_fsm.png"><img class="alignnone size-medium wp-image-1555" title="Screen_fsm" src="/assets/Screen_fsm-300x220.png" alt="" width="300" height="220" /></a><br />
+Рис. 2. Редактор диаграмм конечных автоматов. (нажмите на картинку для увеличения)</p>
+<p>Среда позволяла в графическом виде описывать работу программы, используя разнообразные функции и типы данных: логические, вещественные и целочисленные. Среда должна была позволять редактировать "схемы", производить эмуляцию их работы и генерировать исполняемый код для микроконтроллера (т.е. генерировать С-код, который затем компилировался штатным компилятором).</p>
+<p>Однако разработка была завершена на этапе графического редактора, и вряд ли будет когда-либо продолжена. Тем не менее, сама идея была красивая. Она состояла в том, что программа описывалась в виде множества иерархических конечных автоматов, при этом было возможно графическое описание параллельных потоков, различных взаимодействий этих автоматов, функций переходов автоматов и т.п., всё это делалось с помощью всего лишь двух вышеупомянутых видов диаграмм. Пример такой диаграммы приведен на рис. 3.</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2012/04/image001.png"><img class="alignnone size-medium wp-image-1558" title="image001" src="/assets/image001-300x171.png" alt="" width="300" height="171" /></a></p>
+<p>Рис. 3. Пример диаграммы автомата. (нажмите на картинку для увеличения)</p>
+<p>На графический редактор было получено свидетельство о государственной регистрации.</p>
+<p>Весь этот проект был моим личным (не по работе), и все права на него принадлежат, соответственно, только мне. Я мог бы выложить исходные тексты в общий доступ, на случай, если кто-либо заинтересуется и возьмётся продолжать, однако всё это написано на Delphi, который давно вышел из моды. Переписывать всё на чём-либо более современном у меня нет ни времени, ни желания.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">{"login"=>"arktur04", "email"=>"arktur04@mail.ru", "display_name"=>"arktur04", "first_name"=>"", "last_name"=>""}</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2012-04-04T23:21:32+06:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2012</span></span> <span class='time'>11:21 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/plk/'>ПЛК</a>, <a class='category' href='/blog/categories/mikrokontrolliery/'>микроконтроллеры</a>, <a class='category' href='/blog/categories/proghrammirovaniie/'>программирование</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://arktur04.github.io/blog/2012/04/04/%25d1%2581%25d1%2582%25d0%25b0%25d1%2580%25d1%258b%25d0%25b9-%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582/" data-via="" data-counturl="http://arktur04.github.io/blog/2012/04/04/%25d1%2581%25d1%2582%25d0%25b0%25d1%2580%25d1%258b%25d0%25b9-%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2012/03/31/xml-%25d1%2581%25d0%25b5%25d1%2580%25d0%25b8%25d0%25b0%25d0%25bb%25d0%25b8%25d0%25b7%25d0%25b0%25d1%2586%25d0%25b8%25d1%258f-ip-%25d0%25b0%25d0%25b4%25d1%2580%25d0%25b5%25d1%2581%25d0%25b0-%25d0%25b2-c/" title="Previous Post: XML-сериализация IP-адреса в C#">&laquo; XML-сериализация IP-адреса в C#</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2012/04/05/%25d1%2581%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d1%2582%25d0%25b5%25d0%25bb%25d1%258c%25d1%2581%25d1%2582%25d0%25b2%25d0%25be-%25d0%25be-%25d0%25b3%25d0%25be%25d1%2581%25d1%2583%25d0%25b4%25d0%25b0%25d1%2580%25d1%2581%25d1%2582%25d0%25b2%25d0%25b5%25d0%25bd%25d0%25bd%25d0%25be%25d0%25b9-%25d1%2580%25d0%25b5%25d0%25b3/" title="Next Post: Свидетельство о государственной регистрации программы">Свидетельство о государственной регистрации программы &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/12/02/title/">Zombie Ninjas Attack</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/23/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3/">Проект видеоадаптера. Часть 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/16/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-software-defined-radio-handbook-rodger-hosking/">Книга "Software Defined Radio Handbook", Rodger Hosking</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/05/vga-%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580-%25d0%25bd%25d0%25b0-fpga/">Проект видеоадаптера. Часть 2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/25/%25d0%25bf%25d1%2580%25d0%25be-llvm/">Про LLVM</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

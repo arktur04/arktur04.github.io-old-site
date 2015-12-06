@@ -1,0 +1,265 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>FPU. Часть 4. Умножитель, тест и RTL - My Octopress Blog</title>
+  <meta name="author" content="Your Name">
+
+  
+  <meta name="description" content="Предыдущая часть здесь. Продолжим разработку FPU. В предыдущих частях был рассмотрен делитель вещественных чисел Деление является самым сложным в &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://arktur04.github.io/blog/2015/04/23/fpu-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-4-%25d1%2583%25d0%25bc%25d0%25bd%25d0%25be%25d0%25b6%25d0%25b8%25d1%2582%25d0%25b5%25d0%25bb%25d1%258c-%25d1%2582%25d0%25b5%25d1%2581%25d1%2582-%25d0%25b8-rtl/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="My Octopress Blog" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">My Octopress Blog</a></h1>
+  
+    <h2>A blogging framework for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="https://www.google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="sitesearch" value="arktur04.github.io">
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">FPU. Часть 4. Умножитель, тест и RTL</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-04-23T11:05:54+05:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2015</span></span> <span class='time'>11:05 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>Предыдущая часть <a href="http://32bit.me/?p=1971">здесь</a>.</p>
+<p><a style="line-height: 1.5em;" href="http://32bit.me/wordpress/wp-content/uploads/2015/04/pic.png"><img class="alignnone size-large wp-image-2027" alt="pic" src="/assets/pic-1024x562.png" width="1024" height="562" /></a></p>
+<p>Продолжим разработку FPU. В предыдущих частях был рассмотрен делитель вещественных чисел Деление является самым сложным в реализации арифметическим действием. Следующим по сложности идёт сложение, а самой простой операцией является умножение. В этой части рассмотрен умножитель.</p>
+<p><!--more-->Тест умножителя полностью аналогичен тесту делителя. Напоминаю, что в данном проекте тест основан на текстовом файле, в котором записаны тройки чисел: операнды и результат. Текстовый файл формируется специальной программой, исходный текст которой (на C++) прилагается к проекту. В тестовом наборе присутствуют все комбинации "особых" значений, таких как NaN, +/-Inf, +/-0 и десять тысяч случайных пар операндов.</p>
+<p>В самом умножителе нет ничего сложного, для умножения двух вещественных чисел в формате IEEE 754 мы должны перемножить мантиссы чисел и сложить экспоненты. При перемножении мантисс целая часть результата может превышать 1, поэтому для целой части результата мы вводим дополнительный разряд и анализируем его после умножения. Если в этом разряде 1, то есть целая часть результата &gt;= 2, мы жолжны нормализовать результат, то есть сдвинуть его на 1 разряд вправо, и скорректировать экспоненту, прибавив к ней 1.</p>
+<p>Экспонента результата представляет собой сумму экспонент операндов минус величина сдвига экспоненты (1023 для 64-битного формата) плюс величина коррекции, 1 или 0, в зависимости от результата умножения мантисс. Почему нужно вычитать величину сдвига и что это вообще такое?</p>
+<p>В стандарте IEEE 754 экспонента числа записывается со со сдвигом. Т.е., если экспонента равна нулю, то в разряды экспоненты будет записано 1023, или 0x3ff (здесь и далее значения для 64-битных чисел). Если экспонента равна -1022, то в разряды экспоненты будет записано число 1, если экспонента равна 1023, то будет записано число 2066, или 0x7fe. То. есть, exp = exp_signed + shift, где exp - содержимое разрядов экспоненты, exp_signed - значение экспоненты, shift - константа сдвига. Для того, чтобы после сложения экспонент получился верный результат, из суммы нужно вычесть константу сдвига:</p>
+<p>exp_result = exp1 + exp2 - shift = (exp_signed1 + shift) + (exp_signed2 + shift) - shift = exp_signed1 + exp_signed2 - shift .</p>
+<p>Если в разрядах константы содержится ноль, то число, в соответствии со стандартом IEEE 754 является денормализованным. Наш FPU не обрабатывает денормализованные числа, считая их нулями. На практике, денормализованным числам соответствуют числа, имеющие порядок 2^-1023, т.е. 10^-308. Эти числа настолько малы, что очень редко применяются на практике, и для упрощения FPU их не обрабатывают в большинстве реализаций FPU.</p>
+<p>Если в разрядах экспоненты содержится 3ff, это является признаком бесконечности (Inf)  или нечисла (NaN), и обрабатывается отдельной логикой.</p>
+<p>При сложении экспонент мы считаем результат с двумя дополнительными разрядами. Это нужно для того, чтобы различать ситуации переполнения и антипереполнения. При переполнении в старшем разряде будет 0, в следующем за ним будет единица. Пример:</p>
+<p>0x7fe + 0x7fe - 0x3ff = 0xbfd= 0_1011_1111_1101</p>
+<p>При переполнении мы считаем, что результат равен Inf, и выставляем выходной сигнал overflow.</p>
+<p>При антипереполнении в старшем разряде будет единица, то есть экспонента меньше -1023:</p>
+<p>0x001 + 0x001 - 0x3ff = 1_1100_00_0000_0011</p>
+<p>При антипереполнении мы считаем, что результат равен нулю, и выставляем выходной сигнал underflow.</p>
+<p>Ситуации, когда один или оба операнда равны Inf, NaN или нулю, обрабатываются отдельной логикой.</p>
+<p>Умножитель работает в три такта: на такте 0 вычисляется сумма экспонент без коррекции и произведение мантисс, на такте 1 вычисляется коррекция экспоненты, и, при необходимости, сдвиг мантиссы, на такте 2 вычисляется мантисса с учётом округления, и значения выходных флагов nan_reg, overflow_reg, underflow_reg, zero_reg.</p>
+<p>Мантисса вычисляется путём простого умножения: frac1 * frac2, что может потребовать нескольких аппаратных умножителей в составе FPGA. Если это недопустимо, по тем или иным причинам, данную операцию можно разбить на несолько тактов, так, чтобы использовался только один аппаратный умножитель. Вообще, операцию умножения довольно легко ковейеризировать, существенно повысив при этом общее быстродействие системы.</p>
+<p>Ниже приведены фрагменты кода, отвечающие за такты 0, 1:</p>
+<pre lang="verilog" line="1">	   if(stage_reg == 0)
+		begin
+	     full_exp_sum_reg <= exp1 + exp2 - EXP_SHIFT;
+	     full_frac_reg <= frac1 * frac2; 
+		end
+		else if(stage_reg == 1)
+		begin
+		  //exp correction must be undertaken
+		  full_exp_sum_after_correction_reg <= full_exp_sum_reg + full_frac_reg[PRODUCT_WIDTH - 1];
+		  frac_res_before_rounding_reg <= full_frac_reg[PRODUCT_WIDTH - 1]? full_frac_reg[PRODUCT_WIDTH - 1: PRODUCT_WIDTH - FRACTION_WIDTH - 2] : full_frac_reg[PRODUCT_WIDTH - 2: PRODUCT_WIDTH - FRACTION_WIDTH - 3];
+		end</pre>
+<p>И за такт 2:</p>
+<pre lang="verilog" line="1">if(stage_reg == 2)
+    begin
+	   if(is_nan_result)
+		begin
+		  out_reg <= NAN_VALUE;
+		end
+		else if(is_zero_result)
+		begin
+		  out_reg <= {sign_res, {(FRACTION_WIDTH + EXP_WIDTH){1'b0}}};
+		end
+		else if(is_inf_result)
+		begin
+		  out_reg <= {sign_res,  {EXP_WIDTH{1'b1}}, {FRACTION_WIDTH{1'b0}}};
+		end
+		else
+		begin
+	     out_reg <= {sign_res, exp_res, frac_res};
+		end
+	 end</pre>
+<pre lang="verilog" line="1">	 begin
+      if(stage_reg == 2)
+		begin
+		  nan_reg <= is_nan_result;
+        overflow_reg <= is_overflow_result;
+        underflow_reg <= is_underflow_result;
+        zero_reg <= is_zero_result;
+		end
+    end</pre>
+<p>Код проекта доступен на Github: <a href="https://github.com/arktur04/FPU">https://github.com/arktur04/FPU</a></p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">{"login"=>"arktur04", "email"=>"arktur04@mail.ru", "display_name"=>"arktur04", "first_name"=>"", "last_name"=>""}</span></span>
+
+      
+
+
+
+
+<time class='entry-date' datetime='2015-04-23T11:05:54+05:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2015</span></span> <span class='time'>11:05 am</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/fpga/'>fpga</a>, <a class='category' href='/blog/categories/verilog/'>verilog</a>, <a class='category' href='/blog/categories/plis/'>плис</a>, <a class='category' href='/blog/categories/stat'i/'>статьи</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://arktur04.github.io/blog/2015/04/23/fpu-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-4-%25d1%2583%25d0%25bc%25d0%25bd%25d0%25be%25d0%25b6%25d0%25b8%25d1%2582%25d0%25b5%25d0%25bb%25d1%258c-%25d1%2582%25d0%25b5%25d1%2581%25d1%2582-%25d0%25b8-rtl/" data-via="" data-counturl="http://arktur04.github.io/blog/2015/04/23/fpu-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-4-%25d1%2583%25d0%25bc%25d0%25bd%25d0%25be%25d0%25b6%25d0%25b8%25d1%2582%25d0%25b5%25d0%25bb%25d1%258c-%25d1%2582%25d0%25b5%25d1%2581%25d1%2582-%25d0%25b8-rtl/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2015/04/22/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-%25d0%25ba%25d0%25b0%25d0%25ba-%25d0%25bf%25d1%2580%25d0%25be%25d0%25b3%25d1%2580%25d0%25b0%25d0%25bc%25d0%25bc%25d0%25b8%25d1%2580%25d0%25be%25d0%25b2%25d0%25b0%25d1%2582%25d1%258c-%25d0%25bd%25d0%25b0-c/" title="Previous Post: Книга "Как программировать на C++"">&laquo; Книга "Как программировать на C++"</a>
+      
+      
+        <a class="basic-alignment right" href="/blog/2015/05/06/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-%25d0%25b1-%25d1%2581%25d1%2582%25d1%2580%25d0%25b0%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d1%2583%25d0%25bf-%25d0%25b4%25d0%25b8%25d0%25b7%25d0%25b0%25d0%25b9%25d0%25bd-%25d0%25b8-%25d1%258d%25d0%25b2%25d0%25be%25d0%25bb%25d1%258e%25d1%2586%25d0%25b8%25d1%258f-c/" title="Next Post: Книга Б. Страуструп "Дизайн и эволюция C++"">Книга Б. Страуструп "Дизайн и эволюция C++" &raquo;</a>
+      
+    </p>
+  </footer>
+</article>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2015/12/02/title/">Zombie Ninjas Attack</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/23/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3/">Проект видеоадаптера. Часть 3</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/16/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-software-defined-radio-handbook-rodger-hosking/">Книга "Software Defined Radio Handbook", Rodger Hosking</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/11/05/vga-%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580-%25d0%25bd%25d0%25b0-fpga/">Проект видеоадаптера. Часть 2</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/25/%25d0%25bf%25d1%2580%25d0%25be-llvm/">Про LLVM</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2015 - Your Name -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
