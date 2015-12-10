@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-10T04:47:31+05:00</updated>
+  <updated>2015-12-10T05:00:15+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -12,22 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Zombie Ninjas Attack]]></title>
-    <link href="http://arktur04.github.io/blog/2015/12/02/title/"/>
-    <updated>2015-12-02T17:49:33+05:00</updated>
-    <id>http://arktur04.github.io/blog/2015/12/02/title</id>
-    <content type="html"><![CDATA[<h1>Header</h1>
-
-<h2>Second layer</h2>
-
-<!--more-->
-
-
-<p>some content</p>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[Проект видеоадаптера. Часть 3]]></title>
@@ -530,6 +514,78 @@ end</pre>
 "<em>Обычный подход... заключается в том, чтобы свести разработку к задачам относительно низкого уровня, подгоняемых под общую грубую схему. То есть идея заключается в том, что создаётся класс быстро обучаемых (дешевых) взаимозаменяемых программистов низкого уровня ("кодировщиков") и класс не таких дешевых, но столь же взаимозаменяемых (и, стало быть, столь же малоценных) проектировщиков. Предполагается, что кодировщики не принимают проектных решений, в то время как проектировщики не утруждают себя грубой работой по вниканию в детали кодирования. <strong>Такой подход часто приводит к неудаче</strong>. Там, где он работает, в результате получаются чрезмерно громоздкие системы с низкой производительностью.</em><br />
 <em> ...</em><br />
 <em> По сути дела, такой системе не хватает механизма обратной связи, чтобы люди учились на чужом опыте. <strong>Это растрата человеческого таланта</strong>. Создание среды разработки, в рамках которой человек может <strong>проявлять разнообразные таланты, развивать новые способности, вносить идеи и радоваться своей работе</strong> - это не просто <strong>цель</strong>, достойная сама по себе, но вещь, <strong>приносящая</strong> практическую <strong>экономическую выгоду</strong>.</em>"</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[О подсчете нулей]]></title>
+    <link href="http://arktur04.github.io/blog/2015/06/12/%25d0%25be-%25d0%25bf%25d0%25be%25d0%25b4%25d1%2581%25d1%2587%25d0%25b5%25d1%2582%25d0%25b5-%25d0%25bd%25d1%2583%25d0%25bb%25d0%25b5%25d0%25b9/"/>
+    <updated>2015-06-12T14:30:05+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/06/12/%d0%be-%d0%bf%d0%be%d0%b4%d1%81%d1%87%d0%b5%d1%82%d0%b5-%d0%bd%d1%83%d0%bb%d0%b5%d0%b9</id>
+    <content type="html"><![CDATA[<p>В задачах, связанных с арифметическими функциями, часто необходимо подсчитать количество нулей в старших разрядах числа. Эту функцию можно реализовать по-разному.</p>
+<p>Итак, вариант 1:</p>
+<pre lang="verilog" line="1">function [ZERO_DATA_WIDTH - 1: 0] zero_cnt;
+input [DATA_WIDTH - 1: 0] in;
+integer i;
+begin
+  zero_cnt = DATA_WIDTH;
+  for(i = DATA_WIDTH - 1; i >= 0; i = i - 1)
+  begin
+    if(in[i] && zero_cnt == DATA_WIDTH)
+	   zero_cnt = DATA_WIDTH - i - 1;
+  end
+end
+endfunction</pre>
+<p><!--more-->Возможно написать и второй вариант, с рекурсией:</p>
+<pre lang="verilog" line="1">function [ZERO_DATA_WIDTH - 1: 0] zero_cnt_recursive;
+input [DATA_WIDTH - 1: 0] in;
+begin
+  if(in == 0)
+    zero_cnt_recursive = DATA_WIDTH;
+  else
+    zero_cnt_recursive = (zero_cnt_recursive(in && 1) - 1);
+end
+endfunction</pre>
+<p>Разумеется, при симуляции оба варианта работают одинаково:</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/06/pic11.jpg"><img class="alignnone size-large wp-image-2064" alt="pic1" src="http://arktur04.github.io/assets/pic11-1024x93.jpg" width="1024" height="93" /></a></p>
+<p>(картинка кликабельна)</p>
+<p>На скриншоте верхний сигнал (zero_counter1) соответствует первому варианту реализации, сигнал zero_counter2, соответственно, второму.</p>
+<p>Теперь попробуем синтезировать. Делаем простейший модуль:</p>
+<pre lang="verilog" line="1">module zero_cnt_1
+#(
+parameter DATA_WIDTH = 53,
+parameter ZERO_DATA_WIDTH = 6
+)
+(
+  input wire clk, rst_n,
+  input wire [DATA_WIDTH - 1: 0] in,
+  output reg [ZERO_DATA_WIDTH - 1: 0] result
+);
+
+always@(posedge clk or negedge rst_n)
+begin
+  if(!rst_n)
+    result <= 0;
+  else
+    result <= zero_cnt(in);  
+end
+  function [ZERO_DATA_WIDTH - 1: 0] zero_cnt;
+  input [DATA_WIDTH - 1: 0] in;
+  integer i;
+  begin
+      zero_cnt = DATA_WIDTH;
+  for(i = DATA_WIDTH - 1; i >= 0; i = i - 1)
+  begin
+    if(in[i] && zero_cnt == DATA_WIDTH)
+      zero_cnt = DATA_WIDTH - i - 1;
+  end
+end
+endfunction
+
+endmodule</pre>
+<p>И синтезируем. Итак, синтез в Quartus II 11.1 для Cyclone II: 134 логических элемента, синтез в ISE14.4 для Spartan 3: 121 LUT.</p>
+<p>Пробуем синтезировать вторую функцию, и тут нас ожидает неудача: ни Quartus, ни ISE не умеют синтезировать рекурсивные функции (что логично, впрочем).</p>
+<p>Конечно, и у первой реализации есть недостаток, очень длинная цепь комбинаторики ограничивает максимальную частоту работы схемы, поэтому можнт понадобиться разделить всю схему на несколько стадий, чтобы вычисления происходили за несколько тактов. Но об этом я напишу в другой раз.</p>
 ]]></content>
   </entry>
   

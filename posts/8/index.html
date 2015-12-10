@@ -9,7 +9,7 @@
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="Пусть есть следующая задача: нужно, чтобы форма приложения создавалась динамически в run-time, на основе конфигурационного файла, например, в формате &hellip;">
+  <meta name="description" content="Написал простую утилиту для работы с протоколом Modbus. Утилита поддерживает работу как в режиме Master, так и в режиме Slave, что позволяет не &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,45 +65,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2013/07/06/%25d0%25b8%25d1%2581%25d0%25bf%25d0%25be%25d0%25bb%25d1%258c%25d0%25b7%25d0%25be%25d0%25b2%25d0%25b0%25d0%25bd%25d0%25b8%25d0%25b5-reflection-%25d0%25b4%25d0%25bb%25d1%258f-%25d0%25b4%25d0%25b8%25d0%25bd%25d0%25b0%25d0%25bc%25d0%25b8%25d1%2587%25d0%25b5%25d1%2581%25d0%25ba%25d0%25be%25d0%25b3%25d0%25be-%25d1%2581%25d0%25be/">Использование Reflection для динамического создания компонентов в C#</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-07-06T09:46:08+06:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>9:46 am</span></time>
-        
-           | <a href="/blog/2013/07/06/%25d0%25b8%25d1%2581%25d0%25bf%25d0%25be%25d0%25bb%25d1%258c%25d0%25b7%25d0%25be%25d0%25b2%25d0%25b0%25d0%25bd%25d0%25b8%25d0%25b5-reflection-%25d0%25b4%25d0%25bb%25d1%258f-%25d0%25b4%25d0%25b8%25d0%25bd%25d0%25b0%25d0%25bc%25d0%25b8%25d1%2587%25d0%25b5%25d1%2581%25d0%25ba%25d0%25be%25d0%25b3%25d0%25be-%25d1%2581%25d0%25be/#disqus_thread"
-             data-disqus-identifier="http://arktur04.github.io/blog/2013/07/06/%25d0%25b8%25d1%2581%25d0%25bf%25d0%25be%25d0%25bb%25d1%258c%25d0%25b7%25d0%25be%25d0%25b2%25d0%25b0%25d0%25bd%25d0%25b8%25d0%25b5-reflection-%25d0%25b4%25d0%25bb%25d1%258f-%25d0%25b4%25d0%25b8%25d0%25bd%25d0%25b0%25d0%25bc%25d0%25b8%25d1%2587%25d0%25b5%25d1%2581%25d0%25ba%25d0%25be%25d0%25b3%25d0%25be-%25d1%2581%25d0%25be/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Пусть есть следующая задача: нужно, чтобы форма приложения создавалась динамически в run-time, на основе конфигурационного файла, например, в формате xml. Подобные задачи могут решаться разными способами, например, с помощью XAML (основан на XML, технология Microsoft), или QML (основан на Java Script, технология Qt). Ниже приводится пример реализации такого подхода на основе XML и механизма Reflection, доступного в С#.</p>
-<p>Итак, Reflection - это часть платформы .Net, позволяющая использовать метаданные сборки в run-time. Это означает, что мы можем создать экземпляр класса, зная его имя, и присвоить значения его свойствам, зная их имена и значения. Помимо перечисленного, Reflection включает в себя еще много возможностей, но пока нам хватит этих.</p>
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2013/07/198213.jpg"><img class="alignnone  wp-image-1735" title="198213" src="/assets/198213.jpg" alt="" width="500" height="388" /></a></p>
-<p>Далее под катом</p>
-<p></div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2013/07/06/%25d0%25b8%25d1%2581%25d0%25bf%25d0%25be%25d0%25bb%25d1%258c%25d0%25b7%25d0%25be%25d0%25b2%25d0%25b0%25d0%25bd%25d0%25b8%25d0%25b5-reflection-%25d0%25b4%25d0%25bb%25d1%258f-%25d0%25b4%25d0%25b8%25d0%25bd%25d0%25b0%25d0%25bc%25d0%25b8%25d1%2587%25d0%25b5%25d1%2581%25d0%25ba%25d0%25be%25d0%25b3%25d0%25be-%25d1%2581%25d0%25be/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
   
   
     <article>
@@ -423,6 +384,39 @@
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2013/01/26/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-the-verilog-hardware-description-language/">Книга "the Verilog Hardware Description Language"</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-01-26T10:56:16+06:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>26</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>10:56 am</span></time>
+        
+           | <a href="/blog/2013/01/26/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-the-verilog-hardware-description-language/#disqus_thread"
+             data-disqus-identifier="http://arktur04.github.io/blog/2013/01/26/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-the-verilog-hardware-description-language/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Хорошая книга, дается подробное изложение языка Verilog с примерами, 408 стр.</p>
+<p><a href="http://32bit.me/wordpress/wp-content/uploads/2013/01/the-verilog-hardware-description-language.jpg"><img class="alignnone size-full wp-image-1670" title="the-verilog-hardware-description-language" src="/assets/the-verilog-hardware-description-language.jpg" alt="" width="400" height="608" /></a></p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/posts/9">&larr; Older</a>
@@ -440,10 +434,6 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2015/12/02/title/">Zombie Ninjas Attack</a>
-      </li>
-    
-      <li class="post">
         <a href="/blog/2015/11/23/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3/">Проект видеоадаптера. Часть 3</a>
       </li>
     
@@ -457,6 +447,10 @@
     
       <li class="post">
         <a href="/blog/2015/10/25/%25d0%25bf%25d1%2580%25d0%25be-llvm/">Про LLVM</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/02/%25d0%25b4%25d1%2580%25d0%25b0%25d0%25b9%25d0%25b2%25d0%25b5%25d1%2580-%25d0%25b4%25d0%25bb%25d1%258f-linux-%25d0%25bf%25d0%25b5%25d1%2580%25d0%25b2%25d1%258b%25d0%25b9-%25d1%2588%25d0%25b0%25d0%25b3/">Драйвер для Linux: первый шаг</a>
       </li>
     
   </ul>

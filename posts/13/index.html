@@ -9,8 +9,8 @@
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="Прочитал на хабре статью MTBF — "откуда берется «миллион часов MTBF»" http://habrahabr.ru/blogs/hardware/122529/. Очень хорошая статья.
-К ней хочется &hellip;">
+  <meta name="description" content="Двухканальная версия той же платы, что и в предыдущем посте.
+Плата содержит: входные усилители (2 аналоговых входа с диапазонами входных сигналов 0- &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -66,43 +66,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/06/23/%25d1%2587%25d1%2582%25d0%25be-%25d1%2582%25d0%25b0%25d0%25ba%25d0%25be%25d0%25b5-mtbf/">Что такое MTBF</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2011-06-23T19:15:58+06:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2011</span></span> <span class='time'>7:15 pm</span></time>
-        
-           | <a href="/blog/2011/06/23/%25d1%2587%25d1%2582%25d0%25be-%25d1%2582%25d0%25b0%25d0%25ba%25d0%25be%25d0%25b5-mtbf/#disqus_thread"
-             data-disqus-identifier="http://arktur04.github.io/blog/2011/06/23/%25d1%2587%25d1%2582%25d0%25be-%25d1%2582%25d0%25b0%25d0%25ba%25d0%25be%25d0%25b5-mtbf/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Прочитал на хабре статью MTBF — "откуда берется «миллион часов MTBF»" <a href="http://habrahabr.ru/blogs/hardware/122529/">http://habrahabr.ru/blogs/hardware/122529/</a>. Очень хорошая статья.</p>
-<p>К ней хочется добавить вот что. Параметр MTBF, часто указываемый производителями самых разных устройств (не только винчестеров, про которые шла речь в статье), расшифровывается как "Mean Time Between Failure", и, по определению, означает время, за которое выходят из строя <img src="/assets/eq.latex?\1-e^{-1}" alt="" /> устройств. MTBF обычно указывается в часах.</p>
-<p>К примеру, если это время составляет около 1 млн. часов, то это не означает, что устройство на самом деле способно проработать 1 млн. часов (&gt;114 лет). Это означает, что<strong><em> в течении гарантийного срока</em></strong> вероятность выхода устройства из строя может быть оценена как <img src="/assets/eq.latex?\\p=1-e^{-\frac{t}{MTBF}}" alt="" />.</p>
-<p>Например, вероятность выхода устройства с MTBF = 1млн. часов в течение одного года равна</p>
-<p><img src="/assets/eq.latex?\\p=(1-e^{-\frac{8760}{10^{6}}})\cdot 100\%=0{,}87\%" alt="" /></p>
-<p>, где 8760 - количество часов в году.</p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -450,6 +413,39 @@
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/03/13/dropbox-%25d0%25b8-git-%25d1%2580%25d0%25b5%25d0%25bf%25d0%25be%25d0%25b7%25d0%25b8%25d1%2582%25d0%25be%25d1%2580%25d0%25b8%25d0%25b9/">DropBox и Git-репозиторий</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-03-13T20:23:51+05:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>8:23 pm</span></time>
+        
+           | <a href="/blog/2011/03/13/dropbox-%25d0%25b8-git-%25d1%2580%25d0%25b5%25d0%25bf%25d0%25be%25d0%25b7%25d0%25b8%25d1%2582%25d0%25be%25d1%2580%25d0%25b8%25d0%25b9/#disqus_thread"
+             data-disqus-identifier="http://arktur04.github.io/blog/2011/03/13/dropbox-%25d0%25b8-git-%25d1%2580%25d0%25b5%25d0%25bf%25d0%25be%25d0%25b7%25d0%25b8%25d1%2582%25d0%25be%25d1%2580%25d0%25b8%25d0%25b9/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://www.juev.ru/2011/01/03/dropbox-i-git-repozitorij/">http://www.juev.ru/2011/01/03/dropbox-i-git-repozitorij/</a></p>
+<p>Очень хорошая и правильная статья про то, как Dropbox легко решает проблему размещения своего  Git-репозитория. Автор статьи занимается разработкой сайтов, но тот же подход годится для любых проектов.</p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/posts/14">&larr; Older</a>
@@ -467,10 +463,6 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2015/12/02/title/">Zombie Ninjas Attack</a>
-      </li>
-    
-      <li class="post">
         <a href="/blog/2015/11/23/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3/">Проект видеоадаптера. Часть 3</a>
       </li>
     
@@ -484,6 +476,10 @@
     
       <li class="post">
         <a href="/blog/2015/10/25/%25d0%25bf%25d1%2580%25d0%25be-llvm/">Про LLVM</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/02/%25d0%25b4%25d1%2580%25d0%25b0%25d0%25b9%25d0%25b2%25d0%25b5%25d1%2580-%25d0%25b4%25d0%25bb%25d1%258f-linux-%25d0%25bf%25d0%25b5%25d1%2580%25d0%25b2%25d1%258b%25d0%25b9-%25d1%2588%25d0%25b0%25d0%25b3/">Драйвер для Linux: первый шаг</a>
       </li>
     
   </ul>

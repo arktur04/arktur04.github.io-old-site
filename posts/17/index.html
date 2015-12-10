@@ -9,7 +9,8 @@
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="Для поддержки протокола Modbus RTU программа должна принимать символы, поступающие в порт и размещать их в буфере приёма. Признаком окончания &hellip;">
+  <meta name="description" content="С днём программиста!
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -65,46 +66,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/09/17/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-7/">Протокол Modbus в устройствах на базе микроконтроллеров. Часть 2.1. Программная поддержка протокола</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2010-09-17T23:41:28+06:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>11:41 pm</span></time>
-        
-           | <a href="/blog/2010/09/17/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-7/#disqus_thread"
-             data-disqus-identifier="http://arktur04.github.io/blog/2010/09/17/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-7/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Для поддержки протокола Modbus RTU программа должна принимать символы, поступающие в порт и размещать их в буфере приёма. Признаком окончания сообщения служит тайм-аут, т.е. прекращение поступления символов в течение 3,5 - 4.5 длительностей передачи одиночного символа.</p>
-<p>По окончании приёма сообщения управление должно передаваться специальному обработчику, который декодирует команду протокола, исполняет её, и формирует строку ответа, которая размещается в буфере передачи.</p>
-<p>Передача ответа также ведётся с помощью прерываний. Начало передаваемого сообщения размещается в аппаратном буфере UART, при его исчерпании формируется прерывание, и буфер заполняется снова.</p>
-<p>Работа с сообщениями ModbusASCII происходит аналогичным образом, за исключением того, что признаком конца приёма сообщения служит не тайм-аут,  а специальный символ конца сообщения.</p>
-<p>В этой статье будет рассмотрен только режим Modbus RTU, как наиболее распространённый в настоящее время.</p>
-<p></div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2010/09/17/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-7/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
   
   
     <article>
@@ -447,6 +408,42 @@ void print(struct X { int i; } x);   // error in C++</p></blockquote>
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/07/09/iar-cortex-m3-%25d0%25b8-c/">IAR, Cortex M3 и C++</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-07-09T05:11:31+06:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>5:11 am</span></time>
+        
+           | <a href="/blog/2010/07/09/iar-cortex-m3-%25d0%25b8-c/#disqus_thread"
+             data-disqus-identifier="http://arktur04.github.io/blog/2010/07/09/iar-cortex-m3-%25d0%25b8-c/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>При перетаскивании проекта с LPC2368 (ядро ARM7TDMI) на LPC1768, который является pin-to-pin совместимым с LPC2368, но на ядре Cortex M3, столкнулся со следующими проблемами и особенностями:</p>
+<p></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2010/07/09/iar-cortex-m3-%25d0%25b8-c/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/posts/18">&larr; Older</a>
@@ -464,10 +461,6 @@ void print(struct X { int i; } x);   // error in C++</p></blockquote>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2015/12/02/title/">Zombie Ninjas Attack</a>
-      </li>
-    
-      <li class="post">
         <a href="/blog/2015/11/23/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3/">Проект видеоадаптера. Часть 3</a>
       </li>
     
@@ -481,6 +474,10 @@ void print(struct X { int i; } x);   // error in C++</p></blockquote>
     
       <li class="post">
         <a href="/blog/2015/10/25/%25d0%25bf%25d1%2580%25d0%25be-llvm/">Про LLVM</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/10/02/%25d0%25b4%25d1%2580%25d0%25b0%25d0%25b9%25d0%25b2%25d0%25b5%25d1%2580-%25d0%25b4%25d0%25bb%25d1%258f-linux-%25d0%25bf%25d0%25b5%25d1%2580%25d0%25b2%25d1%258b%25d0%25b9-%25d1%2588%25d0%25b0%25d0%25b3/">Драйвер для Linux: первый шаг</a>
       </li>
     
   </ul>

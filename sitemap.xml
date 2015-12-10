@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>http://arktur04.github.io/blog/2015/12/02/title/</loc>
-    <lastmod>2015-12-02T17:49:33+05:00</lastmod>
-  </url>
-  <url>
     <loc>http://arktur04.github.io/blog/2015/11/23/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3/</loc>
     <lastmod>2015-11-23T21:00:45+05:00</lastmod>
   </url>
@@ -993,14 +989,5 @@
   </url>
   <url>
     <loc>http://arktur04.github.io/blog/categories/sdr/</loc>
-  </url>
-  <url>
-    <loc>http://arktur04.github.io/blog/categories/css3/</loc>
-  </url>
-  <url>
-    <loc>http://arktur04.github.io/blog/categories/saas/</loc>
-  </url>
-  <url>
-    <loc>http://arktur04.github.io/blog/categories/media-queries/</loc>
   </url>
 </urlset>
