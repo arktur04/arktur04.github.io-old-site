@@ -4,7 +4,7 @@
   <title><![CDATA[Category: статьи | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/stat'i/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-17T20:24:16+05:00</updated>
+  <updated>2015-12-17T20:57:51+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -244,7 +244,7 @@ inout wire [SRAM_DATA_WIDTH - 1: 0] sram_data_inout
 Для удобства нарисуем интерфейс модуля в таком виде:</p>
 
 
-<p><a href="/images/2015/03/pic1.png"><img class="alignnone size-full wp-image-1972" alt="pic1" src="/assets/pic1.png" width="929" height="384" /></a></p>
+<p><a href="/images/2015/03/pic1.png"><img class="alignnone size-full wp-image-1972" alt="pic1" src="/assets/pic1-300x124.png" width="929" height="384" /></a></p>
 
 
 <p><!--more--></p>
