@@ -4,7 +4,7 @@
   <title><![CDATA[Category: беспроводные технологии | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/biesprovodnyie-tiekhnologhii/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-17T19:38:44+05:00</updated>
+  <updated>2015-12-17T19:54:58+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -18,7 +18,7 @@
     <link href="http://arktur04.github.io/blog/2013/04/27/%25d0%25bf%25d1%2580%25d0%25b8%25d0%25bc%25d0%25b5%25d0%25bd%25d0%25b5%25d0%25bd%25d0%25b8%25d0%25b5-gsm-%25d0%25bc%25d0%25be%25d0%25b4%25d1%2583%25d0%25bb%25d0%25b5%25d0%25b9-quectel/"/>
     <updated>2013-04-27T09:04:40+06:00</updated>
     <id>http://arktur04.github.io/blog/2013/04/27/%d0%bf%d1%80%d0%b8%d0%bc%d0%b5%d0%bd%d0%b5%d0%bd%d0%b8%d0%b5-gsm-%d0%bc%d0%be%d0%b4%d1%83%d0%bb%d0%b5%d0%b9-quectel</id>
-    <content type="html"><![CDATA[<p><a href="http://32bit.me/wordpress/wp-content/uploads/2013/04/10e1e54857e4985eb0fa6903da975294.jpg"><img class="alignnone size-full wp-image-1715" title="10e1e54857e4985eb0fa6903da975294" src="/assets/10e1e54857e4985eb0fa6903da975294.jpg" alt="" width="398" height="400" /></a></p>
+    <content type="html"><![CDATA[<p><a href="/images/2013/04/10e1e54857e4985eb0fa6903da975294.jpg"><img class="alignnone size-full wp-image-1715" title="10e1e54857e4985eb0fa6903da975294" src="/assets/10e1e54857e4985eb0fa6903da975294.jpg" alt="" width="398" height="400" /></a></p>
 
 
 <p>В дву постах на хабре я описываю основы применения GSM-модуля M10 фирмы Quectel и его AT-команды.</p>

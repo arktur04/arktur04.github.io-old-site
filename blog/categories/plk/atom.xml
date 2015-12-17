@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ПЛК | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/plk/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-17T19:38:44+05:00</updated>
+  <updated>2015-12-17T19:54:58+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -31,7 +31,7 @@
     <content type="html"><![CDATA[<p>Модуль аналогового ввода со снятым корпусом:</p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2012/06/P10102541.jpg"><img class="alignnone size-medium wp-image-1601" title="P1010254" src="/assets/P10102541-300x266.jpg" alt="" width="300" height="266" /></a></p>
+<p><a href="/images/2012/06/P10102541.jpg"><img class="alignnone size-medium wp-image-1601" title="P1010254" src="/assets/P10102541-300x266.jpg" alt="" width="300" height="266" /></a></p>
 
 
 <p>Нажмите на фото для увеличения</p>
@@ -42,7 +42,7 @@
 
 <ul>
 <li>8 каналов разрядностью 16 или 24 бита (в зависимости от того, какие микросхемы АЦП установлены)</li>
-<li>каналы  изолированы друг от друга и от источника питания (напряжение изоляции 1 кВ)</li>
+<li>каналы  изолированы друг от друга и от источника питания (напряжение изоляции 1 кВ)</li>
 <li>типы входов:</li>
 <ul>
 <li>ток 0-20 мА (4-20 мА),</li>
@@ -68,7 +68,7 @@
 <p><!--more--></p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2012/06/P1010256.jpg"><img class="alignnone size-medium wp-image-1602" title="P1010256" src="/assets/P1010256-300x235.jpg" alt="" width="300" height="235" /></a></p>
+<p><a href="/images/2012/06/P1010256.jpg"><img class="alignnone size-medium wp-image-1602" title="P1010256" src="/assets/P1010256-300x235.jpg" alt="" width="300" height="235" /></a></p>
 
 
 <p>Нажмите на фото для увеличения</p>
@@ -84,7 +84,7 @@
     <content type="html"><![CDATA[<p>Образец модуля аналогового ввода, предназначенный для лабораторных испытаний.</p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2012/06/P1010245.jpg"><img class="alignnone size-medium wp-image-1590" title="P1010245" src="/assets/P1010245-300x285.jpg" alt="" width="300" height="285" /></a></p>
+<p><a href="/images/2012/06/P1010245.jpg"><img class="alignnone size-medium wp-image-1590" title="P1010245" src="/assets/P1010245-300x285.jpg" alt="" width="300" height="285" /></a></p>
 
 
 <p>Рис. 1. Модуль аналогового ввода с поканальной развязкой.</p>
@@ -96,7 +96,7 @@
 <p>Схема гальванических развязок модуля:</p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2012/06/Структура-модуля-аналогового-ввода.png"><img class="alignnone size-medium wp-image-1591" title="Структура модуля аналогового ввода" src="/assets/&#1057;&#1090;&#1088;&#1091;&#1082;&#1090;&#1091;&#1088;&#1072;-&#1084;&#1086;&#1076;&#1091;&#1083;&#1103;-&#1072;&#1085;&#1072;&#1083;&#1086;&#1075;&#1086;&#1074;&#1086;&#1075;&#1086;-&#1074;&#1074;&#1086;&#1076;&#1072;-300x270.png" alt="" width="300" height="270" /></a></p>
+<p><a href="/images/2012/06/Структура-модуля-аналогового-ввода.png"><img class="alignnone size-medium wp-image-1591" title="Структура модуля аналогового ввода" src="/assets/&#1057;&#1090;&#1088;&#1091;&#1082;&#1090;&#1091;&#1088;&#1072;-&#1084;&#1086;&#1076;&#1091;&#1083;&#1103;-&#1072;&#1085;&#1072;&#1083;&#1086;&#1075;&#1086;&#1074;&#1086;&#1075;&#1086;-&#1074;&#1074;&#1086;&#1076;&#1072;-300x270.png" alt="" width="300" height="270" /></a></p>
 
 
 <p>Рис. 2. Схема гальванических развязок модуля. Каждый прямоугольник соответствует изолированному домену питания.</p>
@@ -112,19 +112,19 @@
     <content type="html"><![CDATA[<p>Еще одна старая программа, - логгер, предназначенный для сбора данных. Позволяет отображать данные, поступающие с контроллера, через OPC-сервер, либо данные, поступающие через DDE. Сбор данных через DDE удобен для получения данных из среды разработки IsaGraf при отладке.</p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2012/04/logger1.jpg"><img class="alignnone size-medium wp-image-1573" title="logger1" src="/assets/logger1-300x163.jpg" alt="" width="300" height="163" /></a></p>
+<p><a href="/images/2012/04/logger1.jpg"><img class="alignnone size-medium wp-image-1573" title="logger1" src="/assets/logger1-300x163.jpg" alt="" width="300" height="163" /></a></p>
 
 
-<p>Позволяет получать данные для произвольного количества переменных, имеет гибко настраиваемую конфигурацию окон, в каждом окне может отображаться множество переменных, настройки отображения (цвет, толщину линий, масштаб) можно гибко настраивать, в том числе и во время сбора данных. Масштаб по оси времени также настраивается.</p>
+<p>Позволяет получать данные для произвольного количества переменных, имеет гибко настраиваемую конфигурацию окон, в каждом окне может отображаться множество переменных, настройки отображения (цвет, толщину линий, масштаб) можно гибко настраивать, в том числе и во время сбора данных. Масштаб по оси времени также настраивается.</p>
 
 
 <p><!--more--></p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2012/04/logger2.jpg"><img class="alignnone size-medium wp-image-1574" title="logger2" src="/assets/logger2-300x165.jpg" alt="" width="300" height="165" /></a></p>
+<p><a href="/images/2012/04/logger2.jpg"><img class="alignnone size-medium wp-image-1574" title="logger2" src="/assets/logger2-300x165.jpg" alt="" width="300" height="165" /></a></p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2012/04/logger3.jpg"><img class="alignnone size-medium wp-image-1575" title="logger3" src="/assets/logger3-300x161.jpg" alt="" width="300" height="161" /></a></p>
+<p><a href="/images/2012/04/logger3.jpg"><img class="alignnone size-medium wp-image-1575" title="logger3" src="/assets/logger3-300x161.jpg" alt="" width="300" height="161" /></a></p>
 
 ]]></content>
   </entry>
@@ -140,7 +140,7 @@
 <p>&nbsp;</p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2012/04/patent1.jpg"><img class="alignnone size-medium wp-image-1568" title="patent" src="/assets/patent1-214x300.jpg" alt="" width="214" height="300" /></a></p>
+<p><a href="/images/2012/04/patent1.jpg"><img class="alignnone size-medium wp-image-1568" title="patent" src="/assets/patent1-214x300.jpg" alt="" width="214" height="300" /></a></p>
 
 ]]></content>
   </entry>

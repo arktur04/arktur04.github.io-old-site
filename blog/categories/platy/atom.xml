@@ -4,7 +4,7 @@
   <title><![CDATA[Category: платы | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/platy/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-17T19:38:44+05:00</updated>
+  <updated>2015-12-17T19:54:58+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -24,7 +24,7 @@
 <p>&nbsp;</p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/04/prototype.jpg"><img class="alignnone size-medium wp-image-2011" alt="prototype" src="/assets/prototype-300x198.jpg" width="300" height="198" /></a></p>
+<p><a href="/images/2015/04/prototype.jpg"><img class="alignnone size-medium wp-image-2011" alt="prototype" src="/assets/prototype-300x198.jpg" width="300" height="198" /></a></p>
 
 ]]></content>
   </entry>
@@ -71,13 +71,13 @@
 <p>Плата имеет 4 слоя.</p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/02/top-2.jpg"><img class="alignnone size-medium wp-image-1915" alt="top-2" src="/assets/top-2-300x172.jpg" width="300" height="172" /></a></p>
+<p><a href="/images/2015/02/top-2.jpg"><img class="alignnone size-medium wp-image-1915" alt="top-2" src="/assets/top-2-300x172.jpg" width="300" height="172" /></a></p>
 
 
-<p>Далее под катом <!--more--></p>
+<p>Далее под катом <!--more--></p>
 
 
-<p><a style="line-height: 1.5em;" href="http://32bit.me/wordpress/wp-content/uploads/2015/02/top-1.jpg"><img class="alignnone size-medium wp-image-1916" alt="top-1" src="/assets/top-1-300x170.jpg" width="300" height="170" /></a></p>
+<p><a style="line-height: 1.5em;" href="/images/2015/02/top-1.jpg"><img class="alignnone size-medium wp-image-1916" alt="top-1" src="/assets/top-1-300x170.jpg" width="300" height="170" /></a></p>
 
 
 <p>Вид сверху.</p>
@@ -86,7 +86,7 @@
 <p>&nbsp;</p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/02/bottom-1.jpg"><img class="alignnone size-medium wp-image-1917" alt="bottom-1" src="/assets/bottom-1-300x201.jpg" width="300" height="201" /></a></p>
+<p><a href="/images/2015/02/bottom-1.jpg"><img class="alignnone size-medium wp-image-1917" alt="bottom-1" src="/assets/bottom-1-300x201.jpg" width="300" height="201" /></a></p>
 
 
 <p>Вид снизу.</p>
@@ -120,7 +120,7 @@
     <link href="http://arktur04.github.io/blog/2014/09/30/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-%25d0%25b3%25d0%25be%25d0%25b2%25d0%25b0%25d1%2580%25d0%25b4-%25d0%25b2-%25d0%25b4%25d0%25b6%25d0%25be%25d0%25bd%25d1%2581%25d0%25be%25d0%25bd-%25d0%25b2%25d1%258b%25d1%2581%25d0%25be%25d0%25ba%25d0%25be%25d1%2581%25d0%25ba%25d0%25be%25d1%2580%25d0%25be%25d1%2581%25d1%2582/"/>
     <updated>2014-09-30T16:42:20+06:00</updated>
     <id>http://arktur04.github.io/blog/2014/09/30/%d0%ba%d0%bd%d0%b8%d0%b3%d0%b0-%d0%b3%d0%be%d0%b2%d0%b0%d1%80%d0%b4-%d0%b2-%d0%b4%d0%b6%d0%be%d0%bd%d1%81%d0%be%d0%bd-%d0%b2%d1%8b%d1%81%d0%be%d0%ba%d0%be%d1%81%d0%ba%d0%be%d1%80%d0%be%d1%81%d1%82</id>
-    <content type="html"><![CDATA[<p><a href="http://32bit.me/wordpress/wp-content/uploads/2014/09/6695f49c829e.jpg"><img class="alignnone size-full wp-image-1835" alt="6695f49c829e" src="/assets/6695f49c829e.jpg" width="359" height="500" /></a></p>
+    <content type="html"><![CDATA[<p><a href="/images/2014/09/6695f49c829e.jpg"><img class="alignnone size-full wp-image-1835" alt="6695f49c829e" src="/assets/6695f49c829e.jpg" width="359" height="500" /></a></p>
 
 
 <p>Неплохая книга, мне понравилась. Без сложной математики, "на пальцах", объясняются явления, происходящие в печатных платах и кабельных линиях при передаче сигналов с высокой частотой и крутыми фронтами. Для тех, кому важна целостность сигналов.</p>

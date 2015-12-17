@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Arm | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/arm/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-17T19:38:44+05:00</updated>
+  <updated>2015-12-17T19:54:58+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -22,7 +22,7 @@
 Однако такой путь считается "hacky and unsafe". Поэтому следующим логичным шагом должно стать написание драйвера.</p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/10/Tux-linux-and-ARM-multiplatform-support.jpg"><img class="alignnone size-full wp-image-2147" alt="Tux-linux-and-ARM-multiplatform-support" src="/assets/Tux-linux-and-ARM-multiplatform-support.jpg" width="672" height="370" /></a></p>
+<p><a href="/images/2015/10/Tux-linux-and-ARM-multiplatform-support.jpg"><img class="alignnone size-full wp-image-2147" alt="Tux-linux-and-ARM-multiplatform-support" src="/assets/Tux-linux-and-ARM-multiplatform-support.jpg" width="672" height="370" /></a></p>
 
 
 <p>Я воспользовался готовым исходником драйвера (<a href="https://github.com/zhemao/sockit_test/tree/master/software/blinker">ссылка</a>) за авторством Howard Mao (он на самом деле не Howard, а Zhe Hao Mao). Конечно, для того, чтобы разобраться в работе кода, почитал отдельные главы книги Linux Device Drivers (есть русский перевод).</p>
@@ -34,7 +34,7 @@
 <p>Однако всё не так просто. После компиляции записываем скомпилированный драйвер blinker.ko на SD-карту, после загрузки Linux пишем<strong> insmod blinker.ko</strong> и получаем следующее: "<em>blinker: version magic '3.9.0-00161-ged01b8c SMP mod_unload ARMv7 p2v8 ' should be '3.9.0 SMP mod_unload ARMv7 p2v8'</em>". Не совпали волшебные номерки. Причем версия одна и та же, просто зачем-то к ней приделан какой-то добавочный номер.</p>
 
 
-<p>Решений может быть три: 1. Скомпилировать Linux именно из этого скачанного исходника (очень неохота) или 2. Подправить номер в исходниках ядра Linux. 3. Использовать команду modprobe с ключом -f, который заставляет систему игнорировать "волшебные цифры".  Однако этот способ почему-то не заработал.<br />
+<p>Решений может быть три: 1. Скомпилировать Linux именно из этого скачанного исходника (очень неохота) или 2. Подправить номер в исходниках ядра Linux. 3. Использовать команду modprobe с ключом -f, который заставляет систему игнорировать "волшебные цифры".  Однако этот способ почему-то не заработал.<br />
 Итак, способ номер 2, подправить номер в исходнике ядра. Данный номер записан в файле /include/generated/utsrelease.h. Исправляем то, что там было, на "3.9.0", и перекомпилируем драйвер. На всякий случай смотрим hex-редактором файл blinker.ko, чтобы убедиться, что волшебные циферки такие, как нужно. Снова записываем драйвер на SD-карту, запускаем insmod, всё прошло гладко. Теперь можно проверить работу драйвера, посылая ему числа от 1 до 15 для управления частотой миганий: echo 1 &gt; blinker - мигает быстро, echo 15 &gt; blinker - мигает медленно. Пока всё. Немного, но путь в тысячу ли начинается с одного шага.</p>
 
 
@@ -165,7 +165,7 @@ echo 1 > /sys/class/fpga-bridge/lwhps2fpga/enable
 Вторая часть, Software, описывает процесс загрузки Linux, компиляцию простейшей программы (мигание светодиодом), отладку программы в ARM DS-5 Embedded Development Suite, и основы работы с SignalTap II Logic Analyzer в режиме совместной отладки программного кода и FPGA-проекта.</p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/07/pic1.jpg"><img class="alignnone size-full wp-image-2101" alt="pic1" src="/assets/pic1.jpg" width="1000" height="328" /></a></p>
+<p><a href="/images/2015/07/pic1.jpg"><img class="alignnone size-full wp-image-2101" alt="pic1" src="/assets/pic1.jpg" width="1000" height="328" /></a></p>
 
 ]]></content>
   </entry>
@@ -178,14 +178,14 @@ echo 1 > /sys/class/fpga-bridge/lwhps2fpga/enable
     <content type="html"><![CDATA[<p>Дочитал книгу "The Zynq Book", руководство по системе на кристалле (SoC) Zynq-7000 фирмы Xilinx.</p>
 
 
-<p>Напомню, что Zynq-7000 состоит из двух ядер ARM Cortex A9 и блока программируемой логики PL (по сути, встроенная в систему FPGA).</p>
+<p>Напомню, что Zynq-7000 состоит из двух ядер ARM Cortex A9 и блока программируемой логики PL (по сути, встроенная в систему FPGA).</p>
 
 
 <p>В книге подробно рассматривается структура системы, программный пакет Vivado, предназначенный для разработки под Zynq-7000, подробно рассматривается процесс преобразования кода на языке высокого уровня (например, С) в форму RTL, предназначенную для конфигурирования PL . Эта возможность обеспечивается программой Vivado HLS.<br />
 В последней части книги кратко описывается структура и процедура загрузки Linux в память.</p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/03/ZynqPerspective.png"><img class="alignnone size-medium wp-image-1954" alt="ZynqPerspective" src="/assets/ZynqPerspective-205x300.png" width="205" height="300" /></a><br />
+<p><a href="/images/2015/03/ZynqPerspective.png"><img class="alignnone size-medium wp-image-1954" alt="ZynqPerspective" src="/assets/ZynqPerspective-205x300.png" width="205" height="300" /></a><br />
 Интересная книга, интересный процессор.</p>
 
 ]]></content>
@@ -226,7 +226,7 @@ echo 1 > /sys/class/fpga-bridge/lwhps2fpga/enable
 <p>Собираем всё вместе:</p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2013/09/pic1.jpg"><img class="alignnone size-medium wp-image-1769" title="pic1" src="/assets/pic1-300x225.jpg" alt="" width="300" height="225" /></a></p>
+<p><a href="/images/2013/09/pic1.jpg"><img class="alignnone size-medium wp-image-1769" title="pic1" src="/assets/pic1-300x225.jpg" alt="" width="300" height="225" /></a></p>
 
 
 <p>(все картинки кликабельны)</p>
@@ -235,19 +235,19 @@ echo 1 > /sys/class/fpga-bridge/lwhps2fpga/enable
 <p><!--more-->Перед установкой жесткого диска его необходимо отформатировать с файловой системой HFS+. Я воспользовался для этого утилитой MacDrive.</p>
 
 
-<p>Итак, устанавливаем на SD-карту Linux Debian Wheezy и настраиваем всё согласно инструкции отсюда: <a href="http://www.raspberrypi.org/phpBB3/viewtopic.php?=63&amp;t=31511">http://www.raspberrypi.org/phpBB3/viewtopic.php?=63&amp;t=31511</a>.</p>
+<p>Итак, устанавливаем на SD-карту Linux Debian Wheezy и настраиваем всё согласно инструкции отсюда: <a href="http://www.raspberrypi.org/phpBB3/viewtopic.php?=63&amp;t=31511">http://www.raspberrypi.org/phpBB3/viewtopic.php?=63&amp;t=31511</a>.</p>
 
 
 <p>Итак, всё готово, теперь Time Machine видит устройство и предлагает сделать резервную копию.</p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2013/09/pic2.jpg"><img class="alignnone size-medium wp-image-1770" title="pic2" src="/assets/pic2-300x186.jpg" alt="" width="300" height="186" /></a></p>
+<p><a href="/images/2013/09/pic2.jpg"><img class="alignnone size-medium wp-image-1770" title="pic2" src="/assets/pic2-300x186.jpg" alt="" width="300" height="186" /></a></p>
 
 
 <p>Теперь остался последний штрих. Устройство потребляет (и, соответственно, рассеивает) довольно существенную мощность для такого маленького корпуса, поэтому нужно проверить температуру, до которой нагреваются наиболее горячие части устройства. Я проверял температуру радиатора блока питания (он нагревается сильнее всего, на втором месте винчестер).</p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2013/09/pic3.jpg"><img class="alignnone size-medium wp-image-1771" title="pic3" src="/assets/pic3-300x225.jpg" alt="" width="300" height="225" /></a></p>
+<p><a href="/images/2013/09/pic3.jpg"><img class="alignnone size-medium wp-image-1771" title="pic3" src="/assets/pic3-300x225.jpg" alt="" width="300" height="225" /></a></p>
 
 
 <p>Максимальная температура, до которой нагревался радиатор при работе составила: с выключенным вентилятором &gt;60 °C, с включенным вентилятором ~40-42 °C. Проблема в том, что вентилятор издает довольно громкий звук. В принципе, 60 градусов можно считать приемлемой температурой, так что вентилятор можно отключить, но наиболее подходящим решением мне представляется следующее: подключить датчик температуры к RPi, подключить к нему же управление вентилятором (простой транзисторный ключ), и написать скрипт, который будет включать вентилятор по достижению порогового значения температуры (например, 50 °С), и выключать его при снижении температуры ниже другого порога (например, 45°С). Но это уже другая история.</p>

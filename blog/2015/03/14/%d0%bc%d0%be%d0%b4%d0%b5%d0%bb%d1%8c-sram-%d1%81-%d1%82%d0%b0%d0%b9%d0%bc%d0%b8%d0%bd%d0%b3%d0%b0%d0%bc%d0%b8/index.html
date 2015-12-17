@@ -9,7 +9,7 @@
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="Представляю вашему вниманию модель микросхемы памяти IS61WV102416 на verilog с учетом задержек.Модель предназначена для построения тестов устройств, &hellip;">
+  <meta name="description" content="Представляю вашему вниманию модель микросхемы памяти IS61WV102416 на verilog с учетом задержек.Модель предназначена для построения тестов устройств, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -90,12 +90,12 @@
   </header>
 
 
-<div class="entry-content"><p>Представляю вашему вниманию модель микросхемы памяти IS61WV102416 на verilog с учетом задержек.Модель предназначена для построения тестов устройств, содержащих SRAM. Модель не синтезируема.</p>
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/03/wave1.png"><img class="alignnone size-large wp-image-1980" alt="wave1" src="/assets/wave1-1024x261.png" width="1024" height="261" /></a></p>
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/03/is61wv102416bll-10tl-102416-tssop48.jpg"><img class="alignnone size-medium wp-image-1979" alt="is61wv102416bll-10tl-102416-tssop48" src="/assets/is61wv102416bll-10tl-102416-tssop48-300x221.jpg" width="300" height="221" /></a></p>
-<p><span style="line-height: 1.5em;">Микросхема IS61WV102416 является асинхронной быстродействующей статической памятью объемом 16М и организацией 1М х 16. Имеются варианты с временем доступа 8, 10 и 20 нс. В данной модели установлены тайминги для варианта 10нс.</span></p>
+<div class="entry-content"><p>Представляю вашему вниманию модель микросхемы памяти IS61WV102416 на verilog с учетом задержек.Модель предназначена для построения тестов устройств, содержащих SRAM. Модель не синтезируема.</p>
+<p><a href="/images/2015/03/wave1.png"><img class="alignnone size-large wp-image-1980" alt="wave1" src="/assets/wave1-1024x261.png" width="1024" height="261" /></a></p>
+<p><a href="/images/2015/03/is61wv102416bll-10tl-102416-tssop48.jpg"><img class="alignnone size-medium wp-image-1979" alt="is61wv102416bll-10tl-102416-tssop48" src="/assets/is61wv102416bll-10tl-102416-tssop48-300x221.jpg" width="300" height="221" /></a></p>
+<p><span style="line-height: 1.5em;">Микросхема IS61WV102416 является асинхронной быстродействующей статической памятью объемом 16М и организацией 1М х 16. Имеются варианты с временем доступа 8, 10 и 20 нс. В данной модели установлены тайминги для варианта 10нс.</span></p>
 <p><!--more--></p>
-<p>Исходник модели и теста можно скачать на GitHub: <a href="https://github.com/arktur04/SRAM">https://github.com/arktur04/SRAM</a>.</p>
+<p>Исходник модели и теста можно скачать на GitHub: <a href="https://github.com/arktur04/SRAM">https://github.com/arktur04/SRAM</a>.</p>
 <p>При построении модели использовано следующее допущение: мы не используем сигналы /UB и /LB (открывающие верхний и нижний байты шины данных), предполагая, что оба сигнала всегда находятся в активном состоянии.</p>
 <p>Модуль параметризируемый, тайминги можно изменит при необходимости:</p>
 <pre lang="verilog" line="1">module sram_controller

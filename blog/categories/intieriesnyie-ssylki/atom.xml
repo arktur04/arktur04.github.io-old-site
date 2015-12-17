@@ -4,7 +4,7 @@
   <title><![CDATA[Category: интересные ссылки | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/intieriesnyie-ssylki/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-17T19:38:44+05:00</updated>
+  <updated>2015-12-17T19:54:58+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -22,7 +22,7 @@
 Однако такой путь считается "hacky and unsafe". Поэтому следующим логичным шагом должно стать написание драйвера.</p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/10/Tux-linux-and-ARM-multiplatform-support.jpg"><img class="alignnone size-full wp-image-2147" alt="Tux-linux-and-ARM-multiplatform-support" src="/assets/Tux-linux-and-ARM-multiplatform-support.jpg" width="672" height="370" /></a></p>
+<p><a href="/images/2015/10/Tux-linux-and-ARM-multiplatform-support.jpg"><img class="alignnone size-full wp-image-2147" alt="Tux-linux-and-ARM-multiplatform-support" src="/assets/Tux-linux-and-ARM-multiplatform-support.jpg" width="672" height="370" /></a></p>
 
 
 <p>Я воспользовался готовым исходником драйвера (<a href="https://github.com/zhemao/sockit_test/tree/master/software/blinker">ссылка</a>) за авторством Howard Mao (он на самом деле не Howard, а Zhe Hao Mao). Конечно, для того, чтобы разобраться в работе кода, почитал отдельные главы книги Linux Device Drivers (есть русский перевод).</p>
@@ -34,7 +34,7 @@
 <p>Однако всё не так просто. После компиляции записываем скомпилированный драйвер blinker.ko на SD-карту, после загрузки Linux пишем<strong> insmod blinker.ko</strong> и получаем следующее: "<em>blinker: version magic '3.9.0-00161-ged01b8c SMP mod_unload ARMv7 p2v8 ' should be '3.9.0 SMP mod_unload ARMv7 p2v8'</em>". Не совпали волшебные номерки. Причем версия одна и та же, просто зачем-то к ней приделан какой-то добавочный номер.</p>
 
 
-<p>Решений может быть три: 1. Скомпилировать Linux именно из этого скачанного исходника (очень неохота) или 2. Подправить номер в исходниках ядра Linux. 3. Использовать команду modprobe с ключом -f, который заставляет систему игнорировать "волшебные цифры".  Однако этот способ почему-то не заработал.<br />
+<p>Решений может быть три: 1. Скомпилировать Linux именно из этого скачанного исходника (очень неохота) или 2. Подправить номер в исходниках ядра Linux. 3. Использовать команду modprobe с ключом -f, который заставляет систему игнорировать "волшебные цифры".  Однако этот способ почему-то не заработал.<br />
 Итак, способ номер 2, подправить номер в исходнике ядра. Данный номер записан в файле /include/generated/utsrelease.h. Исправляем то, что там было, на "3.9.0", и перекомпилируем драйвер. На всякий случай смотрим hex-редактором файл blinker.ko, чтобы убедиться, что волшебные циферки такие, как нужно. Снова записываем драйвер на SD-карту, запускаем insmod, всё прошло гладко. Теперь можно проверить работу драйвера, посылая ему числа от 1 до 15 для управления частотой миганий: echo 1 &gt; blinker - мигает быстро, echo 15 &gt; blinker - мигает медленно. Пока всё. Немного, но путь в тысячу ли начинается с одного шага.</p>
 
 
@@ -52,7 +52,7 @@
 Файлы инициализации памяти BRAM для FPGA, могут иметь формат MIF (Memory Initialization File) или формат HEX. </p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/06/DSC_0522_EDIT.jpg"><img class="alignnone size-medium wp-image-2084" alt="DSC_0522_EDIT" src="/assets/DSC_0522_EDIT-300x200.jpg" width="300" height="200" /></a></p>
+<p><a href="/images/2015/06/DSC_0522_EDIT.jpg"><img class="alignnone size-medium wp-image-2084" alt="DSC_0522_EDIT" src="/assets/DSC_0522_EDIT-300x200.jpg" width="300" height="200" /></a></p>
 
 
 <p>Нужный модуль памяти можно сгенерировать в Quartus II с помощью MegaWizard, в ISE - с помощью Xilinx Core Generator. Кроме этого, в QuartusII возможно использование специальной директивы:</p>
@@ -224,19 +224,19 @@ endmodule
     <link href="http://arktur04.github.io/blog/2015/06/02/2049/"/>
     <updated>2015-06-02T18:57:16+05:00</updated>
     <id>http://arktur04.github.io/blog/2015/06/02/2049</id>
-    <content type="html"><![CDATA[<p>С сайта RS Components можно скачать две системы автоматизированного проектирования: одна предназначена для разработки принципиальных схем и печатных плат (DesignSpark PCB), вторая для 3D-моделирования (DesignSpark Mechanical). Обе системы полностью бесплатны, то есть это не урезанные демо-версии. Ссылка: <a href="http://www.rs-online.com/designspark/electronics/eng/page/mechanical">http://www.rs-online.com/designspark/electronics/eng/page/mechanical</a></p>
+    <content type="html"><![CDATA[<p>С сайта RS Components можно скачать две системы автоматизированного проектирования: одна предназначена для разработки принципиальных схем и печатных плат (DesignSpark PCB), вторая для 3D-моделирования (DesignSpark Mechanical). Обе системы полностью бесплатны, то есть это не урезанные демо-версии. Ссылка: <a href="http://www.rs-online.com/designspark/electronics/eng/page/mechanical">http://www.rs-online.com/designspark/electronics/eng/page/mechanical</a></p>
 
 
 <p>Я скачал обе и немного попробовал что-нибудь сделать. Сразу могу сказать, что я сравниваю возможности и удобство использования с теми программами, которыми пользуюсь сам: с Altium Designer и Solid Works.</p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/06/pic1.jpg"><img class="alignnone size-medium wp-image-2050" alt="pic1" src="/assets/pic1-300x225.jpg" width="300" height="225" /></a></p>
+<p><a href="/images/2015/06/pic1.jpg"><img class="alignnone size-medium wp-image-2050" alt="pic1" src="/assets/pic1-300x225.jpg" width="300" height="225" /></a></p>
 
 
 <p>Редактор схем.</p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/06/pic2.jpg"><img class="alignnone size-medium wp-image-2051" alt="pic2" src="/assets/pic2-300x195.jpg" width="300" height="195" /></a></p>
+<p><a href="/images/2015/06/pic2.jpg"><img class="alignnone size-medium wp-image-2051" alt="pic2" src="/assets/pic2-300x195.jpg" width="300" height="195" /></a></p>
 
 
 <p>&nbsp;</p>

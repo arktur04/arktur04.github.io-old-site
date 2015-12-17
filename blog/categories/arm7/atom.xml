@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Arm7 | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/arm7/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-17T19:38:44+05:00</updated>
+  <updated>2015-12-17T19:54:58+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -24,10 +24,10 @@
 <p><em>Добрый день, хабр. Сегодня я хотел бы поделиться некоторым опытом, касающимся подключения цветных LCD-индикаторов к микроконтроллеру. Эта тема уже поднималась на хабре (<a href="http://habrahabr.ru/post/139384/">http://habrahabr.ru/post/139384/</a>), поэтому данный пост может рассматриваться как дополнение к уже написанному моими уважаемыми коллегами.</em></p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2012/03/3879e634ce1f8ad979d8be1406f8e824.jpg"><img class="alignnone size-medium wp-image-1541" title="3879e634ce1f8ad979d8be1406f8e824" src="/assets/3879e634ce1f8ad979d8be1406f8e824-300x244.jpg" alt="" width="300" height="244" /></a></p>
+<p><a href="/images/2012/03/3879e634ce1f8ad979d8be1406f8e824.jpg"><img class="alignnone size-medium wp-image-1541" title="3879e634ce1f8ad979d8be1406f8e824" src="/assets/3879e634ce1f8ad979d8be1406f8e824-300x244.jpg" alt="" width="300" height="244" /></a></p>
 
 
-<p>Читать далее:   <a href="http://habrahabr.ru/post/140415/">http://habrahabr.ru/post/140415/</a></p>
+<p>Читать далее:   <a href="http://habrahabr.ru/post/140415/">http://habrahabr.ru/post/140415/</a></p>
 
 ]]></content>
   </entry>
@@ -40,7 +40,7 @@
     <content type="html"><![CDATA[<p>Фотография старого прибора, для которого я разрабатывал прошивку.</p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2010/12/P10005961.jpg"><img class="alignnone size-medium wp-image-926" title="P1000596" src="/assets/P10005961-300x276.jpg" alt="" width="300" height="276" /></a></p>
+<p><a href="/images/2010/12/P10005961.jpg"><img class="alignnone size-medium wp-image-926" title="P1000596" src="/assets/P10005961-300x276.jpg" alt="" width="300" height="276" /></a></p>
 
 
 <p>Кроме разработки программного обеспечения, я также отлаживал некоторые узлы прибора, принимал участие в испытаниях, а также частично разрабатывал документацию на прибор.</p>
@@ -49,10 +49,10 @@
 <p>Прибор содержит микроконтроллер с ядром ARM7 (фирмы Atmel), и имеет 8 каналов АЦП (16 бит), 8 каналов ЦАП (12 бит), 16 дискретных входов, 16 дискретных выходов, 2 силовых выхода управления ТЭНами, интерфейсы RS-232 и RS-485 (протокол Modbus). Все входы и выходы прибора имеют гальваническую изоляцию друг от друга.</p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2010/12/P1000621.jpg"><img class="alignnone size-medium wp-image-924" title="P1000621" src="/assets/P1000621-300x217.jpg" alt="" width="300" height="217" /></a></p>
+<p><a href="/images/2010/12/P1000621.jpg"><img class="alignnone size-medium wp-image-924" title="P1000621" src="/assets/P1000621-300x217.jpg" alt="" width="300" height="217" /></a></p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2010/12/P1000617.jpg"><img class="alignnone size-medium wp-image-923" title="P1000617" src="/assets/P1000617-300x263.jpg" alt="" width="300" height="263" /></a></p>
+<p><a href="/images/2010/12/P1000617.jpg"><img class="alignnone size-medium wp-image-923" title="P1000617" src="/assets/P1000617-300x263.jpg" alt="" width="300" height="263" /></a></p>
 
 ]]></content>
   </entry>
@@ -90,7 +90,7 @@
     <link href="http://arktur04.github.io/blog/2010/05/11/web-%25d1%2581%25d0%25b5%25d1%2580%25d0%25b2%25d0%25b5%25d1%2580/"/>
     <updated>2010-05-11T20:26:17+06:00</updated>
     <id>http://arktur04.github.io/blog/2010/05/11/web-%d1%81%d0%b5%d1%80%d0%b2%d0%b5%d1%80</id>
-    <content type="html"><![CDATA[<p><a href="http://32bit.me/wordpress/wp-content/uploads/2010/05/EthBoard2.jpg"><img class="alignnone size-medium wp-image-367" title="EthBoard2" src="/assets/EthBoard2-300x231.jpg" alt="" width="300" height="231" /></a></p>
+    <content type="html"><![CDATA[<p><a href="/images/2010/05/EthBoard2.jpg"><img class="alignnone size-medium wp-image-367" title="EthBoard2" src="/assets/EthBoard2-300x231.jpg" alt="" width="300" height="231" /></a></p>
 
 
 <p>На самом деле это плата Ethernet-контроллера Wiznet W5100 (вверху), соединённая с отладочной платой c микроконтроллером ARM (LPC). Плата между ними служит для соединения. Также на верхней плате есть флеш-память в виде SD-карты.</p>
@@ -102,7 +102,7 @@
 <p><!--more--></p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2010/05/EthBoard1.jpg"><img class="alignnone size-medium wp-image-368" title="EthBoard1" src="/assets/EthBoard1-300x227.jpg" alt="" width="300" height="227" /></a></p>
+<p><a href="/images/2010/05/EthBoard1.jpg"><img class="alignnone size-medium wp-image-368" title="EthBoard1" src="/assets/EthBoard1-300x227.jpg" alt="" width="300" height="227" /></a></p>
 
 ]]></content>
   </entry>
@@ -112,10 +112,10 @@
     <link href="http://arktur04.github.io/blog/2009/12/03/%25d0%25bc%25d0%25be%25d0%25b4%25d1%2583%25d0%25bb%25d1%258c-%25d0%25b0%25d0%25bd%25d0%25b0%25d0%25bb%25d0%25be%25d0%25b3%25d0%25be%25d0%25b2%25d0%25be%25d0%25b3%25d0%25be-%25d0%25b2%25d0%25b2%25d0%25be%25d0%25b4%25d0%25b0/"/>
     <updated>2009-12-03T17:52:00+05:00</updated>
     <id>http://arktur04.github.io/blog/2009/12/03/%d0%bc%d0%be%d0%b4%d1%83%d0%bb%d1%8c-%d0%b0%d0%bd%d0%b0%d0%bb%d0%be%d0%b3%d0%be%d0%b2%d0%be%d0%b3%d0%be-%d0%b2%d0%b2%d0%be%d0%b4%d0%b0</id>
-    <content type="html"><![CDATA[<div class="separator" style="clear: both; text-align: center;"><a style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;" href="http://32bit.me/wordpress/wp-content/uploads/2010/01/post26/board-adc-big.jpg"><img style="border: 0px;" src="/assets/board-adc-small.jpg" border="0" alt="" /></a></div>
+    <content type="html"><![CDATA[<div class="separator" style="clear: both; text-align: center;"><a style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;" href="/images/2010/01/post26/board-adc-big.jpg"><img style="border: 0px;" src="/assets/board-adc-small.jpg" border="0" alt="" /></a></div>
 
 
-<p>На фото - плата контроллера модуля аналогового ввода. Устройство представляет собой модуль ввода 8 аналоговых сигналов с поной гальванической развязкой (т.е. все 8 входов полностью изолированы друг от друга) и предназначено для работы с ПЛК (поддерживаются протоколы Modbus и DCON). АЦП устройства могут иметь разрядность 16 или 24 бита в зависимости от исполнения. Устройство питается от источника 24В. Плата, приведенная на фотографии, содержит микроконтроллер LPC2103, память FRAM для хранения настроек, порты RS-485 и RS-232, гальванически изолированные друг от друга и от микроконтроллера. Сам микроконтроллер также гальванически изолирован от источника питания. К разъемам на плате подключаются еще две платы с АЦП (выложу позже).</p>
+<p>На фото - плата контроллера модуля аналогового ввода. Устройство представляет собой модуль ввода 8 аналоговых сигналов с поной гальванической развязкой (т.е. все 8 входов полностью изолированы друг от друга) и предназначено для работы с ПЛК (поддерживаются протоколы Modbus и DCON). АЦП устройства могут иметь разрядность 16 или 24 бита в зависимости от исполнения. Устройство питается от источника 24В. Плата, приведенная на фотографии, содержит микроконтроллер LPC2103, память FRAM для хранения настроек, порты RS-485 и RS-232, гальванически изолированные друг от друга и от микроконтроллера. Сам микроконтроллер также гальванически изолирован от источника питания. К разъемам на плате подключаются еще две платы с АЦП (выложу позже).</p>
 
 ]]></content>
   </entry>

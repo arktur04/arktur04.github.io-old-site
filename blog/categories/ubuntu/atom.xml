@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ubuntu | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/ubuntu/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-17T19:38:44+05:00</updated>
+  <updated>2015-12-17T19:54:58+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -21,7 +21,7 @@
     <content type="html"><![CDATA[<p>Книга "Ubuntu - бесплатная альтернатива Windows", автор Джеффри Орлофф.</p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2011/05/a9628115905498a902465ee7745bc300.jpg"><img class="alignnone size-medium wp-image-1178" title="a9628115905498a902465ee7745bc300" src="/assets/a9628115905498a902465ee7745bc300-200x300.jpg" alt="" width="200" height="300" /></a></p>
+<p><a href="/images/2011/05/a9628115905498a902465ee7745bc300.jpg"><img class="alignnone size-medium wp-image-1178" title="a9628115905498a902465ee7745bc300" src="/assets/a9628115905498a902465ee7745bc300-200x300.jpg" alt="" width="200" height="300" /></a></p>
 
 
 <p>Книга для совсем уж начинающих пользователей Ubuntu, основное место в ней занимают описания графической оболочки, пакета OpenOffice и т.п. В конце немного написано про shell и про emacs.</p>
@@ -37,7 +37,7 @@
     <content type="html"><![CDATA[<p>Книга "Ubuntu Linux: Официальный учебный курс", Бенжамин Мако Хилл и др.</p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2011/05/1299256791_1.png.jpg"><img class="alignnone size-medium wp-image-1170" title="1299256791_1.png" src="/assets/1299256791_1.png-232x300.jpg" alt="" width="232" height="300" /></a></p>
+<p><a href="/images/2011/05/1299256791_1.png.jpg"><img class="alignnone size-medium wp-image-1170" title="1299256791_1.png" src="/assets/1299256791_1.png-232x300.jpg" alt="" width="232" height="300" /></a></p>
 
 
 <p>Книга является хорошим вводным курсом в операционную систему. Рассматриваются основные настройки ситемы, команды shell и вопросы, связанные с установкой серверной версии Ubuntu.</p>

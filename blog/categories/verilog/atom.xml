@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Verilog | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/verilog/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-17T19:38:44+05:00</updated>
+  <updated>2015-12-17T19:54:58+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -100,7 +100,7 @@
 <p>Проект видеоадаптера переделан под использование видео ЦАП ADV7123. Схема подключения приведена на рисунке:</p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/11/VGA_DAC.jpg"><img class="alignnone size-medium wp-image-2168" alt="VGA_DAC" src="/assets/VGA_DAC-300x190.jpg" width="300" height="190" /></a></p>
+<p><a href="/images/2015/11/VGA_DAC.jpg"><img class="alignnone size-medium wp-image-2168" alt="VGA_DAC" src="/assets/VGA_DAC-300x190.jpg" width="300" height="190" /></a></p>
 
 
 <p>(по клику откроется полный размер).</p>
@@ -115,7 +115,7 @@
 <p>Фото тестовой картинки:</p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/11/pic1.jpg"><img class="alignnone size-medium wp-image-2166" alt="pic" src="/assets/pic1-300x189.jpg" width="300" height="189" /></a></p>
+<p><a href="/images/2015/11/pic1.jpg"><img class="alignnone size-medium wp-image-2166" alt="pic" src="/assets/pic1-300x189.jpg" width="300" height="189" /></a></p>
 
 
 <p>&nbsp;</p>
@@ -133,7 +133,7 @@
 Вторая часть, Software, описывает процесс загрузки Linux, компиляцию простейшей программы (мигание светодиодом), отладку программы в ARM DS-5 Embedded Development Suite, и основы работы с SignalTap II Logic Analyzer в режиме совместной отладки программного кода и FPGA-проекта.</p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/07/pic1.jpg"><img class="alignnone size-full wp-image-2101" alt="pic1" src="/assets/pic1.jpg" width="1000" height="328" /></a></p>
+<p><a href="/images/2015/07/pic1.jpg"><img class="alignnone size-full wp-image-2101" alt="pic1" src="/assets/pic1.jpg" width="1000" height="328" /></a></p>
 
 ]]></content>
   </entry>
@@ -147,7 +147,7 @@
 Файлы инициализации памяти BRAM для FPGA, могут иметь формат MIF (Memory Initialization File) или формат HEX. </p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/06/DSC_0522_EDIT.jpg"><img class="alignnone size-medium wp-image-2084" alt="DSC_0522_EDIT" src="/assets/DSC_0522_EDIT-300x200.jpg" width="300" height="200" /></a></p>
+<p><a href="/images/2015/06/DSC_0522_EDIT.jpg"><img class="alignnone size-medium wp-image-2084" alt="DSC_0522_EDIT" src="/assets/DSC_0522_EDIT-300x200.jpg" width="300" height="200" /></a></p>
 
 
 <p>Нужный модуль памяти можно сгенерировать в Quartus II с помощью MegaWizard, в ISE - с помощью Xilinx Core Generator. Кроме этого, в QuartusII возможно использование специальной директивы:</p>
@@ -310,13 +310,13 @@ endmodule
     <updated>2015-06-19T21:44:03+05:00</updated>
     <id>http://arktur04.github.io/blog/2015/06/19/fpu-%d1%87%d0%b0%d1%81%d1%82%d1%8c-5-%d1%81%d1%83%d0%bc%d0%bc%d0%b0%d1%82%d0%be%d1%80-%d1%82%d0%b5%d1%81%d1%82-%d0%b8-rtl</id>
     <content type="html"><![CDATA[<p>Итак, сумматор чисел в формате IEEE 754 с разрядностью 32 или 64 бита.<br />
-Исходники можно скачать на Github: <a href="https://github.com/arktur04/FPU" data-cke-saved-href="https://github.com/arktur04/FPU">https://github.com/arktur04/FPU</a>.</p>
+Исходники можно скачать на Github: <a href="https://github.com/arktur04/FPU" data-cke-saved-href="https://github.com/arktur04/FPU">https://github.com/arktur04/FPU</a>.</p>
 
 
 <p>КДПВ (кликабельно):</p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/06/pic1.png"><img class="alignnone size-medium wp-image-2078" alt="pic1" src="/assets/pic1-300x58.png" width="300" height="58" /></a></p>
+<p><a href="/images/2015/06/pic1.png"><img class="alignnone size-medium wp-image-2078" alt="pic1" src="/assets/pic1-300x58.png" width="300" height="58" /></a></p>
 
 
 <p><!--more--></p>

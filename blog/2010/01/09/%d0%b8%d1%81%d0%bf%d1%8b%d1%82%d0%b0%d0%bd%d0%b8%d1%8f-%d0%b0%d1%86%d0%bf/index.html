@@ -91,16 +91,16 @@
 
 
 <div class="entry-content"><p>На скриншоте - на скорую руку написанная на C# программа для испытаний АЦП прибора. Данные поступают с прибора по RS-232, на верхнем графике отображается текущий сигнал, на нижнем - гистограмма значения отсчета / количество отсчетов.</p>
-<div class="separator" style="clear:both;text-align:center;"><a style="clear:left;float:left;margin-bottom:1em;margin-right:1em;" href="http://32bit.me/wordpress/wp-content/uploads/2010/01/post38/adc_test_scr-big.gif"><img style="border: 0px;" src="/assets/adc_test_scr-small.gif" border="0" alt="" /></a></div>
+<div class="separator" style="clear:both;text-align:center;"><a style="clear:left;float:left;margin-bottom:1em;margin-right:1em;" href="/images/2010/01/post38/adc_test_scr-big.gif"><img style="border: 0px;" src="/assets/adc_test_scr-small.gif" border="0" alt="" /></a></div>
 <div style="border-bottom:medium none;border-left:medium none;border-right:medium none;border-top:medium none;text-align:left;">Нажмите на картинку для увеличения.</div>
 <div style="border-bottom:medium none;border-left:medium none;border-right:medium none;border-top:medium none;clear:both;text-align:left;">Цифры вверху справа показывают количество принятых отсчетов, среднее значение, дисперсию и сигму (среднеквадратичное отклонение). Значения приведены в единицах младшего разряда АЦП.</div>
 <p><!--more--><a name="more"></a></p>
 <div style="border-bottom:medium none;border-left:medium none;border-right:medium none;border-top:medium none;clear:both;text-align:left;">
-<div class="separator" style="clear:both;text-align:center;"><a style="clear:left;float:left;margin-bottom:1em;margin-right:1em;" href="http://32bit.me/wordpress/wp-content/uploads/2010/01/post38/adc_test_scr2-big.gif"><img style="border: 0px;" src="/assets/adc_test_scr-small.gif" border="0" alt="" /></a></div>
+<div class="separator" style="clear:both;text-align:center;"><a style="clear:left;float:left;margin-bottom:1em;margin-right:1em;" href="/images/2010/01/post38/adc_test_scr2-big.gif"><img style="border: 0px;" src="/assets/adc_test_scr-small.gif" border="0" alt="" /></a></div>
 <div class="separator" style="clear:both;text-align:left;">Нажмите на картинку для увеличения.</div>
-<p>АЦП 24-битный, AD7793, частота оцифровки 123 Гц. Шум для данного АЦП большой, но для разрабатываемого прибора весьма и весьма низкий. Шумит, скорее всего, входной буфер (AD620), в силу нестабилизированного питания и "макетного" монтажа.</p>
+<p>АЦП 24-битный, AD7793, частота оцифровки 123 Гц. Шум для данного АЦП большой, но для разрабатываемого прибора весьма и весьма низкий. Шумит, скорее всего, входной буфер (AD620), в силу нестабилизированного питания и "макетного" монтажа.</p>
 <div style="border-bottom:medium none;border-left:medium none;border-right:medium none;border-top:medium none;clear:both;text-align:left;">Из скриншота видно, что значение сигма равно 170, т.е. шум можно оценить как двоичный логарифм двух сигм с округлением в большую сторону (двух сигм, т.к. отклонение от среднего значения происходят и в большую им в меньшую сторону). Получится 9 разрядов. Можно добиться снижения шума в несколько раз, но в данном случае хватит и такого значения. АЦП можно заменить на AD7792 (16-битную версию AD7793) без фактического ухудшения параметров прибора. Шум в этом случае составит ~1-2 единиц мл. разряда. При 16-битном преобразовании 1 единица составляет 1/2^16 = 1/65536 = 0,0000152 = 0,0015 %. Подобный шум фактически не оказывает влияния на показания прибора, т.к. он как минимум на два порядка меньше погрешностей датчиков.</div>
-<p> </p></div>
+<p> </p></div>
 </div>
 
 

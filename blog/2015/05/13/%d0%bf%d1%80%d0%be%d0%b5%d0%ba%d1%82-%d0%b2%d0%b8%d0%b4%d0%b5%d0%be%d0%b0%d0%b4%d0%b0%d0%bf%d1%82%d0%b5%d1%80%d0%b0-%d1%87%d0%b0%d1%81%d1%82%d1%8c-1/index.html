@@ -92,7 +92,7 @@
 
 <div class="entry-content"><p>Целью проекта является разработка видеоадаптера на FPGA. Выходом видеоадаптера является VGA, на данный момент поддерживается глубина цвета 6 бит (по 2 бита на цвет RGB).<br />
 Разъём VGA подключен к FPGA по следующей схеме:</p>
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/05/schematics.jpg"><img class="alignnone  wp-image-2038" alt="schematics" src="/assets/schematics.jpg" width="475" height="358" /></a></p>
+<p><a href="/images/2015/05/schematics.jpg"><img class="alignnone  wp-image-2038" alt="schematics" src="/assets/schematics.jpg" width="475" height="358" /></a></p>
 <p>&nbsp;</p>
 <p>Резисторы R1-R6 образуют простейший ЦАП, для начала хватит такого, если нужна большая глубина цвета, то лучше использовать специализированные микросхемы видеоЦАП, например ADV7123.</p>
 <p><!--more--></p>
@@ -105,9 +105,9 @@
 <p>Теоретически, существует стандартный режим 640х400, но монитор отказался работать в таком режиме, поэтому пришлось его имитировать на режиме 640х480. Режим 320х200 - то же самое.</p>
 <p>Модуль работает на тактовой частоте 50МГц, частота пикселов составляет 25МГц. По стандарту частота пикселов в режимах 640х480@60Гц и 640х350@70Гц составляет 25,175МГц, но мониторы успешно синхронизируются и на 25МГц.</p>
 <p>Фото экрана для примера:</p>
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/05/pic1.jpg"><img class="alignnone size-medium wp-image-2039" alt="pic1" src="/assets/pic1-300x226.jpg" width="300" height="226" /></a></p>
-<p>Код на гитхабе: <a href="https://github.com/arktur04/VideoCard/archive/master.zip">https://github.com/arktur04/VideoCard/archive/master.zip</a></p>
-<p>Полезная ссылка: <a href="http://tinyvga.com/vga-timing">http://tinyvga.com/vga-timing</a> - таблица режимов VGA с таймингами.</p>
+<p><a href="/images/2015/05/pic1.jpg"><img class="alignnone size-medium wp-image-2039" alt="pic1" src="/assets/pic1-300x226.jpg" width="300" height="226" /></a></p>
+<p>Код на гитхабе: <a href="https://github.com/arktur04/VideoCard/archive/master.zip">https://github.com/arktur04/VideoCard/archive/master.zip</a></p>
+<p>Полезная ссылка: <a href="http://tinyvga.com/vga-timing">http://tinyvga.com/vga-timing</a> - таблица режимов VGA с таймингами.</p>
 <p>Это первая часть проекта, один модуль. Следующей частью будет модуль двухпортовой памяти для видеобуфера.</p>
 </div>
 

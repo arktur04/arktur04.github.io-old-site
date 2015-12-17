@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C и C++ | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/c-i-c-plus-plus/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-17T19:38:44+05:00</updated>
+  <updated>2015-12-17T19:54:58+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -24,7 +24,7 @@
 <p>На сегодняшний день существует только два реалистичных пути разработки компилятора для собственной архитектуры: использование GCC либо использование LLVM. Другие проекты компиляторов с открытым исходным кодом либо не достигли той степени развития, как GCC и LLVM, либо устарели и перестали развиваться, они не обладают развитыми алгоритмами оптимизации, и могут не обеспечивать полной совместимости даже со стандартом языка С, не говоря уже о поддержке других языков программирования. Разработка собственного компилятора “с нуля", это самая большая ошибка, которую можно совершить. Результатом такой разработки, крайне долгой и дорогостоящей, будет компилятор с множеством ошибок, с множеством отклонений от стандарта языка, с плохой оптимизацией или вообще без неё, с поддержкой, может быть, только одного языка (например, С).</p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/10/DragonFull.png"><img class="alignnone size-medium wp-image-2153" alt="DragonFull" src="/assets/DragonFull-300x300.png" width="300" height="300" /></a></p>
+<p><a href="/images/2015/10/DragonFull.png"><img class="alignnone size-medium wp-image-2153" alt="DragonFull" src="/assets/DragonFull-300x300.png" width="300" height="300" /></a></p>
 
 
 <p><!--more-->Какой из этих двух open-source проектов выбрать в качестве основы для своего компилятора? GCC (GNU Compiler Collection) является более старым проектом, первый релиз которого состоялся в 1987 году, его автором является Ричард Столлман, известный деятель open-source движения [1]. Он поддерживает множество языков программирования: C, C++, Objective C, Fortran, Java, Ada, Go. Также существуют фронтенды для многих других языков программирования, не включенных в основную сборку. Компилятор GCC поддерживает большое количество процессорных архитектур и операционных систем, и является в настоящее время наиболее распространённым компилятором. Сам GCC написан на языке С.</p>
@@ -53,7 +53,7 @@
 Однако такой путь считается "hacky and unsafe". Поэтому следующим логичным шагом должно стать написание драйвера.</p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/10/Tux-linux-and-ARM-multiplatform-support.jpg"><img class="alignnone size-full wp-image-2147" alt="Tux-linux-and-ARM-multiplatform-support" src="/assets/Tux-linux-and-ARM-multiplatform-support.jpg" width="672" height="370" /></a></p>
+<p><a href="/images/2015/10/Tux-linux-and-ARM-multiplatform-support.jpg"><img class="alignnone size-full wp-image-2147" alt="Tux-linux-and-ARM-multiplatform-support" src="/assets/Tux-linux-and-ARM-multiplatform-support.jpg" width="672" height="370" /></a></p>
 
 
 <p>Я воспользовался готовым исходником драйвера (<a href="https://github.com/zhemao/sockit_test/tree/master/software/blinker">ссылка</a>) за авторством Howard Mao (он на самом деле не Howard, а Zhe Hao Mao). Конечно, для того, чтобы разобраться в работе кода, почитал отдельные главы книги Linux Device Drivers (есть русский перевод).</p>
@@ -65,7 +65,7 @@
 <p>Однако всё не так просто. После компиляции записываем скомпилированный драйвер blinker.ko на SD-карту, после загрузки Linux пишем<strong> insmod blinker.ko</strong> и получаем следующее: "<em>blinker: version magic '3.9.0-00161-ged01b8c SMP mod_unload ARMv7 p2v8 ' should be '3.9.0 SMP mod_unload ARMv7 p2v8'</em>". Не совпали волшебные номерки. Причем версия одна и та же, просто зачем-то к ней приделан какой-то добавочный номер.</p>
 
 
-<p>Решений может быть три: 1. Скомпилировать Linux именно из этого скачанного исходника (очень неохота) или 2. Подправить номер в исходниках ядра Linux. 3. Использовать команду modprobe с ключом -f, который заставляет систему игнорировать "волшебные цифры".  Однако этот способ почему-то не заработал.<br />
+<p>Решений может быть три: 1. Скомпилировать Linux именно из этого скачанного исходника (очень неохота) или 2. Подправить номер в исходниках ядра Linux. 3. Использовать команду modprobe с ключом -f, который заставляет систему игнорировать "волшебные цифры".  Однако этот способ почему-то не заработал.<br />
 Итак, способ номер 2, подправить номер в исходнике ядра. Данный номер записан в файле /include/generated/utsrelease.h. Исправляем то, что там было, на "3.9.0", и перекомпилируем драйвер. На всякий случай смотрим hex-редактором файл blinker.ko, чтобы убедиться, что волшебные циферки такие, как нужно. Снова записываем драйвер на SD-карту, запускаем insmod, всё прошло гладко. Теперь можно проверить работу драйвера, посылая ему числа от 1 до 15 для управления частотой миганий: echo 1 &gt; blinker - мигает быстро, echo 15 &gt; blinker - мигает медленно. Пока всё. Немного, но путь в тысячу ли начинается с одного шага.</p>
 
 
@@ -193,10 +193,10 @@ echo 1 > /sys/class/fpga-bridge/lwhps2fpga/enable
     <id>http://arktur04.github.io/blog/2015/09/11/%d0%ba%d0%bd%d0%b8%d0%b3%d0%b0-mayur-pandey-suyog-sarda-llvm-cookbook</id>
     <content type="html"><![CDATA[<p>Прочитал книгу Mayur Pandey, Suyog Sarda "LLVM Cookbook", 284 стр, англ. язык.<br />
 Хорошая книга, описывает много интересных вещей об архитектуре и внутреннем устройстве инфраструктуры компиляторов LLVM.<br />
-Она дополняет другую книгу, "Getting Started with LLVM Core Libraries", про которую я уже <a href="http://32bit.me/?p=1880">писал</a>. Кстати,  Getting Started with LLVM Core Libraries переведена на русский язык и сейчас есть в продаже (я читал в оригинале).</p>
+Она дополняет другую книгу, "Getting Started with LLVM Core Libraries", про которую я уже <a href="http://32bit.me/?p=1880">писал</a>. Кстати,  Getting Started with LLVM Core Libraries переведена на русский язык и сейчас есть в продаже (я читал в оригинале).</p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/09/5981OS_LLVM-Cookbook.jpg"><img class="alignnone size-medium wp-image-2137" alt="5981OS_LLVM Cookbook" src="/assets/5981OS_LLVM-Cookbook-243x300.jpg" width="243" height="300" /></a></p>
+<p><a href="/images/2015/09/5981OS_LLVM-Cookbook.jpg"><img class="alignnone size-medium wp-image-2137" alt="5981OS_LLVM Cookbook" src="/assets/5981OS_LLVM-Cookbook-243x300.jpg" width="243" height="300" /></a></p>
 
 ]]></content>
   </entry>
@@ -210,7 +210,7 @@ echo 1 > /sys/class/fpga-bridge/lwhps2fpga/enable
 В книге описывается ряд системных вызовов для работы с файлами, процессами, временем, сигналами и распределением памяти. Приводятся сведения о работе этих вызовов по стандарту POSIX и по их реализации в ядре Linux.</p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/08/3a56606f29e71f3a51b8c5fdd1d.jpg"><img class="alignnone size-full wp-image-2118" alt="3a56606f29e71f3a51b8c5fdd1d" src="/assets/3a56606f29e71f3a51b8c5fdd1d.jpg" width="407" height="600" /></a></p>
+<p><a href="/images/2015/08/3a56606f29e71f3a51b8c5fdd1d.jpg"><img class="alignnone size-full wp-image-2118" alt="3a56606f29e71f3a51b8c5fdd1d" src="/assets/3a56606f29e71f3a51b8c5fdd1d.jpg" width="407" height="600" /></a></p>
 
 ]]></content>
   </entry>

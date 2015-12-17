@@ -100,14 +100,14 @@
 <p>6. вентилятор (я использовал вентилятор 40 мм);</p>
 <p>7. корпус;</p>
 <p>Собираем всё вместе:</p>
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2013/09/pic1.jpg"><img class="alignnone size-medium wp-image-1769" title="pic1" src="/assets/pic1-300x225.jpg" alt="" width="300" height="225" /></a></p>
+<p><a href="/images/2013/09/pic1.jpg"><img class="alignnone size-medium wp-image-1769" title="pic1" src="/assets/pic1-300x225.jpg" alt="" width="300" height="225" /></a></p>
 <p>(все картинки кликабельны)</p>
 <p><!--more-->Перед установкой жесткого диска его необходимо отформатировать с файловой системой HFS+. Я воспользовался для этого утилитой MacDrive.</p>
-<p>Итак, устанавливаем на SD-карту Linux Debian Wheezy и настраиваем всё согласно инструкции отсюда: <a href="http://www.raspberrypi.org/phpBB3/viewtopic.php?=63&amp;t=31511">http://www.raspberrypi.org/phpBB3/viewtopic.php?=63&amp;t=31511</a>.</p>
+<p>Итак, устанавливаем на SD-карту Linux Debian Wheezy и настраиваем всё согласно инструкции отсюда: <a href="http://www.raspberrypi.org/phpBB3/viewtopic.php?=63&amp;t=31511">http://www.raspberrypi.org/phpBB3/viewtopic.php?=63&amp;t=31511</a>.</p>
 <p>Итак, всё готово, теперь Time Machine видит устройство и предлагает сделать резервную копию.</p>
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2013/09/pic2.jpg"><img class="alignnone size-medium wp-image-1770" title="pic2" src="/assets/pic2-300x186.jpg" alt="" width="300" height="186" /></a></p>
+<p><a href="/images/2013/09/pic2.jpg"><img class="alignnone size-medium wp-image-1770" title="pic2" src="/assets/pic2-300x186.jpg" alt="" width="300" height="186" /></a></p>
 <p>Теперь остался последний штрих. Устройство потребляет (и, соответственно, рассеивает) довольно существенную мощность для такого маленького корпуса, поэтому нужно проверить температуру, до которой нагреваются наиболее горячие части устройства. Я проверял температуру радиатора блока питания (он нагревается сильнее всего, на втором месте винчестер).</p>
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2013/09/pic3.jpg"><img class="alignnone size-medium wp-image-1771" title="pic3" src="/assets/pic3-300x225.jpg" alt="" width="300" height="225" /></a></p>
+<p><a href="/images/2013/09/pic3.jpg"><img class="alignnone size-medium wp-image-1771" title="pic3" src="/assets/pic3-300x225.jpg" alt="" width="300" height="225" /></a></p>
 <p>Максимальная температура, до которой нагревался радиатор при работе составила: с выключенным вентилятором &gt;60 °C, с включенным вентилятором ~40-42 °C. Проблема в том, что вентилятор издает довольно громкий звук. В принципе, 60 градусов можно считать приемлемой температурой, так что вентилятор можно отключить, но наиболее подходящим решением мне представляется следующее: подключить датчик температуры к RPi, подключить к нему же управление вентилятором (простой транзисторный ключ), и написать скрипт, который будет включать вентилятор по достижению порогового значения температуры (например, 50 °С), и выключать его при снижении температуры ниже другого порога (например, 45°С). Но это уже другая история.</p>
 </div>
 

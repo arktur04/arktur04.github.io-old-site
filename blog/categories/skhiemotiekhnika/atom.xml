@@ -4,7 +4,7 @@
   <title><![CDATA[Category: схемотехника | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/skhiemotiekhnika/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-17T19:38:44+05:00</updated>
+  <updated>2015-12-17T19:54:58+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -100,7 +100,7 @@
 <p>Проект видеоадаптера переделан под использование видео ЦАП ADV7123. Схема подключения приведена на рисунке:</p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/11/VGA_DAC.jpg"><img class="alignnone size-medium wp-image-2168" alt="VGA_DAC" src="/assets/VGA_DAC-300x190.jpg" width="300" height="190" /></a></p>
+<p><a href="/images/2015/11/VGA_DAC.jpg"><img class="alignnone size-medium wp-image-2168" alt="VGA_DAC" src="/assets/VGA_DAC-300x190.jpg" width="300" height="190" /></a></p>
 
 
 <p>(по клику откроется полный размер).</p>
@@ -115,7 +115,7 @@
 <p>Фото тестовой картинки:</p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/11/pic1.jpg"><img class="alignnone size-medium wp-image-2166" alt="pic" src="/assets/pic1-300x189.jpg" width="300" height="189" /></a></p>
+<p><a href="/images/2015/11/pic1.jpg"><img class="alignnone size-medium wp-image-2166" alt="pic" src="/assets/pic1-300x189.jpg" width="300" height="189" /></a></p>
 
 
 <p>&nbsp;</p>
@@ -131,7 +131,7 @@
     <content type="html"><![CDATA[<p><a href="http://ru-radio-electr.livejournal.com/1295897.html">Отсюда</a>.</p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/03/111307_900.png"><img class="alignnone size-medium wp-image-1960" alt="111307_900" src="/assets/111307_900-300x66.png" width="300" height="66" /></a></p>
+<p><a href="/images/2015/03/111307_900.png"><img class="alignnone size-medium wp-image-1960" alt="111307_900" src="/assets/111307_900-300x66.png" width="300" height="66" /></a></p>
 
 
 <p>&nbsp;</p>
@@ -182,7 +182,7 @@
 <p>Допускается объединение микросхем в массив, содержащий в общей сложности до 64х64 = 4096 ядер.</p>
 
 
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2014/10/epiphany.jpg"><img class="alignnone size-full wp-image-1861" alt="epiphany" src="/assets/epiphany.jpg" width="721" height="353" /></a></p>
+<p><a href="/images/2014/10/epiphany.jpg"><img class="alignnone size-full wp-image-1861" alt="epiphany" src="/assets/epiphany.jpg" width="721" height="353" /></a></p>
 
 
 <p>&nbsp;</p>
