@@ -4,7 +4,7 @@
   <title><![CDATA[Category: плис | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/plis/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-17T19:54:58+05:00</updated>
+  <updated>2015-12-17T20:24:16+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -304,7 +304,7 @@ echo 1 > /sys/class/fpga-bridge/lwhps2fpga/enable
 Вторая часть, Software, описывает процесс загрузки Linux, компиляцию простейшей программы (мигание светодиодом), отладку программы в ARM DS-5 Embedded Development Suite, и основы работы с SignalTap II Logic Analyzer в режиме совместной отладки программного кода и FPGA-проекта.</p>
 
 
-<p><a href="/images/2015/07/pic1.jpg"><img class="alignnone size-full wp-image-2101" alt="pic1" src="/assets/pic1.jpg" width="1000" height="328" /></a></p>
+<p><a href="/images/2015/07/pic1.jpg"><img class="alignnone size-full wp-image-2101" alt="pic1" src="/assets/pic2015-07-28.jpg" width="1000" height="328" /></a></p>
 
 ]]></content>
   </entry>
