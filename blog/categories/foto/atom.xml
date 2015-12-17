@@ -4,7 +4,7 @@
   <title><![CDATA[Category: фото | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/foto/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-17T20:57:51+05:00</updated>
+  <updated>2015-12-17T21:24:31+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -18,7 +18,7 @@
     <link href="http://arktur04.github.io/blog/2015/11/05/vga-%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580-%25d0%25bd%25d0%25b0-fpga/"/>
     <updated>2015-11-05T21:38:06+05:00</updated>
     <id>http://arktur04.github.io/blog/2015/11/05/vga-%d0%b0%d0%b4%d0%b0%d0%bf%d1%82%d0%b5%d1%80-%d0%bd%d0%b0-fpga</id>
-    <content type="html"><![CDATA[<p>Продолжение. <a title="Начало" href="http://32bit.me/?p=2037">Начало</a>.</p>
+    <content type="html"><![CDATA[<p>Продолжение. <a title="Начало" href="http://arktur04.github.io/blog/2015/05/13/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-1/">Начало</a>.</p>
 
 
 <p>Проект видеоадаптера переделан под использование видео ЦАП ADV7123. Схема подключения приведена на рисунке:</p>

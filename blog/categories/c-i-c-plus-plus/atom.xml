@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C и C++ | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/c-i-c-plus-plus/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-17T20:57:51+05:00</updated>
+  <updated>2015-12-17T21:24:31+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -193,7 +193,7 @@ echo 1 > /sys/class/fpga-bridge/lwhps2fpga/enable
     <id>http://arktur04.github.io/blog/2015/09/11/%d0%ba%d0%bd%d0%b8%d0%b3%d0%b0-mayur-pandey-suyog-sarda-llvm-cookbook</id>
     <content type="html"><![CDATA[<p>Прочитал книгу Mayur Pandey, Suyog Sarda "LLVM Cookbook", 284 стр, англ. язык.<br />
 Хорошая книга, описывает много интересных вещей об архитектуре и внутреннем устройстве инфраструктуры компиляторов LLVM.<br />
-Она дополняет другую книгу, "Getting Started with LLVM Core Libraries", про которую я уже <a href="http://32bit.me/?p=1880">писал</a>. Кстати,  Getting Started with LLVM Core Libraries переведена на русский язык и сейчас есть в продаже (я читал в оригинале).</p>
+Она дополняет другую книгу, "Getting Started with LLVM Core Libraries", про которую я уже <a href="http://arktur04.github.io/blog/2014/12/02/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-bruno-cardoso-lopes-getting-started-with-llvm-core-libraries/">писал</a>. Кстати,  Getting Started with LLVM Core Libraries переведена на русский язык и сейчас есть в продаже (я читал в оригинале).</p>
 
 
 <p><a href="/images/2015/09/5981OS_LLVM-Cookbook.jpg"><img class="alignnone size-medium wp-image-2137" alt="5981OS_LLVM Cookbook" src="/assets/5981OS_LLVM-Cookbook-243x300.jpg" width="243" height="300" /></a></p>
