@@ -4,7 +4,7 @@
   <title><![CDATA[My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-15T20:55:10+05:00</updated>
+  <updated>2015-12-17T19:38:44+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -12,6 +12,49 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Книга Andrew Moore "FPGA for Dummies"]]></title>
+    <link href="http://arktur04.github.io/blog/2015/12/16/knigha-fpga-for-dummies/"/>
+    <updated>2015-12-16T21:41:38+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/12/16/knigha-fpga-for-dummies</id>
+    <content type="html"><![CDATA[<p>Прочитал книгу Andrew Moore &ldquo;FPGA for dummies&rdquo;, 44 стр., англ. язык. Книжка совсем простая, конечно, и объясняет совсем базовые вещи, типа, что такое FPGA и зачем они нужны.</p>
+
+<p><a href="http://arktur04.github.io/images/2015/12/FPGAs_dummies_full.jpg"><img title="FPGA for dummies" src="http://arktur04.github.io/images/2015/12/FPGAs_dummies_small.png" alt="" height="300" /></a></p>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Книга Вирт Н. "Построение компиляторов"]]></title>
+    <link href="http://arktur04.github.io/blog/2015/12/16/knigha-virt-kompiliatory/"/>
+    <updated>2015-12-16T20:00:22+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/12/16/knigha-virt-kompiliatory</id>
+    <content type="html"><![CDATA[<p>Прочитал книгу Вирт Н. &ldquo;Построение компиляторов&rdquo;, 192 стр.</p>
+
+<p><a href="http://arktur04.github.io/images/2015/12/vurt_full.jpg"><img title="Qt5.3. Профессиональное программирование на С++" src="http://arktur04.github.io/images/2015/12/vurt_small.jpg" alt="" height="300" /></a></p>
+
+
+<p>Книга может служить хорошим введением в тему, хотя классическим трудом по компиляторам является <a href="https://ru.wikipedia.org/wiki/%D0%9A%D0%BE%D0%BC%D0%BF%D0%B8%D0%BB%D1%8F%D1%82%D0%BE%D1%80%D1%8B:_%D0%BF%D1%80%D0%B8%D0%BD%D1%86%D0%B8%D0%BF%D1%8B,_%D1%82%D0%B5%D1%85%D0%BD%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D0%B8_%D0%B8_%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D1%8B">&ldquo;книга дракона&rdquo;</a>.
+Вирт в настоящее время несколько утратил былую славу, во многом из-за странного языка Оберон, который очень сильно уступает современным языкам. Все примеры в книге на Обероне. К счастью, он практически неотличим от Паскаля, с которого я когда-то начинал. Как краткое введение книгу читать можно.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Книга М. Шлее «Qt5.3. Профессиональное программирование на С++»]]></title>
+    <link href="http://arktur04.github.io/blog/2015/12/16/knigha-qt/"/>
+    <updated>2015-12-16T18:15:46+05:00</updated>
+    <id>http://arktur04.github.io/blog/2015/12/16/knigha-qt</id>
+    <content type="html"><![CDATA[<p>Прочитал книгу М. Шлее «Qt5.3. Профессиональное программирование на С++», 928 стр., и проработал (по мере возможности) все примеры кода.</p>
+
+<p><a href="http://arktur04.github.io/images/2015/12/qt5.3_full.jpg"><img title="Qt5.3. Профессиональное программирование на С++" src="http://arktur04.github.io/images/2015/12/qt5.3_small.jpg" alt="" height="300" /></a></p>
+
+
+<p>Раньше я читал Шлее &ldquo;Qt 4.5&rdquo;, новая книга стала больше, но в целом принципы работы Qt остались те же. Возможности системы описаны достаточно подробно, но во второй половине книги в коде попадаются странные ошибки.</p>
+
+<p>Я видел в сети критические мнения о книге, в которых приводился, в частности, аргумент, что документация по Qt настолько хороша, что в книге нет нужды. Лично я считаю, что книга всё равно нужна, документация не заменяет учебника. Учебник можно прочитать в начале знакомства с продуктом, и получить хотя бы общее представление обо всех его ключевых особенностях, а конкретные вопросы уточнять в процессе работы, обращаясь к фирменной документации.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Проект видеоадаптера. Часть 3]]></title>
@@ -489,103 +532,6 @@ end</pre>
     <updated>2015-06-17T20:39:03+05:00</updated>
     <id>http://arktur04.github.io/blog/2015/06/17/%d1%81%d1%81%d1%8b%d0%bb%d0%ba%d0%b0-%d0%be%d1%82-rs-components</id>
     <content type="html"><![CDATA[<p>Инженерный портал <a href="http://www.rs-online.com/designspark/electronics/nodes/view/type:tool/slug:product-data-library">http://www.rs-online.com/designspark/electronics/nodes/view/type:tool/slug:product-data-library</a>, цель которого – предоставить инженеру техническую информацию от разных производителей – в одном месте.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Книга Б. Страуструп "Язык программирования С++"]]></title>
-    <link href="http://arktur04.github.io/blog/2015/06/16/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-%25d0%25b1-%25d1%2581%25d1%2582%25d1%2580%25d0%25b0%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d1%2583%25d0%25bf-%25d1%258f%25d0%25b7%25d1%258b%25d0%25ba-%25d0%25bf%25d1%2580%25d0%25be%25d0%25b3%25d1%2580%25d0%25b0%25d0%25bc%25d0%25bc%25d0%25b8%25d1%2580%25d0%25be%25d0%25b2/"/>
-    <updated>2015-06-16T18:11:17+05:00</updated>
-    <id>http://arktur04.github.io/blog/2015/06/16/%d0%ba%d0%bd%d0%b8%d0%b3%d0%b0-%d0%b1-%d1%81%d1%82%d1%80%d0%b0%d1%83%d1%81%d1%82%d1%80%d1%83%d0%bf-%d1%8f%d0%b7%d1%8b%d0%ba-%d0%bf%d1%80%d0%be%d0%b3%d1%80%d0%b0%d0%bc%d0%bc%d0%b8%d1%80%d0%be%d0%b2</id>
-    <content type="html"><![CDATA[<p>Прочитал книгу Б. Страуструп "Язык программирования С++".</p>
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/06/1363474817_6q2alrlwncaa.jpg"><img class="alignnone size-full wp-image-2071" alt="1363474817_6q2alrlwncaa" src="http://arktur04.github.io/assets/1363474817_6q2alrlwncaa.jpg" width="450" height="636" /></a></p>
-<p>Книга очень хорошая, это не только справочник по синтаксису языка и библиотеке STL, это ещё и прекрасный учебник с множеством примеров кода. Также в книге есть рассуждения автора о процессе проектирования о организации процесса разработки ПО. Этим он отличается от многих авторов из "академической" среды, таких, как Н.Вирт. Не стоит забывать, что Б. Страуструп в первую очередь программист - практик, работающий в коммерческой организации над большими проектами, а не преподаватель кафедры программирования, чья самая большая программа не превышает ста строк.</p>
-<p>Не могу не привести цитату (гл. 23.5):</p>
-<p><em>"В организации, которая обращается со своими программистами как с полными идиотами, вскоре будут работать только те программисты, которые желают и способны вести себя как полные идиоты."</em></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Цитата]]></title>
-    <link href="http://arktur04.github.io/blog/2015/06/15/%25d1%2586%25d0%25b8%25d1%2582%25d0%25b0%25d1%2582%25d0%25b0/"/>
-    <updated>2015-06-15T16:44:03+05:00</updated>
-    <id>http://arktur04.github.io/blog/2015/06/15/%d1%86%d0%b8%d1%82%d0%b0%d1%82%d0%b0</id>
-    <content type="html"><![CDATA[<p>Цитата из книги Б. Страуструп "Язык программирования С++" (гл.23.3) (текст выделен мной):<br />
-"<em>Обычный подход... заключается в том, чтобы свести разработку к задачам относительно низкого уровня, подгоняемых под общую грубую схему. То есть идея заключается в том, что создаётся класс быстро обучаемых (дешевых) взаимозаменяемых программистов низкого уровня ("кодировщиков") и класс не таких дешевых, но столь же взаимозаменяемых (и, стало быть, столь же малоценных) проектировщиков. Предполагается, что кодировщики не принимают проектных решений, в то время как проектировщики не утруждают себя грубой работой по вниканию в детали кодирования. <strong>Такой подход часто приводит к неудаче</strong>. Там, где он работает, в результате получаются чрезмерно громоздкие системы с низкой производительностью.</em><br />
-<em> ...</em><br />
-<em> По сути дела, такой системе не хватает механизма обратной связи, чтобы люди учились на чужом опыте. <strong>Это растрата человеческого таланта</strong>. Создание среды разработки, в рамках которой человек может <strong>проявлять разнообразные таланты, развивать новые способности, вносить идеи и радоваться своей работе</strong> - это не просто <strong>цель</strong>, достойная сама по себе, но вещь, <strong>приносящая</strong> практическую <strong>экономическую выгоду</strong>.</em>"</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[О подсчете нулей]]></title>
-    <link href="http://arktur04.github.io/blog/2015/06/12/%25d0%25be-%25d0%25bf%25d0%25be%25d0%25b4%25d1%2581%25d1%2587%25d0%25b5%25d1%2582%25d0%25b5-%25d0%25bd%25d1%2583%25d0%25bb%25d0%25b5%25d0%25b9/"/>
-    <updated>2015-06-12T14:30:05+05:00</updated>
-    <id>http://arktur04.github.io/blog/2015/06/12/%d0%be-%d0%bf%d0%be%d0%b4%d1%81%d1%87%d0%b5%d1%82%d0%b5-%d0%bd%d1%83%d0%bb%d0%b5%d0%b9</id>
-    <content type="html"><![CDATA[<p>В задачах, связанных с арифметическими функциями, часто необходимо подсчитать количество нулей в старших разрядах числа. Эту функцию можно реализовать по-разному.</p>
-<p>Итак, вариант 1:</p>
-<pre lang="verilog" line="1">function [ZERO_DATA_WIDTH - 1: 0] zero_cnt;
-input [DATA_WIDTH - 1: 0] in;
-integer i;
-begin
-  zero_cnt = DATA_WIDTH;
-  for(i = DATA_WIDTH - 1; i >= 0; i = i - 1)
-  begin
-    if(in[i] && zero_cnt == DATA_WIDTH)
-	   zero_cnt = DATA_WIDTH - i - 1;
-  end
-end
-endfunction</pre>
-<p><!--more-->Возможно написать и второй вариант, с рекурсией:</p>
-<pre lang="verilog" line="1">function [ZERO_DATA_WIDTH - 1: 0] zero_cnt_recursive;
-input [DATA_WIDTH - 1: 0] in;
-begin
-  if(in == 0)
-    zero_cnt_recursive = DATA_WIDTH;
-  else
-    zero_cnt_recursive = (zero_cnt_recursive(in && 1) - 1);
-end
-endfunction</pre>
-<p>Разумеется, при симуляции оба варианта работают одинаково:</p>
-<p><a href="http://32bit.me/wordpress/wp-content/uploads/2015/06/pic11.jpg"><img class="alignnone size-large wp-image-2064" alt="pic1" src="http://arktur04.github.io/assets/pic11-1024x93.jpg" width="1024" height="93" /></a></p>
-<p>(картинка кликабельна)</p>
-<p>На скриншоте верхний сигнал (zero_counter1) соответствует первому варианту реализации, сигнал zero_counter2, соответственно, второму.</p>
-<p>Теперь попробуем синтезировать. Делаем простейший модуль:</p>
-<pre lang="verilog" line="1">module zero_cnt_1
-#(
-parameter DATA_WIDTH = 53,
-parameter ZERO_DATA_WIDTH = 6
-)
-(
-  input wire clk, rst_n,
-  input wire [DATA_WIDTH - 1: 0] in,
-  output reg [ZERO_DATA_WIDTH - 1: 0] result
-);
-
-always@(posedge clk or negedge rst_n)
-begin
-  if(!rst_n)
-    result <= 0;
-  else
-    result <= zero_cnt(in);  
-end
-  function [ZERO_DATA_WIDTH - 1: 0] zero_cnt;
-  input [DATA_WIDTH - 1: 0] in;
-  integer i;
-  begin
-      zero_cnt = DATA_WIDTH;
-  for(i = DATA_WIDTH - 1; i >= 0; i = i - 1)
-  begin
-    if(in[i] && zero_cnt == DATA_WIDTH)
-      zero_cnt = DATA_WIDTH - i - 1;
-  end
-end
-endfunction
-
-endmodule</pre>
-<p>И синтезируем. Итак, синтез в Quartus II 11.1 для Cyclone II: 134 логических элемента, синтез в ISE14.4 для Spartan 3: 121 LUT.</p>
-<p>Пробуем синтезировать вторую функцию, и тут нас ожидает неудача: ни Quartus, ни ISE не умеют синтезировать рекурсивные функции (что логично, впрочем).</p>
-<p>Конечно, и у первой реализации есть недостаток, очень длинная цепь комбинаторики ограничивает максимальную частоту работы схемы, поэтому можнт понадобиться разделить всю схему на несколько стадий, чтобы вычисления происходили за несколько тактов. Но об этом я напишу в другой раз.</p>
 ]]></content>
   </entry>
   

@@ -9,7 +9,8 @@
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="Сборка из двух плат будет устанавливаться в корпус прибора. Платы содержат: микроконтроллер, 4 канала ЦАП, 4 канала АЦП (24 бит), с контролем обрыва &hellip;">
+  <meta name="description" content="Что можно в С, но нельзя в С++?
+Отсюда: http://publib.boulder.ibm.com/infocenter/comphelp/v8v101/index.jsp?topic=/com.ibm.xlcpp8a.doc/language/ref/ &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -68,6 +69,117 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/07/15/c-%25d0%25b8-c/">C и C++</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-07-15T20:15:39+06:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>8:15 pm</span></time>
+        
+           | <a href="/blog/2010/07/15/c-%25d0%25b8-c/#disqus_thread"
+             data-disqus-identifier="http://arktur04.github.io/blog/2010/07/15/c-%25d0%25b8-c/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Что можно в С, но нельзя в С++?</p>
+<p>Отсюда: <a href="http://publib.boulder.ibm.com/infocenter/comphelp/v8v101/index.jsp?topic=/com.ibm.xlcpp8a.doc/language/ref/param_decl.htm">http://publib.boulder.ibm.com/infocenter/comphelp/v8v101/index.jsp?topic=/com.ibm.xlcpp8a.doc/language/ref/param_decl.htm</a></p>
+<blockquote><p>С: The user-defined type can also be defined within the parameter declaration.</p>
+<p> С++: The user-defined type can not be defined within the parameter declaration.</p>
+<p>void print(struct X { int i; } x);   // legal in C<br />
+void print(struct X { int i; } x);   // error in C++</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/07/15/%25d0%25ba%25d0%25be%25d0%25bd%25d1%2584%25d0%25b8%25d0%25b3%25d1%2583%25d1%2580%25d0%25b0%25d1%2586%25d0%25b8%25d1%258f-%25d0%25bf%25d0%25b0%25d0%25bc%25d1%258f%25d1%2582%25d0%25b8-%25d0%25b2-iar/">Конфигурация памяти в IAR</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-07-15T14:54:24+06:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>2:54 pm</span></time>
+        
+           | <a href="/blog/2010/07/15/%25d0%25ba%25d0%25be%25d0%25bd%25d1%2584%25d0%25b8%25d0%25b3%25d1%2583%25d1%2580%25d0%25b0%25d1%2586%25d0%25b8%25d1%258f-%25d0%25bf%25d0%25b0%25d0%25bc%25d1%258f%25d1%2582%25d0%25b8-%25d0%25b2-iar/#disqus_thread"
+             data-disqus-identifier="http://arktur04.github.io/blog/2010/07/15/%25d0%25ba%25d0%25be%25d0%25bd%25d1%2584%25d0%25b8%25d0%25b3%25d1%2583%25d1%2580%25d0%25b0%25d1%2586%25d0%25b8%25d1%258f-%25d0%25bf%25d0%25b0%25d0%25bc%25d1%258f%25d1%2582%25d0%25b8-%25d0%25b2-iar/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Проект, написанный на С++ в IAR под микроконтролер LPC2368 (ядро ARM7TDMI), не заработал после перекомпиляции под LPC1768 (ядро Cortex M3). Предпринятые исследования показали, что программа падает на совершенно невинной строке:</p>
+<pre>AddControl(<strong>new</strong> usBmpButton(110, 9, 17, 18, 10, BTN_FORWARD, MSG_BTN_FORWARD));</pre>
+<p>то есть, как нетрудно догадаться, именно на операции выделения памяти <strong>new</strong>.</p>
+<p>Дальнейшее изучение проблемы привело к файлам конфигурации, хранящимся в папке config проекта. В файле LPC1768_Flash.icf есть строка:</p>
+<p>define symbol __ICFEDIT_size_heap__     = 0x400;</p>
+<p>то есть на "кучу" (динамически распределяемую память) отводится всего лишь 1 кбайт памяти! В старом проекте в аналогичном файле было указано значение 0x6000, т.е. 24 кбайта! После изменения значения программа заработала.</p>
+<p>Следует отметить также, что необдуманное применение динамически распределяемой памяти в встраиваемых системах чревато фрагментацией памяти и, как следствие, прекращенем работы программы. Но это уже другая тема.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/07/09/iar-cortex-m3-%25d0%25b8-c/">IAR, Cortex M3 и C++</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-07-09T05:11:31+06:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>5:11 am</span></time>
+        
+           | <a href="/blog/2010/07/09/iar-cortex-m3-%25d0%25b8-c/#disqus_thread"
+             data-disqus-identifier="http://arktur04.github.io/blog/2010/07/09/iar-cortex-m3-%25d0%25b8-c/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>При перетаскивании проекта с LPC2368 (ядро ARM7TDMI) на LPC1768, который является pin-to-pin совместимым с LPC2368, но на ядре Cortex M3, столкнулся со следующими проблемами и особенностями:</p>
+<p></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2010/07/09/iar-cortex-m3-%25d0%25b8-c/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -357,118 +469,6 @@ int main() {
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/05/16/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-6/">Протокол Modbus в устройствах на базе микроконтроллеров. Часть 1.4</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2010-05-16T19:11:37+06:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>7:11 pm</span></time>
-        
-           | <a href="/blog/2010/05/16/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-6/#disqus_thread"
-             data-disqus-identifier="http://arktur04.github.io/blog/2010/05/16/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-6/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><em><a href="http://32bit.me/wordpress/wp-content/uploads/2010/05/Рис-1.jpg"></a>Продолжение. </em><em>Начало здесь: </em><em> </em><a href="http://32bit.me/?p=355"><em>http://32bit.me/?p=355</em></a><em> - введение; </em><a href="http://32bit.me/?p=373"><em>http://32bit.me/?p=373</em></a><em> - часть 1.0; <a href="http://32bit.me/?p=377">http://32bit.me/?p=377</a> - часть 1.1; <a href="http://32bit.me/?p=395">http://32bit.me/?p=395</a> - часть 1.2; <a href="http://32bit.me/?p=406">http://32bit.me/?p=406</a> - часть 1.3.</em></p>
-<p>Перед тем, как перейти к программной реализации поддержки протокола Modbus, необходимо прояснить ещё один вопрос.</p>
-<p>Регистры протокола (3х и 4х) имеют разрядность 16 бит, а значения переменных, которые требуется передавать, часто имеют разрядность 32 бита. Каким образом 32-битные переменные передаются в 16-битных регистрах?</p>
-<p></div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2010/05/16/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-6/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/05/16/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-5/">Протокол Modbus в устройствах на базе микроконтроллеров. Часть 1.3</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2010-05-16T01:54:45+06:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>1:54 am</span></time>
-        
-           | <a href="/blog/2010/05/16/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-5/#disqus_thread"
-             data-disqus-identifier="http://arktur04.github.io/blog/2010/05/16/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-5/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><em><a href="http://32bit.me/wordpress/wp-content/uploads/2010/05/Рис-1.jpg"></a>Продолжение. </em><em>Начало здесь: </em><em> </em><a href="http://32bit.me/?p=355"><em>http://32bit.me/?p=355</em></a><em> - введение; </em><a href="http://32bit.me/?p=373"><em>http://32bit.me/?p=373</em></a><em> - часть 1.0; <a href="http://32bit.me/?p=377">http://32bit.me/?p=377</a> - часть 1.1; <a href="http://32bit.me/?p=395">http://32bit.me/?p=395</a> - часть 1.2.</em></p>
-<p>Кратко рассмотрим обмен данными между ведущим и ведомым устройством для других типов регистров.</p>
-<p></div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2010/05/16/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-5/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/05/13/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-4/">Протокол Modbus в устройствах на базе микроконтроллеров. Часть 1.2</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2010-05-13T17:51:44+06:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>5:51 pm</span></time>
-        
-           | <a href="/blog/2010/05/13/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-4/#disqus_thread"
-             data-disqus-identifier="http://arktur04.github.io/blog/2010/05/13/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-4/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><em><a href="http://32bit.me/wordpress/wp-content/uploads/2010/05/Рис-1.jpg"></a>Продолжение. </em><em>Начало здесь: </em><em> </em><a href="http://32bit.me/?p=355"><em>http://32bit.me/?p=355</em></a><em> - введение; </em><a href="http://32bit.me/?p=373"><em>http://32bit.me/?p=373</em></a><em> - часть 1.0; <a href="http://32bit.me/?p=377">http://32bit.me/?p=377</a> - часть 1.1.</em></p>
-<p>Перед тем, как приступить к дальнейшим экспериментам с протоколом Modbus, разберёмся с ещё одной темой, относящейся к этому протоколу: с регистрами Modbus.</p>
-<p></div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2010/05/13/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-4/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/19">&larr; Older</a>
@@ -486,23 +486,23 @@ int main() {
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2015/12/16/knigha-fpga-for-dummies/">Книга Andrew Moore "FPGA for Dummies"</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/12/16/knigha-virt-kompiliatory/">Книга Вирт Н. "Построение компиляторов"</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2015/12/16/knigha-qt/">Книга М. Шлее «Qt5.3. Профессиональное программирование на С++»</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/11/23/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3/">Проект видеоадаптера. Часть 3</a>
       </li>
     
       <li class="post">
         <a href="/blog/2015/11/16/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-software-defined-radio-handbook-rodger-hosking/">Книга "Software Defined Radio Handbook", Rodger Hosking</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/11/05/vga-%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580-%25d0%25bd%25d0%25b0-fpga/">Проект видеоадаптера. Часть 2</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/10/25/%25d0%25bf%25d1%2580%25d0%25be-llvm/">Про LLVM</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/10/02/%25d0%25b4%25d1%2580%25d0%25b0%25d0%25b9%25d0%25b2%25d0%25b5%25d1%2580-%25d0%25b4%25d0%25bb%25d1%258f-linux-%25d0%25bf%25d0%25b5%25d1%2580%25d0%25b2%25d1%258b%25d0%25b9-%25d1%2588%25d0%25b0%25d0%25b3/">Драйвер для Linux: первый шаг</a>
       </li>
     
   </ul>
