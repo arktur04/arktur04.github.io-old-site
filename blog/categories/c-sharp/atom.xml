@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C Sharp | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/c-sharp/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-20T19:19:16+05:00</updated>
+  <updated>2015-12-20T19:49:18+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -20,17 +20,9 @@
     <id>http://arktur04.github.io/blog/2015/02/17/fpu-%d1%87%d0%b0%d1%81%d1%82%d1%8c-1</id>
     <content type="html"><![CDATA[<p>Не задумывались ли вы о том, как работает FPU процессора? Казалось бы, там всё довольно просто. Есть стандарт представления чисел с плавающей точкой, IEEE754, а сама реализация арифметических операций очевидна.<br />
 Но на самом деле, за кажущейся простотой скрыто множество нюансов.</p>
-
-
 <p><!--more-->Во-первых, как это ни странно звучит, FPU оперирует не только с числами. Среди всех возможных значений кодов стандартом предусматриваются <em>нечисла</em>, выделенные значения, образующиеся в результате некоторых операций. Нечисла обозначаются как NaN (not a number). Например, нечисло образуется в результате деления ноля на ноль. Нечисло может иметь в знаковом разряде 0 или 1, однако особого смысла он не несёт, нечисла рассматриваются как беззнаковые. Еще одним выделенным значением является бесконечность. Бесконечность имеет знак, и может получаться как результат переполнения показателя степени числа, или, например, как результат деления ненулевого числа на ноль. Также числа могут быть нормализованными (и обычно ими и являются), и денормализованными. У денормализованного (subnormal, denormal) числа в разрядах экспоненты содержатся только нули, что соответствует минимально возможному показателю степени (2^-1022 для 64-битных чисел). Это крайне маленькие значения, порядка 10^-308, в реальном мире такие величины практически не применяются, поэтому в упрощенных реализациях FPU можно позволить себе некоторое отступление от стандарта и заменять их нулями (ноль, формально, тоже денормализованное число). И ещё, в стандарте IEEE754 нули имеют знак.</p>
-
-
 <p>Вот и всё, что нам нужно знать для начала. За описанием стандарта добро пожаловать в википедию, здесь я его переписывать не буду.</p>
-
-
 <p>Рассмотрим операцию деления, и начнем именно с "особых" значений. Для того, чтобы хорошо понять особенности работы FPU, я написал небольшую программу, которая выполняет деление различных чисел в 64-битном формате и выводит их двоичные коды. Вот что получилось:</p>
-
-
 <pre>0000000000000000 0000000000000000 fff8000000000000 //0 / 0 = nan
  0000000000000000 8000000000000000 fff8000000000000 //0 / -0 = nan
  0000000000000000 7ff8000000000000 7ff8000000000000 //0 / nan = nan
@@ -67,32 +59,15 @@
  fff0000000000000 fff8000000000000 fff8000000000000 //-inf / nan = nan
  fff0000000000000 7ff0000000000000 fff8000000000000 //-inf / +inf = nan
  fff0000000000000 fff0000000000000 fff8000000000000 //-inf / -inf = nan</pre>
-
-
 <p>Здесь проверяется деление всех комбинаций значений: +0, -0, NaN, -NaN (как я уже писал, знаковый разряд не имеет особого смысла для NaN, но хотелось проверить все варианты), +Inf (бесконечность), -Inf. В общем, довольно логично. 0/0 = NaN, Inf/Inf = NaN, любая операция с NaN даёт в результате NaN. По умолчанию, NaN имеет 1 в знаковом разряде, то есть +0/+0 = (-)NaN, как ни странно, однако если NaN является одним из операндов, то процессор просто копирует его код в результат, никак не изменяя его. Это подтверждается и такими результатами:</p>
-
-
 <pre>bb5580277b40413e fff4d91fa8a5b9e5 fffcd91fa8a5b9e5 //-7.11395e-23 / nan = nan
 7ffc143b0befe6ff 730a54668a546338 7ffc143b0befe6ff //nan / 1.43824e+246 = nan</pre>
-
-
 <p>Программа генерации тестового файла сначала перебирает все варианты, приведенные ниже, а затем генерирует 10000 пар случайных вещественных чисел и результат их деления. Если в результате получается денормализованное число, оно заменяется нулём с соответствующим знаком. Для операндов замены не производится.</p>
-
-
 <p>Также я написал небольшую программу с GUI, "калькулятор", позволяющий производить операции с бинарным представлением чисел с плавающей точкой.<em style="line-height: 1.5em;">Продолжение следует</em><span style="line-height: 1.5em;">.</span></p>
-
-
 <p>Ссылка на гитхаб: <a href="https://github.com/arktur04/FPU">https://github.com/arktur04/FPU</a></p>
-
-
 <p>В репозитории содержится исходный текст программы генерации тестового файла (на C++), сам тестовый файл, и программа-калькулятор, позволяющая переводить числа из hex-вида во float и наоборот и производить с числами арифметические действия.</p>
-
-
 <p>По мере продвижения я буду пополнять репозиторий.</p>
-
-
 <p>В следующий раз мы напишем простой тестбенч для операции деления.</p>
-
 ]]></content>
   </entry>
   
@@ -102,34 +77,15 @@
     <updated>2013-09-22T15:00:46+06:00</updated>
     <id>http://arktur04.github.io/blog/2013/09/22/%d0%be%d0%b1%d0%bd%d0%be%d0%b2%d0%bb%d0%b5%d0%bd%d0%b8%d0%b5-modbuseasy</id>
     <content type="html"><![CDATA[<p>ModbusEasy - моя утилита для работы с протоколом Modbus.</p>
-
-
 <p>Утилита opensource, исходники и бинарники доступны для скачивания здесь: <a href="https://github.com/arktur04/modbuseasy/archive/master.zip">https://github.com/arktur04/modbuseasy/archive/master.zip</a>.</p>
-
-
 <p>Добавлены несколько команд:</p>
-
-
 <p>getdb -a  -получить список всех переменных в текущей конфигурации</p>
-
-
 <p>getdb &lt;varname&gt;  -получить текущее значение переменной</p>
-
-
 <p>setdb &lt;varname&gt;  -установить текущее значение переменной</p>
-
-
 <p>&nbsp;</p>
-
-
 <p>Также добавлено простое консольное приложение, работающее с modbuseasy в режиме slave. Оно изменяет по таймеру значения двух переменных и может использоваться как для тестирования приложений, работающих с протоколом Modbus в режиме master.</p>
-
-
 <p>Также данное приложение может служить примером работы с modbuseasy и основой для написания собственных программ, работающих с modbuseasy.</p>
-
-
 <p>Все исходники на C#.</p>
-
 ]]></content>
   </entry>
   
@@ -139,124 +95,99 @@
     <updated>2013-07-06T09:46:08+06:00</updated>
     <id>http://arktur04.github.io/blog/2013/07/06/%d0%b8%d1%81%d0%bf%d0%be%d0%bb%d1%8c%d0%b7%d0%be%d0%b2%d0%b0%d0%bd%d0%b8%d0%b5-reflection-%d0%b4%d0%bb%d1%8f-%d0%b4%d0%b8%d0%bd%d0%b0%d0%bc%d0%b8%d1%87%d0%b5%d1%81%d0%ba%d0%be%d0%b3%d0%be-%d1%81%d0%be</id>
     <content type="html"><![CDATA[<p>Пусть есть следующая задача: нужно, чтобы форма приложения создавалась динамически в run-time, на основе конфигурационного файла, например, в формате xml. Подобные задачи могут решаться разными способами, например, с помощью XAML (основан на XML, технология Microsoft), или QML (основан на Java Script, технология Qt). Ниже приводится пример реализации такого подхода на основе XML и механизма Reflection, доступного в С#.</p>
-
-
 <p>Итак, Reflection - это часть платформы .Net, позволяющая использовать метаданные сборки в run-time. Это означает, что мы можем создать экземпляр класса, зная его имя, и присвоить значения его свойствам, зная их имена и значения. Помимо перечисленного, Reflection включает в себя еще много возможностей, но пока нам хватит этих.</p>
-
-
-<p><a href="/images/2013/07/198213.jpg"><img class="alignnone  wp-image-1735" title="198213" src="/assets/198213.jpg" alt="" width="500" height="388" /></a></p>
-
-
+<p><a href="{{ site.baseurl }}/images/2013/07/198213.jpg"><img class="alignnone  wp-image-1735" title="198213" src="{{ site.baseurl }}/assets/198213.jpg" alt="" width="500" height="388" /></a></p>
 <p>Далее под катом</p>
-
-
 <p><!--more--></p>
-
-
 <p>Итак, нам нужен конфигурационный файл.</p>
 
+<p>``` xml
+<?xml version="1.0"?></p>
+<defaultnamespace name="System.Windows.Forms" />
 
-<pre><code class="xml">&lt;?xml version="1.0"?&gt;
-  &lt;defaultnamespace name="System.Windows.Forms" /&gt;
-
-  &lt;controllist&gt;
-    &lt;control class="Label"&gt;
-      &lt;property name="Name" value="label2" /&gt;
-      &lt;property name="Text" value="text_label2" /&gt;
-      &lt;classproperty name="Location" class="System.Drawing.Point"&gt; &lt;!--имя_сборки.имя_класса--&gt;
-        &lt;parameter name="X" typename="int" value="100" /&gt;
-        &lt;parameter name="Y" typename="int" value="200" /&gt;
-      &lt;/classproperty&gt;
-    &lt;/control&gt;
-    &lt;control class="System.Windows.Forms.Label"&gt; &lt;!--можно указывать namespace в явном виде--&gt;
-      &lt;property name="Name" value="label3" /&gt;
-      &lt;property name="Text" value="text_label3" /&gt;
-      &lt;classproperty name="Location" class="System.Drawing.Point"&gt; &lt;!--имя_сборки.имя_класса--&gt;
-        &lt;parameter name="X" typename="int" value="100" /&gt;
-        &lt;parameter name="Y" typename="int" value="250" /&gt;
-      &lt;/classproperty&gt;
-      &lt;!-- здесь могут находиться вложенные контролы, образующие иерархию--&gt;
-    &lt;/control&gt;
-  &lt;/controllist&gt;
-</code></pre>
-
+<controllist>
+    <control class="Label">
+      <property name="Name" value="label2" />
+      <property name="Text" value="text_label2" />
+      <classproperty name="Location" class="System.Drawing.Point"> <!--имя_сборки.имя_класса-->
+        <parameter name="X" typename="int" value="100" />
+        <parameter name="Y" typename="int" value="200" />
+      </classproperty>
+    </control>
+    <control class="System.Windows.Forms.Label"> <!--можно указывать namespace в явном виде-->
+      <property name="Name" value="label3" />
+      <property name="Text" value="text_label3" />
+      <classproperty name="Location" class="System.Drawing.Point"> <!--имя_сборки.имя_класса-->
+        <parameter name="X" typename="int" value="100" />
+        <parameter name="Y" typename="int" value="250" />
+      </classproperty>
+      <!-- здесь могут находиться вложенные контролы, образующие иерархию-->
+    </control>
+  </controllist>
+<p>```</p>
 <p>Программа будет состоять из двух основных частей: одна читает xml-файл и строит по нему структуру данных. Ниже приведен фрагмент программы, представляющий структуру данных:</p>
-
-
-<pre><code class="csharp">using System;
+<p>``` csharp
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Text;</p>
 
-namespace ControlDescriptorClass
+<p>namespace ControlDescriptorClass
 {
     public class PropDescriptor
     {
         public string name { set; get; }
         public string value { set; get; }
-    }
+    }</p>
 
-    public class ParameterDescriptor
-    {
-        public string name { set; get; }
-        public string typeName { set; get; }
-        public string value { set; get; }
-    }
-
-    public class ClassPropertyDescriptor
-    {
-        public string name { set; get; }
-        public string className { set; get; }
-        // ctor parameter list
-        public List&lt; ParameterDescriptor &gt; parameterList { set; get; } //parameter name  parameter value pair
-        //properties of an object
-        public List&lt; PropDescriptor &gt; propertyList { set; get; } //property name  property value pair
-        //class properties of an object
-        public List&lt; ClassPropertyDescriptor &gt; classPropertyList { set; get; } //property name  property value pair
-    }
-
-    public class ControlDescriptor
-    {
-        public string typeName { set; get; }
-        public List&lt; PropDescriptor &gt; propertyList {set; get;} //property name  property value pair
-        public List classPropertyList { set; get; } //property name  property value pair
-        public List&lt; ControlDescriptor &gt; childControlList { set; get; }
-    }
+<pre><code>public class ParameterDescriptor
+{
+    public string name { set; get; }
+    public string typeName { set; get; }
+    public string value { set; get; }
 }
-</code></pre>
 
+public class ClassPropertyDescriptor
+{
+    public string name { set; get; }
+    public string className { set; get; }
+    // ctor parameter list
+    public List&lt; ParameterDescriptor &gt; parameterList { set; get; } //parameter name  parameter value pair
+    //properties of an object
+    public List&lt; PropDescriptor &gt; propertyList { set; get; } //property name  property value pair
+    //class properties of an object
+    public List&lt; ClassPropertyDescriptor &gt; classPropertyList { set; get; } //property name  property value pair
+}
+
+public class ControlDescriptor
+{
+    public string typeName { set; get; }
+    public List&lt; PropDescriptor &gt; propertyList {set; get;} //property name  property value pair
+    public List classPropertyList { set; get; } //property name  property value pair
+    public List&lt; ControlDescriptor &gt; childControlList { set; get; }
+} } ```
+</code></pre>
 <p>Здесь:<br />
 класс PropDescriptor - описание свойства объекта, пара имя-значение, оба поля являются строками,<br />
 класс ClassPropertyDescriptor описание свойства объекта, которое в свою очередь является объектом. Здесь name - имя свойства, className - имя класса, представляющего свойство, parameterList - список аргументов конструктора класса (см. ниже), propertyList - список свойств объекта, classPropertyList - список свойств объекта, которые, в свою очередь, являются объектами.<br />
 класс ParameterDescriptor - описание аргумента конструктора объекта. Состоит из имени аргумента name, имени типа аргумента typeName и строкового представления значения аргумента value.<br />
 класс ControlDescriptor - описание контрола. Состоит из имени класса typeName и трех списков: propertyList - список свойств, classPropertyList - список свойств, являющихся классами, childControlList - список вложенных контролов.</p>
-
-
 <p>В этой структуре данных имеется два типа свойств объекта: "обычные" свойства, имеющие один из базовых типов, и свойства, представляющие собой объект. Для таких свойств нужно, соответственно, вызывать конструктор с определенными параметрами. Например,  контрол Label имеет свойство Text, имеющее тип string, и свойство Location, имеющее тип Point. Point является классом, в его конструктор должны передаваться параметры X и Y типа Int32 (вернее, Point является структурой, но в данном контексте разница не имеет значения).</p>
-
-
 <p>Основная часть программы занимается построением контролов по имеющимся их описанием, и делает это с помощью Reflection.</p>
-
-
 <p>Для того, чтобы создать в run-time контрол через Reflection,  используется следующий код:</p>
-
-
-<pre><code class="csharp">Type t = getAssemblyNameContainingType(nameSpace + cd.typeName);
+<p><code>csharp
+Type t = getAssemblyNameContainingType(nameSpace + cd.typeName);
 Control control = (Control)Activator.CreateInstance(t);
-</code></pre>
-
+</code></p>
 <p>Здесь nameSpace - пространство имён, по умолчанию System.Windows.Forms. Пространство имен по умолчанию может быть изменено в xml-файле, если имя класса контрола содержит точку, то имя пространства имен по умолчанию не подставляется, используется имя, указанное для данного контрола.</p>
-
-
 <p>Значения свойств контрола присваиваются следующим образом:</p>
-
-
-<pre><code class="csharp">Object obj = control;
+<p>``` csharp
+Object obj = control;
 foreach (PropDescriptor property in cd.propertyList)
 {
-  string[] propertyName = property.name.Split('.');
+  string[] propertyName = property.name.Split(‘.’);</p>
 
-  PropertyInfo prop;
+<p>PropertyInfo prop;
   for (int i = 0; i &lt; propertyName.Length - 1; i++)
   {
     prop = obj.GetType().GetProperty(propertyName[i]);
@@ -265,30 +196,20 @@ foreach (PropDescriptor property in cd.propertyList)
   prop = obj.GetType().GetProperty(propertyName.Last());
   prop.SetValue(obj, Convert.ChangeType(property.value, prop.PropertyType), null);
 }
-</code></pre>
-
+```</p>
 <p>Здесь подразумевается, что свойство может иметь "длинное" имя вида name1.name2.name3... Тип, в который происходит преобразование строкового представления значения свойства берётся из структуры PropertyInfo (это тоже часть Reflection).<br />
 Однако если попытаться таки образом присвоить значение, например, Location.X, ничего не получено, так как структуру Location нужно создать, вызвав её конструктор, причем сразу с параметрами X и Y.</p>
-
-
 <p>Свойства такого вида конструируются так:</p>
-
-
-<pre><code class="csharp">foreach (ClassPropertyDescriptor cpd in cd.classPropertyList)
+<p>``` csharp
+foreach (ClassPropertyDescriptor cpd in cd.classPropertyList)
 {
-  Type objType = getAssemblyNameContainingType(cpd.className);
+  Type objType = getAssemblyNameContainingType(cpd.className);</p>
 
-  List...
-</code></pre>
-
+<p>List…
+```</p>
 <p>&nbsp;</p>
-
-
 <p>Здесь преобразование типов строкового представления значения аргумента конструктора происходит в тот тип, который мы должны явно указать в xml. Так как у класса может быть множество конструкторов с различными сигнатурами, автоматически выбрать из них нужный было бы затруднительно. В приведенном коде предусмотрено преобразование типа только в типы Int32 и string, для использования других типов этот код нужно будет соответственно дополнять.</p>
-
-
 <p>Исходники на github: <a href="https://github.com/arktur04/ComponentAdapterTest.git">https://github.com/arktur04/ComponentAdapterTest.git</a></p>
-
 ]]></content>
   </entry>
   
@@ -298,28 +219,13 @@ foreach (PropDescriptor property in cd.propertyList)
     <updated>2013-05-14T17:34:30+06:00</updated>
     <id>http://arktur04.github.io/blog/2013/05/14/%d1%83%d1%82%d0%b8%d0%bb%d0%b8%d1%82%d0%b0-%d0%b4%d0%bb%d1%8f-%d1%80%d0%b0%d0%b1%d0%be%d1%82%d1%8b-%d1%81-%d0%bf%d1%80%d0%be%d1%82%d0%be%d0%ba%d0%be%d0%bb%d0%be%d0%bc-modbus</id>
     <content type="html"><![CDATA[<p>Написал простую утилиту для работы с протоколом Modbus. Утилита поддерживает работу как в режиме Master, так и в режиме Slave, что позволяет не только обращаться к устройству по шине Modbus, но и эмулировать устройство. Утилита пока поддерживает только протокол Modbus RTU, функции 1-6, 15, 16.</p>
-
-
-<p><a href="/images/2013/05/screen1.jpg"><img class="alignnone size-full wp-image-1725" title="screen1" src="/assets/screen1.jpg" alt="" width="677" height="342" /></a></p>
-
-
+<p><a href="{{ site.baseurl }}/images/2013/05/screen1.jpg"><img class="alignnone size-full wp-image-1725" title="screen1" src="{{ site.baseurl }}/assets/screen1.jpg" alt="" width="677" height="342" /></a></p>
 <p>Графического интерфейса нет (и пока не предвидится), конфигурируется из файла xml, его структура проста и понятна, его легко можно править руками.</p>
-
-
 <p>Пока функциональность утилиты минимальна, буду ее улучшать, когда будет на это время. В ближайших планах - поддержка Modbus TCP.</p>
-
-
 <p>Утилита написана на C#.</p>
-
-
 <p>Скачать исходники можно здесь: <a href="https://github.com/arktur04/modbuseasy">https://github.com/arktur04/modbuseasy</a></p>
-
-
 <p>Ссылка на скачивание бинарника: <a href="https://www.box.com/s/ob8938m0cl93oglktnm6">https://www.box.com/s/ob8938m0cl93oglktnm6</a></p>
-
-
 <p>&nbsp;</p>
-
 ]]></content>
   </entry>
   
@@ -329,16 +235,9 @@ foreach (PropDescriptor property in cd.propertyList)
     <updated>2012-06-28T17:14:56+06:00</updated>
     <id>http://arktur04.github.io/blog/2012/06/28/%d0%ba%d0%bd%d0%b8%d0%b3%d0%b0-c-3-0-%d1%81%d0%bf%d1%80%d0%b0%d0%b2%d0%be%d1%87%d0%bd%d0%b8%d0%ba</id>
     <content type="html"><![CDATA[<p>Сразу следует сказать, что русский перевод названия, мягко говоря, неточен. В оригинале книга называется "C# 3.0 In a Nutshell", авторы Joseph Albahari, Ben Albahari. Книга представляет собой прекрасный учебник по языку C#, и охватывает темы, начиная с основ синтаксиса, типов и переменных и заканчивая более сложными темами, такими как небезопасный код или препроцессорные директивы.</p>
-
-
 <p>В книге нет описания Windows Forms и прочих примитивных вещей. Материал книги отличается глубиной и сложностью. Я рекомендую эту книгу всем, кто хочет использовать именно сложные особенности языка C# и платформы .Net, а не конструировать пользовательские интерфейсы из визуальных компонентов.</p>
-
-
 <p>Есть и более новое издание этой книги, по версии языка C# 4.0.</p>
-
-
-<p><a href="/images/2012/06/51513.jpg"><img class="alignnone size-medium wp-image-1606" title="51513" src="/assets/51513-210x300.jpg" alt="" width="210" height="300" /></a></p>
-
+<p><a href="{{ site.baseurl }}/images/2012/06/51513.jpg"><img class="alignnone size-medium wp-image-1606" title="51513" src="{{ site.baseurl }}/assets/51513-210x300.jpg" alt="" width="210" height="300" /></a></p>
 ]]></content>
   </entry>
   

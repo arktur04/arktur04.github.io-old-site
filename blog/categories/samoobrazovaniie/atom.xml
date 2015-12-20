@@ -4,7 +4,7 @@
   <title><![CDATA[Category: самообразование, | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/samoobrazovaniie/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-20T19:19:16+05:00</updated>
+  <updated>2015-12-20T19:49:18+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -18,10 +18,9 @@
     <link href="http://arktur04.github.io/blog/2015/12/16/knigha-fpga-for-dummies/"/>
     <updated>2015-12-16T21:41:38+05:00</updated>
     <id>http://arktur04.github.io/blog/2015/12/16/knigha-fpga-for-dummies</id>
-    <content type="html"><![CDATA[<p>Прочитал книгу Andrew Moore &ldquo;FPGA for dummies&rdquo;, 44 стр., англ. язык. Книжка совсем простая, конечно, и объясняет совсем базовые вещи, типа, что такое FPGA и зачем они нужны.</p>
+    <content type="html"><![CDATA[<p>Прочитал книгу Andrew Moore “FPGA for dummies”, 44 стр., англ. язык. Книжка совсем простая, конечно, и объясняет совсем базовые вещи, типа, что такое FPGA и зачем они нужны.</p>
 
-<p><a href="/images/2015/12/FPGAs_dummies_full.jpg"><img title="FPGA for dummies" src="/images/2015/12/FPGAs_dummies_small.png" alt="" height="300" /></a></p>
-
+<p><a href="{{ site.baseurl }}/images/2015/12/FPGAs_dummies_full.jpg"><img title="FPGA for dummies" src="{{ site.baseurl }}/images/2015/12/FPGAs_dummies_small.png" alt="" height="300" /></a></p>
 ]]></content>
   </entry>
   

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: System Verilog | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/system-verilog/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-20T19:19:16+05:00</updated>
+  <updated>2015-12-20T19:49:18+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -19,13 +19,8 @@
     <updated>2014-08-29T19:31:47+06:00</updated>
     <id>http://arktur04.github.io/blog/2014/08/29/%d0%ba%d0%bd%d0%b8%d0%b3%d0%b0-systemverilog-for-verification-chris-spear</id>
     <content type="html"><![CDATA[<p>Хорошая книга.</p>
-
-
-<p><a href="/images/2014/08/72912f9bd4fe523b5020b46223eef959.jpg"><img class="alignnone size-full wp-image-1818" alt="72912f9bd4fe523b5020b46223eef959" src="/assets/72912f9bd4fe523b5020b46223eef959.jpg" width="400" height="606" /></a></p>
-
-
+<p><a href="{{ site.baseurl }}/images/2014/08/72912f9bd4fe523b5020b46223eef959.jpg"><img class="alignnone size-full wp-image-1818" alt="72912f9bd4fe523b5020b46223eef959" src="{{ site.baseurl }}/assets/72912f9bd4fe523b5020b46223eef959.jpg" width="400" height="606" /></a></p>
 <p>В книге дается большое количество примеров кода на SV, а не просто перечисление синтаксических конструкций языка. Также в книге излагаются основы методологии CRT - Constrained Random Testing. Рекомендую всем.</p>
-
 ]]></content>
   </entry>
   

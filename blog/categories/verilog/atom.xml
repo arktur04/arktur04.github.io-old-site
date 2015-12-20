@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Verilog | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/verilog/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-20T19:19:16+05:00</updated>
+  <updated>2015-12-20T19:49:18+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -19,73 +19,28 @@
     <updated>2015-11-23T21:00:45+05:00</updated>
     <id>http://arktur04.github.io/blog/2015/11/23/%d0%bf%d1%80%d0%be%d0%b5%d0%ba%d1%82-%d0%b2%d0%b8%d0%b4%d0%b5%d0%be%d0%b0%d0%b4%d0%b0%d0%bf%d1%82%d0%b5%d1%80%d0%b0-%d1%87%d0%b0%d1%81%d1%82%d1%8c-3</id>
     <content type="html"><![CDATA[<p>Продолжение. <a href="http://arktur04.github.io/blog/2015/11/05/vga-%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580-%25d0%25bd%25d0%25b0-fpga/">Часть 2.</a></p>
-
-
 <p>Структурная схема видеоадаптера приведена на рис. 1 (кликабельно)</p>
-
-
-<p><a href="/images/2015/11/vga-card-big.jpg"><img class="alignnone size-medium wp-image-2175" alt="vga-card-big" src="/assets/vga-card-big-300x214.jpg" width="300" height="214" /></a></p>
-
-
+<p><a href="{{ site.baseurl }}/images/2015/11/vga-card-big.jpg"><img class="alignnone size-medium wp-image-2175" alt="vga-card-big" src="{{ site.baseurl }}/assets/vga-card-big-300x214.jpg" width="300" height="214" /></a></p>
 <p>&nbsp;</p>
-
-
 <p>Рис. 1. Структурная схема видеоадаптера.</p>
-
-
 <p>&nbsp;</p>
-
-
 <p>Пояснения к схеме:</p>
-
-
 <p>В первой версии видеоадаптер будет иметь только текстовый режим EGA, 80 * 25 символов 8 * 14 пикселов каждый символ. Таким образом, экранное разрешение составит 8 * 80 = 640 пикселов по горизонтали и 14 * 25 = 350 пикселов по вертикали. Частота пикселов в этом режиме составляет, по стандарту 25,175 МГц, фактическая частота будет 25 МГц, в связи с тем, что частота тактирования ПЛИС составляет 50 МГц. При этом на любом мониторе происходит нормальная синхронизация.</p>
-
-
 <p><!--more--></p>
-
-
 <p>Для аналогичного тектового видеорежима VGA разрешение составляет 720 * 400 пикселей, т.к. символы имеют размер 9*16 пикселей. Частота пикселов при этом должна быть 28,322 МГц, и нормальная синхронизация с частотой 25 МГц невозможна. Можно получить близкую частоту с помощью PLL, но тогда потребуются блоки для асинхронного сопряжения видеоадаптера с микропроцессорной частью проекта, т.к. микропроцессорная часть будет тактироваться частотой 50 МГц. Это будет следующим этапом проекта, пока вся схема будет тактироваться от 50 МГц.</p>
-
-
 <p>Графические режимы тоже будут позже, пока будет реализован максимально простой вариант.</p>
-
-
 <p>Некоторые пояснения по схеме:</p>
-
-
 <p><strong>sync_gen</strong> - генератор синхроимпульсов. Имеет выходы <em>h_coord_reg</em> и <em>v_coord_reg</em>, соответственно, текущие координаты пиксела по горизонтали и вертикали. <em>data_en</em> - сигнал разрешения данных. Этот же сигнал используется для "гашения" выходов ЦАП. <em>hsync_reg</em> и<em> vsync_reg</em> - сигналы горизонтальной и вертикальной синхронизации.</p>
-
-
 <p>Так как вся схема состоит из нескольких модулей, включенных последовательно, прохождение сигнала по ним занимает несколько тактов. В связи с этим сигналы <em>data_en, <em>hsync_reg</em> </em>и <em><em>vsync_reg</em></em> также должны быть задержаны, чтобы приходить на выход синхронно с сигналами соответствующего пиксела.</p>
-
-
 <p><strong>addr_decoder</strong> - так как видеоадаптер будет использовать в качестве видеопамяти внешнюю sdram, которая будет использоваться совместно с основным микропроцессором, <strong> </strong>необходимо иметь небольшую буферную память, чтобы избежать проблем, связанных с временем доступа к внешней памяти. Этот буфер будет двойным, пока идёт выборка из одного блока памяти, в другой загружаются данные из внешней памяти, затем они меняются местами. каждый блок памяти будет иметь размер 256*16 бит. 16-и битный выход позволит получит сразу и ком символа, и информацию об его цвете. Модуль <strong>addr_decoder</strong> вырабатывает текущий адрес в буфере <em>buffer_addr_reg</em>, исходя из текущей координаты пиксела и смещения буфера (т.е. адреса, который отображается на начало буфера). Также этот модуль вырабатывает сигналы <em>hmod_reg</em> и <em>vmod_reg</em>, которые являются координатой пиксела в текущем знакоместе (т.е. абсолютной координатой по модулю 8 и 14 соответственно).</p>
-
-
 <p><strong>buf_mem </strong> - буфер памяти, см. предыдущий абзац.</p>
-
-
 <p><strong>mem_controlle</strong>r - контроллер памяти. Должен обеспечивать подкачку содержимого буфера из внешней SDRAM. Также, в будущем, будет обеспечивать асинхронные взаимодействия видеоадаптера и основной части, при их работе на разной тактовой частоте.</p>
-
-
 <p><strong>mode_controller</strong> - контроллер видеорежима. Пока видеоадаптер будет иметь только один текстовый режим, но в будущем контроллер должен будет обесипечивать установку всех остальных модулей в состояние, соответствующее текущему видеорежиму. Также модуль выделяет код символа (<em>char_code_reg</em>), цвет символа (<em>char_color_reg</em>), цвет фона (<em>back_color_reg</em>) и признак мигания <em>blink</em>.</p>
-
-
 <p><strong>char_gen</strong> - знакогенератор. В данной версии представляет собой ПЗУ с таблицей символов EGA (8*14), но впоследствии будет содержать символы VGA (9*16) и символы 8*8, а также программируемые пользователем символы. На его вход поступает код символа (<em>char_code</em>) и номер строки символа (<em>vmod</em>), на выходе появляется строка текущего знакоместа (<em>char_data_reg</em>).</p>
-
-
 <p><strong>pixel_data_decode</strong>r - на основании сигналов <em>char_data, hmod, char_color, back_color, blink</em> определяет цвет текущего пиксела в палитре.</p>
-
-
 <p><strong>palette</strong> - регистры палитры. В данной версии представляет собой ПЗУ, в дальнейшем будет возможность его изменения пользовательской программой.</p>
-
-
 <p>Пока это черновик схемы, она будет дорабатываться и изменяться по мере продвижения проекта.</p>
-
-
 <p>&nbsp;</p>
-
 ]]></content>
   </entry>
   
@@ -95,31 +50,14 @@
     <updated>2015-11-05T21:38:06+05:00</updated>
     <id>http://arktur04.github.io/blog/2015/11/05/vga-%d0%b0%d0%b4%d0%b0%d0%bf%d1%82%d0%b5%d1%80-%d0%bd%d0%b0-fpga</id>
     <content type="html"><![CDATA[<p>Продолжение. <a title="Начало" href="http://arktur04.github.io/blog/2015/05/13/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-1/">Начало</a>.</p>
-
-
 <p>Проект видеоадаптера переделан под использование видео ЦАП ADV7123. Схема подключения приведена на рисунке:</p>
-
-
-<p><a href="/images/2015/11/VGA_DAC.jpg"><img class="alignnone size-medium wp-image-2168" alt="VGA_DAC" src="/assets/VGA_DAC-300x190.jpg" width="300" height="190" /></a></p>
-
-
+<p><a href="{{ site.baseurl }}/images/2015/11/VGA_DAC.jpg"><img class="alignnone size-medium wp-image-2168" alt="VGA_DAC" src="{{ site.baseurl }}/assets/VGA_DAC-300x190.jpg" width="300" height="190" /></a></p>
 <p>(по клику откроется полный размер).</p>
-
-
 <p>Код проекта приведён на гитхабе (<a href="https://github.com/arktur04/VideoCard">ссылка</a>). Это тестовый код, который выводит на монитор поле разноцветных квадратов.</p>
-
-
 <p>По сравнению с предыдущей версией, в которой использовался резистивный ЦАП, увеличена разрядность с 2-х до 8-и бит на цвет, и существенно улучшилось качество изображения.</p>
-
-
 <p>Фото тестовой картинки:</p>
-
-
-<p><a href="/images/2015/11/pic1.jpg"><img class="alignnone size-medium wp-image-2166" alt="pic" src="/assets/pic1-300x189.jpg" width="300" height="189" /></a></p>
-
-
+<p><a href="{{ site.baseurl }}/images/2015/11/pic1.jpg"><img class="alignnone size-medium wp-image-2166" alt="pic" src="{{ site.baseurl }}/assets/pic1-300x189.jpg" width="300" height="189" /></a></p>
 <p>&nbsp;</p>
-
 ]]></content>
   </entry>
   
@@ -131,10 +69,7 @@
     <content type="html"><![CDATA[<p>Прочитал и освоил на практике воркбенч SoCKit Lab, две части, Hardware и Software.<br />
 Данная программа лабораторных работ основана на системе на кристалле (SoC) Altera Cyclone V. SoC состоит из двух процессорных ядер ARM Cortex A9 и FPGA, которые соединены мостами и могут взаимодействовать друг с другом. Первое руководство, Hardware, выполняется в Quartus II, и описывает конфигурирование и подключение периферии к процессору, а также симуляцию системы в ModelSim.<br />
 Вторая часть, Software, описывает процесс загрузки Linux, компиляцию простейшей программы (мигание светодиодом), отладку программы в ARM DS-5 Embedded Development Suite, и основы работы с SignalTap II Logic Analyzer в режиме совместной отладки программного кода и FPGA-проекта.</p>
-
-
-<p><a href="/images/2015/07/pic1.jpg"><img class="alignnone size-full wp-image-2101" alt="pic1" src="/assets/pic2015-07-28.jpg" width="1000" height="328" /></a></p>
-
+<p><a href="{{ site.baseurl }}/images/2015/07/pic1.jpg"><img class="alignnone size-full wp-image-2101" alt="pic1" src="{{ site.baseurl }}/assets/pic2015-07-28.jpg" width="1000" height="328" /></a></p>
 ]]></content>
   </entry>
   
@@ -145,23 +80,11 @@
     <id>http://arktur04.github.io/blog/2015/06/21/%d0%b3%d0%b5%d0%bd%d0%b5%d1%80%d0%b0%d1%86%d0%b8%d1%8f-%d1%84%d0%b0%d0%b9%d0%bb%d0%be%d0%b2-mif</id>
     <content type="html"><![CDATA[<p>Пусть в проекте FPGA необходимо ПЗУ, в которое записана определённая информация, имеющаяся у нас в виде бинарного файла. ПЗУ, как правило, реализуются на блоках BRAM, в которые при инициализации FPGA записывается требуемое содержимое.<br />
 Файлы инициализации памяти BRAM для FPGA, могут иметь формат MIF (Memory Initialization File) или формат HEX. </p>
-
-
-<p><a href="/images/2015/06/DSC_0522_EDIT.jpg"><img class="alignnone size-medium wp-image-2084" alt="DSC_0522_EDIT" src="/assets/DSC_0522_EDIT-300x200.jpg" width="300" height="200" /></a></p>
-
-
+<p><a href="{{ site.baseurl }}/images/2015/06/DSC_0522_EDIT.jpg"><img class="alignnone size-medium wp-image-2084" alt="DSC_0522_EDIT" src="{{ site.baseurl }}/assets/DSC_0522_EDIT-300x200.jpg" width="300" height="200" /></a></p>
 <p>Нужный модуль памяти можно сгенерировать в Quartus II с помощью MegaWizard, в ISE - с помощью Xilinx Core Generator. Кроме этого, в QuartusII возможно использование специальной директивы:</p>
-
-
 <pre lang="verilog" line="1">reg [7:0] mem[0:2047] /* synthesis ram_init_file = "test.mif" */;</pre>
-
-
 <p>Эта директива позволяет создать RAM, инициированную значениями из файла .MIF. Использование RAM с предустановленными значениями, это очень плохая идея, но в качестве ROM такую память использовать вполне можно. Проблема в том, что эту директиву понимает только Quartus II, никакой кроссплатформенности.</p>
-
-
 <p>Quartus II предоставляет редактор файлов памяти, и возможность загрузки файлов .mif и .hex, Xilinx Core Generator требует загрузки файла .coe, имеющего другой формат, нежели MIF. Однако хочется иметь кроссплатформенное решение, которое не зависело бы от платформы.  Таким вариантом является генерация ROM в виде case-конструкции:</p>
-
-
 <pre lang="cpp" line="1">
 always@(posedge clk)
 begin
@@ -181,18 +104,10 @@ begin
   endcase
 end
 </pre>
-
-
 <p>Полезная ссылка: различные конструкции для генерации разных типов RAM, ROM и других модулей можно найти в руководстве Altera "Recommended HDL Coding Styles": <a href="https://www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/hb/qts/qts_qii51007.pdf">https://www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/hb/qts/qts_qii51007.pdf</a><br />
 Я написал две простые утилиты, которая преобразует бинарный файл в MIF и в тело конструкции case.</p>
-
-
 <p><!--more--></p>
-
-
 <p>Вот её полный исходник:</p>
-
-
 <pre lang="cpp" line="1">
 #include <fstream>
 #include <vector>
@@ -202,7 +117,7 @@ end
 #include <iomanip>
 #include <math.h>
 
-std::vector<unsigned char> readFile(const char* filename)
+std::vector<unsigned char=""> readFile(const char* filename)
 {
     // open the file:
     std::streampos fileSize;
@@ -212,75 +127,57 @@ std::vector<unsigned char> readFile(const char* filename)
     fileSize = file.tellg();
     file.seekg(0, std::ios::beg);
     // read the data:
-    std::vector<unsigned char> fileData(fileSize);
-    file.read((char*) &fileData[0], fileSize);
+	std::vector<unsigned char=""> fileData(fileSize);
+    file.read((char*) &amp;fileData[0], fileSize);
     return fileData;
 }
 
 unsigned getWidth(unsigned size)
 {
-    return size / 4 + ((size % 4)? 1: 0);
+	return size / 4 + ((size % 4)? 1: 0);
 }
 
 int main(int argc, char *argv[])
 {
-    if(argc < 5)
-    {
-        std::cout << "äîëæíû áûòü àðãóìåíòû: èìÿ_âõîäíîãî_ôàéëà èìÿ_âûõîäíîãî_ôàéëà ðàçìåð_âõîäíîé_ïåðåìåííîé ðàçìåð_âûõîäíîé_ïåðåìåííîé" << std::endl;
-        std::cout << "íàïðèìåð: out_file.v 11 8" << std::endl;
-        return 0;
-    }
-    std::vector<unsigned char> inputFile = readFile(argv[1]);
-    std::ofstream out(argv[2], std::ofstream::out);
-    unsigned num = 0;
-    unsigned inSize = atoi(argv[3]), outSize = atoi(argv[4]);
-    unsigned inWidth = getWidth(inSize),
-        depth = pow(2, inSize),
-        outWidth = getWidth(outSize);
-    out << "width=" << outSize << ";" << std::endl;
-    out << "depth=" << depth << ";" << std::endl;
-    out << "address_radix=hex;" << std::endl;
-    out << "data_radix=hex;" << std::endl;
-    out << "content begin" << std::endl;
-    out.fill('0');
-    for(auto ch:inputFile)
-    {
-        out << std::setw(inWidth) << std::hex << num++ << ": " << std::setw(outWidth) << std::right << std::hex << (int)ch << ";" << std::endl;
-    }
-    out << "end" << std::endl;
-    out.close();
+	if(argc &lt; 5)
+	{
+		std::cout &lt;&lt; "äîëæíû áûòü àðãóìåíòû: èìÿ_âõîäíîãî_ôàéëà èìÿ_âûõîäíîãî_ôàéëà ðàçìåð_âõîäíîé_ïåðåìåííîé ðàçìåð_âûõîäíîé_ïåðåìåííîé" &lt;&lt; std::endl;
+		std::cout &lt;&lt; "íàïðèìåð: out_file.v 11 8" &lt;&lt; std::endl;
+		return 0;
+	}
+	std::vector<unsigned char=""> inputFile = readFile(argv[1]);
+	std::ofstream out(argv[2], std::ofstream::out);
+	unsigned num = 0;
+	unsigned inSize = atoi(argv[3]), outSize = atoi(argv[4]);
+	unsigned inWidth = getWidth(inSize),
+		depth = pow(2, inSize),
+		outWidth = getWidth(outSize);
+	out &lt;&lt; "width=" &lt;&lt; outSize &lt;&lt; ";" &lt;&lt; std::endl;
+	out &lt;&lt; "depth=" &lt;&lt; depth &lt;&lt; ";" &lt;&lt; std::endl;
+	out &lt;&lt; "address_radix=hex;" &lt;&lt; std::endl;
+	out &lt;&lt; "data_radix=hex;" &lt;&lt; std::endl;
+	out &lt;&lt; "content begin" &lt;&lt; std::endl;
+	out.fill('0');
+	for(auto ch:inputFile)
+	{
+		out &lt;&lt; std::setw(inWidth) &lt;&lt; std::hex &lt;&lt; num++ &lt;&lt; ": " &lt;&lt; std::setw(outWidth) &lt;&lt; std::right &lt;&lt; std::hex &lt;&lt; (int)ch &lt;&lt; ";" &lt;&lt; std::endl;
+	}
+	out &lt;&lt; "end" &lt;&lt; std::endl;
+	out.close();
     return 0;
 }
 </unsigned></unsigned></unsigned></math.h></iomanip></iostream></string></sstream></vector></fstream></pre>
-
-
 <p>С её помощью можно преобразовать бинарный файл в MIF-формат, указав имя входного файла, имя выходного файла, размер переменной адреса в битах и размер данных в битах, например:</p>
-
-
 <pre lang="text" line="1">hex2mif "866.008" "008.mif" 11 8</pre>
-
-
 <p>Вторая утилита отличается незначительно:</p>
-
-
 <pre lang="cpp" line="1">
   //основное отличие в этой строке:
-  out << std::dec << std::setw(0) << inSize << "'h" << std::setw(inWidth) << std::hex << num++ << ": " << std::dec << std::setw(0) << outName << " = " << outSize << "'h" << std::setw(outWidth) << std::hex << (int)ch << ";" << std::endl;
+  out &lt;&lt; std::dec &lt;&lt; std::setw(0) &lt;&lt; inSize &lt;&lt; "'h" &lt;&lt; std::setw(inWidth) &lt;&lt; std::hex &lt;&lt; num++ &lt;&lt; ": " &lt;&lt; std::dec &lt;&lt; std::setw(0) &lt;&lt; outName &lt;&lt; " = " &lt;&lt; outSize &lt;&lt; "'h" &lt;&lt; std::setw(outWidth) &lt;&lt; std::hex &lt;&lt; (int)ch &lt;&lt; ";" &lt;&lt; std::endl;
 </pre>
-
-
 <p>В качестве пятого параметра ей нужно указывать имя выходного регистра:</p>
-
-
 <pre lang="text" line="1">hex2case "866.008" "008.mif" 11 8 out</pre>
-
-
 <p>Обе утилиты кроссплатформенные и могут быть скомпилированы как в Windows, так и в Linux.</p>
-
-
 <p>Теперь можно использовать этот файл для инициализации памяти в verilog:</p>
-
-
 <pre lang="verilog" line="1">
 module rom_test(
   input wire clk, rst_n,
@@ -297,10 +194,7 @@ end
 
 endmodule
 </pre>
-
-
 <p>Ссылка на Github: <a href="https://github.com/arktur04/bin2mif">https://github.com/arktur04/bin2mif</a></p>
-
 ]]></content>
   </entry>
   
@@ -311,63 +205,36 @@ endmodule
     <id>http://arktur04.github.io/blog/2015/06/19/fpu-%d1%87%d0%b0%d1%81%d1%82%d1%8c-5-%d1%81%d1%83%d0%bc%d0%bc%d0%b0%d1%82%d0%be%d1%80-%d1%82%d0%b5%d1%81%d1%82-%d0%b8-rtl</id>
     <content type="html"><![CDATA[<p>Итак, сумматор чисел в формате IEEE 754 с разрядностью 32 или 64 бита.<br />
 Исходники можно скачать на Github: <a href="https://github.com/arktur04/FPU" data-cke-saved-href="https://github.com/arktur04/FPU">https://github.com/arktur04/FPU</a>.</p>
-
-
 <p>КДПВ (кликабельно):</p>
-
-
-<p><a href="/images/2015/06/pic1.png"><img class="alignnone size-medium wp-image-2078" alt="pic1" src="/assets/pic1-300x58.png" width="300" height="58" /></a></p>
-
-
+<p><a href="{{ site.baseurl }}/images/2015/06/pic1.png"><img class="alignnone size-medium wp-image-2078" alt="pic1" src="{{ site.baseurl }}/assets/pic1-300x58.png" width="300" height="58" /></a></p>
 <p><!--more--></p>
-
-
 <p>При разработке модуля суммирования (он же модуль вычитания) был обнаружен ряд "подводных камней", которые отличают его от других модулей FPU. В первую очередь, это касается тестов. При тестировании модуля умножения и модуля деления мы использовали сгенерированную программно таблицу случайных значений 64-битных целых чисел, которые затем переводились в соответствующие вещественные значения. Легко видеть, что при равномерном распределении исходных (целочисленных) значений мы получим случайные вещественные числа с равномерным распределением экспонент, то есть два случайных числа, оказавшихся в одной паре, скорее всего, будут различаться на много порядков. Это не мешает тестам умножителя и делителя, но для сумматора это означает, что результат, скорее всего, будет просто равен большему значению, так как меньшее просто выйдет далеко за пределы младшего знака большего числа.</p>
-
-
 <p>Такие случаи тоже надо тестировать, конечно, но не они являются основным содержанием теста. Поэтому в тесте мы искусственно ограничиваем разброс двух операндов так, чтобы их экспоненты отличались не более чем на 53 (для 64-битных чисел). Это значение выбрано исходя из того, что 52 - длина мантиссы, и мы всё же оставляем некоторую вероятность (1/53) для "вырожденного" случая, когда одно из слагаемых меньше младшего разряда второго слагаемого.</p>
-
-
 <pre lang="cpp" line="1">    const unsigned MAX_EXP_DIFF = 53;
     ...
-    for(int i = 0; i <= 10000; i++)
+    for(int i = 0; i &lt;= 10000; i++)
     {
     do
     {
         ll_x = randomInt64();
         ll_y = randomInt64();
     }
-    while(abs(exponent(ll_x) - exponent(ll_y)) > MAX_EXP_DIFF);
+    while(abs(exponent(ll_x) - exponent(ll_y)) &gt; MAX_EXP_DIFF);
     printLine(testfile, ll_x, ll_y, add);
 }</pre>
-
-
 <p>Второй подводный камень оказался в системе округления результата. Для того, чтобы уменьшить потери точности на последнем знаке числа, во всех модулях FPU происходит стандартное округление, мы считаем на 1 разряд больше, и затем прибавляем к нему 1. В конечный результат этот разряд не записывается. Если в этом дополнительном разряде был ноль, то он станет равным единице, но на конечном результате это не отразится. Если дополнительный разряд был равен 1, то произойдёт перенос в следующий разряд, который является младшим битом результата. Следуя этой схеме, в модулях умножения и деления удалось добиться полного побитового совпадения результата с рассчитанным на компьютере. Однако при суммировании младший разряд в некоторых случаях ведёт себя иначе: иногда не происходит округление там, где оно должно быть. Понять закономерность мне так и не удалось, поэтому я решил, что единица младшего разряда, это не такая уж большая погрешность, и добавил в тест условие, по которому два числа, отличающиеся на один младший бит, считаются равными.</p>
-
-
-<pre lang="verilog" line="1">is_equal = ((expected == actual) || (expected == actual + 1) || (expected == actual - 1)) || (expectedIsNaN && actualIsNaN) || (expectedIsZero && actualIsZero);</pre>
-
-
+<pre lang="verilog" line="1">is_equal = ((expected == actual) || (expected == actual + 1) || (expected == actual - 1)) || (expectedIsNaN &amp;&amp; actualIsNaN) || (expectedIsZero &amp;&amp; actualIsZero);</pre>
 <p>Также равными считаются числа +0 и -0:</p>
-
-
-<pre lang="verilog" line="1">is_equal = ... (expectedIsZero && actualIsZero);
+<pre lang="verilog" line="1">is_equal = ... (expectedIsZero &amp;&amp; actualIsZero);
 
 function is_zero;
 input [`DATA_WIDTH - 1: 0] value;
 begin
   is_zero = value[`DATA_WIDTH - 2: `DATA_WIDTH - `EXP_WIDTH - 1] == {`EXP_WIDTH{1'b0}};
 end</pre>
-
-
 <p>Это происходит потому, что функция is_zero проверяет на равенство нулю все разряды, кроме value[`DATA_WIDTH - 1], который содержит знак.</p>
-
-
 <p>В остальном поведение модуля полностью соответствует стандартному FPU компьютера, что подтверждается тестом их &gt; 20.000 случайных пар чисел (10.000 для сложения и столько же для вычитания).</p>
-
-
 <p>Итак, у нас готовы основные арифметические операции, и можно сделать что-либо более интересное. Например, модуль вычисления синуса/косинуса. Но об этом я напишу в следующий раз.</p>
-
 ]]></content>
   </entry>
   

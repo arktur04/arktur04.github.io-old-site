@@ -4,7 +4,7 @@
   <title><![CDATA[Category: схемотехника | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/skhiemotiekhnika/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-20T19:19:16+05:00</updated>
+  <updated>2015-12-20T19:49:18+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -19,73 +19,28 @@
     <updated>2015-11-23T21:00:45+05:00</updated>
     <id>http://arktur04.github.io/blog/2015/11/23/%d0%bf%d1%80%d0%be%d0%b5%d0%ba%d1%82-%d0%b2%d0%b8%d0%b4%d0%b5%d0%be%d0%b0%d0%b4%d0%b0%d0%bf%d1%82%d0%b5%d1%80%d0%b0-%d1%87%d0%b0%d1%81%d1%82%d1%8c-3</id>
     <content type="html"><![CDATA[<p>Продолжение. <a href="http://arktur04.github.io/blog/2015/11/05/vga-%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580-%25d0%25bd%25d0%25b0-fpga/">Часть 2.</a></p>
-
-
 <p>Структурная схема видеоадаптера приведена на рис. 1 (кликабельно)</p>
-
-
-<p><a href="/images/2015/11/vga-card-big.jpg"><img class="alignnone size-medium wp-image-2175" alt="vga-card-big" src="/assets/vga-card-big-300x214.jpg" width="300" height="214" /></a></p>
-
-
+<p><a href="{{ site.baseurl }}/images/2015/11/vga-card-big.jpg"><img class="alignnone size-medium wp-image-2175" alt="vga-card-big" src="{{ site.baseurl }}/assets/vga-card-big-300x214.jpg" width="300" height="214" /></a></p>
 <p>&nbsp;</p>
-
-
 <p>Рис. 1. Структурная схема видеоадаптера.</p>
-
-
 <p>&nbsp;</p>
-
-
 <p>Пояснения к схеме:</p>
-
-
 <p>В первой версии видеоадаптер будет иметь только текстовый режим EGA, 80 * 25 символов 8 * 14 пикселов каждый символ. Таким образом, экранное разрешение составит 8 * 80 = 640 пикселов по горизонтали и 14 * 25 = 350 пикселов по вертикали. Частота пикселов в этом режиме составляет, по стандарту 25,175 МГц, фактическая частота будет 25 МГц, в связи с тем, что частота тактирования ПЛИС составляет 50 МГц. При этом на любом мониторе происходит нормальная синхронизация.</p>
-
-
 <p><!--more--></p>
-
-
 <p>Для аналогичного тектового видеорежима VGA разрешение составляет 720 * 400 пикселей, т.к. символы имеют размер 9*16 пикселей. Частота пикселов при этом должна быть 28,322 МГц, и нормальная синхронизация с частотой 25 МГц невозможна. Можно получить близкую частоту с помощью PLL, но тогда потребуются блоки для асинхронного сопряжения видеоадаптера с микропроцессорной частью проекта, т.к. микропроцессорная часть будет тактироваться частотой 50 МГц. Это будет следующим этапом проекта, пока вся схема будет тактироваться от 50 МГц.</p>
-
-
 <p>Графические режимы тоже будут позже, пока будет реализован максимально простой вариант.</p>
-
-
 <p>Некоторые пояснения по схеме:</p>
-
-
 <p><strong>sync_gen</strong> - генератор синхроимпульсов. Имеет выходы <em>h_coord_reg</em> и <em>v_coord_reg</em>, соответственно, текущие координаты пиксела по горизонтали и вертикали. <em>data_en</em> - сигнал разрешения данных. Этот же сигнал используется для "гашения" выходов ЦАП. <em>hsync_reg</em> и<em> vsync_reg</em> - сигналы горизонтальной и вертикальной синхронизации.</p>
-
-
 <p>Так как вся схема состоит из нескольких модулей, включенных последовательно, прохождение сигнала по ним занимает несколько тактов. В связи с этим сигналы <em>data_en, <em>hsync_reg</em> </em>и <em><em>vsync_reg</em></em> также должны быть задержаны, чтобы приходить на выход синхронно с сигналами соответствующего пиксела.</p>
-
-
 <p><strong>addr_decoder</strong> - так как видеоадаптер будет использовать в качестве видеопамяти внешнюю sdram, которая будет использоваться совместно с основным микропроцессором, <strong> </strong>необходимо иметь небольшую буферную память, чтобы избежать проблем, связанных с временем доступа к внешней памяти. Этот буфер будет двойным, пока идёт выборка из одного блока памяти, в другой загружаются данные из внешней памяти, затем они меняются местами. каждый блок памяти будет иметь размер 256*16 бит. 16-и битный выход позволит получит сразу и ком символа, и информацию об его цвете. Модуль <strong>addr_decoder</strong> вырабатывает текущий адрес в буфере <em>buffer_addr_reg</em>, исходя из текущей координаты пиксела и смещения буфера (т.е. адреса, который отображается на начало буфера). Также этот модуль вырабатывает сигналы <em>hmod_reg</em> и <em>vmod_reg</em>, которые являются координатой пиксела в текущем знакоместе (т.е. абсолютной координатой по модулю 8 и 14 соответственно).</p>
-
-
 <p><strong>buf_mem </strong> - буфер памяти, см. предыдущий абзац.</p>
-
-
 <p><strong>mem_controlle</strong>r - контроллер памяти. Должен обеспечивать подкачку содержимого буфера из внешней SDRAM. Также, в будущем, будет обеспечивать асинхронные взаимодействия видеоадаптера и основной части, при их работе на разной тактовой частоте.</p>
-
-
 <p><strong>mode_controller</strong> - контроллер видеорежима. Пока видеоадаптер будет иметь только один текстовый режим, но в будущем контроллер должен будет обесипечивать установку всех остальных модулей в состояние, соответствующее текущему видеорежиму. Также модуль выделяет код символа (<em>char_code_reg</em>), цвет символа (<em>char_color_reg</em>), цвет фона (<em>back_color_reg</em>) и признак мигания <em>blink</em>.</p>
-
-
 <p><strong>char_gen</strong> - знакогенератор. В данной версии представляет собой ПЗУ с таблицей символов EGA (8*14), но впоследствии будет содержать символы VGA (9*16) и символы 8*8, а также программируемые пользователем символы. На его вход поступает код символа (<em>char_code</em>) и номер строки символа (<em>vmod</em>), на выходе появляется строка текущего знакоместа (<em>char_data_reg</em>).</p>
-
-
 <p><strong>pixel_data_decode</strong>r - на основании сигналов <em>char_data, hmod, char_color, back_color, blink</em> определяет цвет текущего пиксела в палитре.</p>
-
-
 <p><strong>palette</strong> - регистры палитры. В данной версии представляет собой ПЗУ, в дальнейшем будет возможность его изменения пользовательской программой.</p>
-
-
 <p>Пока это черновик схемы, она будет дорабатываться и изменяться по мере продвижения проекта.</p>
-
-
 <p>&nbsp;</p>
-
 ]]></content>
   </entry>
   
@@ -95,31 +50,14 @@
     <updated>2015-11-05T21:38:06+05:00</updated>
     <id>http://arktur04.github.io/blog/2015/11/05/vga-%d0%b0%d0%b4%d0%b0%d0%bf%d1%82%d0%b5%d1%80-%d0%bd%d0%b0-fpga</id>
     <content type="html"><![CDATA[<p>Продолжение. <a title="Начало" href="http://arktur04.github.io/blog/2015/05/13/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-1/">Начало</a>.</p>
-
-
 <p>Проект видеоадаптера переделан под использование видео ЦАП ADV7123. Схема подключения приведена на рисунке:</p>
-
-
-<p><a href="/images/2015/11/VGA_DAC.jpg"><img class="alignnone size-medium wp-image-2168" alt="VGA_DAC" src="/assets/VGA_DAC-300x190.jpg" width="300" height="190" /></a></p>
-
-
+<p><a href="{{ site.baseurl }}/images/2015/11/VGA_DAC.jpg"><img class="alignnone size-medium wp-image-2168" alt="VGA_DAC" src="{{ site.baseurl }}/assets/VGA_DAC-300x190.jpg" width="300" height="190" /></a></p>
 <p>(по клику откроется полный размер).</p>
-
-
 <p>Код проекта приведён на гитхабе (<a href="https://github.com/arktur04/VideoCard">ссылка</a>). Это тестовый код, который выводит на монитор поле разноцветных квадратов.</p>
-
-
 <p>По сравнению с предыдущей версией, в которой использовался резистивный ЦАП, увеличена разрядность с 2-х до 8-и бит на цвет, и существенно улучшилось качество изображения.</p>
-
-
 <p>Фото тестовой картинки:</p>
-
-
-<p><a href="/images/2015/11/pic1.jpg"><img class="alignnone size-medium wp-image-2166" alt="pic" src="/assets/pic1-300x189.jpg" width="300" height="189" /></a></p>
-
-
+<p><a href="{{ site.baseurl }}/images/2015/11/pic1.jpg"><img class="alignnone size-medium wp-image-2166" alt="pic" src="{{ site.baseurl }}/assets/pic1-300x189.jpg" width="300" height="189" /></a></p>
 <p>&nbsp;</p>
-
 ]]></content>
   </entry>
   
@@ -129,20 +67,11 @@
     <updated>2015-03-08T18:14:21+05:00</updated>
     <id>http://arktur04.github.io/blog/2015/03/08/%d0%b7%d0%b0%d1%89%d0%b8%d1%82%d0%b0-%d0%be%d1%82-%d0%bf%d0%b5%d1%80%d0%b5%d0%bf%d0%be%d0%bb%d1%8e%d1%81%d0%be%d0%b2%d0%ba%d0%b8-%d0%bf%d0%be-%d0%bf%d0%b8%d1%82%d0%b0%d0%bd%d0%b8%d1%8e</id>
     <content type="html"><![CDATA[<p><a href="http://ru-radio-electr.livejournal.com/1295897.html">Отсюда</a>.</p>
-
-
-<p><a href="/images/2015/03/111307_900.png"><img class="alignnone size-medium wp-image-1960" alt="111307_900" src="/assets/111307_900-300x66.png" width="300" height="66" /></a></p>
-
-
+<p><a href="{{ site.baseurl }}/images/2015/03/111307_900.png"><img class="alignnone size-medium wp-image-1960" alt="111307_900" src="{{ site.baseurl }}/assets/111307_900-300x66.png" width="300" height="66" /></a></p>
 <p>&nbsp;</p>
-
-
 <p>Кликните картинку для просмотра полного размера.</p>
-
-
 <p>Защита сделана на N-канальном MOSFET транзисторе. Такое решение позволяет обеспечить почти нулевое падение напряжения, по сравнению с защитой на диоде. Например, при токе 3А 12В диод довольно сильно грелся бы, более Ватта.<br />
 У этой схемы есть небольшой недостаток: для повышенного напряжения, более 20В, резистор R6 надо заменить на 10-вольтовый стабилитрон.</p>
-
 ]]></content>
   </entry>
   
@@ -152,22 +81,11 @@
     <updated>2015-02-15T18:42:01+05:00</updated>
     <id>http://arktur04.github.io/blog/2015/02/15/%d0%bf%d0%bb%d0%b0%d1%82%d0%b0-%d0%bf%d1%80%d0%b5%d1%86%d0%b8%d0%b7%d0%b8%d0%be%d0%bd%d0%bd%d0%be%d0%b3%d0%be-%d0%b0%d1%86%d0%bf-2</id>
     <content type="html"><![CDATA[<p>Ссылки на скачивание pdf со схемами:</p>
-
-
 <p><a href="https://drive.google.com/file/d/0B6kwsqM_aVtJdWZSOGJVd3JQR3M/view?usp=sharing">Лист 1</a></p>
-
-
 <p><a href="https://drive.google.com/file/d/0B6kwsqM_aVtJV2RBUWFtVGlhQUk/view?usp=sharing">Лист 2</a></p>
-
-
 <p><a href="https://drive.google.com/file/d/0B6kwsqM_aVtJRzFqekRRaURNd2c/view?usp=sharing">Лист 3</a></p>
-
-
 <p><a href="https://drive.google.com/file/d/0B6kwsqM_aVtJWkdyUkRZSk13Mkk/view?usp=sharing">Лист 4</a></p>
-
-
 <p>В основе схемы лежит схема фирменной платы AD7760 Evaluation Board, если у вас возникают какие-то вопросы, связанные с работой устройства, можете посмотреть: <a href="http://www.analog.com/media/en/technical-documentation/evaluation-documentation/EVAL-AD7760_7762EDZ.pdf">http://www.analog.com/media/en/technical-documentation/evaluation-documentation/EVAL-AD7760_7762EDZ.pdf</a></p>
-
 ]]></content>
   </entry>
   
@@ -177,21 +95,12 @@
     <updated>2014-10-14T19:11:13+06:00</updated>
     <id>http://arktur04.github.io/blog/2014/10/14/epyphany-e16g301</id>
     <content type="html"><![CDATA[<p>Интересная микросхема. Матричный FPU с 16 ядрами, объединенными в массив 4х4. Есть поддержка gcc и gdb. Предназначена для применения совместно с fpga и микропроцессорами в задачах обработки сигналов и других, требующих высокой производительности вычислений с плавающей точкой.</p>
-
-
 <p>Допускается объединение микросхем в массив, содержащий в общей сложности до 64х64 = 4096 ядер.</p>
-
-
-<p><a href="/images/2014/10/epiphany.jpg"><img class="alignnone size-full wp-image-1861" alt="epiphany" src="/assets/epiphany.jpg" width="721" height="353" /></a></p>
-
-
+<p><a href="{{ site.baseurl }}/images/2014/10/epiphany.jpg"><img class="alignnone size-full wp-image-1861" alt="epiphany" src="{{ site.baseurl }}/assets/epiphany.jpg" width="721" height="353" /></a></p>
 <p>&nbsp;</p>
-
-
 <p>Прочитал доки:<br />
 1. Epiphany Architecture Reference<br />
 2. Epiphany SDK Reference</p>
-
 ]]></content>
   </entry>
   

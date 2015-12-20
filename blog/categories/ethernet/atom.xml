@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ethernet | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/ethernet/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-20T19:19:16+05:00</updated>
+  <updated>2015-12-20T19:49:18+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -19,22 +19,11 @@
     <updated>2012-02-21T21:12:44+06:00</updated>
     <id>http://arktur04.github.io/blog/2012/02/21/%d0%b0%d0%b4%d0%b0%d0%bf%d1%82%d0%b5%d1%80-ethernet</id>
     <content type="html"><![CDATA[<p>Плата расширения для прибора, включает в себя адаптер Ethernet, слот для SD-карты и некоторую дополнительную логику на CPLD Altera.</p>
-
-
-<p><a href="/images/2012/02/pic2.jpg"><img class="alignnone size-medium wp-image-1498" title="pic2" src="/assets/pic2-300x180.jpg" alt="" width="300" height="180" /></a></p>
-
-
+<p><a href="{{ site.baseurl }}/images/2012/02/pic2.jpg"><img class="alignnone size-medium wp-image-1498" title="pic2" src="{{ site.baseurl }}/assets/pic2-300x180.jpg" alt="" width="300" height="180" /></a></p>
 <p><!--more--></p>
-
-
-<p><a href="/images/2012/02/pic1.jpg"><img class="alignnone size-medium wp-image-1497" title="pic1" src="/assets/pic1-300x187.jpg" alt="" width="300" height="187" /></a></p>
-
-
+<p><a href="{{ site.baseurl }}/images/2012/02/pic1.jpg"><img class="alignnone size-medium wp-image-1497" title="pic1" src="{{ site.baseurl }}/assets/pic1-300x187.jpg" alt="" width="300" height="187" /></a></p>
 <p>&nbsp;</p>
-
-
 <p>&nbsp;</p>
-
 ]]></content>
   </entry>
   
@@ -44,37 +33,16 @@
     <updated>2010-12-12T15:11:37+05:00</updated>
     <id>http://arktur04.github.io/blog/2010/12/12/%d0%b8%d0%bd%d1%82%d0%b5%d1%80%d1%84%d0%b5%d0%b9%d1%81-%d0%bf%d1%80%d0%b8%d0%b1%d0%be%d1%80%d0%b0</id>
     <content type="html"><![CDATA[<p>Интерфейс прибора реализован на базе монохромного индикатора разрешением 128х64, и включает в себя 35 различных экранов, в которых выполняются все манипуляции с прибором, включая его наладку и тестирование всех узлов (ЦАП, АЦП, все дискретные входы и выходы), установку параметров алгоритма обработки сигналов (DSP), а также все переменные настройки прибора (более 200 переменных).</p>
-
-
 <p>Программно интерфейс реализован в виде библиотеки классов C++, представляющих элементы управления (кнопки, поля ввода, текстовые поля и пр.)</p>
-
-
-<p><a href="/images/2010/12/main.png"><img class="alignnone size-full wp-image-938" title="main" src="/assets/main.png" alt="" width="256" height="128" /></a></p>
-
-
-<p><a href="/images/2010/12/ethernet.png"><img class="alignnone size-full wp-image-939" title="ethernet" src="/assets/ethernet.png" alt="" width="256" height="128" /></a></p>
-
-
+<p><a href="{{ site.baseurl }}/images/2010/12/main.png"><img class="alignnone size-full wp-image-938" title="main" src="{{ site.baseurl }}/assets/main.png" alt="" width="256" height="128" /></a></p>
+<p><a href="{{ site.baseurl }}/images/2010/12/ethernet.png"><img class="alignnone size-full wp-image-939" title="ethernet" src="{{ site.baseurl }}/assets/ethernet.png" alt="" width="256" height="128" /></a></p>
 <p>Так это выглядит в натуральном виде:</p>
-
-
-<p><a href="/images/2010/12/mainscr.gif"><img class="alignnone size-medium wp-image-946" title="mainscr" src="/assets/mainscr-300x213.gif" alt="" width="300" height="213" /></a></p>
-
-
+<p><a href="{{ site.baseurl }}/images/2010/12/mainscr.gif"><img class="alignnone size-medium wp-image-946" title="mainscr" src="{{ site.baseurl }}/assets/mainscr-300x213.gif" alt="" width="300" height="213" /></a></p>
 <p>Ещё  несколько картинок под катом.</p>
-
-
-<p><!--more--><a href="/images/2010/12/menu1.png"><img class="alignnone size-full wp-image-940" title="menu1" src="/assets/menu1.png" alt="" width="256" height="128" /></a></p>
-
-
-<p><a href="/images/2010/12/param1.png"><img class="alignnone size-full wp-image-941" title="param1" src="/assets/param1.png" alt="" width="256" height="128" /></a></p>
-
-
-<p><a href="/images/2010/12/rs485.png"><img class="alignnone size-full wp-image-942" title="rs485" src="/assets/rs485.png" alt="" width="256" height="128" /></a></p>
-
-
-<p><a href="/images/2010/12/test_ai.png"><img class="alignnone size-full wp-image-943" title="test_ai" src="/assets/test_ai.png" alt="" width="256" height="128" /></a></p>
-
+<p><!--more--><a href="{{ site.baseurl }}/images/2010/12/menu1.png"><img class="alignnone size-full wp-image-940" title="menu1" src="{{ site.baseurl }}/assets/menu1.png" alt="" width="256" height="128" /></a></p>
+<p><a href="{{ site.baseurl }}/images/2010/12/param1.png"><img class="alignnone size-full wp-image-941" title="param1" src="{{ site.baseurl }}/assets/param1.png" alt="" width="256" height="128" /></a></p>
+<p><a href="{{ site.baseurl }}/images/2010/12/rs485.png"><img class="alignnone size-full wp-image-942" title="rs485" src="{{ site.baseurl }}/assets/rs485.png" alt="" width="256" height="128" /></a></p>
+<p><a href="{{ site.baseurl }}/images/2010/12/test_ai.png"><img class="alignnone size-full wp-image-943" title="test_ai" src="{{ site.baseurl }}/assets/test_ai.png" alt="" width="256" height="128" /></a></p>
 ]]></content>
   </entry>
   
@@ -83,20 +51,11 @@
     <link href="http://arktur04.github.io/blog/2010/05/11/web-%25d1%2581%25d0%25b5%25d1%2580%25d0%25b2%25d0%25b5%25d1%2580/"/>
     <updated>2010-05-11T20:26:17+06:00</updated>
     <id>http://arktur04.github.io/blog/2010/05/11/web-%d1%81%d0%b5%d1%80%d0%b2%d0%b5%d1%80</id>
-    <content type="html"><![CDATA[<p><a href="/images/2010/05/EthBoard2.jpg"><img class="alignnone size-medium wp-image-367" title="EthBoard2" src="/assets/EthBoard2-300x231.jpg" alt="" width="300" height="231" /></a></p>
-
-
+    <content type="html"><![CDATA[<p><a href="{{ site.baseurl }}/images/2010/05/EthBoard2.jpg"><img class="alignnone size-medium wp-image-367" title="EthBoard2" src="{{ site.baseurl }}/assets/EthBoard2-300x231.jpg" alt="" width="300" height="231" /></a></p>
 <p>На самом деле это плата Ethernet-контроллера Wiznet W5100 (вверху), соединённая с отладочной платой c микроконтроллером ARM (LPC). Плата между ними служит для соединения. Также на верхней плате есть флеш-память в виде SD-карты.</p>
-
-
 <p>Под катом ещё фото.</p>
-
-
 <p><!--more--></p>
-
-
-<p><a href="/images/2010/05/EthBoard1.jpg"><img class="alignnone size-medium wp-image-368" title="EthBoard1" src="/assets/EthBoard1-300x227.jpg" alt="" width="300" height="227" /></a></p>
-
+<p><a href="{{ site.baseurl }}/images/2010/05/EthBoard1.jpg"><img class="alignnone size-medium wp-image-368" title="EthBoard1" src="{{ site.baseurl }}/assets/EthBoard1-300x227.jpg" alt="" width="300" height="227" /></a></p>
 ]]></content>
   </entry>
   
@@ -106,16 +65,9 @@
     <updated>2010-04-17T05:07:04+06:00</updated>
     <id>http://arktur04.github.io/blog/2010/04/17/w5100-%d0%ba%d0%be%d0%bd%d1%82%d1%80%d0%be%d0%bb%d0%bb%d0%b5%d1%80-ethernet</id>
     <content type="html"><![CDATA[<p>W5100 - контроллер Ethernet, объединяющий в одном чипе PHY-уровень, MAC-уровень, аппаратную реализацию TCP-IP стека и интерфейс с микроконтроллером (возможно подключение как по параллельному, так и по последовательному интерфейсу).</p>
-
-
 <p>Небольшая подборка ссылок на тему:</p>
-
-
 <p><a href="http://www.efo.ru/doc/Wiznet/Wiznet.pl?2595">http://www.efo.ru/doc/Wiznet/Wiznet.pl?2595</a> - краткое описание и ссылки на исходники и документацию (много документации)</p>
-
-
 <p><a href="http://www.radioradar.net/radiofan/radiofan_technology/w5100.html">http://www.radioradar.net/radiofan/radiofan_technology/w5100.html</a> - статья "Реализация на базе микросхемы W5100 устройства для работы в сетях Ethernet".  Кратко, но тоже будет полезно.</p>
-
 ]]></content>
   </entry>
   
@@ -125,59 +77,24 @@
     <updated>2009-10-21T18:59:00+06:00</updated>
     <id>http://arktur04.github.io/blog/2009/10/21/%d0%bf%d0%bb%d0%b0%d1%82%d0%b0</id>
     <content type="html"><![CDATA[<div class="separator" style="clear: both; text-align: left;">Девайс, над которым сейчас тружусь:</div>
-
-
-<div class="separator" style="clear: both; text-align: left;"><a style="margin-left: 1em; margin-right: 1em;" href="/images/2010/01/post11/controller_board-big.jpg"><img style="border: 0px;" src="/assets/controller_board-small.jpg" border="0" alt="" /></a></div>
-
-
+<div class="separator" style="clear: both; text-align: left;"><a style="margin-left: 1em; margin-right: 1em;" href="{{ site.baseurl }}/images/2010/01/post11/controller_board-big.jpg"><img style="border: 0px;" src="{{ site.baseurl }}/assets/controller_board-small.jpg" border="0" alt="" /></a></div>
 <div class="separator" style="clear: both; text-align: left;">Плата контроллера, содержит:</div>
-
-
 <div class="separator" style="clear: both; text-align: left;">микроконтроллер NXP LPC2368</div>
-
-
 <div class="separator" style="clear: both; text-align: left;">4 канала 24-бит АЦП</div>
-
-
 <div class="separator" style="clear: both; text-align: left;">4 канала 14-бит ЦАП (выходы 4-20 мА)</div>
-
-
 <div class="separator" style="clear: both; text-align: left;">10 дискретных выходов (реле)</div>
-
-
 <div class="separator" style="clear: both; text-align: left;">Ethernet</div>
-
-
 <div class="separator" style="clear: both; text-align: left;">USB</div>
-
-
 <div class="separator" style="clear: both; text-align: left;">RS-232</div>
-
-
 <div class="separator" style="clear: both; text-align: left;">RS-485 (2 шт)</div>
-
-
 <div class="separator" style="clear: both; text-align: left;">JTAG</div>
-
-
 <div class="separator" style="clear: both; text-align: left;">термодатчик</div>
-
-
 <div class="separator" style="clear: both; text-align: left;">энергонезависимую память (FRAM)</div>
-
-
 <div class="separator" style="clear: both; text-align: left;">интерфейс для подключения клавиатуры и индикатора</div>
-
-
 <div class="separator" style="clear: both; text-align: left;">интерфейс для подключения дополнительной платы (2 логических входа и 2 сигнала ШИМ)</div>
-
-
 <div class="separator" style="clear: both; text-align: left;"><em>Все аналоговые входы и выходы гальванически изолированы как от микроконтроллера, так и друг от друга. Интерфейсы RS-485 также имеют гальваническую изоляцию от микроконтроллера и друг от друга.</em></div>
-
-
 <p>Питание платы осуществляется от источника постоянного тока напряжением 24 В.<br />
 Плата предназначена для одного прибора.</p>
-
 ]]></content>
   </entry>
   

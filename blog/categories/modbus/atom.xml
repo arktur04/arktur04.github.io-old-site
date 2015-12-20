@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Modbus | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/modbus/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-20T19:19:16+05:00</updated>
+  <updated>2015-12-20T19:49:18+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -19,34 +19,15 @@
     <updated>2013-09-22T15:00:46+06:00</updated>
     <id>http://arktur04.github.io/blog/2013/09/22/%d0%be%d0%b1%d0%bd%d0%be%d0%b2%d0%bb%d0%b5%d0%bd%d0%b8%d0%b5-modbuseasy</id>
     <content type="html"><![CDATA[<p>ModbusEasy - моя утилита для работы с протоколом Modbus.</p>
-
-
 <p>Утилита opensource, исходники и бинарники доступны для скачивания здесь: <a href="https://github.com/arktur04/modbuseasy/archive/master.zip">https://github.com/arktur04/modbuseasy/archive/master.zip</a>.</p>
-
-
 <p>Добавлены несколько команд:</p>
-
-
 <p>getdb -a  -получить список всех переменных в текущей конфигурации</p>
-
-
 <p>getdb &lt;varname&gt;  -получить текущее значение переменной</p>
-
-
 <p>setdb &lt;varname&gt;  -установить текущее значение переменной</p>
-
-
 <p>&nbsp;</p>
-
-
 <p>Также добавлено простое консольное приложение, работающее с modbuseasy в режиме slave. Оно изменяет по таймеру значения двух переменных и может использоваться как для тестирования приложений, работающих с протоколом Modbus в режиме master.</p>
-
-
 <p>Также данное приложение может служить примером работы с modbuseasy и основой для написания собственных программ, работающих с modbuseasy.</p>
-
-
 <p>Все исходники на C#.</p>
-
 ]]></content>
   </entry>
   
@@ -56,28 +37,13 @@
     <updated>2013-05-14T17:34:30+06:00</updated>
     <id>http://arktur04.github.io/blog/2013/05/14/%d1%83%d1%82%d0%b8%d0%bb%d0%b8%d1%82%d0%b0-%d0%b4%d0%bb%d1%8f-%d1%80%d0%b0%d0%b1%d0%be%d1%82%d1%8b-%d1%81-%d0%bf%d1%80%d0%be%d1%82%d0%be%d0%ba%d0%be%d0%bb%d0%be%d0%bc-modbus</id>
     <content type="html"><![CDATA[<p>Написал простую утилиту для работы с протоколом Modbus. Утилита поддерживает работу как в режиме Master, так и в режиме Slave, что позволяет не только обращаться к устройству по шине Modbus, но и эмулировать устройство. Утилита пока поддерживает только протокол Modbus RTU, функции 1-6, 15, 16.</p>
-
-
-<p><a href="/images/2013/05/screen1.jpg"><img class="alignnone size-full wp-image-1725" title="screen1" src="/assets/screen1.jpg" alt="" width="677" height="342" /></a></p>
-
-
+<p><a href="{{ site.baseurl }}/images/2013/05/screen1.jpg"><img class="alignnone size-full wp-image-1725" title="screen1" src="{{ site.baseurl }}/assets/screen1.jpg" alt="" width="677" height="342" /></a></p>
 <p>Графического интерфейса нет (и пока не предвидится), конфигурируется из файла xml, его структура проста и понятна, его легко можно править руками.</p>
-
-
 <p>Пока функциональность утилиты минимальна, буду ее улучшать, когда будет на это время. В ближайших планах - поддержка Modbus TCP.</p>
-
-
 <p>Утилита написана на C#.</p>
-
-
 <p>Скачать исходники можно здесь: <a href="https://github.com/arktur04/modbuseasy">https://github.com/arktur04/modbuseasy</a></p>
-
-
 <p>Ссылка на скачивание бинарника: <a href="https://www.box.com/s/ob8938m0cl93oglktnm6">https://www.box.com/s/ob8938m0cl93oglktnm6</a></p>
-
-
 <p>&nbsp;</p>
-
 ]]></content>
   </entry>
   
@@ -87,17 +53,9 @@
     <updated>2012-06-24T16:57:34+06:00</updated>
     <id>http://arktur04.github.io/blog/2012/06/24/%d0%bc%d0%be%d0%b4%d1%83%d0%bb%d1%8c-%d0%b0%d0%bd%d0%b0%d0%bb%d0%be%d0%b3%d0%be%d0%b2%d0%be%d0%b3%d0%be-%d0%b2%d0%b2%d0%be%d0%b4%d0%b0-3</id>
     <content type="html"><![CDATA[<p>Модуль аналогового ввода со снятым корпусом:</p>
-
-
-<p><a href="/images/2012/06/P10102541.jpg"><img class="alignnone size-medium wp-image-1601" title="P1010254" src="/assets/P10102541-300x266.jpg" alt="" width="300" height="266" /></a></p>
-
-
+<p><a href="{{ site.baseurl }}/images/2012/06/P10102541.jpg"><img class="alignnone size-medium wp-image-1601" title="P1010254" src="{{ site.baseurl }}/assets/P10102541-300x266.jpg" alt="" width="300" height="266" /></a></p>
 <p>Нажмите на фото для увеличения</p>
-
-
 <p>Технические характеристики:</p>
-
-
 <ul>
 <li>8 каналов разрядностью 16 или 24 бита (в зависимости от того, какие микросхемы АЦП установлены)</li>
 <li>каналы  изолированы друг от друга и от источника питания (напряжение изоляции 1 кВ)</li>
@@ -118,19 +76,10 @@
 <li>Напряжение питания 24 В</li>
 <li>Установка на DIN-рейку</li>
 </ul>
-
-
 <p>Еще фото (под катом)</p>
-
-
 <p><!--more--></p>
-
-
-<p><a href="/images/2012/06/P1010256.jpg"><img class="alignnone size-medium wp-image-1602" title="P1010256" src="/assets/P1010256-300x235.jpg" alt="" width="300" height="235" /></a></p>
-
-
+<p><a href="{{ site.baseurl }}/images/2012/06/P1010256.jpg"><img class="alignnone size-medium wp-image-1602" title="P1010256" src="{{ site.baseurl }}/assets/P1010256-300x235.jpg" alt="" width="300" height="235" /></a></p>
 <p>Нажмите на фото для увеличения</p>
-
 ]]></content>
   </entry>
   
@@ -140,25 +89,12 @@
     <updated>2012-06-12T00:13:03+06:00</updated>
     <id>http://arktur04.github.io/blog/2012/06/12/%d0%bc%d0%be%d0%b4%d1%83%d0%bb%d1%8c-%d0%b0%d0%bd%d0%b0%d0%bb%d0%be%d0%b3%d0%be%d0%b2%d0%be%d0%b3%d0%be-%d0%b2%d0%b2%d0%be%d0%b4%d0%b0-2</id>
     <content type="html"><![CDATA[<p>Образец модуля аналогового ввода, предназначенный для лабораторных испытаний.</p>
-
-
-<p><a href="/images/2012/06/P1010245.jpg"><img class="alignnone size-medium wp-image-1590" title="P1010245" src="/assets/P1010245-300x285.jpg" alt="" width="300" height="285" /></a></p>
-
-
+<p><a href="{{ site.baseurl }}/images/2012/06/P1010245.jpg"><img class="alignnone size-medium wp-image-1590" title="P1010245" src="{{ site.baseurl }}/assets/P1010245-300x285.jpg" alt="" width="300" height="285" /></a></p>
 <p>Рис. 1. Модуль аналогового ввода с поканальной развязкой.</p>
-
-
 <p><!--more-->Модуль имеет 8 каналов ввода, каждый из которых может быть подключен к источнику тока 4-20 мА, термопаре (до 70 мВ), или к источнику напряжения 0-10 В. Все каналы гальванически развязаны как от источника питания, так и между собой. Модуль имеет интерфейсы RS-485 и RS-232 (оба гальванически изолированы от источника питания) и осуществляет взаимодействие с ПЛК по протоколу Modbus RTU. Также возможна реализация протокола DCON, с целью прямого подключения модуля к ПЛК ICP DAS без изменения существующего программного обеспечения.</p>
-
-
 <p>Схема гальванических развязок модуля:</p>
-
-
-<p><a href="/images/2012/06/2012-06-12-02.png"><img class="alignnone size-medium wp-image-1591" title="Структура модуля аналогового ввода" src="/assets/2012-06-12-02.png" alt="" width="300" height="270" /></a></p>
-
-
+<p><a href="{{ site.baseurl }}/images/2012/06/2012-06-12-02.png"><img class="alignnone size-medium wp-image-1591" title="Структура модуля аналогового ввода" src="{{ site.baseurl }}/assets/2012-06-12-02.png" alt="" width="300" height="270" /></a></p>
 <p>Рис. 2. Схема гальванических развязок модуля. Каждый прямоугольник соответствует изолированному домену питания.</p>
-
 ]]></content>
   </entry>
   
@@ -168,16 +104,9 @@
     <updated>2010-12-13T19:36:09+05:00</updated>
     <id>http://arktur04.github.io/blog/2010/12/13/%d0%be%d1%87%d0%b5%d0%bd%d1%8c-%d1%81%d1%82%d0%b0%d1%80%d0%b0%d1%8f-%d1%80%d0%b0%d0%b7%d1%80%d0%b0%d0%b1%d0%be%d1%82%d0%ba%d0%b0</id>
     <content type="html"><![CDATA[<p>Контроллер для промышленного применения. Содержит 4 входа термосопротивлений, 6 дискретных входов и 8 выходов реле (220 В, 5 А) и интерфейс связи Modbus (RS-485). Всё это работает под управлением микроконтроллера Fujitsu.</p>
-
-
-<p><a href="/images/2010/12/plc1_open_big.jpg"><img class="alignnone size-medium wp-image-949" title="plc1_open_big" src="/assets/plc1_open_big-243x300.jpg" alt="" width="243" height="300" /></a></p>
-
-
+<p><a href="{{ site.baseurl }}/images/2010/12/plc1_open_big.jpg"><img class="alignnone size-medium wp-image-949" title="plc1_open_big" src="{{ site.baseurl }}/assets/plc1_open_big-243x300.jpg" alt="" width="243" height="300" /></a></p>
 <p>С крышкой он выглядит так (под катом):</p>
-
-
-<p><!--more--><a href="/images/2010/12/plc1_closed_big.jpg"><img class="alignnone size-medium wp-image-950" title="plc1_closed_big" src="/assets/plc1_closed_big-300x281.jpg" alt="" width="300" height="281" /></a></p>
-
+<p><!--more--><a href="{{ site.baseurl }}/images/2010/12/plc1_closed_big.jpg"><img class="alignnone size-medium wp-image-950" title="plc1_closed_big" src="{{ site.baseurl }}/assets/plc1_closed_big-300x281.jpg" alt="" width="300" height="281" /></a></p>
 ]]></content>
   </entry>
   

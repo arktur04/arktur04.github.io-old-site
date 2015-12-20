@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Ubuntu | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/ubuntu/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-20T19:19:16+05:00</updated>
+  <updated>2015-12-20T19:49:18+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -19,13 +19,8 @@
     <updated>2011-05-12T03:15:41+06:00</updated>
     <id>http://arktur04.github.io/blog/2011/05/12/%d0%ba%d0%bd%d0%b8%d0%b3%d0%b0-ubuntu-%d0%b1%d0%b5%d1%81%d0%bf%d0%bb%d0%b0%d1%82%d0%bd%d0%b0%d1%8f-%d0%b0%d0%bb%d1%8c%d1%82%d0%b5%d1%80%d0%bd%d0%b0%d1%82%d0%b8%d0%b2%d0%b0-windows</id>
     <content type="html"><![CDATA[<p>Книга "Ubuntu - бесплатная альтернатива Windows", автор Джеффри Орлофф.</p>
-
-
-<p><a href="/images/2011/05/a9628115905498a902465ee7745bc300.jpg"><img class="alignnone size-medium wp-image-1178" title="a9628115905498a902465ee7745bc300" src="/assets/a9628115905498a902465ee7745bc300-200x300.jpg" alt="" width="200" height="300" /></a></p>
-
-
+<p><a href="{{ site.baseurl }}/images/2011/05/a9628115905498a902465ee7745bc300.jpg"><img class="alignnone size-medium wp-image-1178" title="a9628115905498a902465ee7745bc300" src="{{ site.baseurl }}/assets/a9628115905498a902465ee7745bc300-200x300.jpg" alt="" width="200" height="300" /></a></p>
 <p>Книга для совсем уж начинающих пользователей Ubuntu, основное место в ней занимают описания графической оболочки, пакета OpenOffice и т.п. В конце немного написано про shell и про emacs.</p>
-
 ]]></content>
   </entry>
   
@@ -35,13 +30,8 @@
     <updated>2011-05-08T22:35:17+06:00</updated>
     <id>http://arktur04.github.io/blog/2011/05/08/%d0%ba%d0%bd%d0%b8%d0%b3%d0%b0-ubuntu-linux-%d0%be%d1%84%d0%b8%d1%86%d0%b8%d0%b0%d0%bb%d1%8c%d0%bd%d1%8b%d0%b9-%d1%83%d1%87%d0%b5%d0%b1%d0%bd%d1%8b%d0%b9-%d0%ba%d1%83%d1%80%d1%81</id>
     <content type="html"><![CDATA[<p>Книга "Ubuntu Linux: Официальный учебный курс", Бенжамин Мако Хилл и др.</p>
-
-
-<p><a href="/images/2011/05/1299256791_1.png.jpg"><img class="alignnone size-medium wp-image-1170" title="1299256791_1.png" src="/assets/1299256791_1.png-232x300.jpg" alt="" width="232" height="300" /></a></p>
-
-
+<p><a href="{{ site.baseurl }}/images/2011/05/1299256791_1.png.jpg"><img class="alignnone size-medium wp-image-1170" title="1299256791_1.png" src="{{ site.baseurl }}/assets/1299256791_1.png-232x300.jpg" alt="" width="232" height="300" /></a></p>
 <p>Книга является хорошим вводным курсом в операционную систему. Рассматриваются основные настройки ситемы, команды shell и вопросы, связанные с установкой серверной версии Ubuntu.</p>
-
 ]]></content>
   </entry>
   
@@ -51,10 +41,7 @@
     <updated>2011-05-06T20:33:40+06:00</updated>
     <id>http://arktur04.github.io/blog/2011/05/06/ubuntu-%d0%b8-windows</id>
     <content type="html"><![CDATA[<p>Для того, чтобы Windows видела содержимое расшаренных папок Ubuntu, необходимо в Windows зайти в Administrative Tools/Local Security Policy и изменить значение ключа Network Security: LAN Manager Autentification Level на Send LM &amp; NTLM - Use NTLMv2 session security if negotiated. В русской версии Windows это Панель управления/Администрирование/Локальная политика безопасности, ключ "Сетевая безопасность: уровень проверки подлинности LAN Manager", значение "Отправлять LM и NTLM - использовать сеансовую безопасность NTLMv2 при согласовании".</p>
-
-
 <p>Проверено в Windows 7 и Windows XP.</p>
-
 ]]></content>
   </entry>
   

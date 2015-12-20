@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Sdr | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/sdr/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-20T19:19:16+05:00</updated>
+  <updated>2015-12-20T19:49:18+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -19,13 +19,8 @@
     <updated>2015-11-16T19:03:04+05:00</updated>
     <id>http://arktur04.github.io/blog/2015/11/16/%d0%ba%d0%bd%d0%b8%d0%b3%d0%b0-software-defined-radio-handbook-rodger-hosking</id>
     <content type="html"><![CDATA[<p>Прочитал книгу "Software Defined Radio Handbook", 75 стр, англ. язык.</p>
-
-
-<p><a href="/images/2015/11/Pentek-SDR-Handbook.jpg"><img class="alignnone size-medium wp-image-2171" alt="Pentek-SDR-Handbook" src="/assets/Pentek-SDR-Handbook-221x300.jpg" width="221" height="300" /></a></p>
-
-
+<p><a href="{{ site.baseurl }}/images/2015/11/Pentek-SDR-Handbook.jpg"><img class="alignnone size-medium wp-image-2171" alt="Pentek-SDR-Handbook" src="{{ site.baseurl }}/assets/Pentek-SDR-Handbook-221x300.jpg" width="221" height="300" /></a></p>
 <p>Собственно, название вводит в заблуждение. Это не столько handbook, сколько рекламный проспект фирмы Pentek, которая выпускает отладочные платы для SDR. Платы, например, такие: 2 канала АЦП по 3,6 ГГц и 4 канала по 1,8 ГГц + Virtex 6. Это для меня несколько неактуально. А теория SDR изложена очень поверхностно, хочется чего-то глубокого.</p>
-
 ]]></content>
   </entry>
   
