@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C Sharp | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/c-sharp/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-20T17:58:40+05:00</updated>
+  <updated>2015-12-20T18:06:51+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -156,40 +156,34 @@
 <p>Итак, нам нужен конфигурационный файл.</p>
 
 
-<pre><code>$ some test
+<pre><code class="xml">&lt;?xml version="1.0"?&gt;
+  &lt;defaultnamespace name="System.Windows.Forms" /&gt;
+
+  &lt;controllist&gt;
+    &lt;control class="Label"&gt;
+      &lt;property name="Name" value="label2" /&gt;
+      &lt;property name="Text" value="text_label2" /&gt;
+      &lt;classproperty name="Location" class="System.Drawing.Point"&gt; &lt;!--имя_сборки.имя_класса--&gt;
+        &lt;parameter name="X" typename="int" value="100" /&gt;
+        &lt;parameter name="Y" typename="int" value="200" /&gt;
+      &lt;/classproperty&gt;
+    &lt;/control&gt;
+    &lt;control class="System.Windows.Forms.Label"&gt; &lt;!--можно указывать namespace в явном виде--&gt;
+      &lt;property name="Name" value="label3" /&gt;
+      &lt;property name="Text" value="text_label3" /&gt;
+      &lt;classproperty name="Location" class="System.Drawing.Point"&gt; &lt;!--имя_сборки.имя_класса--&gt;
+        &lt;parameter name="X" typename="int" value="100" /&gt;
+        &lt;parameter name="Y" typename="int" value="250" /&gt;
+      &lt;/classproperty&gt;
+      &lt;!-- здесь могут находиться вложенные контролы, образующие иерархию--&gt;
+    &lt;/control&gt;
+  &lt;/controllist&gt;
 </code></pre>
-
-<pre lang="xml">
-<?xml version="1.0"?>
-  <defaultnamespace name="System.Windows.Forms" />
-  
-  <controllist>
-    <control class="Label">
-      <property name="Name" value="label2" />
-      <property name="Text" value="text_label2" />
-      <classproperty name="Location" class="System.Drawing.Point"> <!--имя_сборки.имя_класса-->
-        <parameter name="X" typename="int" value="100" />
-        <parameter name="Y" typename="int" value="200" />
-      </classproperty>
-    </control>
-    <control class="System.Windows.Forms.Label"> <!--можно указывать namespace в явном виде-->
-      <property name="Name" value="label3" />
-      <property name="Text" value="text_label3" />
-      <classproperty name="Location" class="System.Drawing.Point"> <!--имя_сборки.имя_класса-->
-        <parameter name="X" typename="int" value="100" />
-        <parameter name="Y" typename="int" value="250" />
-      </classproperty>
-      <!-- здесь могут находиться вложенные контролы, образующие иерархию-->
-    </control>
-  </controllist>
-
-</pre>
-
 
 <p>Программа будет состоять из двух основных частей: одна читает xml-файл и строит по нему структуру данных. Ниже приведен фрагмент программы, представляющий структуру данных:</p>
 
 
-<pre lang="csharp">using System;
+<pre><code class="csharp">using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -214,22 +208,22 @@ namespace ControlDescriptorClass
         public string name { set; get; }
         public string className { set; get; }
         // ctor parameter list
-        public List< ParameterDescriptor > parameterList { set; get; } //parameter name  parameter value pair
+        public List&lt; ParameterDescriptor &gt; parameterList { set; get; } //parameter name  parameter value pair
         //properties of an object
-        public List< PropDescriptor > propertyList { set; get; } //property name  property value pair
+        public List&lt; PropDescriptor &gt; propertyList { set; get; } //property name  property value pair
         //class properties of an object
-        public List< ClassPropertyDescriptor > classPropertyList { set; get; } //property name  property value pair
+        public List&lt; ClassPropertyDescriptor &gt; classPropertyList { set; get; } //property name  property value pair
     }
 
     public class ControlDescriptor
     {
         public string typeName { set; get; }
-        public List< PropDescriptor > propertyList {set; get;} //property name  property value pair
+        public List&lt; PropDescriptor &gt; propertyList {set; get;} //property name  property value pair
         public List classPropertyList { set; get; } //property name  property value pair
-        public List< ControlDescriptor > childControlList { set; get; }
+        public List&lt; ControlDescriptor &gt; childControlList { set; get; }
     }
-}</pre>
-
+}
+</code></pre>
 
 <p>Здесь:<br />
 класс PropDescriptor - описание свойства объекта, пара имя-значение, оба поля являются строками,<br />
@@ -257,21 +251,21 @@ Control control = (Control)Activator.CreateInstance(t);</pre>
 <p>Значения свойств контрола присваиваются следующим образом:</p>
 
 
-<pre lang="csharp">Object obj = control;
+<pre><code class="csharp">Object obj = control;
 foreach (PropDescriptor property in cd.propertyList)
 {
   string[] propertyName = property.name.Split('.');
 
   PropertyInfo prop;
-  for (int i = 0; i < propertyName.Length - 1; i++)
+  for (int i = 0; i &lt; propertyName.Length - 1; i++)
   {
     prop = obj.GetType().GetProperty(propertyName[i]);
     obj = prop.GetValue(obj, null);
   }
   prop = obj.GetType().GetProperty(propertyName.Last());
   prop.SetValue(obj, Convert.ChangeType(property.value, prop.PropertyType), null);
-}</pre>
-
+}
+</code></pre>
 
 <p>Здесь подразумевается, что свойство может иметь "длинное" имя вида name1.name2.name3... Тип, в который происходит преобразование строкового представления значения свойства берётся из структуры PropertyInfo (это тоже часть Reflection).<br />
 Однако если попытаться таки образом присвоить значение, например, Location.X, ничего не получено, так как структуру Location нужно создать, вызвав её конструктор, причем сразу с параметрами X и Y.</p>
@@ -280,12 +274,12 @@ foreach (PropDescriptor property in cd.propertyList)
 <p>Свойства такого вида конструируются так:</p>
 
 
-<pre lang="csharp">foreach (ClassPropertyDescriptor cpd in cd.classPropertyList)
+<pre><code class="csharp">foreach (ClassPropertyDescriptor cpd in cd.classPropertyList)
 {
   Type objType = getAssemblyNameContainingType(cpd.className);
 
-  List</pre>
-
+  List...
+</code></pre>
 
 <p>&nbsp;</p>
 

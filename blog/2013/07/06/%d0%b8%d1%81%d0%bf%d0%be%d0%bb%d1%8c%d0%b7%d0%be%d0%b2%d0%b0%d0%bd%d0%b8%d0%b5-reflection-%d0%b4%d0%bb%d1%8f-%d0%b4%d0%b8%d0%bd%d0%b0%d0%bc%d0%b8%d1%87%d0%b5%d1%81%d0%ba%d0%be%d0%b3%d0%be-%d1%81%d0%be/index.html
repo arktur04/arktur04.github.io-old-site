@@ -96,74 +96,134 @@
 <p>Далее под катом</p>
 <p><!--more--></p>
 <p>Итак, нам нужен конфигурационный файл.</p>
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>$ some test</span></code></pre></td></tr></table></div></figure>
-<pre lang="xml">
-<?xml version="1.0"?>
-  <defaultnamespace name="System.Windows.Forms" />
-  
-  <controllist>
-    <control class="Label">
-      <property name="Name" value="label2" />
-      <property name="Text" value="text_label2" />
-      <classproperty name="Location" class="System.Drawing.Point"> <!--имя_сборки.имя_класса-->
-        <parameter name="X" typename="int" value="100" />
-        <parameter name="Y" typename="int" value="200" />
-      </classproperty>
-    </control>
-    <control class="System.Windows.Forms.Label"> <!--можно указывать namespace в явном виде-->
-      <property name="Name" value="label3" />
-      <property name="Text" value="text_label3" />
-      <classproperty name="Location" class="System.Drawing.Point"> <!--имя_сборки.имя_класса-->
-        <parameter name="X" typename="int" value="100" />
-        <parameter name="Y" typename="int" value="250" />
-      </classproperty>
-      <!-- здесь могут находиться вложенные контролы, образующие иерархию-->
-    </control>
-  </controllist>
 
-</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="cp">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;defaultnamespace</span> <span class="na">name=</span><span class="s">&quot;System.Windows.Forms&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="nt">&lt;controllist&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;control</span> <span class="na">class=</span><span class="s">&quot;Label&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;Name&quot;</span> <span class="na">value=</span><span class="s">&quot;label2&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;Text&quot;</span> <span class="na">value=</span><span class="s">&quot;text_label2&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;classproperty</span> <span class="na">name=</span><span class="s">&quot;Location&quot;</span> <span class="na">class=</span><span class="s">&quot;System.Drawing.Point&quot;</span><span class="nt">&gt;</span> <span class="c">&lt;!--имя_сборки.имя_класса--&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;parameter</span> <span class="na">name=</span><span class="s">&quot;X&quot;</span> <span class="na">typename=</span><span class="s">&quot;int&quot;</span> <span class="na">value=</span><span class="s">&quot;100&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;parameter</span> <span class="na">name=</span><span class="s">&quot;Y&quot;</span> <span class="na">typename=</span><span class="s">&quot;int&quot;</span> <span class="na">value=</span><span class="s">&quot;200&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/classproperty&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/control&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;control</span> <span class="na">class=</span><span class="s">&quot;System.Windows.Forms.Label&quot;</span><span class="nt">&gt;</span> <span class="c">&lt;!--можно указывать namespace в явном виде--&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;Name&quot;</span> <span class="na">value=</span><span class="s">&quot;label3&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;property</span> <span class="na">name=</span><span class="s">&quot;Text&quot;</span> <span class="na">value=</span><span class="s">&quot;text_label3&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;classproperty</span> <span class="na">name=</span><span class="s">&quot;Location&quot;</span> <span class="na">class=</span><span class="s">&quot;System.Drawing.Point&quot;</span><span class="nt">&gt;</span> <span class="c">&lt;!--имя_сборки.имя_класса--&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;parameter</span> <span class="na">name=</span><span class="s">&quot;X&quot;</span> <span class="na">typename=</span><span class="s">&quot;int&quot;</span> <span class="na">value=</span><span class="s">&quot;100&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>        <span class="nt">&lt;parameter</span> <span class="na">name=</span><span class="s">&quot;Y&quot;</span> <span class="na">typename=</span><span class="s">&quot;int&quot;</span> <span class="na">value=</span><span class="s">&quot;250&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'>      <span class="nt">&lt;/classproperty&gt;</span>
+</span><span class='line'>      <span class="c">&lt;!-- здесь могут находиться вложенные контролы, образующие иерархию--&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;/control&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;/controllist&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
 <p>Программа будет состоять из двух основных частей: одна читает xml-файл и строит по нему структуру данных. Ниже приведен фрагмент программы, представляющий структуру данных:</p>
-<pre lang="csharp">using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace ControlDescriptorClass
-{
-    public class PropDescriptor
-    {
-        public string name { set; get; }
-        public string value { set; get; }
-    }
-
-    public class ParameterDescriptor
-    {
-        public string name { set; get; }
-        public string typeName { set; get; }
-        public string value { set; get; }
-    }
-
-    public class ClassPropertyDescriptor
-    {
-        public string name { set; get; }
-        public string className { set; get; }
-        // ctor parameter list
-        public List< ParameterDescriptor > parameterList { set; get; } //parameter name  parameter value pair
-        //properties of an object
-        public List< PropDescriptor > propertyList { set; get; } //property name  property value pair
-        //class properties of an object
-        public List< ClassPropertyDescriptor > classPropertyList { set; get; } //property name  property value pair
-    }
-
-    public class ControlDescriptor
-    {
-        public string typeName { set; get; }
-        public List< PropDescriptor > propertyList {set; get;} //property name  property value pair
-        public List classPropertyList { set; get; } //property name  property value pair
-        public List< ControlDescriptor > childControlList { set; get; }
-    }
-}</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+</span><span class='line'><span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+</span><span class='line'><span class="k">using</span> <span class="nn">System.Linq</span><span class="p">;</span>
+</span><span class='line'><span class="k">using</span> <span class="nn">System.Text</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">namespace</span> <span class="nn">ControlDescriptorClass</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="k">public</span> <span class="k">class</span> <span class="nc">PropDescriptor</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="k">public</span> <span class="kt">string</span> <span class="n">name</span> <span class="p">{</span> <span class="k">set</span><span class="p">;</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'>        <span class="k">public</span> <span class="kt">string</span> <span class="k">value</span> <span class="p">{</span> <span class="k">set</span><span class="p">;</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">public</span> <span class="k">class</span> <span class="nc">ParameterDescriptor</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="k">public</span> <span class="kt">string</span> <span class="n">name</span> <span class="p">{</span> <span class="k">set</span><span class="p">;</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'>        <span class="k">public</span> <span class="kt">string</span> <span class="n">typeName</span> <span class="p">{</span> <span class="k">set</span><span class="p">;</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'>        <span class="k">public</span> <span class="kt">string</span> <span class="k">value</span> <span class="p">{</span> <span class="k">set</span><span class="p">;</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">public</span> <span class="k">class</span> <span class="nc">ClassPropertyDescriptor</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="k">public</span> <span class="kt">string</span> <span class="n">name</span> <span class="p">{</span> <span class="k">set</span><span class="p">;</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'>        <span class="k">public</span> <span class="kt">string</span> <span class="n">className</span> <span class="p">{</span> <span class="k">set</span><span class="p">;</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'>        <span class="c1">// ctor parameter list</span>
+</span><span class='line'>        <span class="k">public</span> <span class="n">List</span><span class="p">&lt;</span> <span class="n">ParameterDescriptor</span> <span class="p">&gt;</span> <span class="n">parameterList</span> <span class="p">{</span> <span class="k">set</span><span class="p">;</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span> <span class="c1">//parameter name  parameter value pair</span>
+</span><span class='line'>        <span class="c1">//properties of an object</span>
+</span><span class='line'>        <span class="k">public</span> <span class="n">List</span><span class="p">&lt;</span> <span class="n">PropDescriptor</span> <span class="p">&gt;</span> <span class="n">propertyList</span> <span class="p">{</span> <span class="k">set</span><span class="p">;</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span> <span class="c1">//property name  property value pair</span>
+</span><span class='line'>        <span class="c1">//class properties of an object</span>
+</span><span class='line'>        <span class="k">public</span> <span class="n">List</span><span class="p">&lt;</span> <span class="n">ClassPropertyDescriptor</span> <span class="p">&gt;</span> <span class="n">classPropertyList</span> <span class="p">{</span> <span class="k">set</span><span class="p">;</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span> <span class="c1">//property name  property value pair</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">public</span> <span class="k">class</span> <span class="nc">ControlDescriptor</span>
+</span><span class='line'>    <span class="p">{</span>
+</span><span class='line'>        <span class="k">public</span> <span class="kt">string</span> <span class="n">typeName</span> <span class="p">{</span> <span class="k">set</span><span class="p">;</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'>        <span class="k">public</span> <span class="n">List</span><span class="p">&lt;</span> <span class="n">PropDescriptor</span> <span class="p">&gt;</span> <span class="n">propertyList</span> <span class="p">{</span><span class="k">set</span><span class="p">;</span> <span class="k">get</span><span class="p">;}</span> <span class="c1">//property name  property value pair</span>
+</span><span class='line'>        <span class="k">public</span> <span class="n">List</span> <span class="n">classPropertyList</span> <span class="p">{</span> <span class="k">set</span><span class="p">;</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span> <span class="c1">//property name  property value pair</span>
+</span><span class='line'>        <span class="k">public</span> <span class="n">List</span><span class="p">&lt;</span> <span class="n">ControlDescriptor</span> <span class="p">&gt;</span> <span class="n">childControlList</span> <span class="p">{</span> <span class="k">set</span><span class="p">;</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+</span><span class='line'>    <span class="p">}</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
 <p>Здесь:<br />
 класс PropDescriptor - описание свойства объекта, пара имя-значение, оба поля являются строками,<br />
 класс ClassPropertyDescriptor описание свойства объекта, которое в свою очередь является объектом. Здесь name - имя свойства, className - имя класса, представляющего свойство, parameterList - список аргументов конструктора класса (см. ниже), propertyList - список свойств объекта, classPropertyList - список свойств объекта, которые, в свою очередь, являются объектами.<br />
@@ -176,28 +236,49 @@ namespace ControlDescriptorClass
 Control control = (Control)Activator.CreateInstance(t);</pre>
 <p>Здесь nameSpace - пространство имён, по умолчанию System.Windows.Forms. Пространство имен по умолчанию может быть изменено в xml-файле, если имя класса контрола содержит точку, то имя пространства имен по умолчанию не подставляется, используется имя, указанное для данного контрола.</p>
 <p>Значения свойств контрола присваиваются следующим образом:</p>
-<pre lang="csharp">Object obj = control;
-foreach (PropDescriptor property in cd.propertyList)
-{
-  string[] propertyName = property.name.Split('.');
-
-  PropertyInfo prop;
-  for (int i = 0; i < propertyName.Length - 1; i++)
-  {
-    prop = obj.GetType().GetProperty(propertyName[i]);
-    obj = prop.GetValue(obj, null);
-  }
-  prop = obj.GetType().GetProperty(propertyName.Last());
-  prop.SetValue(obj, Convert.ChangeType(property.value, prop.PropertyType), null);
-}</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="n">Object</span> <span class="n">obj</span> <span class="p">=</span> <span class="n">control</span><span class="p">;</span>
+</span><span class='line'><span class="k">foreach</span> <span class="p">(</span><span class="n">PropDescriptor</span> <span class="n">property</span> <span class="k">in</span> <span class="n">cd</span><span class="p">.</span><span class="n">propertyList</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="kt">string</span><span class="p">[]</span> <span class="n">propertyName</span> <span class="p">=</span> <span class="n">property</span><span class="p">.</span><span class="n">name</span><span class="p">.</span><span class="n">Split</span><span class="p">(</span><span class="sc">&#39;.&#39;</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">PropertyInfo</span> <span class="n">prop</span><span class="p">;</span>
+</span><span class='line'>  <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">propertyName</span><span class="p">.</span><span class="n">Length</span> <span class="p">-</span> <span class="m">1</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+</span><span class='line'>  <span class="p">{</span>
+</span><span class='line'>    <span class="n">prop</span> <span class="p">=</span> <span class="n">obj</span><span class="p">.</span><span class="n">GetType</span><span class="p">().</span><span class="n">GetProperty</span><span class="p">(</span><span class="n">propertyName</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+</span><span class='line'>    <span class="n">obj</span> <span class="p">=</span> <span class="n">prop</span><span class="p">.</span><span class="n">GetValue</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="k">null</span><span class="p">);</span>
+</span><span class='line'>  <span class="p">}</span>
+</span><span class='line'>  <span class="n">prop</span> <span class="p">=</span> <span class="n">obj</span><span class="p">.</span><span class="n">GetType</span><span class="p">().</span><span class="n">GetProperty</span><span class="p">(</span><span class="n">propertyName</span><span class="p">.</span><span class="n">Last</span><span class="p">());</span>
+</span><span class='line'>  <span class="n">prop</span><span class="p">.</span><span class="n">SetValue</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="n">Convert</span><span class="p">.</span><span class="n">ChangeType</span><span class="p">(</span><span class="n">property</span><span class="p">.</span><span class="k">value</span><span class="p">,</span> <span class="n">prop</span><span class="p">.</span><span class="n">PropertyType</span><span class="p">),</span> <span class="k">null</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
 <p>Здесь подразумевается, что свойство может иметь "длинное" имя вида name1.name2.name3... Тип, в который происходит преобразование строкового представления значения свойства берётся из структуры PropertyInfo (это тоже часть Reflection).<br />
 Однако если попытаться таки образом присвоить значение, например, Location.X, ничего не получено, так как структуру Location нужно создать, вызвав её конструктор, причем сразу с параметрами X и Y.</p>
 <p>Свойства такого вида конструируются так:</p>
-<pre lang="csharp">foreach (ClassPropertyDescriptor cpd in cd.classPropertyList)
-{
-  Type objType = getAssemblyNameContainingType(cpd.className);
-
-  List</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="k">foreach</span> <span class="p">(</span><span class="n">ClassPropertyDescriptor</span> <span class="n">cpd</span> <span class="k">in</span> <span class="n">cd</span><span class="p">.</span><span class="n">classPropertyList</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="n">Type</span> <span class="n">objType</span> <span class="p">=</span> <span class="n">getAssemblyNameContainingType</span><span class="p">(</span><span class="n">cpd</span><span class="p">.</span><span class="n">className</span><span class="p">);</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">List</span><span class="p">...</span>
+</span></code></pre></td></tr></table></div></figure>
 <p>&nbsp;</p>
 <p>Здесь преобразование типов строкового представления значения аргумента конструктора происходит в тот тип, который мы должны явно указать в xml. Так как у класса может быть множество конструкторов с различными сигнатурами, автоматически выбрать из них нужный было бы затруднительно. В приведенном коде предусмотрено преобразование типа только в типы Int32 и string, для использования других типов этот код нужно будет соответственно дополнять.</p>
 <p>Исходники на github: <a href="https://github.com/arktur04/ComponentAdapterTest.git">https://github.com/arktur04/ComponentAdapterTest.git</a></p>
