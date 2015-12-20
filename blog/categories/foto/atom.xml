@@ -4,7 +4,7 @@
   <title><![CDATA[Category: фото | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/foto/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-20T09:18:11+05:00</updated>
+  <updated>2015-12-20T11:22:43+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -82,7 +82,7 @@
 Схемотехнически тут всё очень просто: термодатчик Analog Devices ADT7301 с интерфейсом SPI, вентилятор 40х40 мм, подключенный через транзисторный ключ к выходу PWM.</p>
 
 
-<p><a href="/images/2014/01/термодатчик1.jpg"><img class="alignnone size-medium wp-image-1793" title="термодатчик" src="/assets/&#1090;&#1077;&#1088;&#1084;&#1086;&#1076;&#1072;&#1090;&#1095;&#1080;&#1082;1-300x198.jpg" alt="" width="300" height="198" /></a></p>
+<p><a href="/images/2014/01/2014-01-16-02.jpg"><img class="alignnone size-medium wp-image-1793" title="термодатчик" src="/assets/2014-01-16-02.jpg" alt="" width="300" height="198" /></a></p>
 
 
 <p>Плата с термодатчиком.</p>
@@ -311,7 +311,7 @@ except KeyboardInterrupt:
 <p>Собираем всё вместе:</p>
 
 
-<p><a href="/images/2013/09/pic1.jpg"><img class="alignnone size-medium wp-image-1769" title="pic1" src="/assets/pic1-300x225.jpg" alt="" width="300" height="225" /></a></p>
+<p><a href="/images/2013/09/2013-09-14-01.jpg"><img class="alignnone size-medium wp-image-1769" title="pic1" src="/assets/2014-09-14-01.jpg" alt="" width="300" height="225" /></a></p>
 
 
 <p>(все картинки кликабельны)</p>
