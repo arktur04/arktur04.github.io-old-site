@@ -232,8 +232,11 @@
 <p>В этой структуре данных имеется два типа свойств объекта: "обычные" свойства, имеющие один из базовых типов, и свойства, представляющие собой объект. Для таких свойств нужно, соответственно, вызывать конструктор с определенными параметрами. Например,  контрол Label имеет свойство Text, имеющее тип string, и свойство Location, имеющее тип Point. Point является классом, в его конструктор должны передаваться параметры X и Y типа Int32 (вернее, Point является структурой, но в данном контексте разница не имеет значения).</p>
 <p>Основная часть программы занимается построением контролов по имеющимся их описанием, и делает это с помощью Reflection.</p>
 <p>Для того, чтобы создать в run-time контрол через Reflection,  используется следующий код:</p>
-<pre lang="csharp">Type t = getAssemblyNameContainingType(nameSpace + cd.typeName);
-Control control = (Control)Activator.CreateInstance(t);</pre>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='csharp'><span class='line'><span class="n">Type</span> <span class="n">t</span> <span class="p">=</span> <span class="n">getAssemblyNameContainingType</span><span class="p">(</span><span class="n">nameSpace</span> <span class="p">+</span> <span class="n">cd</span><span class="p">.</span><span class="n">typeName</span><span class="p">);</span>
+</span><span class='line'><span class="n">Control</span> <span class="n">control</span> <span class="p">=</span> <span class="p">(</span><span class="n">Control</span><span class="p">)</span><span class="n">Activator</span><span class="p">.</span><span class="n">CreateInstance</span><span class="p">(</span><span class="n">t</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
 <p>Здесь nameSpace - пространство имён, по умолчанию System.Windows.Forms. Пространство имен по умолчанию может быть изменено в xml-файле, если имя класса контрола содержит точку, то имя пространства имен по умолчанию не подставляется, используется имя, указанное для данного контрола.</p>
 <p>Значения свойств контрола присваиваются следующим образом:</p>
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>

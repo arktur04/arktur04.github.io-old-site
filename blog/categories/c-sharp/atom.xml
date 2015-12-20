@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C Sharp | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/c-sharp/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-20T18:13:15+05:00</updated>
+  <updated>2015-12-20T18:30:02+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -241,9 +241,9 @@ namespace ControlDescriptorClass
 <p>Для того, чтобы создать в run-time контрол через Reflection,  используется следующий код:</p>
 
 
-<pre lang="csharp">Type t = getAssemblyNameContainingType(nameSpace + cd.typeName);
-Control control = (Control)Activator.CreateInstance(t);</pre>
-
+<pre><code class="csharp">Type t = getAssemblyNameContainingType(nameSpace + cd.typeName);
+Control control = (Control)Activator.CreateInstance(t);
+</code></pre>
 
 <p>Здесь nameSpace - пространство имён, по умолчанию System.Windows.Forms. Пространство имен по умолчанию может быть изменено в xml-файле, если имя класса контрола содержит точку, то имя пространства имен по умолчанию не подставляется, используется имя, указанное для данного контрола.</p>
 
