@@ -4,7 +4,7 @@
   <title><![CDATA[Category: микроконтроллеры | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/mikrokontrolliery/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-20T21:34:28+05:00</updated>
+  <updated>2015-12-21T21:47:11+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -22,12 +22,12 @@
 <p>Плата предназначена для использования совместно с платой микроконтроллера, для этого на плате установлены преобразователи уровня 2,5В &lt;-&gt; 3.3В. Есть возможность не устанавливать преобразователи уровня, и непосредственно использовать уровни 2,5В, что может быть полезно при использовании данной платы совместно с FPGA или DSP, имеющими логические уровни 2,5В.</p>
 <p>Входные цепи допускают установку прецизионных резисторов как в SMT, так и в выводном исполнении, что даёт возможность использовать отечественные резисторы C2-29.</p>
 <p>Плата имеет 4 слоя.</p>
-<p><a href="{{ site.baseurl }}/images/2015/02/top-2.jpg"><img class="alignnone size-medium wp-image-1915" alt="top-2" src="{{ site.baseurl }}/assets/top-2-300x172.jpg" width="300" height="172" /></a></p>
+<p><a href="/images/2015/02/top-2.jpg"><img class="alignnone size-medium wp-image-1915" alt="top-2" src="/assets/top-2-300x172.jpg" width="300" height="172" /></a></p>
 <p>Далее под катом <!--more--></p>
-<p><a style="line-height: 1.5em;" href="{{ site.baseurl }}/images/2015/02/top-1.jpg"><img class="alignnone size-medium wp-image-1916" alt="top-1" src="{{ site.baseurl }}/assets/top-1-300x170.jpg" width="300" height="170" /></a></p>
+<p><a style="line-height: 1.5em;" href="/images/2015/02/top-1.jpg"><img class="alignnone size-medium wp-image-1916" alt="top-1" src="/assets/top-1-300x170.jpg" width="300" height="170" /></a></p>
 <p>Вид сверху.</p>
 <p>&nbsp;</p>
-<p><a href="{{ site.baseurl }}/images/2015/02/bottom-1.jpg"><img class="alignnone size-medium wp-image-1917" alt="bottom-1" src="{{ site.baseurl }}/assets/bottom-1-300x201.jpg" width="300" height="201" /></a></p>
+<p><a href="/images/2015/02/bottom-1.jpg"><img class="alignnone size-medium wp-image-1917" alt="bottom-1" src="/assets/bottom-1-300x201.jpg" width="300" height="201" /></a></p>
 <p>Вид снизу.</p>
 <p>&nbsp;</p>
 ]]></content>
@@ -40,7 +40,7 @@
     <id>http://arktur04.github.io/blog/2014/10/14/epyphany-e16g301</id>
     <content type="html"><![CDATA[<p>Интересная микросхема. Матричный FPU с 16 ядрами, объединенными в массив 4х4. Есть поддержка gcc и gdb. Предназначена для применения совместно с fpga и микропроцессорами в задачах обработки сигналов и других, требующих высокой производительности вычислений с плавающей точкой.</p>
 <p>Допускается объединение микросхем в массив, содержащий в общей сложности до 64х64 = 4096 ядер.</p>
-<p><a href="{{ site.baseurl }}/images/2014/10/epiphany.jpg"><img class="alignnone size-full wp-image-1861" alt="epiphany" src="{{ site.baseurl }}/assets/epiphany.jpg" width="721" height="353" /></a></p>
+<p><a href="/images/2014/10/epiphany.jpg"><img class="alignnone size-full wp-image-1861" alt="epiphany" src="/assets/epiphany.jpg" width="721" height="353" /></a></p>
 <p>&nbsp;</p>
 <p>Прочитал доки:<br />
 1. Epiphany Architecture Reference<br />
@@ -54,7 +54,7 @@
     <updated>2014-06-03T16:44:15+06:00</updated>
     <id>http://arktur04.github.io/blog/2014/06/03/%d0%ba%d0%bd%d0%b8%d0%b3%d0%b0-computer-organization-and-design-d-patterson-j-hennessy</id>
     <content type="html"><![CDATA[<p>В книге подробно рассматривается архитектура современных вычислительных систем, процессоров, рассматриваются проблемы и сложности, возникающие при разработке процессоров с конвейерной архитектурой, с параллелизмом вычислений, с предсказанием переходов и опережающим исполнением. Рассматриваются архитектуры MIPS и IA-64.</p>
-<p><a href="{{ site.baseurl }}/images/2014/06/2computer_organization_and_design.jpg"><img class="alignnone size-medium wp-image-1810" alt="2computer_organization_and_design" src="{{ site.baseurl }}/assets/2computer_organization_and_design-268x300.jpg" width="268" height="300" /></a></p>
+<p><a href="/images/2014/06/2computer_organization_and_design.jpg"><img class="alignnone size-medium wp-image-1810" alt="2computer_organization_and_design" src="/assets/2computer_organization_and_design-268x300.jpg" width="268" height="300" /></a></p>
 <p>Достаточно интересная книга для тех, кто занимается разработкой вычислительных систем.</p>
 ]]></content>
   </entry>
@@ -66,11 +66,11 @@
     <id>http://arktur04.github.io/blog/2014/01/16/raspberry-pi-%d0%b8-%d0%ba%d0%be%d0%bd%d1%82%d1%80%d0%be%d0%bb%d1%8c-%d1%82%d0%b5%d0%bc%d0%bf%d0%b5%d1%80%d0%b0%d1%82%d1%83%d1%80%d1%8b</id>
     <content type="html"><![CDATA[<p>Я уже <a href="http://32bit.me/?p=1768">писал</a> про самодельную "Time Capsule" на базе Raspberry Pi. Она работает хорошо, если не считать проблемы с перегревом. В корпусе устройства установлен вентилятор, но он издаёт при работе существенный шум.</p>
 <p>Итак, я решил подключить к RPi термодатчик и сделать автоматическое управление вентилятором.</p>
-<p><a href="{{ site.baseurl }}/images/2014/01/temp1.png"><img class="alignnone size-medium wp-image-1790" title="temp1" src="{{ site.baseurl }}/assets/temp1-300x225.png" alt="" width="300" height="225" /></a></p>
+<p><a href="/images/2014/01/temp1.png"><img class="alignnone size-medium wp-image-1790" title="temp1" src="/assets/temp1-300x225.png" alt="" width="300" height="225" /></a></p>
 <p>Далее под катом.<br />
 <!--more--><br />
 Схемотехнически тут всё очень просто: термодатчик Analog Devices ADT7301 с интерфейсом SPI, вентилятор 40х40 мм, подключенный через транзисторный ключ к выходу PWM.</p>
-<p><a href="{{ site.baseurl }}/images/2014/01/2014-01-16-02.jpg"><img class="alignnone size-medium wp-image-1793" title="термодатчик" src="{{ site.baseurl }}/assets/2014-01-16-02.jpg" alt="" width="300" height="198" /></a></p>
+<p><a href="/images/2014/01/2014-01-16-02.jpg"><img class="alignnone size-medium wp-image-1793" title="термодатчик" src="/assets/2014-01-16-02.jpg" alt="" width="300" height="198" /></a></p>
 <p>Плата с термодатчиком.</p>
 <p>Датчик приклеен к радиатору источника питания (самая горячая точка в устройстве).</p>
 <p>Использование PWM позволяет включать вентилятор не на полные обороты, что делает его очень тихим. Управление вентилятором осуществляет скрипт на Python.</p>
@@ -229,7 +229,7 @@ except KeyboardInterrupt:
 <p>Для того, чтобы все возможности отладки работали, выбираем проект в SolutionExplorer, в окне Properties ставим Misc-&gt;(MicroDebug) = Full. Также можно настроить раздел Micro Debug Reporting, если вы хотите видеть состояние дискретных и аналоговых портов.</p>
 <p>Ставим брейкпоинт, как обычно, и снова загружаем код в плату по F5. Код загружается и останавливается на брейкпоинте. Для того, чтобы продолжить выполнение кода, нужно снова нажать на F5. Теперь самое интересное. При запуске появляется окно Test | Expressions, в котором можно просматривать значения переменных и выражений, но оно пустое. Для того, чтобы в нем отображались значения переменных в точке останова, нажимаем правой кнопкой мыши на красный кружочек, нажимаем When Hit..., ставим галочку на "Print a message", и вписываем, например, следующее: i={i=?}, n={n=?}, где i и n - имена переменных, которые нам нужно просматривать. Снова загружаем код в плату, всё работает, значения переменных отображаются.</p>
 <p>Разумеется, можно указывать и условия для точки останова, и сообщения, которые будут выводиться при попадании в точку останова.</p>
-<p><a href="{{ site.baseurl }}/images/2013/12/screen.jpg"><img class="alignnone size-medium wp-image-1781" title="screen" src="{{ site.baseurl }}/assets/screen-300x225.jpg" alt="" width="300" height="225" /></a></p>
+<p><a href="/images/2013/12/screen.jpg"><img class="alignnone size-medium wp-image-1781" title="screen" src="/assets/screen-300x225.jpg" alt="" width="300" height="225" /></a></p>
 <p>Нажмите на картинку для увеличения.</p>
 ]]></content>
   </entry>

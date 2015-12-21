@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ацп | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/atsp/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-20T21:34:28+05:00</updated>
+  <updated>2015-12-21T21:47:11+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -36,12 +36,12 @@
 <p>Плата предназначена для использования совместно с платой микроконтроллера, для этого на плате установлены преобразователи уровня 2,5В &lt;-&gt; 3.3В. Есть возможность не устанавливать преобразователи уровня, и непосредственно использовать уровни 2,5В, что может быть полезно при использовании данной платы совместно с FPGA или DSP, имеющими логические уровни 2,5В.</p>
 <p>Входные цепи допускают установку прецизионных резисторов как в SMT, так и в выводном исполнении, что даёт возможность использовать отечественные резисторы C2-29.</p>
 <p>Плата имеет 4 слоя.</p>
-<p><a href="{{ site.baseurl }}/images/2015/02/top-2.jpg"><img class="alignnone size-medium wp-image-1915" alt="top-2" src="{{ site.baseurl }}/assets/top-2-300x172.jpg" width="300" height="172" /></a></p>
+<p><a href="/images/2015/02/top-2.jpg"><img class="alignnone size-medium wp-image-1915" alt="top-2" src="/assets/top-2-300x172.jpg" width="300" height="172" /></a></p>
 <p>Далее под катом <!--more--></p>
-<p><a style="line-height: 1.5em;" href="{{ site.baseurl }}/images/2015/02/top-1.jpg"><img class="alignnone size-medium wp-image-1916" alt="top-1" src="{{ site.baseurl }}/assets/top-1-300x170.jpg" width="300" height="170" /></a></p>
+<p><a style="line-height: 1.5em;" href="/images/2015/02/top-1.jpg"><img class="alignnone size-medium wp-image-1916" alt="top-1" src="/assets/top-1-300x170.jpg" width="300" height="170" /></a></p>
 <p>Вид сверху.</p>
 <p>&nbsp;</p>
-<p><a href="{{ site.baseurl }}/images/2015/02/bottom-1.jpg"><img class="alignnone size-medium wp-image-1917" alt="bottom-1" src="{{ site.baseurl }}/assets/bottom-1-300x201.jpg" width="300" height="201" /></a></p>
+<p><a href="/images/2015/02/bottom-1.jpg"><img class="alignnone size-medium wp-image-1917" alt="bottom-1" src="/assets/bottom-1-300x201.jpg" width="300" height="201" /></a></p>
 <p>Вид снизу.</p>
 <p>&nbsp;</p>
 ]]></content>
@@ -53,8 +53,8 @@
     <updated>2013-03-10T18:07:38+06:00</updated>
     <id>http://arktur04.github.io/blog/2013/03/10/%d0%bd%d0%be%d0%b2%d0%b0%d1%8f-%d0%bf%d0%bb%d0%b0%d1%82%d0%b0-6</id>
     <content type="html"><![CDATA[<p>Новая плата (прецизионный АЦП), 4 слоя.</p>
-<p><a href="{{ site.baseurl }}/images/2013/03/2013-03-10-01.jpg"><img class="alignnone size-medium wp-image-1695" title="Плата- top" src="{{ site.baseurl }}/assets/2013-03-10-01.jpg" alt="" width="300" height="258" /></a></p>
-<p><a href="{{ site.baseurl }}/images/2013/03/2013-03-10-02.jpg"><img class="alignnone size-medium wp-image-1696" title="Плата- bot" src="{{ site.baseurl }}/assets/2013-03-10-2.jpg" alt="" width="300" height="257" /></a></p>
+<p><a href="/images/2013/03/2013-03-10-01.jpg"><img class="alignnone size-medium wp-image-1695" title="Плата- top" src="/assets/2013-03-10-01.jpg" alt="" width="300" height="258" /></a></p>
+<p><a href="/images/2013/03/2013-03-10-02.jpg"><img class="alignnone size-medium wp-image-1696" title="Плата- bot" src="/assets/2013-03-10-2.jpg" alt="" width="300" height="257" /></a></p>
 <p>&nbsp;</p>
 ]]></content>
   </entry>
@@ -66,10 +66,10 @@
     <id>http://arktur04.github.io/blog/2013/03/09/%d0%bc%d0%b0%d0%ba%d0%b5%d1%82%d0%bd%d1%8b%d0%b5-%d0%bf%d0%bb%d0%b0%d1%82%d1%8b</id>
     <content type="html"><![CDATA[<p>Для макетирования разрабатываемых приборов были изготовлены специальные макетные платы, на которых разведены различные узлы: источник питания, АЦП, усилители, ключи и пр., эти узлы можно соединять между собой различными способами. Также плата содержит большое макетное поле. К плате подключается маленькая плата с микроконтроллером.</p>
 <p>На фото макет одного из приборов. Фото кликабельны.</p>
-<p><a href="{{ site.baseurl }}/images/2013/03/bread-1.jpg"><img class="alignnone size-medium wp-image-1690" title="bread - 1" src="{{ site.baseurl }}/assets/bread-1-300x175.jpg" alt="" width="300" height="175" /></a></p>
+<p><a href="/images/2013/03/bread-1.jpg"><img class="alignnone size-medium wp-image-1690" title="bread - 1" src="/assets/bread-1-300x175.jpg" alt="" width="300" height="175" /></a></p>
 <p>Под катом еще один макет.</p>
 <p><!--more--></p>
-<p><a href="{{ site.baseurl }}/images/2013/03/bread-2.jpg"><img class="alignnone size-medium wp-image-1691" title="bread - 2" src="{{ site.baseurl }}/assets/bread-2-300x193.jpg" alt="" width="300" height="193" /></a></p>
+<p><a href="/images/2013/03/bread-2.jpg"><img class="alignnone size-medium wp-image-1691" title="bread - 2" src="/assets/bread-2-300x193.jpg" alt="" width="300" height="193" /></a></p>
 ]]></content>
   </entry>
   
@@ -79,7 +79,7 @@
     <updated>2012-06-24T16:57:34+06:00</updated>
     <id>http://arktur04.github.io/blog/2012/06/24/%d0%bc%d0%be%d0%b4%d1%83%d0%bb%d1%8c-%d0%b0%d0%bd%d0%b0%d0%bb%d0%be%d0%b3%d0%be%d0%b2%d0%be%d0%b3%d0%be-%d0%b2%d0%b2%d0%be%d0%b4%d0%b0-3</id>
     <content type="html"><![CDATA[<p>Модуль аналогового ввода со снятым корпусом:</p>
-<p><a href="{{ site.baseurl }}/images/2012/06/P10102541.jpg"><img class="alignnone size-medium wp-image-1601" title="P1010254" src="{{ site.baseurl }}/assets/P10102541-300x266.jpg" alt="" width="300" height="266" /></a></p>
+<p><a href="/images/2012/06/P10102541.jpg"><img class="alignnone size-medium wp-image-1601" title="P1010254" src="/assets/P10102541-300x266.jpg" alt="" width="300" height="266" /></a></p>
 <p>Нажмите на фото для увеличения</p>
 <p>Технические характеристики:</p>
 <ul>
@@ -104,7 +104,7 @@
 </ul>
 <p>Еще фото (под катом)</p>
 <p><!--more--></p>
-<p><a href="{{ site.baseurl }}/images/2012/06/P1010256.jpg"><img class="alignnone size-medium wp-image-1602" title="P1010256" src="{{ site.baseurl }}/assets/P1010256-300x235.jpg" alt="" width="300" height="235" /></a></p>
+<p><a href="/images/2012/06/P1010256.jpg"><img class="alignnone size-medium wp-image-1602" title="P1010256" src="/assets/P1010256-300x235.jpg" alt="" width="300" height="235" /></a></p>
 <p>Нажмите на фото для увеличения</p>
 ]]></content>
   </entry>

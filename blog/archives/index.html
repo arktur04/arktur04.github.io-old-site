@@ -31,9 +31,55 @@ Dec 16 2015 posted in fpga,, книги, самообразование, Кни�
 <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
+<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
   
 
 </head>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [ ['$', '$'], ["\(", "\)"] ],
+        displayMath: [ ['$$', '$$'], ["\[", "\]"] ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+      //,
+      //displayAlign: "left",
+      //displayIndent: "2em"
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
 
 <body   >
   <header role="banner"><hgroup>
@@ -1804,20 +1850,6 @@ Dec 16 2015 posted in fpga,, книги, самообразование, Кни�
 
 <article>
   
-<h1><a href="/blog/2011/06/23/%25d1%2587%25d1%2582%25d0%25be-%25d1%2582%25d0%25b0%25d0%25ba%25d0%25be%25d0%25b5-mtbf/">Что такое MTBF</a></h1>
-<time datetime="2011-06-23T19:15:58+06:00" pubdate><span class='month'>Jun</span> <span class='day'>23</span> <span class='year'>2011</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/intieriesnyie-ssylki/'>интересные ссылки</a>, <a class='category' href='/blog/categories/raznoie/'>разное</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
 <h1><a href="/blog/2011/06/22/%25d0%25bd%25d0%25be%25d0%25b2%25d0%25b0%25d1%258f-%25d0%25bf%25d0%25bb%25d0%25b0%25d1%2582%25d0%25b0-2/">Новая плата - 2</a></h1>
 <time datetime="2011-06-22T20:10:59+06:00" pubdate><span class='month'>Jun</span> <span class='day'>22</span> <span class='year'>2011</span></time>
 
@@ -3282,3 +3314,19 @@ Dec 16 2015 posted in fpga,, книги, самообразование, Кни�
 
 </body>
 </html>
+
+<!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  messageStyle: "none",
+  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>

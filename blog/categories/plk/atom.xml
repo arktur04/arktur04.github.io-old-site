@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ПЛК | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/plk/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-20T21:34:28+05:00</updated>
+  <updated>2015-12-21T21:47:11+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -28,7 +28,7 @@
     <updated>2012-06-24T16:57:34+06:00</updated>
     <id>http://arktur04.github.io/blog/2012/06/24/%d0%bc%d0%be%d0%b4%d1%83%d0%bb%d1%8c-%d0%b0%d0%bd%d0%b0%d0%bb%d0%be%d0%b3%d0%be%d0%b2%d0%be%d0%b3%d0%be-%d0%b2%d0%b2%d0%be%d0%b4%d0%b0-3</id>
     <content type="html"><![CDATA[<p>Модуль аналогового ввода со снятым корпусом:</p>
-<p><a href="{{ site.baseurl }}/images/2012/06/P10102541.jpg"><img class="alignnone size-medium wp-image-1601" title="P1010254" src="{{ site.baseurl }}/assets/P10102541-300x266.jpg" alt="" width="300" height="266" /></a></p>
+<p><a href="/images/2012/06/P10102541.jpg"><img class="alignnone size-medium wp-image-1601" title="P1010254" src="/assets/P10102541-300x266.jpg" alt="" width="300" height="266" /></a></p>
 <p>Нажмите на фото для увеличения</p>
 <p>Технические характеристики:</p>
 <ul>
@@ -53,7 +53,7 @@
 </ul>
 <p>Еще фото (под катом)</p>
 <p><!--more--></p>
-<p><a href="{{ site.baseurl }}/images/2012/06/P1010256.jpg"><img class="alignnone size-medium wp-image-1602" title="P1010256" src="{{ site.baseurl }}/assets/P1010256-300x235.jpg" alt="" width="300" height="235" /></a></p>
+<p><a href="/images/2012/06/P1010256.jpg"><img class="alignnone size-medium wp-image-1602" title="P1010256" src="/assets/P1010256-300x235.jpg" alt="" width="300" height="235" /></a></p>
 <p>Нажмите на фото для увеличения</p>
 ]]></content>
   </entry>
@@ -64,11 +64,11 @@
     <updated>2012-06-12T00:13:03+06:00</updated>
     <id>http://arktur04.github.io/blog/2012/06/12/%d0%bc%d0%be%d0%b4%d1%83%d0%bb%d1%8c-%d0%b0%d0%bd%d0%b0%d0%bb%d0%be%d0%b3%d0%be%d0%b2%d0%be%d0%b3%d0%be-%d0%b2%d0%b2%d0%be%d0%b4%d0%b0-2</id>
     <content type="html"><![CDATA[<p>Образец модуля аналогового ввода, предназначенный для лабораторных испытаний.</p>
-<p><a href="{{ site.baseurl }}/images/2012/06/P1010245.jpg"><img class="alignnone size-medium wp-image-1590" title="P1010245" src="{{ site.baseurl }}/assets/P1010245-300x285.jpg" alt="" width="300" height="285" /></a></p>
+<p><a href="/images/2012/06/P1010245.jpg"><img class="alignnone size-medium wp-image-1590" title="P1010245" src="/assets/P1010245-300x285.jpg" alt="" width="300" height="285" /></a></p>
 <p>Рис. 1. Модуль аналогового ввода с поканальной развязкой.</p>
 <p><!--more-->Модуль имеет 8 каналов ввода, каждый из которых может быть подключен к источнику тока 4-20 мА, термопаре (до 70 мВ), или к источнику напряжения 0-10 В. Все каналы гальванически развязаны как от источника питания, так и между собой. Модуль имеет интерфейсы RS-485 и RS-232 (оба гальванически изолированы от источника питания) и осуществляет взаимодействие с ПЛК по протоколу Modbus RTU. Также возможна реализация протокола DCON, с целью прямого подключения модуля к ПЛК ICP DAS без изменения существующего программного обеспечения.</p>
 <p>Схема гальванических развязок модуля:</p>
-<p><a href="{{ site.baseurl }}/images/2012/06/2012-06-12-02.png"><img class="alignnone size-medium wp-image-1591" title="Структура модуля аналогового ввода" src="{{ site.baseurl }}/assets/2012-06-12-02.png" alt="" width="300" height="270" /></a></p>
+<p><a href="/images/2012/06/2012-06-12-02.png"><img class="alignnone size-medium wp-image-1591" title="Структура модуля аналогового ввода" src="/assets/2012-06-12-02.png" alt="" width="300" height="270" /></a></p>
 <p>Рис. 2. Схема гальванических развязок модуля. Каждый прямоугольник соответствует изолированному домену питания.</p>
 ]]></content>
   </entry>
@@ -79,11 +79,11 @@
     <updated>2012-04-06T07:14:39+06:00</updated>
     <id>http://arktur04.github.io/blog/2012/04/06/%d0%bf%d1%80%d0%be%d0%b3%d1%80%d0%b0%d0%bc%d0%bc%d0%b0-%d0%b4%d0%bb%d1%8f-%d1%81%d0%b1%d0%be%d1%80%d0%b0-%d0%b4%d0%b0%d0%bd%d0%bd%d1%8b%d1%85</id>
     <content type="html"><![CDATA[<p>Еще одна старая программа, - логгер, предназначенный для сбора данных. Позволяет отображать данные, поступающие с контроллера, через OPC-сервер, либо данные, поступающие через DDE. Сбор данных через DDE удобен для получения данных из среды разработки IsaGraf при отладке.</p>
-<p><a href="{{ site.baseurl }}/images/2012/04/logger1.jpg"><img class="alignnone size-medium wp-image-1573" title="logger1" src="{{ site.baseurl }}/assets/logger1-300x163.jpg" alt="" width="300" height="163" /></a></p>
+<p><a href="/images/2012/04/logger1.jpg"><img class="alignnone size-medium wp-image-1573" title="logger1" src="/assets/logger1-300x163.jpg" alt="" width="300" height="163" /></a></p>
 <p>Позволяет получать данные для произвольного количества переменных, имеет гибко настраиваемую конфигурацию окон, в каждом окне может отображаться множество переменных, настройки отображения (цвет, толщину линий, масштаб) можно гибко настраивать, в том числе и во время сбора данных. Масштаб по оси времени также настраивается.</p>
 <p><!--more--></p>
-<p><a href="{{ site.baseurl }}/images/2012/04/logger2.jpg"><img class="alignnone size-medium wp-image-1574" title="logger2" src="{{ site.baseurl }}/assets/logger2-300x165.jpg" alt="" width="300" height="165" /></a></p>
-<p><a href="{{ site.baseurl }}/images/2012/04/logger3.jpg"><img class="alignnone size-medium wp-image-1575" title="logger3" src="{{ site.baseurl }}/assets/logger3-300x161.jpg" alt="" width="300" height="161" /></a></p>
+<p><a href="/images/2012/04/logger2.jpg"><img class="alignnone size-medium wp-image-1574" title="logger2" src="/assets/logger2-300x165.jpg" alt="" width="300" height="165" /></a></p>
+<p><a href="/images/2012/04/logger3.jpg"><img class="alignnone size-medium wp-image-1575" title="logger3" src="/assets/logger3-300x161.jpg" alt="" width="300" height="161" /></a></p>
 ]]></content>
   </entry>
   
@@ -94,7 +94,7 @@
     <id>http://arktur04.github.io/blog/2012/04/05/%d1%81%d0%b2%d0%b8%d0%b4%d0%b5%d1%82%d0%b5%d0%bb%d1%8c%d1%81%d1%82%d0%b2%d0%be-%d0%be-%d0%b3%d0%be%d1%81%d1%83%d0%b4%d0%b0%d1%80%d1%81%d1%82%d0%b2%d0%b5%d0%bd%d0%bd%d0%be%d0%b9-%d1%80%d0%b5%d0%b3</id>
     <content type="html"><![CDATA[<p>Свидетельство о государственной регистрации программы, описанной в предыдущем посте:</p>
 <p>&nbsp;</p>
-<p><a href="{{ site.baseurl }}/images/2012/04/patent1.jpg"><img class="alignnone size-medium wp-image-1568" title="patent" src="{{ site.baseurl }}/assets/patent1-214x300.jpg" alt="" width="214" height="300" /></a></p>
+<p><a href="/images/2012/04/patent1.jpg"><img class="alignnone size-medium wp-image-1568" title="patent" src="/assets/patent1-214x300.jpg" alt="" width="214" height="300" /></a></p>
 ]]></content>
   </entry>
   

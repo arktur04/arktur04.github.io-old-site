@@ -4,7 +4,7 @@
   <title><![CDATA[Category: плис | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/plis/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-20T21:34:28+05:00</updated>
+  <updated>2015-12-21T21:47:11+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -20,7 +20,7 @@
     <id>http://arktur04.github.io/blog/2015/11/23/%d0%bf%d1%80%d0%be%d0%b5%d0%ba%d1%82-%d0%b2%d0%b8%d0%b4%d0%b5%d0%be%d0%b0%d0%b4%d0%b0%d0%bf%d1%82%d0%b5%d1%80%d0%b0-%d1%87%d0%b0%d1%81%d1%82%d1%8c-3</id>
     <content type="html"><![CDATA[<p>Продолжение. <a href="http://arktur04.github.io/blog/2015/11/05/vga-%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580-%25d0%25bd%25d0%25b0-fpga/">Часть 2.</a></p>
 <p>Структурная схема видеоадаптера приведена на рис. 1 (кликабельно)</p>
-<p><a href="{{ site.baseurl }}/images/2015/11/vga-card-big.jpg"><img class="alignnone size-medium wp-image-2175" alt="vga-card-big" src="{{ site.baseurl }}/assets/vga-card-big-300x214.jpg" width="300" height="214" /></a></p>
+<p><a href="/images/2015/11/vga-card-big.jpg"><img class="alignnone size-medium wp-image-2175" alt="vga-card-big" src="/assets/vga-card-big-300x214.jpg" width="300" height="214" /></a></p>
 <p>&nbsp;</p>
 <p>Рис. 1. Структурная схема видеоадаптера.</p>
 <p>&nbsp;</p>
@@ -51,12 +51,12 @@
     <id>http://arktur04.github.io/blog/2015/11/05/vga-%d0%b0%d0%b4%d0%b0%d0%bf%d1%82%d0%b5%d1%80-%d0%bd%d0%b0-fpga</id>
     <content type="html"><![CDATA[<p>Продолжение. <a title="Начало" href="http://arktur04.github.io/blog/2015/05/13/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-1/">Начало</a>.</p>
 <p>Проект видеоадаптера переделан под использование видео ЦАП ADV7123. Схема подключения приведена на рисунке:</p>
-<p><a href="{{ site.baseurl }}/images/2015/11/VGA_DAC.jpg"><img class="alignnone size-medium wp-image-2168" alt="VGA_DAC" src="{{ site.baseurl }}/assets/VGA_DAC-300x190.jpg" width="300" height="190" /></a></p>
+<p><a href="/images/2015/11/VGA_DAC.jpg"><img class="alignnone size-medium wp-image-2168" alt="VGA_DAC" src="/assets/VGA_DAC-300x190.jpg" width="300" height="190" /></a></p>
 <p>(по клику откроется полный размер).</p>
 <p>Код проекта приведён на гитхабе (<a href="https://github.com/arktur04/VideoCard">ссылка</a>). Это тестовый код, который выводит на монитор поле разноцветных квадратов.</p>
 <p>По сравнению с предыдущей версией, в которой использовался резистивный ЦАП, увеличена разрядность с 2-х до 8-и бит на цвет, и существенно улучшилось качество изображения.</p>
 <p>Фото тестовой картинки:</p>
-<p><a href="{{ site.baseurl }}/images/2015/11/pic1.jpg"><img class="alignnone size-medium wp-image-2166" alt="pic" src="{{ site.baseurl }}/assets/pic1-300x189.jpg" width="300" height="189" /></a></p>
+<p><a href="/images/2015/11/pic1.jpg"><img class="alignnone size-medium wp-image-2166" alt="pic" src="/assets/pic1-300x189.jpg" width="300" height="189" /></a></p>
 <p>&nbsp;</p>
 ]]></content>
   </entry>
@@ -198,7 +198,7 @@ echo 1 &gt; /sys/class/fpga-bridge/lwhps2fpga/enable
     <content type="html"><![CDATA[<p>Прочитал и освоил на практике воркбенч SoCKit Lab, две части, Hardware и Software.<br />
 Данная программа лабораторных работ основана на системе на кристалле (SoC) Altera Cyclone V. SoC состоит из двух процессорных ядер ARM Cortex A9 и FPGA, которые соединены мостами и могут взаимодействовать друг с другом. Первое руководство, Hardware, выполняется в Quartus II, и описывает конфигурирование и подключение периферии к процессору, а также симуляцию системы в ModelSim.<br />
 Вторая часть, Software, описывает процесс загрузки Linux, компиляцию простейшей программы (мигание светодиодом), отладку программы в ARM DS-5 Embedded Development Suite, и основы работы с SignalTap II Logic Analyzer в режиме совместной отладки программного кода и FPGA-проекта.</p>
-<p><a href="{{ site.baseurl }}/images/2015/07/pic1.jpg"><img class="alignnone size-full wp-image-2101" alt="pic1" src="{{ site.baseurl }}/assets/pic2015-07-28.jpg" width="1000" height="328" /></a></p>
+<p><a href="/images/2015/07/pic1.jpg"><img class="alignnone size-full wp-image-2101" alt="pic1" src="/assets/pic2015-07-28.jpg" width="1000" height="328" /></a></p>
 ]]></content>
   </entry>
   

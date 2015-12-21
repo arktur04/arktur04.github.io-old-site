@@ -9,7 +9,9 @@
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="Эта конструкция из четырех плат предназначена для коммутации сигналов 24 датчиков. Всего коммутируется 96 цепей. Светодиоды сбоку индицируют, какие &hellip;">
+  <meta name="description" content="Плата буферных усилителей и устройств обнаружения разрывов цепей датчиков. Макет. Ручная работа.
+Обратная сторона под катом.
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -30,9 +32,55 @@
 <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
+<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
   
 
 </head>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [ ['$', '$'], ["\(", "\)"] ],
+        displayMath: [ ['$$', '$$'], ["\[", "\]"] ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+      //,
+      //displayAlign: "left",
+      //displayIndent: "2em"
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
 
 <body   >
   <header role="banner"><hgroup>
@@ -68,47 +116,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/01/19/%25d0%25b1%25d0%25bb%25d0%25be%25d0%25ba-%25d0%25ba%25d0%25be%25d0%25bc%25d0%25bc%25d1%2583%25d1%2582%25d0%25b0%25d1%2586%25d0%25b8%25d0%25b8-%25d1%2581%25d0%25b8%25d0%25b3%25d0%25bd%25d0%25b0%25d0%25bb%25d0%25be%25d0%25b2/">Блок коммутации сигналов</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2010-01-19T21:52:00+05:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>9:52 pm</span></time>
-        
-           | <a href="/blog/2010/01/19/%25d0%25b1%25d0%25bb%25d0%25be%25d0%25ba-%25d0%25ba%25d0%25be%25d0%25bc%25d0%25bc%25d1%2583%25d1%2582%25d0%25b0%25d1%2586%25d0%25b8%25d0%25b8-%25d1%2581%25d0%25b8%25d0%25b3%25d0%25bd%25d0%25b0%25d0%25bb%25d0%25be%25d0%25b2/#disqus_thread"
-             data-disqus-identifier="http://arktur04.github.io/blog/2010/01/19/%25d0%25b1%25d0%25bb%25d0%25be%25d0%25ba-%25d0%25ba%25d0%25be%25d0%25bc%25d0%25bc%25d1%2583%25d1%2582%25d0%25b0%25d1%2586%25d0%25b8%25d0%25b8-%25d1%2581%25d0%25b8%25d0%25b3%25d0%25bd%25d0%25b0%25d0%25bb%25d0%25be%25d0%25b2/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class="separator" style="clear:both;text-align:center;"><a style="clear:left;float:left;margin-bottom:1em;margin-right:1em;" href="http://arktur04.files.wordpress.com/2010/01/p1000824.jpg"></a></div>
-<p style="text-align: left;">Эта конструкция из четырех плат предназначена для коммутации сигналов 24 датчиков. Всего коммутируется 96 цепей. Светодиоды сбоку индицируют, какие цепи включены в данный момент. Управление платами происходит с микроконтроллера по интерфейсу SPI. Устройство предназначено для проведения научных экспериментов.</p>
-<p><a href="/images/2010/01/post41/relays1-big.jpg"><img style="border: 0px;" src="/assets/relays1-small.jpg" border="0" alt="" /></a></p>
-<p>Рис. 1.</p>
-<p>Под катом еще фотки.</p>
-<p><a name="more"></a></p>
-<p></div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2010/01/19/%25d0%25b1%25d0%25bb%25d0%25be%25d0%25ba-%25d0%25ba%25d0%25be%25d0%25bc%25d0%25bc%25d1%2583%25d1%2582%25d0%25b0%25d1%2586%25d0%25b8%25d0%25b8-%25d1%2581%25d0%25b8%25d0%25b3%25d0%25bd%25d0%25b0%25d0%25bb%25d0%25be%25d0%25b2/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
   
   
     <article>
@@ -436,6 +443,38 @@
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/11/26/%25d0%25bf%25d0%25bb%25d0%25b0%25d1%2582%25d0%25b0-%25d0%25b4%25d0%25b8%25d1%2581%25d0%25ba%25d1%2580%25d0%25b5%25d1%2582%25d0%25bd%25d0%25be%25d0%25b3%25d0%25be-%25d0%25b2%25d0%25b2%25d0%25be%25d0%25b4%25d0%25b0/">Плата дискретного ввода</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2009-11-26T19:04:00+05:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>26</span><span class='date-suffix'>th</span>, <span class='date-year'>2009</span></span> <span class='time'>7:04 pm</span></time>
+        
+           | <a href="/blog/2009/11/26/%25d0%25bf%25d0%25bb%25d0%25b0%25d1%2582%25d0%25b0-%25d0%25b4%25d0%25b8%25d1%2581%25d0%25ba%25d1%2580%25d0%25b5%25d1%2582%25d0%25bd%25d0%25be%25d0%25b3%25d0%25be-%25d0%25b2%25d0%25b2%25d0%25be%25d0%25b4%25d0%25b0/#disqus_thread"
+             data-disqus-identifier="http://arktur04.github.io/blog/2009/11/26/%25d0%25bf%25d0%25bb%25d0%25b0%25d1%2582%25d0%25b0-%25d0%25b4%25d0%25b8%25d1%2581%25d0%25ba%25d1%2580%25d0%25b5%25d1%2582%25d0%25bd%25d0%25be%25d0%25b3%25d0%25be-%25d0%25b2%25d0%25b2%25d0%25be%25d0%25b4%25d0%25b0/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class="separator" style="clear:both;text-align:left;"><a style="clear:left;float:left;margin-bottom:1em;margin-right:1em;" href="/images/2010/01/post20/din-big.jpg"><img style="border: 0px;" src="/assets/din-small.jpg" border="0" alt="" /></a>Эта плата является очень старой моей разработкой на микроконтроллере Fujitsu (16-битная архитектура). Плата имеет 8 гальванически изолированных дискретных входов и порт RS-485 для связи с ПЛК по интерфейсу Modbus. На фотографии приведен макет, на котором вместо RS-485 распаян RS-232.</div>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/posts/22">&larr; Older</a>
@@ -556,3 +595,19 @@
 
 </body>
 </html>
+
+<!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  messageStyle: "none",
+  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>

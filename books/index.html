@@ -30,9 +30,55 @@
 <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
+<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
   
 
 </head>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [ ['$', '$'], ["\(", "\)"] ],
+        displayMath: [ ['$$', '$$'], ["\[", "\]"] ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+      //,
+      //displayAlign: "left",
+      //displayIndent: "2em"
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
 
 <body   >
   <header role="banner"><hgroup>
@@ -85,58 +131,37 @@
 DSP, обработка сигналов, SDR, Matlab
 </a></h3>
 
-
-
-
 <h3><a href="#fpga">
 FPGA, Verilog, System Verilog
 </a></h3>
-
-
-
 
 <h3><a href="#software">
 Программирование, C, C++, C#, Python, Qt, Linux, LLVM, Clang, компиляторы
 </a></h3>
 
-
-
-
 <h3><a href="#hardware">
 Микроконтроллеры, схемотехника, разработка электроники
 </a></h3>
-
-
 <hr />
-
 <h2><a name="dsp">
 DSP, обработка сигналов, SDR, Matlab
 </a></h2>
-
-
 <p><img src="/images/books/pentek-sdr-handbook.png" alt="pentek-sdr-handbook.png" /></p>
 
-<h2><a href="/blog/2015/11/16/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-software-defined-radio-handbook-rodger-hosking/">Software Defined Radio Handbook», Rodger Hosking, 75 стр, англ. язык.</a></h2>
+<p>Software Defined Radio Handbook», Rodger Hosking, 75 стр, англ. язык.</p>
 
+<h2 id="software-defined-radio-handbook-rodger-hosking-75---blog2015111625d025ba25d025bd25d025b825d025b325d025b0-software-defined-radio-handbook-rodger-hosking"><a href="/blog/2015/11/16/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-software-defined-radio-handbook-rodger-hosking/">Software Defined Radio Handbook», Rodger Hosking, 75 стр, англ. язык.</a></h2>
 <h2><a name="fpga">
 FPGA, Verilog, System Verilog
 </a></h2>
-
-
 <p>Andrew Moore “FPGA for dummies”, 44 стр., англ. язык</p>
-
 <h2><a name="software">
 Программирование, C, C++, C#, Python, Qt, Linux, LLVM, Clang, компиляторы
 </a></h2>
 
-
-
-
 <h2><a name="hardware">
 Микроконтроллеры, схемотехника, разработка электроники
 </a></h2>
-
-
 
 
   
@@ -287,3 +312,19 @@ FPGA, Verilog, System Verilog
 
 </body>
 </html>
+
+<!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  messageStyle: "none",
+  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>

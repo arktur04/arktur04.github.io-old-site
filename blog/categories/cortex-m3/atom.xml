@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Cortex M3 | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/cortex-m3/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-20T21:34:28+05:00</updated>
+  <updated>2015-12-21T21:47:11+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -20,15 +20,15 @@
     <id>http://arktur04.github.io/blog/2010/12/12/%d0%b8%d0%bd%d1%82%d0%b5%d1%80%d1%84%d0%b5%d0%b9%d1%81-%d0%bf%d1%80%d0%b8%d0%b1%d0%be%d1%80%d0%b0</id>
     <content type="html"><![CDATA[<p>Интерфейс прибора реализован на базе монохромного индикатора разрешением 128х64, и включает в себя 35 различных экранов, в которых выполняются все манипуляции с прибором, включая его наладку и тестирование всех узлов (ЦАП, АЦП, все дискретные входы и выходы), установку параметров алгоритма обработки сигналов (DSP), а также все переменные настройки прибора (более 200 переменных).</p>
 <p>Программно интерфейс реализован в виде библиотеки классов C++, представляющих элементы управления (кнопки, поля ввода, текстовые поля и пр.)</p>
-<p><a href="{{ site.baseurl }}/images/2010/12/main.png"><img class="alignnone size-full wp-image-938" title="main" src="{{ site.baseurl }}/assets/main.png" alt="" width="256" height="128" /></a></p>
-<p><a href="{{ site.baseurl }}/images/2010/12/ethernet.png"><img class="alignnone size-full wp-image-939" title="ethernet" src="{{ site.baseurl }}/assets/ethernet.png" alt="" width="256" height="128" /></a></p>
+<p><a href="/images/2010/12/main.png"><img class="alignnone size-full wp-image-938" title="main" src="/assets/main.png" alt="" width="256" height="128" /></a></p>
+<p><a href="/images/2010/12/ethernet.png"><img class="alignnone size-full wp-image-939" title="ethernet" src="/assets/ethernet.png" alt="" width="256" height="128" /></a></p>
 <p>Так это выглядит в натуральном виде:</p>
-<p><a href="{{ site.baseurl }}/images/2010/12/mainscr.gif"><img class="alignnone size-medium wp-image-946" title="mainscr" src="{{ site.baseurl }}/assets/mainscr-300x213.gif" alt="" width="300" height="213" /></a></p>
+<p><a href="/images/2010/12/mainscr.gif"><img class="alignnone size-medium wp-image-946" title="mainscr" src="/assets/mainscr-300x213.gif" alt="" width="300" height="213" /></a></p>
 <p>Ещё  несколько картинок под катом.</p>
-<p><!--more--><a href="{{ site.baseurl }}/images/2010/12/menu1.png"><img class="alignnone size-full wp-image-940" title="menu1" src="{{ site.baseurl }}/assets/menu1.png" alt="" width="256" height="128" /></a></p>
-<p><a href="{{ site.baseurl }}/images/2010/12/param1.png"><img class="alignnone size-full wp-image-941" title="param1" src="{{ site.baseurl }}/assets/param1.png" alt="" width="256" height="128" /></a></p>
-<p><a href="{{ site.baseurl }}/images/2010/12/rs485.png"><img class="alignnone size-full wp-image-942" title="rs485" src="{{ site.baseurl }}/assets/rs485.png" alt="" width="256" height="128" /></a></p>
-<p><a href="{{ site.baseurl }}/images/2010/12/test_ai.png"><img class="alignnone size-full wp-image-943" title="test_ai" src="{{ site.baseurl }}/assets/test_ai.png" alt="" width="256" height="128" /></a></p>
+<p><!--more--><a href="/images/2010/12/menu1.png"><img class="alignnone size-full wp-image-940" title="menu1" src="/assets/menu1.png" alt="" width="256" height="128" /></a></p>
+<p><a href="/images/2010/12/param1.png"><img class="alignnone size-full wp-image-941" title="param1" src="/assets/param1.png" alt="" width="256" height="128" /></a></p>
+<p><a href="/images/2010/12/rs485.png"><img class="alignnone size-full wp-image-942" title="rs485" src="/assets/rs485.png" alt="" width="256" height="128" /></a></p>
+<p><a href="/images/2010/12/test_ai.png"><img class="alignnone size-full wp-image-943" title="test_ai" src="/assets/test_ai.png" alt="" width="256" height="128" /></a></p>
 ]]></content>
   </entry>
   

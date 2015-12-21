@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Arm | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/arm/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-20T21:34:28+05:00</updated>
+  <updated>2015-12-21T21:47:11+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -20,7 +20,7 @@
     <id>http://arktur04.github.io/blog/2015/10/02/%d0%b4%d1%80%d0%b0%d0%b9%d0%b2%d0%b5%d1%80-%d0%b4%d0%bb%d1%8f-linux-%d0%bf%d0%b5%d1%80%d0%b2%d1%8b%d0%b9-%d1%88%d0%b0%d0%b3</id>
     <content type="html"><![CDATA[<p>Продолжаю эксперименты с Altera Cyclone V. На этот раз объектом эксперимента стал драйвер для той прошивки FPGA, про которую я писал ранее. Сама прошивка простейшая: она просто мигает светодиодами с частотой, которую можно задавать программно. В прошлом посте на эту тему я сделал управление частотой мигания из обычной (user-space) программы, которая получает доступ к физической памяти через функции open("/dev/mem") и mmap().<br />
 Однако такой путь считается "hacky and unsafe". Поэтому следующим логичным шагом должно стать написание драйвера.</p>
-<p><a href="{{ site.baseurl }}/images/2015/10/Tux-linux-and-ARM-multiplatform-support.jpg"><img class="alignnone size-full wp-image-2147" alt="Tux-linux-and-ARM-multiplatform-support" src="{{ site.baseurl }}/assets/Tux-linux-and-ARM-multiplatform-support.jpg" width="672" height="370" /></a></p>
+<p><a href="/images/2015/10/Tux-linux-and-ARM-multiplatform-support.jpg"><img class="alignnone size-full wp-image-2147" alt="Tux-linux-and-ARM-multiplatform-support" src="/assets/Tux-linux-and-ARM-multiplatform-support.jpg" width="672" height="370" /></a></p>
 <p>Я воспользовался готовым исходником драйвера (<a href="https://github.com/zhemao/sockit_test/tree/master/software/blinker">ссылка</a>) за авторством Howard Mao (он на самом деле не Howard, а Zhe Hao Mao). Конечно, для того, чтобы разобраться в работе кода, почитал отдельные главы книги Linux Device Drivers (есть русский перевод).</p>
 <p>Для компиляции пришлось вытаскивать архив Arrow SocKit 13.1 GSRD Linux отсюда: <a href="http://releases.rocketboards.org/release/2013.11/gsrd/src">http://releases.rocketboards.org/release/2013.11/gsrd/src</a>, файл linux-socfpga-gsrd-13.1-src.bsx. Объем архива около 1.1 Гб, но сервер очень медленный, качается несколько часов. Честно говоря, я впервые увидел файл с расширением bsx, оказалось, что это самораспаковывающийся архив. Просто запускаем его и он разворачивается в указанную папку. В ней в папке sources находится файл linux-socfpga.tgz. Его тоже нужно распаковать, естественно. Это и есть как таковое ядро системы, которое нужно указывать при компиляции драйвера.</p>
 <p>Однако всё не так просто. После компиляции записываем скомпилированный драйвер blinker.ko на SD-карту, после загрузки Linux пишем<strong> insmod blinker.ko</strong> и получаем следующее: "<em>blinker: version magic '3.9.0-00161-ged01b8c SMP mod_unload ARMv7 p2v8 ' should be '3.9.0 SMP mod_unload ARMv7 p2v8'</em>". Не совпали волшебные номерки. Причем версия одна и та же, просто зачем-то к ней приделан какой-то добавочный номер.</p>
@@ -131,7 +131,7 @@ echo 1 &gt; /sys/class/fpga-bridge/lwhps2fpga/enable
     <content type="html"><![CDATA[<p>Прочитал и освоил на практике воркбенч SoCKit Lab, две части, Hardware и Software.<br />
 Данная программа лабораторных работ основана на системе на кристалле (SoC) Altera Cyclone V. SoC состоит из двух процессорных ядер ARM Cortex A9 и FPGA, которые соединены мостами и могут взаимодействовать друг с другом. Первое руководство, Hardware, выполняется в Quartus II, и описывает конфигурирование и подключение периферии к процессору, а также симуляцию системы в ModelSim.<br />
 Вторая часть, Software, описывает процесс загрузки Linux, компиляцию простейшей программы (мигание светодиодом), отладку программы в ARM DS-5 Embedded Development Suite, и основы работы с SignalTap II Logic Analyzer в режиме совместной отладки программного кода и FPGA-проекта.</p>
-<p><a href="{{ site.baseurl }}/images/2015/07/pic1.jpg"><img class="alignnone size-full wp-image-2101" alt="pic1" src="{{ site.baseurl }}/assets/pic2015-07-28.jpg" width="1000" height="328" /></a></p>
+<p><a href="/images/2015/07/pic1.jpg"><img class="alignnone size-full wp-image-2101" alt="pic1" src="/assets/pic2015-07-28.jpg" width="1000" height="328" /></a></p>
 ]]></content>
   </entry>
   
@@ -144,7 +144,7 @@ echo 1 &gt; /sys/class/fpga-bridge/lwhps2fpga/enable
 <p>Напомню, что Zynq-7000 состоит из двух ядер ARM Cortex A9 и блока программируемой логики PL (по сути, встроенная в систему FPGA).</p>
 <p>В книге подробно рассматривается структура системы, программный пакет Vivado, предназначенный для разработки под Zynq-7000, подробно рассматривается процесс преобразования кода на языке высокого уровня (например, С) в форму RTL, предназначенную для конфигурирования PL . Эта возможность обеспечивается программой Vivado HLS.<br />
 В последней части книги кратко описывается структура и процедура загрузки Linux в память.</p>
-<p><a href="{{ site.baseurl }}/images/2015/03/ZynqPerspective.png"><img class="alignnone size-medium wp-image-1954" alt="ZynqPerspective" src="{{ site.baseurl }}/assets/ZynqPerspective-205x300.png" width="205" height="300" /></a><br />
+<p><a href="/images/2015/03/ZynqPerspective.png"><img class="alignnone size-medium wp-image-1954" alt="ZynqPerspective" src="/assets/ZynqPerspective-205x300.png" width="205" height="300" /></a><br />
 Интересная книга, интересный процессор.</p>
 ]]></content>
   </entry>
@@ -164,14 +164,14 @@ echo 1 &gt; /sys/class/fpga-bridge/lwhps2fpga/enable
 <p>6. вентилятор (я использовал вентилятор 40 мм);</p>
 <p>7. корпус;</p>
 <p>Собираем всё вместе:</p>
-<p><a href="{{ site.baseurl }}/images/2013/09/2013-09-14-01.jpg"><img class="alignnone size-medium wp-image-1769" title="pic1" src="{{ site.baseurl }}/assets/2013-09-14-01.jpg" alt="" width="300" height="225" /></a></p>
+<p><a href="/images/2013/09/2013-09-14-01.jpg"><img class="alignnone size-medium wp-image-1769" title="pic1" src="/assets/2013-09-14-01.jpg" alt="" width="300" height="225" /></a></p>
 <p>(все картинки кликабельны)</p>
 <p><!--more-->Перед установкой жесткого диска его необходимо отформатировать с файловой системой HFS+. Я воспользовался для этого утилитой MacDrive.</p>
 <p>Итак, устанавливаем на SD-карту Linux Debian Wheezy и настраиваем всё согласно инструкции отсюда: <a href="http://www.raspberrypi.org/phpBB3/viewtopic.php?=63&amp;t=31511">http://www.raspberrypi.org/phpBB3/viewtopic.php?=63&amp;t=31511</a>.</p>
 <p>Итак, всё готово, теперь Time Machine видит устройство и предлагает сделать резервную копию.</p>
-<p><a href="{{ site.baseurl }}/images/2013/09/pic2.jpg"><img class="alignnone size-medium wp-image-1770" title="pic2" src="{{ site.baseurl }}/assets/pic2-300x186.jpg" alt="" width="300" height="186" /></a></p>
+<p><a href="/images/2013/09/pic2.jpg"><img class="alignnone size-medium wp-image-1770" title="pic2" src="/assets/pic2-300x186.jpg" alt="" width="300" height="186" /></a></p>
 <p>Теперь остался последний штрих. Устройство потребляет (и, соответственно, рассеивает) довольно существенную мощность для такого маленького корпуса, поэтому нужно проверить температуру, до которой нагреваются наиболее горячие части устройства. Я проверял температуру радиатора блока питания (он нагревается сильнее всего, на втором месте винчестер).</p>
-<p><a href="{{ site.baseurl }}/images/2013/09/pic3.jpg"><img class="alignnone size-medium wp-image-1771" title="pic3" src="{{ site.baseurl }}/assets/pic3-300x225.jpg" alt="" width="300" height="225" /></a></p>
+<p><a href="/images/2013/09/pic3.jpg"><img class="alignnone size-medium wp-image-1771" title="pic3" src="/assets/pic3-300x225.jpg" alt="" width="300" height="225" /></a></p>
 <p>Максимальная температура, до которой нагревался радиатор при работе составила: с выключенным вентилятором &gt;60 °C, с включенным вентилятором ~40-42 °C. Проблема в том, что вентилятор издает довольно громкий звук. В принципе, 60 градусов можно считать приемлемой температурой, так что вентилятор можно отключить, но наиболее подходящим решением мне представляется следующее: подключить датчик температуры к RPi, подключить к нему же управление вентилятором (простой транзисторный ключ), и написать скрипт, который будет включать вентилятор по достижению порогового значения температуры (например, 50 °С), и выключать его при снижении температуры ниже другого порога (например, 45°С). Но это уже другая история.</p>
 ]]></content>
   </entry>

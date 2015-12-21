@@ -4,7 +4,7 @@
   <title><![CDATA[Category: интересные ссылки | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/intieriesnyie-ssylki/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-20T21:34:28+05:00</updated>
+  <updated>2015-12-21T21:47:11+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -20,7 +20,7 @@
     <id>http://arktur04.github.io/blog/2015/10/02/%d0%b4%d1%80%d0%b0%d0%b9%d0%b2%d0%b5%d1%80-%d0%b4%d0%bb%d1%8f-linux-%d0%bf%d0%b5%d1%80%d0%b2%d1%8b%d0%b9-%d1%88%d0%b0%d0%b3</id>
     <content type="html"><![CDATA[<p>Продолжаю эксперименты с Altera Cyclone V. На этот раз объектом эксперимента стал драйвер для той прошивки FPGA, про которую я писал ранее. Сама прошивка простейшая: она просто мигает светодиодами с частотой, которую можно задавать программно. В прошлом посте на эту тему я сделал управление частотой мигания из обычной (user-space) программы, которая получает доступ к физической памяти через функции open("/dev/mem") и mmap().<br />
 Однако такой путь считается "hacky and unsafe". Поэтому следующим логичным шагом должно стать написание драйвера.</p>
-<p><a href="{{ site.baseurl }}/images/2015/10/Tux-linux-and-ARM-multiplatform-support.jpg"><img class="alignnone size-full wp-image-2147" alt="Tux-linux-and-ARM-multiplatform-support" src="{{ site.baseurl }}/assets/Tux-linux-and-ARM-multiplatform-support.jpg" width="672" height="370" /></a></p>
+<p><a href="/images/2015/10/Tux-linux-and-ARM-multiplatform-support.jpg"><img class="alignnone size-full wp-image-2147" alt="Tux-linux-and-ARM-multiplatform-support" src="/assets/Tux-linux-and-ARM-multiplatform-support.jpg" width="672" height="370" /></a></p>
 <p>Я воспользовался готовым исходником драйвера (<a href="https://github.com/zhemao/sockit_test/tree/master/software/blinker">ссылка</a>) за авторством Howard Mao (он на самом деле не Howard, а Zhe Hao Mao). Конечно, для того, чтобы разобраться в работе кода, почитал отдельные главы книги Linux Device Drivers (есть русский перевод).</p>
 <p>Для компиляции пришлось вытаскивать архив Arrow SocKit 13.1 GSRD Linux отсюда: <a href="http://releases.rocketboards.org/release/2013.11/gsrd/src">http://releases.rocketboards.org/release/2013.11/gsrd/src</a>, файл linux-socfpga-gsrd-13.1-src.bsx. Объем архива около 1.1 Гб, но сервер очень медленный, качается несколько часов. Честно говоря, я впервые увидел файл с расширением bsx, оказалось, что это самораспаковывающийся архив. Просто запускаем его и он разворачивается в указанную папку. В ней в папке sources находится файл linux-socfpga.tgz. Его тоже нужно распаковать, естественно. Это и есть как таковое ядро системы, которое нужно указывать при компиляции драйвера.</p>
 <p>Однако всё не так просто. После компиляции записываем скомпилированный драйвер blinker.ko на SD-карту, после загрузки Linux пишем<strong> insmod blinker.ko</strong> и получаем следующее: "<em>blinker: version magic '3.9.0-00161-ged01b8c SMP mod_unload ARMv7 p2v8 ' should be '3.9.0 SMP mod_unload ARMv7 p2v8'</em>". Не совпали волшебные номерки. Причем версия одна и та же, просто зачем-то к ней приделан какой-то добавочный номер.</p>
@@ -37,7 +37,7 @@
     <id>http://arktur04.github.io/blog/2015/06/21/%d0%b3%d0%b5%d0%bd%d0%b5%d1%80%d0%b0%d1%86%d0%b8%d1%8f-%d1%84%d0%b0%d0%b9%d0%bb%d0%be%d0%b2-mif</id>
     <content type="html"><![CDATA[<p>Пусть в проекте FPGA необходимо ПЗУ, в которое записана определённая информация, имеющаяся у нас в виде бинарного файла. ПЗУ, как правило, реализуются на блоках BRAM, в которые при инициализации FPGA записывается требуемое содержимое.<br />
 Файлы инициализации памяти BRAM для FPGA, могут иметь формат MIF (Memory Initialization File) или формат HEX. </p>
-<p><a href="{{ site.baseurl }}/images/2015/06/DSC_0522_EDIT.jpg"><img class="alignnone size-medium wp-image-2084" alt="DSC_0522_EDIT" src="{{ site.baseurl }}/assets/DSC_0522_EDIT-300x200.jpg" width="300" height="200" /></a></p>
+<p><a href="/images/2015/06/DSC_0522_EDIT.jpg"><img class="alignnone size-medium wp-image-2084" alt="DSC_0522_EDIT" src="/assets/DSC_0522_EDIT-300x200.jpg" width="300" height="200" /></a></p>
 <p>Нужный модуль памяти можно сгенерировать в Quartus II с помощью MegaWizard, в ISE - с помощью Xilinx Core Generator. Кроме этого, в QuartusII возможно использование специальной директивы:</p>
 <pre lang="verilog" line="1">reg [7:0] mem[0:2047] /* synthesis ram_init_file = "test.mif" */;</pre>
 <p>Эта директива позволяет создать RAM, инициированную значениями из файла .MIF. Использование RAM с предустановленными значениями, это очень плохая идея, но в качестве ROM такую память использовать вполне можно. Проблема в том, что эту директиву понимает только Quartus II, никакой кроссплатформенности.</p>
@@ -171,9 +171,9 @@ endmodule
     <id>http://arktur04.github.io/blog/2015/06/02/2049</id>
     <content type="html"><![CDATA[<p>С сайта RS Components можно скачать две системы автоматизированного проектирования: одна предназначена для разработки принципиальных схем и печатных плат (DesignSpark PCB), вторая для 3D-моделирования (DesignSpark Mechanical). Обе системы полностью бесплатны, то есть это не урезанные демо-версии. Ссылка: <a href="http://www.rs-online.com/designspark/electronics/eng/page/mechanical">http://www.rs-online.com/designspark/electronics/eng/page/mechanical</a></p>
 <p>Я скачал обе и немного попробовал что-нибудь сделать. Сразу могу сказать, что я сравниваю возможности и удобство использования с теми программами, которыми пользуюсь сам: с Altium Designer и Solid Works.</p>
-<p><a href="{{ site.baseurl }}/images/2015/06/pic1.jpg"><img class="alignnone size-medium wp-image-2050" alt="pic1" src="{{ site.baseurl }}/assets/pic1-2015-06-02-small.jpg" width="300" height="225" /></a></p>
+<p><a href="/images/2015/06/pic1.jpg"><img class="alignnone size-medium wp-image-2050" alt="pic1" src="/assets/pic1-2015-06-02-small.jpg" width="300" height="225" /></a></p>
 <p>Редактор схем.</p>
-<p><a href="{{ site.baseurl }}/images/2015/06/pic2.jpg"><img class="alignnone size-medium wp-image-2051" alt="pic2" src="{{ site.baseurl }}/assets/pic2-2015-06-02-small.jpg" width="300" height="195" /></a></p>
+<p><a href="/images/2015/06/pic2.jpg"><img class="alignnone size-medium wp-image-2051" alt="pic2" src="/assets/pic2-2015-06-02-small.jpg" width="300" height="195" /></a></p>
 <p>&nbsp;</p>
 <p>Редактор 3D.</p>
 <p>В общем, первое впечатление хорошее, есть большие библиотеки компонентов и для редактора схем/плат, и для 3D.</p>

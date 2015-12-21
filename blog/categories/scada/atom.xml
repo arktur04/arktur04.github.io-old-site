@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Scada | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/scada/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-20T21:34:28+05:00</updated>
+  <updated>2015-12-21T21:47:11+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -18,7 +18,7 @@
     <link href="http://arktur04.github.io/blog/2010/11/18/%25d1%2581%25d1%2582%25d1%2580%25d1%2583%25d0%25ba%25d1%2582%25d1%2583%25d1%2580%25d0%25b0-%25d1%2581%25d0%25b5%25d1%2582%25d0%25b8-%25d0%25ba%25d0%25be%25d0%25bd%25d1%2582%25d1%2580%25d0%25be%25d0%25bb%25d0%25bb%25d0%25b5%25d1%2580%25d0%25be%25d0%25b2/"/>
     <updated>2010-11-18T21:22:52+05:00</updated>
     <id>http://arktur04.github.io/blog/2010/11/18/%d1%81%d1%82%d1%80%d1%83%d0%ba%d1%82%d1%83%d1%80%d0%b0-%d1%81%d0%b5%d1%82%d0%b8-%d0%ba%d0%be%d0%bd%d1%82%d1%80%d0%be%d0%bb%d0%bb%d0%b5%d1%80%d0%be%d0%b2</id>
-    <content type="html"><![CDATA[<p><a href="{{ site.baseurl }}/images/2010/11/controller_network.jpg"><img class="alignnone size-full wp-image-865" title="controller_network" src="{{ site.baseurl }}/assets/controller_network.jpg" alt="" width="400" /></a></p>
+    <content type="html"><![CDATA[<p><a href="/images/2010/11/controller_network.jpg"><img class="alignnone size-full wp-image-865" title="controller_network" src="/assets/controller_network.jpg" alt="" width="400" /></a></p>
 <p>Пример структуры локальной сети, включающей в себя два контроллера i-8000, операторскую панель Weintek, и рабочее место оператора с SCADA-системой (там же запущен сервер SCADA-системы и ведётся архивирование трендов).</p>
 ]]></content>
   </entry>
@@ -29,10 +29,10 @@
     <updated>2010-10-22T08:04:21+06:00</updated>
     <id>http://arktur04.github.io/blog/2010/10/22/clear-scada</id>
     <content type="html"><![CDATA[<p>Скриншоты из проекта двухлетней давности:</p>
-<p><a href="{{ site.baseurl }}/images/2010/10/fuel.jpg"><img class="alignnone size-medium wp-image-781" title="fuel" src="{{ site.baseurl }}/assets/fuel-300x179.jpg" alt="" width="300" height="179" /></a></p>
+<p><a href="/images/2010/10/fuel.jpg"><img class="alignnone size-medium wp-image-781" title="fuel" src="/assets/fuel-300x179.jpg" alt="" width="300" height="179" /></a></p>
 <p>Проект был выполнен в SCADA-системе ClearSCADA и содержит более 100 экранных форм. Он служит для сбора данных и управления системой из двух контроллеров, объединённых локальной сетью (Ethernet). Также комплекс содержит операторскую панель.</p>
 <p>Ещё скриншот под катом:</p>
-<p><!--more--><a href="{{ site.baseurl }}/images/2010/10/steam.jpg"><img class="alignnone size-medium wp-image-782" title="steam" src="{{ site.baseurl }}/assets/steam-300x212.jpg" alt="" width="300" height="212" /></a></p>
+<p><!--more--><a href="/images/2010/10/steam.jpg"><img class="alignnone size-medium wp-image-782" title="steam" src="/assets/steam-300x212.jpg" alt="" width="300" height="212" /></a></p>
 ]]></content>
   </entry>
   
@@ -41,13 +41,13 @@
     <link href="http://arktur04.github.io/blog/2010/05/16/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-6/"/>
     <updated>2010-05-16T19:11:37+06:00</updated>
     <id>http://arktur04.github.io/blog/2010/05/16/%d0%bf%d1%80%d0%be%d1%82%d0%be%d0%ba%d0%be%d0%bb-modbus-%d0%b2-%d1%83%d1%81%d1%82%d1%80%d0%be%d0%b9%d1%81%d1%82%d0%b2%d0%b0%d1%85-%d0%bd%d0%b0-%d0%b1%d0%b0%d0%b7%d0%b5-%d0%bc%d0%b8%d0%ba%d1%80%d0%be-6</id>
-    <content type="html"><![CDATA[<p><em><a href="{{ site.baseurl }}/images/2010/05/Рис-1.jpg"></a>Продолжение. </em><em>Начало здесь: </em><em> </em><a href="http://32bit.me/?p=355"><em>http://32bit.me/?p=355</em></a><em> - введение; </em><a href="http://32bit.me/?p=373"><em>http://32bit.me/?p=373</em></a><em> - часть 1.0; <a href="http://32bit.me/?p=377">http://32bit.me/?p=377</a> - часть 1.1; <a href="http://32bit.me/?p=395">http://32bit.me/?p=395</a> - часть 1.2; <a href="http://32bit.me/?p=406">http://32bit.me/?p=406</a> - часть 1.3.</em></p>
+    <content type="html"><![CDATA[<p><em><a href="/images/2010/05/Рис-1.jpg"></a>Продолжение. </em><em>Начало здесь: </em><em> </em><a href="http://32bit.me/?p=355"><em>http://32bit.me/?p=355</em></a><em> - введение; </em><a href="http://32bit.me/?p=373"><em>http://32bit.me/?p=373</em></a><em> - часть 1.0; <a href="http://32bit.me/?p=377">http://32bit.me/?p=377</a> - часть 1.1; <a href="http://32bit.me/?p=395">http://32bit.me/?p=395</a> - часть 1.2; <a href="http://32bit.me/?p=406">http://32bit.me/?p=406</a> - часть 1.3.</em></p>
 <p>Перед тем, как перейти к программной реализации поддержки протокола Modbus, необходимо прояснить ещё один вопрос.</p>
 <p>Регистры протокола (3х и 4х) имеют разрядность 16 бит, а значения переменных, которые требуется передавать, часто имеют разрядность 32 бита. Каким образом 32-битные переменные передаются в 16-битных регистрах?</p>
 <p><!--more-->Существует два способа решения этой проблемы. Первый из них заключается в замене значения переменной, передаваемой по Modbus, её 16-битным представлением путем линейной интерполяции.</p>
 <p>При этом исходное значение называется "инженерным" (engineering, используется также термин engineering unit, или EU, для обозначения единиц исходного значения переменной), а передаваемые по сети данные называются "сырыми" (raw).</p>
 <p>В SCADA - системе или в программе конфигурирования контроллера можно задать диапазон инженерных единиц, отображаемый на 16-ибитный диапазон (0-65535). При этом минимальное значение диапазона будет соответствовать 0, а максимальное - 65535.</p>
-<p><a href="{{ site.baseurl }}/images/2010/05/eng_units.jpg"><img class="alignnone size-full wp-image-420" title="eng_units" src="{{ site.baseurl }}/assets/eng_units.jpg" alt="" width="509" height="365" /></a></p>
+<p><a href="/images/2010/05/eng_units.jpg"><img class="alignnone size-full wp-image-420" title="eng_units" src="/assets/eng_units.jpg" alt="" width="509" height="365" /></a></p>
 <p>Рис. 1. Настройка масштабирования в инженерные единицы в программе Easy Builder 8000 (конфигуратор панелей Weintek)</p>
 <p>Второй способ заключается в передаче 32-битного значения в двух последовательно расположенных 16-битных регистрах. В современной практике чаще всего применяется именно этот способ.</p>
 <p>Разместим в проекте панели переменную типа Float (т.е. вещественную 32-битную переменную) по адресу 1, а в конроллере - переменную вещественного типа с записанным в неё константным значением, например 123,456. Запрос выглядит так:</p>
@@ -70,7 +70,7 @@
     <link href="http://arktur04.github.io/blog/2010/05/16/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-5/"/>
     <updated>2010-05-16T01:54:45+06:00</updated>
     <id>http://arktur04.github.io/blog/2010/05/16/%d0%bf%d1%80%d0%be%d1%82%d0%be%d0%ba%d0%be%d0%bb-modbus-%d0%b2-%d1%83%d1%81%d1%82%d1%80%d0%be%d0%b9%d1%81%d1%82%d0%b2%d0%b0%d1%85-%d0%bd%d0%b0-%d0%b1%d0%b0%d0%b7%d0%b5-%d0%bc%d0%b8%d0%ba%d1%80%d0%be-5</id>
-    <content type="html"><![CDATA[<p><em><a href="{{ site.baseurl }}/images/2010/05/Рис-1.jpg"></a>Продолжение. </em><em>Начало здесь: </em><em> </em><a href="http://32bit.me/?p=355"><em>http://32bit.me/?p=355</em></a><em> - введение; </em><a href="http://32bit.me/?p=373"><em>http://32bit.me/?p=373</em></a><em> - часть 1.0; <a href="http://32bit.me/?p=377">http://32bit.me/?p=377</a> - часть 1.1; <a href="http://32bit.me/?p=395">http://32bit.me/?p=395</a> - часть 1.2.</em></p>
+    <content type="html"><![CDATA[<p><em><a href="/images/2010/05/Рис-1.jpg"></a>Продолжение. </em><em>Начало здесь: </em><em> </em><a href="http://32bit.me/?p=355"><em>http://32bit.me/?p=355</em></a><em> - введение; </em><a href="http://32bit.me/?p=373"><em>http://32bit.me/?p=373</em></a><em> - часть 1.0; <a href="http://32bit.me/?p=377">http://32bit.me/?p=377</a> - часть 1.1; <a href="http://32bit.me/?p=395">http://32bit.me/?p=395</a> - часть 1.2.</em></p>
 <p>Кратко рассмотрим обмен данными между ведущим и ведомым устройством для других типов регистров.</p>
 <p><!--more--><strong>Регистры 0х, чтение</strong></p>
 <p>Регистры 0х представляют собой 1-битные регистры с поддержкой как чтения, так и записи. Изначально они предусматривались для управления дискретными выходами (coil, обмотка реле), однако на практике могут использоваться как для входов, так и для выходов.</p>
@@ -153,7 +153,7 @@
     <link href="http://arktur04.github.io/blog/2010/05/13/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-4/"/>
     <updated>2010-05-13T17:51:44+06:00</updated>
     <id>http://arktur04.github.io/blog/2010/05/13/%d0%bf%d1%80%d0%be%d1%82%d0%be%d0%ba%d0%be%d0%bb-modbus-%d0%b2-%d1%83%d1%81%d1%82%d1%80%d0%be%d0%b9%d1%81%d1%82%d0%b2%d0%b0%d1%85-%d0%bd%d0%b0-%d0%b1%d0%b0%d0%b7%d0%b5-%d0%bc%d0%b8%d0%ba%d1%80%d0%be-4</id>
-    <content type="html"><![CDATA[<p><em><a href="{{ site.baseurl }}/images/2010/05/Рис-1.jpg"></a>Продолжение. </em><em>Начало здесь: </em><em> </em><a href="http://32bit.me/?p=355"><em>http://32bit.me/?p=355</em></a><em> - введение; </em><a href="http://32bit.me/?p=373"><em>http://32bit.me/?p=373</em></a><em> - часть 1.0; <a href="http://32bit.me/?p=377">http://32bit.me/?p=377</a> - часть 1.1.</em></p>
+    <content type="html"><![CDATA[<p><em><a href="/images/2010/05/Рис-1.jpg"></a>Продолжение. </em><em>Начало здесь: </em><em> </em><a href="http://32bit.me/?p=355"><em>http://32bit.me/?p=355</em></a><em> - введение; </em><a href="http://32bit.me/?p=373"><em>http://32bit.me/?p=373</em></a><em> - часть 1.0; <a href="http://32bit.me/?p=377">http://32bit.me/?p=377</a> - часть 1.1.</em></p>
 <p>Перед тем, как приступить к дальнейшим экспериментам с протоколом Modbus, разберёмся с ещё одной темой, относящейся к этому протоколу: с регистрами Modbus.</p>
 <p><!--more-->Каждая переменная, которую ведущее устройство считывает/записывает из ведомого устройства, имеет 16-битный адрес. Но помимо адреса, есть ещё тип регистра, обозначаеый обычно цифрой от 0 до 6 и буквой x, например 4х. Часто адрес переменной записывается, например, так: 400001. Это означает, что адрес переменной равен 1, и она относится к типу 4. Максимальное значение адреса равно 65535, поэтому для переменных типа 4 полные адреса будут находиться в диапазоне от 400001 до 465535 (от 40001<sub>16</sub> до 4FFFF<sub>16</sub>).</p>
 <p>Что означает тип переменной? Итак:</p>

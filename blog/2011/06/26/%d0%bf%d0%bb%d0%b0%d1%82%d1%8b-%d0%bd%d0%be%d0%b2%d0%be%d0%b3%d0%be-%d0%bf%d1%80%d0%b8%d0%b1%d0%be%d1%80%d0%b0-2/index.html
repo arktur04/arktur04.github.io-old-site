@@ -31,9 +31,55 @@
 <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
+<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
   
 
 </head>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [ ['$', '$'], ["\(", "\)"] ],
+        displayMath: [ ['$$', '$$'], ["\[", "\]"] ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+      //,
+      //displayAlign: "left",
+      //displayIndent: "2em"
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
 
 <body   >
   <header role="banner"><hgroup>
@@ -135,7 +181,7 @@
     
     <p class="meta">
       
-        <a class="basic-alignment left" href="/blog/2011/06/23/%25d1%2587%25d1%2582%25d0%25be-%25d1%2582%25d0%25b0%25d0%25ba%25d0%25be%25d0%25b5-mtbf/" title="Previous Post: Что такое MTBF">&laquo; Что такое MTBF</a>
+        <a class="basic-alignment left" href="/blog/2011/06/22/%25d0%25bd%25d0%25be%25d0%25b2%25d0%25b0%25d1%258f-%25d0%25bf%25d0%25bb%25d0%25b0%25d1%2582%25d0%25b0-2/" title="Previous Post: Новая плата - 2">&laquo; Новая плата - 2</a>
       
       
         <a class="basic-alignment right" href="/blog/2011/06/29/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-%25d0%25bc-%25d1%2588%25d0%25bb%25d0%25b5%25d0%25b5-qt4-5-%25d0%25bf%25d1%2580%25d0%25be%25d1%2584%25d0%25b5%25d1%2581%25d1%2581%25d0%25b8%25d0%25be%25d0%25bd%25d0%25b0%25d0%25bb%25d1%258c%25d0%25bd%25d0%25be%25d0%25b5-%25d0%25bf%25d1%2580%25d0%25be%25d0%25b3%25d1%2580/" title="Next Post: Книга М. Шлее "Qt4.5. Профессиональное программирование на С++"">Книга М. Шлее "Qt4.5. Профессиональное программирование на С++" &raquo;</a>
@@ -257,3 +303,19 @@
 
 </body>
 </html>
+
+<!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  messageStyle: "none",
+  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>

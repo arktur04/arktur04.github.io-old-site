@@ -9,7 +9,7 @@
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="Книга "Идеальный код" под редакцией Энди Орама и Грега Уилсона написана в совершенно необычном для технической литературы жанре. Книга представляет &hellip;">
+  <meta name="description" content="Книга посвящена системе контроля версий Git. В книге рассматриваются как основные команды Git, предназначенные для повседневной работы, так и сложные &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -30,9 +30,55 @@
 <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
+<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
   
 
 </head>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [ ['$', '$'], ["\(", "\)"] ],
+        displayMath: [ ['$$', '$$'], ["\[", "\]"] ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+      //,
+      //displayAlign: "left",
+      //displayIndent: "2em"
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
 
 <body   >
   <header role="banner"><hgroup>
@@ -68,42 +114,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/03/20/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25b0%25d0%25bb%25d1%258c%25d0%25bd%25d1%258b%25d0%25b9-%25d0%25ba%25d0%25be%25d0%25b4/">Книга "Идеальный код"</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2011-03-20T19:58:32+05:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>7:58 pm</span></time>
-        
-           | <a href="/blog/2011/03/20/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25b0%25d0%25bb%25d1%258c%25d0%25bd%25d1%258b%25d0%25b9-%25d0%25ba%25d0%25be%25d0%25b4/#disqus_thread"
-             data-disqus-identifier="http://arktur04.github.io/blog/2011/03/20/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25b0%25d0%25bb%25d1%258c%25d0%25bd%25d1%258b%25d0%25b9-%25d0%25ba%25d0%25be%25d0%25b4/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="/images/2011/03/3297830.jpg"><img class="alignnone size-medium wp-image-1139" title="3297830" src="/assets/3297830-212x300.jpg" alt="" width="212" height="300" /></a></p>
-<p>Книга "Идеальный код" под редакцией Энди Орама и Грега Уилсона написана в совершенно необычном для технической литературы жанре. Книга представляет собой сборник статей (можно даже сказать "сборник эссе") на тему, вынесенную в заглавие книги. Всего в книге 33 таких статьи. Их авторами являются ведущие программисты крупных компаний, учёные, известные разработчики. Достаточно отметить, что автором первой статьи является Брайан Керниган, автором ещё одной статьи является Юкихиро Мацумото, создатель Ruby.</p>
-<p>Разумеется, при таком подходе нет и не может быть какого-либо единого и однозначного взгляда на то, что можно, а что нельзя считать идеальным кодом. В главах книги рассматриваются самые разные проблемы, от поиска в тексте по регулярному выражению до формирования png-файла с изображением ДНК на web-сервере.</p>
-<p>Итак, какой же вывод можно сделать из книги? Идеала нет. Программирование настолько разнообразно и многогранно, что в нём нет и не может быть каких-либо единых правил.</p>
-<p>Кстати, подзаголовок книги: "Как научиться видеть красоту в программировании". Либо вы видите красоту в своём (или в чужом) коде, либо нет. Всё равно для другого человека критерии "идеального кода" могут быть совершенно другими.</p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -441,6 +451,44 @@
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/12/31/%25d0%25b8%25d1%2581%25d0%25bf%25d1%258b%25d1%2582%25d0%25b0%25d0%25bd%25d0%25b8%25d0%25b5-%25d1%2586%25d0%25b5%25d0%25bf%25d0%25b8-%25d0%25b7%25d0%25b0%25d1%2589%25d0%25b8%25d1%2582%25d1%258b/">Испытание цепи защиты</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-12-31T03:17:50+05:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2010</span></span> <span class='time'>3:17 am</span></time>
+        
+           | <a href="/blog/2010/12/31/%25d0%25b8%25d1%2581%25d0%25bf%25d1%258b%25d1%2582%25d0%25b0%25d0%25bd%25d0%25b8%25d0%25b5-%25d1%2586%25d0%25b5%25d0%25bf%25d0%25b8-%25d0%25b7%25d0%25b0%25d1%2589%25d0%25b8%25d1%2582%25d1%258b/#disqus_thread"
+             data-disqus-identifier="http://arktur04.github.io/blog/2010/12/31/%25d0%25b8%25d1%2581%25d0%25bf%25d1%258b%25d1%2582%25d0%25b0%25d0%25bd%25d0%25b8%25d0%25b5-%25d1%2586%25d0%25b5%25d0%25bf%25d0%25b8-%25d0%25b7%25d0%25b0%25d1%2589%25d0%25b8%25d1%2582%25d1%258b/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Схема защиты обеспечивает защиту силовой цепи от превышения тока.</p>
+<p>На рис 1 первый импульс соответствует нормальному значению тока (6А), второй импульс соответствует повышенному значению тока (~8А), при котором срабатывает защита. Ток измерялся по выходному сигналу датчика тока ACS712ELCTR-30A-T (датчик на эффекте Холла). Напряжение на выходе датчика имеет линейную зависимость от тока и может быть выражено как U = (500 мВ + 133 [мВ/A] * I).</p>
+<p><a href="/images/2010/12/NewFile12.jpg"><img class="alignnone size-full wp-image-1015" title="NewFile1" src="/assets/NewFile12.jpg" alt="" width="320" height="234" /></a></p>
+<p>Рис. 1. Срабатывание защиты цепи при превышении тока.</p>
+<p>На рис. 2 показан тот же импульс при масштабе времени 20 мкс/дел, видно, что время срабатывания защиты составляет около 100 мкс.</p>
+<p><a href="/images/2010/12/NewFile02.jpg"><img class="alignnone size-full wp-image-1012" title="NewFile0" src="/assets/NewFile02.jpg" alt="" width="320" height="234" /></a></p>
+<p>Рис. 2. Импульс тока при срабатывании защиты.</p>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/posts/15">&larr; Older</a>
@@ -561,3 +609,19 @@
 
 </body>
 </html>
+
+<!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  messageStyle: "none",
+  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>

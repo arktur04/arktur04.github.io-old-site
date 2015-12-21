@@ -9,7 +9,7 @@
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="Прочитал книгу Andrew Moore &ldquo;FPGA for dummies&rdquo;, 44 стр., англ. язык. Книжка совсем простая, конечно, и объясняет совсем базовые вещи, &hellip;">
+  <meta name="description" content="Прочитал книгу Andrew Moore “FPGA for dummies”, 44 стр., англ. язык. Книжка совсем простая, конечно, и объясняет совсем базовые вещи, типа, что такое &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -30,9 +30,55 @@
 <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
+<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
   
 
 </head>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [ ['$', '$'], ["\(", "\)"] ],
+        displayMath: [ ['$$', '$$'], ["\[", "\]"] ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+      //,
+      //displayAlign: "left",
+      //displayIndent: "2em"
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
 
 <body   >
   <header role="banner"><hgroup>
@@ -90,10 +136,9 @@
   </header>
 
 
-<div class="entry-content"><p>Прочитал книгу Andrew Moore &ldquo;FPGA for dummies&rdquo;, 44 стр., англ. язык. Книжка совсем простая, конечно, и объясняет совсем базовые вещи, типа, что такое FPGA и зачем они нужны.</p>
+<div class="entry-content"><p>Прочитал книгу Andrew Moore “FPGA for dummies”, 44 стр., англ. язык. Книжка совсем простая, конечно, и объясняет совсем базовые вещи, типа, что такое FPGA и зачем они нужны.</p>
 
 <p><a href="/images/2015/12/FPGAs_dummies_full.jpg"><img title="FPGA for dummies" src="/images/2015/12/FPGAs_dummies_small.png" alt="" height="300" /></a></p>
-
 </div>
 
 
@@ -261,3 +306,19 @@
 
 </body>
 </html>
+
+<!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  messageStyle: "none",
+  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>

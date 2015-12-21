@@ -30,9 +30,55 @@
 <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
+<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
   
 
 </head>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [ ['$', '$'], ["\(", "\)"] ],
+        displayMath: [ ['$$', '$$'], ["\[", "\]"] ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+      //,
+      //displayAlign: "left",
+      //displayIndent: "2em"
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
 
 <body   >
   <header role="banner"><hgroup>
@@ -94,8 +140,7 @@
 
 <p><a href="/images/2015/12/qt5.3_full.jpg"><img title="Qt5.3. Профессиональное программирование на С++" src="/images/2015/12/qt5.3_small.jpg" alt="" height="300" /></a></p>
 
-
-<p>Раньше я читал Шлее &ldquo;Qt 4.5&rdquo;, новая книга стала больше, но в целом принципы работы Qt остались те же. Возможности системы описаны достаточно подробно, но во второй половине книги в коде попадаются странные ошибки.</p>
+<p>Раньше я читал Шлее “Qt 4.5”, новая книга стала больше, но в целом принципы работы Qt остались те же. Возможности системы описаны достаточно подробно, но во второй половине книги в коде попадаются странные ошибки.</p>
 
 <p>Я видел в сети критические мнения о книге, в которых приводился, в частности, аргумент, что документация по Qt настолько хороша, что в книге нет нужды. Лично я считаю, что книга всё равно нужна, документация не заменяет учебника. Учебник можно прочитать в начале знакомства с продуктом, и получить хотя бы общее представление обо всех его ключевых особенностях, а конкретные вопросы уточнять в процессе работы, обращаясь к фирменной документации.</p>
 </div>
@@ -267,3 +312,19 @@
 
 </body>
 </html>
+
+<!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  messageStyle: "none",
+  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>

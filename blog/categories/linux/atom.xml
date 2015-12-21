@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Linux | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/linux/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-20T21:34:28+05:00</updated>
+  <updated>2015-12-21T21:47:11+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -20,7 +20,7 @@
     <id>http://arktur04.github.io/blog/2015/10/02/%d0%b4%d1%80%d0%b0%d0%b9%d0%b2%d0%b5%d1%80-%d0%b4%d0%bb%d1%8f-linux-%d0%bf%d0%b5%d1%80%d0%b2%d1%8b%d0%b9-%d1%88%d0%b0%d0%b3</id>
     <content type="html"><![CDATA[<p>Продолжаю эксперименты с Altera Cyclone V. На этот раз объектом эксперимента стал драйвер для той прошивки FPGA, про которую я писал ранее. Сама прошивка простейшая: она просто мигает светодиодами с частотой, которую можно задавать программно. В прошлом посте на эту тему я сделал управление частотой мигания из обычной (user-space) программы, которая получает доступ к физической памяти через функции open("/dev/mem") и mmap().<br />
 Однако такой путь считается "hacky and unsafe". Поэтому следующим логичным шагом должно стать написание драйвера.</p>
-<p><a href="{{ site.baseurl }}/images/2015/10/Tux-linux-and-ARM-multiplatform-support.jpg"><img class="alignnone size-full wp-image-2147" alt="Tux-linux-and-ARM-multiplatform-support" src="{{ site.baseurl }}/assets/Tux-linux-and-ARM-multiplatform-support.jpg" width="672" height="370" /></a></p>
+<p><a href="/images/2015/10/Tux-linux-and-ARM-multiplatform-support.jpg"><img class="alignnone size-full wp-image-2147" alt="Tux-linux-and-ARM-multiplatform-support" src="/assets/Tux-linux-and-ARM-multiplatform-support.jpg" width="672" height="370" /></a></p>
 <p>Я воспользовался готовым исходником драйвера (<a href="https://github.com/zhemao/sockit_test/tree/master/software/blinker">ссылка</a>) за авторством Howard Mao (он на самом деле не Howard, а Zhe Hao Mao). Конечно, для того, чтобы разобраться в работе кода, почитал отдельные главы книги Linux Device Drivers (есть русский перевод).</p>
 <p>Для компиляции пришлось вытаскивать архив Arrow SocKit 13.1 GSRD Linux отсюда: <a href="http://releases.rocketboards.org/release/2013.11/gsrd/src">http://releases.rocketboards.org/release/2013.11/gsrd/src</a>, файл linux-socfpga-gsrd-13.1-src.bsx. Объем архива около 1.1 Гб, но сервер очень медленный, качается несколько часов. Честно говоря, я впервые увидел файл с расширением bsx, оказалось, что это самораспаковывающийся архив. Просто запускаем его и он разворачивается в указанную папку. В ней в папке sources находится файл linux-socfpga.tgz. Его тоже нужно распаковать, естественно. Это и есть как таковое ядро системы, которое нужно указывать при компиляции драйвера.</p>
 <p>Однако всё не так просто. После компиляции записываем скомпилированный драйвер blinker.ko на SD-карту, после загрузки Linux пишем<strong> insmod blinker.ko</strong> и получаем следующее: "<em>blinker: version magic '3.9.0-00161-ged01b8c SMP mod_unload ARMv7 p2v8 ' should be '3.9.0 SMP mod_unload ARMv7 p2v8'</em>". Не совпали волшебные номерки. Причем версия одна и та же, просто зачем-то к ней приделан какой-то добавочный номер.</p>
@@ -37,7 +37,7 @@
     <id>http://arktur04.github.io/blog/2015/09/05/%d0%ba%d0%bd%d0%b8%d0%b3%d0%b0-%d1%80-%d0%bb%d0%b0%d0%b2-%d1%80%d0%b0%d0%b7%d1%80%d0%b0%d0%b1%d0%be%d1%82%d0%ba%d0%b0-%d1%8f%d0%b4%d1%80%d0%b0-linux-%d0%b2%d1%82%d0%be%d1%80%d0%be%d0%b5</id>
     <content type="html"><![CDATA[<p>Прочитал книгу «Разработка ядра Linux», автор Р. Лав.</p>
 <p>В книге подробно описывается внутренняя структура ядра Linux.</p>
-<p><a href="{{ site.baseurl }}/images/2015/09/346326_razrabotka_yadra_linux.jpg"><img class="alignnone  wp-image-2122" alt="346326_razrabotka_yadra_linux" src="{{ site.baseurl }}/assets/346326_razrabotka_yadra_linux.jpg" width="434" /></a></p>
+<p><a href="/images/2015/09/346326_razrabotka_yadra_linux.jpg"><img class="alignnone  wp-image-2122" alt="346326_razrabotka_yadra_linux" src="/assets/346326_razrabotka_yadra_linux.jpg" width="434" /></a></p>
 <p>&nbsp;</p>
 <p>Книга, без сомнения, достойна прочтения, если вы занимаетесь разработкой модулей ядра.</p>
 ]]></content>
@@ -50,7 +50,7 @@
     <id>http://arktur04.github.io/blog/2015/08/25/%d0%ba%d0%bd%d0%b8%d0%b3%d0%b0-%d1%80-%d0%bb%d0%b0%d0%b2-linux-%d1%81%d0%b8%d1%81%d1%82%d0%b5%d0%bc%d0%bd%d0%be%d0%b5-%d0%bf%d1%80%d0%be%d0%b3%d1%80%d0%b0%d0%bc%d0%bc%d0%b8%d1%80%d0%be%d0%b2%d0%b0</id>
     <content type="html"><![CDATA[<p>Прочитал книгу Р. Лав "Linux. Системное программирование".<br />
 В книге описывается ряд системных вызовов для работы с файлами, процессами, временем, сигналами и распределением памяти. Приводятся сведения о работе этих вызовов по стандарту POSIX и по их реализации в ядре Linux.</p>
-<p><a href="{{ site.baseurl }}/images/2015/08/3a56606f29e71f3a51b8c5fdd1d.jpg"><img class="alignnone size-full wp-image-2118" alt="3a56606f29e71f3a51b8c5fdd1d" src="{{ site.baseurl }}/assets/3a56606f29e71f3a51b8c5fdd1d.jpg" width="407" height="600" /></a></p>
+<p><a href="/images/2015/08/3a56606f29e71f3a51b8c5fdd1d.jpg"><img class="alignnone size-full wp-image-2118" alt="3a56606f29e71f3a51b8c5fdd1d" src="/assets/3a56606f29e71f3a51b8c5fdd1d.jpg" width="407" height="600" /></a></p>
 ]]></content>
   </entry>
   
@@ -98,7 +98,7 @@ echo 1 &gt; /sys/class/fpga-bridge/lwhps2fpga/enable
     <content type="html"><![CDATA[<p>Прочитал и освоил на практике воркбенч SoCKit Lab, две части, Hardware и Software.<br />
 Данная программа лабораторных работ основана на системе на кристалле (SoC) Altera Cyclone V. SoC состоит из двух процессорных ядер ARM Cortex A9 и FPGA, которые соединены мостами и могут взаимодействовать друг с другом. Первое руководство, Hardware, выполняется в Quartus II, и описывает конфигурирование и подключение периферии к процессору, а также симуляцию системы в ModelSim.<br />
 Вторая часть, Software, описывает процесс загрузки Linux, компиляцию простейшей программы (мигание светодиодом), отладку программы в ARM DS-5 Embedded Development Suite, и основы работы с SignalTap II Logic Analyzer в режиме совместной отладки программного кода и FPGA-проекта.</p>
-<p><a href="{{ site.baseurl }}/images/2015/07/pic1.jpg"><img class="alignnone size-full wp-image-2101" alt="pic1" src="{{ site.baseurl }}/assets/pic2015-07-28.jpg" width="1000" height="328" /></a></p>
+<p><a href="/images/2015/07/pic1.jpg"><img class="alignnone size-full wp-image-2101" alt="pic1" src="/assets/pic2015-07-28.jpg" width="1000" height="328" /></a></p>
 ]]></content>
   </entry>
   

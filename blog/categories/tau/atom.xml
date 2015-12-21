@@ -4,7 +4,7 @@
   <title><![CDATA[Category: тау | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/tau/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-20T21:34:28+05:00</updated>
+  <updated>2015-12-21T21:47:11+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -18,7 +18,7 @@
     <link href="http://arktur04.github.io/blog/2010/12/20/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-%25d0%25b2-%25d0%25b2-%25d0%25b4%25d0%25b5%25d0%25bd%25d0%25b8%25d1%2581%25d0%25b5%25d0%25bd%25d0%25ba%25d0%25be-%25d0%25ba%25d0%25be%25d0%25bc%25d0%25bf%25d1%258c%25d1%258e%25d1%2582%25d0%25b5%25d1%2580%25d0%25bd%25d0%25be%25d0%25b5-%25d1%2583%25d0%25bf%25d1%2580%25d0%25b0/"/>
     <updated>2010-12-20T23:52:10+05:00</updated>
     <id>http://arktur04.github.io/blog/2010/12/20/%d0%ba%d0%bd%d0%b8%d0%b3%d0%b0-%d0%b2-%d0%b2-%d0%b4%d0%b5%d0%bd%d0%b8%d1%81%d0%b5%d0%bd%d0%ba%d0%be-%d0%ba%d0%be%d0%bc%d0%bf%d1%8c%d1%8e%d1%82%d0%b5%d1%80%d0%bd%d0%be%d0%b5-%d1%83%d0%bf%d1%80%d0%b0</id>
-    <content type="html"><![CDATA[<p><a href="{{ site.baseurl }}/images/2010/12/1a__.jpg"><img class="alignnone size-medium wp-image-976" title="1a__" src="{{ site.baseurl }}/assets/1a__-214x300.jpg" alt="" width="214" height="300" /></a></p>
+    <content type="html"><![CDATA[<p><a href="/images/2010/12/1a__.jpg"><img class="alignnone size-medium wp-image-976" title="1a__" src="/assets/1a__-214x300.jpg" alt="" width="214" height="300" /></a></p>
 <p>Данная книга представляет собой справочник, посвящённый различным аспектам построения автоматизированных систем управления технологическими процессами, систем сбора данных и т.п. Книга содержит следующие главы:</p>
 <p>1. Архитектура автоматизированной системы</p>
 <p>2. Промышленные сети и интерфейсы</p>
@@ -46,14 +46,14 @@
 <p>На рисунках хорошо видно, что объект имеет существенные нелинейности: время изменения температуры снизу вверх примерно в два раза меньше, чем в обратном направлении, изменение температуры на одинаковую величину (50°С) с уровня 600°С до уровня 650°С приводит к несколько иному переходному процессу, чем изменение температуры с уровня 650°С до уровня 700°С.</p>
 <p>В результате регулятор удерживает температуру с точностью +/-0,5 °С, эту точность можно ещё немного повысить. Перерегулирование во всех случаях не превышает 5°С (при скачке уставки 50°С).</p>
 <p>На рисунках приведены кривые переходных процессов в регуляторе. Желтая линия - величина рассогласования (вход регулятора) в градусах * 1000, красная кривая - выходной сигнал регулятора (он смещён так, чтобы при нулевой сумме П-, И- и Д-составляющих соответствовать температуре 650°С). Остальные кривые отображают выходы отдельных составляющих регулятора. Время  указано в секундах.</p>
-<p><a href="{{ site.baseurl }}/images/2010/12/600-650.png"></a><a href="{{ site.baseurl }}/images/2010/12/600-650.png"><img class="alignnone size-medium wp-image-954" title="600-650" src="{{ site.baseurl }}/assets/600-650-300x161.png" alt="" width="300" height="161" /></a><br />
+<p><a href="/images/2010/12/600-650.png"></a><a href="/images/2010/12/600-650.png"><img class="alignnone size-medium wp-image-954" title="600-650" src="/assets/600-650-300x161.png" alt="" width="300" height="161" /></a><br />
 Рис. 1. Переходный процесс при изменении температуры с 600°С до 650°С</p>
-<p><a href="{{ site.baseurl }}/images/2010/12/650-600.png"><img class="alignnone size-medium wp-image-955" title="650-600" src="{{ site.baseurl }}/assets/650-600-300x161.png" alt="" width="300" height="161" /></a></p>
+<p><a href="/images/2010/12/650-600.png"><img class="alignnone size-medium wp-image-955" title="650-600" src="/assets/650-600-300x161.png" alt="" width="300" height="161" /></a></p>
 <p>Рис. 2. Переходный процесс при изменении температуры с 650°С до 600°С</p>
 <p>Ещё графики под катом.</p>
-<p><!--more--><a href="{{ site.baseurl }}/images/2010/12/650-700.png"><img class="alignnone size-medium wp-image-956" title="650-700" src="{{ site.baseurl }}/assets/650-700-300x187.png" alt="" width="300" height="187" /></a></p>
+<p><!--more--><a href="/images/2010/12/650-700.png"><img class="alignnone size-medium wp-image-956" title="650-700" src="/assets/650-700-300x187.png" alt="" width="300" height="187" /></a></p>
 <p>Рис. 3. Переходный процесс при изменении температуры с 650°С до 700°С</p>
-<p><a href="{{ site.baseurl }}/images/2010/12/700-650.png"><img class="alignnone size-medium wp-image-957" title="700-650" src="{{ site.baseurl }}/assets/700-650-300x161.png" alt="" width="300" height="161" /></a></p>
+<p><a href="/images/2010/12/700-650.png"><img class="alignnone size-medium wp-image-957" title="700-650" src="/assets/700-650-300x161.png" alt="" width="300" height="161" /></a></p>
 <p>Рис. 4. Переходный процесс при изменении температуры с 700°С до 650°С</p>
 ]]></content>
   </entry>

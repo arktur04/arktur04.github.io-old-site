@@ -4,7 +4,7 @@
   <title><![CDATA[Category: разработка плат | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/razrabotka-plat/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-20T21:34:28+05:00</updated>
+  <updated>2015-12-21T21:47:11+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -20,9 +20,9 @@
     <id>http://arktur04.github.io/blog/2015/06/02/2049</id>
     <content type="html"><![CDATA[<p>С сайта RS Components можно скачать две системы автоматизированного проектирования: одна предназначена для разработки принципиальных схем и печатных плат (DesignSpark PCB), вторая для 3D-моделирования (DesignSpark Mechanical). Обе системы полностью бесплатны, то есть это не урезанные демо-версии. Ссылка: <a href="http://www.rs-online.com/designspark/electronics/eng/page/mechanical">http://www.rs-online.com/designspark/electronics/eng/page/mechanical</a></p>
 <p>Я скачал обе и немного попробовал что-нибудь сделать. Сразу могу сказать, что я сравниваю возможности и удобство использования с теми программами, которыми пользуюсь сам: с Altium Designer и Solid Works.</p>
-<p><a href="{{ site.baseurl }}/images/2015/06/pic1.jpg"><img class="alignnone size-medium wp-image-2050" alt="pic1" src="{{ site.baseurl }}/assets/pic1-2015-06-02-small.jpg" width="300" height="225" /></a></p>
+<p><a href="/images/2015/06/pic1.jpg"><img class="alignnone size-medium wp-image-2050" alt="pic1" src="/assets/pic1-2015-06-02-small.jpg" width="300" height="225" /></a></p>
 <p>Редактор схем.</p>
-<p><a href="{{ site.baseurl }}/images/2015/06/pic2.jpg"><img class="alignnone size-medium wp-image-2051" alt="pic2" src="{{ site.baseurl }}/assets/pic2-2015-06-02-small.jpg" width="300" height="195" /></a></p>
+<p><a href="/images/2015/06/pic2.jpg"><img class="alignnone size-medium wp-image-2051" alt="pic2" src="/assets/pic2-2015-06-02-small.jpg" width="300" height="195" /></a></p>
 <p>&nbsp;</p>
 <p>Редактор 3D.</p>
 <p>В общем, первое впечатление хорошее, есть большие библиотеки компонентов и для редактора схем/плат, и для 3D.</p>
@@ -42,7 +42,7 @@
     <content type="html"><![CDATA[<p>Прочитал руководство по разработке печатных плат для Zynq 7000.<br />
 На самом деле, конечно, информация, приведенная в руководстве, относится не только к Zynq 7000, а вообще ко всем быстродействующим цифровым схемам, просто приведена на примере Zynq 7000. Приведены сведения, касающиеся проектирования системы питания (номиналы и количество конденсаторов), сведения по согласованию импедансов линий, по интерфейсам (интерфейс с памятью DDR2, DDR3, LPDDR2, SD-card, Ethernet, IIC и др.).<br />
 В общем, очень полезное руководство.</p>
-<p><a href="{{ site.baseurl }}/images/2015/03/zynq7000.png"><img class="alignnone size-medium wp-image-2006" alt="zynq7000" src="{{ site.baseurl }}/assets/zynq7000-232x300.png" width="232" height="300" /></a></p>
+<p><a href="/images/2015/03/zynq7000.png"><img class="alignnone size-medium wp-image-2006" alt="zynq7000" src="/assets/zynq7000-232x300.png" width="232" height="300" /></a></p>
 ]]></content>
   </entry>
   
@@ -55,12 +55,12 @@
 <p>Плата предназначена для использования совместно с платой микроконтроллера, для этого на плате установлены преобразователи уровня 2,5В &lt;-&gt; 3.3В. Есть возможность не устанавливать преобразователи уровня, и непосредственно использовать уровни 2,5В, что может быть полезно при использовании данной платы совместно с FPGA или DSP, имеющими логические уровни 2,5В.</p>
 <p>Входные цепи допускают установку прецизионных резисторов как в SMT, так и в выводном исполнении, что даёт возможность использовать отечественные резисторы C2-29.</p>
 <p>Плата имеет 4 слоя.</p>
-<p><a href="{{ site.baseurl }}/images/2015/02/top-2.jpg"><img class="alignnone size-medium wp-image-1915" alt="top-2" src="{{ site.baseurl }}/assets/top-2-300x172.jpg" width="300" height="172" /></a></p>
+<p><a href="/images/2015/02/top-2.jpg"><img class="alignnone size-medium wp-image-1915" alt="top-2" src="/assets/top-2-300x172.jpg" width="300" height="172" /></a></p>
 <p>Далее под катом <!--more--></p>
-<p><a style="line-height: 1.5em;" href="{{ site.baseurl }}/images/2015/02/top-1.jpg"><img class="alignnone size-medium wp-image-1916" alt="top-1" src="{{ site.baseurl }}/assets/top-1-300x170.jpg" width="300" height="170" /></a></p>
+<p><a style="line-height: 1.5em;" href="/images/2015/02/top-1.jpg"><img class="alignnone size-medium wp-image-1916" alt="top-1" src="/assets/top-1-300x170.jpg" width="300" height="170" /></a></p>
 <p>Вид сверху.</p>
 <p>&nbsp;</p>
-<p><a href="{{ site.baseurl }}/images/2015/02/bottom-1.jpg"><img class="alignnone size-medium wp-image-1917" alt="bottom-1" src="{{ site.baseurl }}/assets/bottom-1-300x201.jpg" width="300" height="201" /></a></p>
+<p><a href="/images/2015/02/bottom-1.jpg"><img class="alignnone size-medium wp-image-1917" alt="bottom-1" src="/assets/bottom-1-300x201.jpg" width="300" height="201" /></a></p>
 <p>Вид снизу.</p>
 <p>&nbsp;</p>
 ]]></content>
@@ -73,7 +73,7 @@
     <id>http://arktur04.github.io/blog/2013/03/12/%d0%ba%d0%bd%d0%b8%d0%b3%d0%b0-%d0%ba%d0%be%d0%bd%d1%81%d1%82%d1%80%d1%83%d0%b8%d1%80%d0%be%d0%b2%d0%b0%d0%bd%d0%b8%d0%b5-%d0%b2%d1%8b%d1%81%d0%be%d0%ba%d0%be%d1%81%d0%ba%d0%be%d1%80%d0%be%d1%81</id>
     <content type="html"><![CDATA[<p>Хорошая книга, посвященная вопросам конструирования быстродействующих цифровых устройств. Как таковая цифровая схемотехника в книге не рассматривается совсем, в книге рассматриваются "аналоговые" аспекты работы схемы, такие как влияние паразитных индуктивностей, влияние на работу схемы блокировочных конденсаторов, правильная разводка цепей земли и питания на печатной плате, задержки, вносимые логическими элементами, печатными дорожками и линиями связи и т.п.</p>
 <p>Кстати, подзаголовок книги: "Начальный курс чёрной магии"</p>
-<p><a href="{{ site.baseurl }}/images/2013/03/1265111475_05.jpg"><img class="alignnone size-medium wp-image-1699" title="1265111475_05" src="{{ site.baseurl }}/assets/1265111475_05-213x300.jpg" alt="" width="213" height="300" /></a></p>
+<p><a href="/images/2013/03/1265111475_05.jpg"><img class="alignnone size-medium wp-image-1699" title="1265111475_05" src="/assets/1265111475_05-213x300.jpg" alt="" width="213" height="300" /></a></p>
 <p>Хотя большая часть рекомендаций проста и понятна, книга полезна хотя бы тем, что в ней собраны все (или очень многие) такие рекомендации. В общем, полезно.</p>
 ]]></content>
   </entry>
@@ -84,8 +84,8 @@
     <updated>2013-03-10T18:07:38+06:00</updated>
     <id>http://arktur04.github.io/blog/2013/03/10/%d0%bd%d0%be%d0%b2%d0%b0%d1%8f-%d0%bf%d0%bb%d0%b0%d1%82%d0%b0-6</id>
     <content type="html"><![CDATA[<p>Новая плата (прецизионный АЦП), 4 слоя.</p>
-<p><a href="{{ site.baseurl }}/images/2013/03/2013-03-10-01.jpg"><img class="alignnone size-medium wp-image-1695" title="Плата- top" src="{{ site.baseurl }}/assets/2013-03-10-01.jpg" alt="" width="300" height="258" /></a></p>
-<p><a href="{{ site.baseurl }}/images/2013/03/2013-03-10-02.jpg"><img class="alignnone size-medium wp-image-1696" title="Плата- bot" src="{{ site.baseurl }}/assets/2013-03-10-2.jpg" alt="" width="300" height="257" /></a></p>
+<p><a href="/images/2013/03/2013-03-10-01.jpg"><img class="alignnone size-medium wp-image-1695" title="Плата- top" src="/assets/2013-03-10-01.jpg" alt="" width="300" height="258" /></a></p>
+<p><a href="/images/2013/03/2013-03-10-02.jpg"><img class="alignnone size-medium wp-image-1696" title="Плата- bot" src="/assets/2013-03-10-2.jpg" alt="" width="300" height="257" /></a></p>
 <p>&nbsp;</p>
 ]]></content>
   </entry>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: аналоговая электроника | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/analoghovaia-eliektronika/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-20T21:34:28+05:00</updated>
+  <updated>2015-12-21T21:47:11+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -20,7 +20,7 @@
     <id>http://arktur04.github.io/blog/2015/04/05/%d0%bc%d0%b0%d0%ba%d0%b5%d1%82-%d0%b0%d0%bd%d0%b0%d0%bb%d0%be%d0%b3%d0%be%d0%b2%d0%be%d0%b9-%d1%87%d0%b0%d1%81%d1%82%d0%b8</id>
     <content type="html"><![CDATA[<p>Макет аналоговой части несложного прибора. Предназначен, в основном, для того, чтобы запустить устройство и отладить ПО, в дальнейшем он будет переделан на нормальной плате. Макетная плата была изготовлена давно, для другого проекта, и содержит, кроме макетного поля, различные узлы аналоговой схемотехники: двухполярный источник питания, источник опорного напряжения, инструментальный усилитель, АЦП, и т.п, но в данном случае эти узлы не используются и не смонтированы. Вентилятор предназначен для охлаждения платы, которая находится под этой платой и содержит цифровую часть, а также ЦАП и АЦП.</p>
 <p>&nbsp;</p>
-<p><a href="{{ site.baseurl }}/images/2015/04/prototype.jpg"><img class="alignnone size-medium wp-image-2011" alt="prototype" src="{{ site.baseurl }}/assets/prototype-300x198.jpg" width="300" height="198" /></a></p>
+<p><a href="/images/2015/04/prototype.jpg"><img class="alignnone size-medium wp-image-2011" alt="prototype" src="/assets/prototype-300x198.jpg" width="300" height="198" /></a></p>
 ]]></content>
   </entry>
   
@@ -30,7 +30,7 @@
     <updated>2015-03-08T18:14:21+05:00</updated>
     <id>http://arktur04.github.io/blog/2015/03/08/%d0%b7%d0%b0%d1%89%d0%b8%d1%82%d0%b0-%d0%be%d1%82-%d0%bf%d0%b5%d1%80%d0%b5%d0%bf%d0%be%d0%bb%d1%8e%d1%81%d0%be%d0%b2%d0%ba%d0%b8-%d0%bf%d0%be-%d0%bf%d0%b8%d1%82%d0%b0%d0%bd%d0%b8%d1%8e</id>
     <content type="html"><![CDATA[<p><a href="http://ru-radio-electr.livejournal.com/1295897.html">Отсюда</a>.</p>
-<p><a href="{{ site.baseurl }}/images/2015/03/111307_900.png"><img class="alignnone size-medium wp-image-1960" alt="111307_900" src="{{ site.baseurl }}/assets/111307_900-300x66.png" width="300" height="66" /></a></p>
+<p><a href="/images/2015/03/111307_900.png"><img class="alignnone size-medium wp-image-1960" alt="111307_900" src="/assets/111307_900-300x66.png" width="300" height="66" /></a></p>
 <p>&nbsp;</p>
 <p>Кликните картинку для просмотра полного размера.</p>
 <p>Защита сделана на N-канальном MOSFET транзисторе. Такое решение позволяет обеспечить почти нулевое падение напряжения, по сравнению с защитой на диоде. Например, при токе 3А 12В диод довольно сильно грелся бы, более Ватта.<br />
@@ -44,7 +44,7 @@
     <updated>2013-03-13T19:47:32+06:00</updated>
     <id>http://arktur04.github.io/blog/2013/03/13/%d0%bd%d0%be%d0%b2%d1%8b%d0%b9-%d0%bc%d0%b0%d0%ba%d0%b5%d1%82-%d0%bd%d0%b0-%d0%bc%d0%b0%d0%ba%d0%b5%d1%82%d0%bd%d0%be%d0%b9-%d0%bf%d0%bb%d0%b0%d1%82%d0%b5</id>
     <content type="html"><![CDATA[<p>Макет нового устройства, собранный на специально разработанной для таких целей макетной плате. Плата содержит разведенные узлы АЦП, усилителей, источника опорного напряжения, источников тока и других аналоговых устройств, а также макетное поле и разъемы для подключения платы с микроконтроллером.</p>
-<p><a href="{{ site.baseurl }}/images/2013/03/board-3.jpg"><img class="alignnone size-medium wp-image-1702" title="board-3" src="{{ site.baseurl }}/assets/board-3-300x218.jpg" alt="" width="300" height="218" /></a></p>
+<p><a href="/images/2013/03/board-3.jpg"><img class="alignnone size-medium wp-image-1702" title="board-3" src="/assets/board-3-300x218.jpg" alt="" width="300" height="218" /></a></p>
 ]]></content>
   </entry>
   
@@ -54,8 +54,8 @@
     <updated>2013-03-10T18:07:38+06:00</updated>
     <id>http://arktur04.github.io/blog/2013/03/10/%d0%bd%d0%be%d0%b2%d0%b0%d1%8f-%d0%bf%d0%bb%d0%b0%d1%82%d0%b0-6</id>
     <content type="html"><![CDATA[<p>Новая плата (прецизионный АЦП), 4 слоя.</p>
-<p><a href="{{ site.baseurl }}/images/2013/03/2013-03-10-01.jpg"><img class="alignnone size-medium wp-image-1695" title="Плата- top" src="{{ site.baseurl }}/assets/2013-03-10-01.jpg" alt="" width="300" height="258" /></a></p>
-<p><a href="{{ site.baseurl }}/images/2013/03/2013-03-10-02.jpg"><img class="alignnone size-medium wp-image-1696" title="Плата- bot" src="{{ site.baseurl }}/assets/2013-03-10-2.jpg" alt="" width="300" height="257" /></a></p>
+<p><a href="/images/2013/03/2013-03-10-01.jpg"><img class="alignnone size-medium wp-image-1695" title="Плата- top" src="/assets/2013-03-10-01.jpg" alt="" width="300" height="258" /></a></p>
+<p><a href="/images/2013/03/2013-03-10-02.jpg"><img class="alignnone size-medium wp-image-1696" title="Плата- bot" src="/assets/2013-03-10-2.jpg" alt="" width="300" height="257" /></a></p>
 <p>&nbsp;</p>
 ]]></content>
   </entry>
@@ -67,10 +67,10 @@
     <id>http://arktur04.github.io/blog/2013/03/09/%d0%bc%d0%b0%d0%ba%d0%b5%d1%82%d0%bd%d1%8b%d0%b5-%d0%bf%d0%bb%d0%b0%d1%82%d1%8b</id>
     <content type="html"><![CDATA[<p>Для макетирования разрабатываемых приборов были изготовлены специальные макетные платы, на которых разведены различные узлы: источник питания, АЦП, усилители, ключи и пр., эти узлы можно соединять между собой различными способами. Также плата содержит большое макетное поле. К плате подключается маленькая плата с микроконтроллером.</p>
 <p>На фото макет одного из приборов. Фото кликабельны.</p>
-<p><a href="{{ site.baseurl }}/images/2013/03/bread-1.jpg"><img class="alignnone size-medium wp-image-1690" title="bread - 1" src="{{ site.baseurl }}/assets/bread-1-300x175.jpg" alt="" width="300" height="175" /></a></p>
+<p><a href="/images/2013/03/bread-1.jpg"><img class="alignnone size-medium wp-image-1690" title="bread - 1" src="/assets/bread-1-300x175.jpg" alt="" width="300" height="175" /></a></p>
 <p>Под катом еще один макет.</p>
 <p><!--more--></p>
-<p><a href="{{ site.baseurl }}/images/2013/03/bread-2.jpg"><img class="alignnone size-medium wp-image-1691" title="bread - 2" src="{{ site.baseurl }}/assets/bread-2-300x193.jpg" alt="" width="300" height="193" /></a></p>
+<p><a href="/images/2013/03/bread-2.jpg"><img class="alignnone size-medium wp-image-1691" title="bread - 2" src="/assets/bread-2-300x193.jpg" alt="" width="300" height="193" /></a></p>
 ]]></content>
   </entry>
   

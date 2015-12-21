@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Python | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/python/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-20T21:34:28+05:00</updated>
+  <updated>2015-12-21T21:47:11+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -20,11 +20,11 @@
     <id>http://arktur04.github.io/blog/2014/01/16/raspberry-pi-%d0%b8-%d0%ba%d0%be%d0%bd%d1%82%d1%80%d0%be%d0%bb%d1%8c-%d1%82%d0%b5%d0%bc%d0%bf%d0%b5%d1%80%d0%b0%d1%82%d1%83%d1%80%d1%8b</id>
     <content type="html"><![CDATA[<p>Я уже <a href="http://32bit.me/?p=1768">писал</a> про самодельную "Time Capsule" на базе Raspberry Pi. Она работает хорошо, если не считать проблемы с перегревом. В корпусе устройства установлен вентилятор, но он издаёт при работе существенный шум.</p>
 <p>Итак, я решил подключить к RPi термодатчик и сделать автоматическое управление вентилятором.</p>
-<p><a href="{{ site.baseurl }}/images/2014/01/temp1.png"><img class="alignnone size-medium wp-image-1790" title="temp1" src="{{ site.baseurl }}/assets/temp1-300x225.png" alt="" width="300" height="225" /></a></p>
+<p><a href="/images/2014/01/temp1.png"><img class="alignnone size-medium wp-image-1790" title="temp1" src="/assets/temp1-300x225.png" alt="" width="300" height="225" /></a></p>
 <p>Далее под катом.<br />
 <!--more--><br />
 Схемотехнически тут всё очень просто: термодатчик Analog Devices ADT7301 с интерфейсом SPI, вентилятор 40х40 мм, подключенный через транзисторный ключ к выходу PWM.</p>
-<p><a href="{{ site.baseurl }}/images/2014/01/2014-01-16-02.jpg"><img class="alignnone size-medium wp-image-1793" title="термодатчик" src="{{ site.baseurl }}/assets/2014-01-16-02.jpg" alt="" width="300" height="198" /></a></p>
+<p><a href="/images/2014/01/2014-01-16-02.jpg"><img class="alignnone size-medium wp-image-1793" title="термодатчик" src="/assets/2014-01-16-02.jpg" alt="" width="300" height="198" /></a></p>
 <p>Плата с термодатчиком.</p>
 <p>Датчик приклеен к радиатору источника питания (самая горячая точка в устройстве).</p>
 <p>Использование PWM позволяет включать вентилятор не на полные обороты, что делает его очень тихим. Управление вентилятором осуществляет скрипт на Python.</p>
@@ -202,7 +202,7 @@ except KeyboardInterrupt:
     <updated>2011-04-06T02:46:13+06:00</updated>
     <id>http://arktur04.github.io/blog/2011/04/06/%d0%ba%d0%bd%d0%b8%d0%b3%d0%b0-%d0%b8%d0%b7%d1%83%d1%87%d0%b0%d0%b5%d0%bc-python</id>
     <content type="html"><![CDATA[<p>Книга "Изучаем Python", автор Марк Лутц, является весьма объёмным (848 стр.) введением в язык Python.</p>
-<p><a href="{{ site.baseurl }}/images/2011/04/23654604.jpg"><img class="alignnone size-medium wp-image-1142" title="23654604" src="{{ site.baseurl }}/assets/23654604-208x300.jpg" alt="" width="208" height="300" /></a></p>
+<p><a href="/images/2011/04/23654604.jpg"><img class="alignnone size-medium wp-image-1142" title="23654604" src="/assets/23654604-208x300.jpg" alt="" width="208" height="300" /></a></p>
 <p>В книге рассмотрена версия Python 2.5, текущая версия Python 3.2, поэтому при чтении текста  выполнении тестовых заданий придётся вносить некоторые коррективы в излагаемый материал. Однако эти отличия не очень велики.</p>
 <p>Плюсы книги: синтаксис языка изложен очень подробно, с множеством примеров.</p>
 <p>Минусы: в книге не рассматриваются библиотеки Python, и не рассматриваются какие-либо прикладные задачи, поэтому после её прочтения всё равно потребуется дополнительная литература.</p>

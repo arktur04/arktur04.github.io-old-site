@@ -4,7 +4,7 @@
   <title><![CDATA[Category: цап | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/tsap/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-20T21:34:28+05:00</updated>
+  <updated>2015-12-21T21:47:11+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -20,7 +20,7 @@
     <id>http://arktur04.github.io/blog/2015/11/23/%d0%bf%d1%80%d0%be%d0%b5%d0%ba%d1%82-%d0%b2%d0%b8%d0%b4%d0%b5%d0%be%d0%b0%d0%b4%d0%b0%d0%bf%d1%82%d0%b5%d1%80%d0%b0-%d1%87%d0%b0%d1%81%d1%82%d1%8c-3</id>
     <content type="html"><![CDATA[<p>Продолжение. <a href="http://arktur04.github.io/blog/2015/11/05/vga-%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580-%25d0%25bd%25d0%25b0-fpga/">Часть 2.</a></p>
 <p>Структурная схема видеоадаптера приведена на рис. 1 (кликабельно)</p>
-<p><a href="{{ site.baseurl }}/images/2015/11/vga-card-big.jpg"><img class="alignnone size-medium wp-image-2175" alt="vga-card-big" src="{{ site.baseurl }}/assets/vga-card-big-300x214.jpg" width="300" height="214" /></a></p>
+<p><a href="/images/2015/11/vga-card-big.jpg"><img class="alignnone size-medium wp-image-2175" alt="vga-card-big" src="/assets/vga-card-big-300x214.jpg" width="300" height="214" /></a></p>
 <p>&nbsp;</p>
 <p>Рис. 1. Структурная схема видеоадаптера.</p>
 <p>&nbsp;</p>
@@ -51,12 +51,12 @@
     <id>http://arktur04.github.io/blog/2015/11/05/vga-%d0%b0%d0%b4%d0%b0%d0%bf%d1%82%d0%b5%d1%80-%d0%bd%d0%b0-fpga</id>
     <content type="html"><![CDATA[<p>Продолжение. <a title="Начало" href="http://arktur04.github.io/blog/2015/05/13/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-1/">Начало</a>.</p>
 <p>Проект видеоадаптера переделан под использование видео ЦАП ADV7123. Схема подключения приведена на рисунке:</p>
-<p><a href="{{ site.baseurl }}/images/2015/11/VGA_DAC.jpg"><img class="alignnone size-medium wp-image-2168" alt="VGA_DAC" src="{{ site.baseurl }}/assets/VGA_DAC-300x190.jpg" width="300" height="190" /></a></p>
+<p><a href="/images/2015/11/VGA_DAC.jpg"><img class="alignnone size-medium wp-image-2168" alt="VGA_DAC" src="/assets/VGA_DAC-300x190.jpg" width="300" height="190" /></a></p>
 <p>(по клику откроется полный размер).</p>
 <p>Код проекта приведён на гитхабе (<a href="https://github.com/arktur04/VideoCard">ссылка</a>). Это тестовый код, который выводит на монитор поле разноцветных квадратов.</p>
 <p>По сравнению с предыдущей версией, в которой использовался резистивный ЦАП, увеличена разрядность с 2-х до 8-и бит на цвет, и существенно улучшилось качество изображения.</p>
 <p>Фото тестовой картинки:</p>
-<p><a href="{{ site.baseurl }}/images/2015/11/pic1.jpg"><img class="alignnone size-medium wp-image-2166" alt="pic" src="{{ site.baseurl }}/assets/pic1-300x189.jpg" width="300" height="189" /></a></p>
+<p><a href="/images/2015/11/pic1.jpg"><img class="alignnone size-medium wp-image-2166" alt="pic" src="/assets/pic1-300x189.jpg" width="300" height="189" /></a></p>
 <p>&nbsp;</p>
 ]]></content>
   </entry>
@@ -68,7 +68,7 @@
     <id>http://arktur04.github.io/blog/2015/05/13/%d0%bf%d1%80%d0%be%d0%b5%d0%ba%d1%82-%d0%b2%d0%b8%d0%b4%d0%b5%d0%be%d0%b0%d0%b4%d0%b0%d0%bf%d1%82%d0%b5%d1%80%d0%b0-%d1%87%d0%b0%d1%81%d1%82%d1%8c-1</id>
     <content type="html"><![CDATA[<p>Целью проекта является разработка видеоадаптера на FPGA. Выходом видеоадаптера является VGA, на данный момент поддерживается глубина цвета 6 бит (по 2 бита на цвет RGB).<br />
 Разъём VGA подключен к FPGA по следующей схеме:</p>
-<p><a href="{{ site.baseurl }}/images/2015/05/schematics.jpg"><img class="alignnone  wp-image-2038" alt="schematics" src="{{ site.baseurl }}/assets/schematics.jpg" width="475" height="358" /></a></p>
+<p><a href="/images/2015/05/schematics.jpg"><img class="alignnone  wp-image-2038" alt="schematics" src="/assets/schematics.jpg" width="475" height="358" /></a></p>
 <p>&nbsp;</p>
 <p>Резисторы R1-R6 образуют простейший ЦАП, для начала хватит такого, если нужна большая глубина цвета, то лучше использовать специализированные микросхемы видеоЦАП, например ADV7123.</p>
 <p><!--more--></p>
@@ -81,7 +81,7 @@
 <p>Теоретически, существует стандартный режим 640х400, но монитор отказался работать в таком режиме, поэтому пришлось его имитировать на режиме 640х480. Режим 320х200 - то же самое.</p>
 <p>Модуль работает на тактовой частоте 50МГц, частота пикселов составляет 25МГц. По стандарту частота пикселов в режимах 640х480@60Гц и 640х350@70Гц составляет 25,175МГц, но мониторы успешно синхронизируются и на 25МГц.</p>
 <p>Фото экрана для примера:</p>
-<p><a href="{{ site.baseurl }}/images/2015/05/pic1.jpg"><img class="alignnone size-medium wp-image-2039" alt="pic1" src="{{ site.baseurl }}/assets/pic1-300x226.jpg" width="300" height="226" /></a></p>
+<p><a href="/images/2015/05/pic1.jpg"><img class="alignnone size-medium wp-image-2039" alt="pic1" src="/assets/pic1-300x226.jpg" width="300" height="226" /></a></p>
 <p>Код на гитхабе: <a href="https://github.com/arktur04/VideoCard/archive/master.zip">https://github.com/arktur04/VideoCard/archive/master.zip</a></p>
 <p>Полезная ссылка: <a href="http://tinyvga.com/vga-timing">http://tinyvga.com/vga-timing</a> - таблица режимов VGA с таймингами.</p>
 <p>Это первая часть проекта, один модуль. Следующей частью будет модуль двухпортовой памяти для видеобуфера.</p>
@@ -94,7 +94,7 @@
     <updated>2011-09-15T19:30:26+06:00</updated>
     <id>http://arktur04.github.io/blog/2011/09/15/%d0%bf%d0%bb%d0%b0%d1%82%d0%b0-%d0%ba%d0%be%d0%bd%d1%82%d1%80%d0%be%d0%bb%d0%bb%d0%b5%d1%80%d0%b0-%d0%b8-%d1%86%d0%b0%d0%bf</id>
     <content type="html"><![CDATA[<p>Плата с микроконтроллером, интерфейсами RS-232, USB, RS-485 (гальванически изолированный) и выходами сигналов тока 4-20 мА (гальванически изолированы друг от друга и от контроллера), 2 канала. Контроллер LPC1768 (Cortex M3).</p>
-<p><a href="{{ site.baseurl }}/images/2011/09/pic_board.jpg"><img class="alignnone size-medium wp-image-1315" title="pic_board" src="{{ site.baseurl }}/assets/pic_board-285x300.jpg" alt="" width="285" height="300" /></a></p>
+<p><a href="/images/2011/09/pic_board.jpg"><img class="alignnone size-medium wp-image-1315" title="pic_board" src="/assets/pic_board-285x300.jpg" alt="" width="285" height="300" /></a></p>
 ]]></content>
   </entry>
   
@@ -104,7 +104,7 @@
     <updated>2011-09-05T13:36:35+06:00</updated>
     <id>http://arktur04.github.io/blog/2011/09/05/%d1%84%d0%be%d1%82%d0%be-%d0%bf%d1%80%d0%b8%d0%b1%d0%be%d1%80%d0%b0</id>
     <content type="html"><![CDATA[<p>Фото нового прибора (двухканальный вариант)</p>
-<p><a href="{{ site.baseurl }}/images/2011/09/P1010103.jpg"><img class="alignnone size-medium wp-image-1307" title="P1010103" src="{{ site.baseurl }}/assets/P1010103-300x272.jpg" alt="" width="300" height="272" /></a></p>
+<p><a href="/images/2011/09/P1010103.jpg"><img class="alignnone size-medium wp-image-1307" title="P1010103" src="/assets/P1010103-300x272.jpg" alt="" width="300" height="272" /></a></p>
 ]]></content>
   </entry>
   

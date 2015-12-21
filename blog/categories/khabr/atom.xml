@@ -4,7 +4,7 @@
   <title><![CDATA[Category: хабр | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/khabr/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-20T21:34:28+05:00</updated>
+  <updated>2015-12-21T21:47:11+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -18,7 +18,7 @@
     <link href="http://arktur04.github.io/blog/2013/04/27/%25d0%25bf%25d1%2580%25d0%25b8%25d0%25bc%25d0%25b5%25d0%25bd%25d0%25b5%25d0%25bd%25d0%25b8%25d0%25b5-gsm-%25d0%25bc%25d0%25be%25d0%25b4%25d1%2583%25d0%25bb%25d0%25b5%25d0%25b9-quectel/"/>
     <updated>2013-04-27T09:04:40+06:00</updated>
     <id>http://arktur04.github.io/blog/2013/04/27/%d0%bf%d1%80%d0%b8%d0%bc%d0%b5%d0%bd%d0%b5%d0%bd%d0%b8%d0%b5-gsm-%d0%bc%d0%be%d0%b4%d1%83%d0%bb%d0%b5%d0%b9-quectel</id>
-    <content type="html"><![CDATA[<p><a href="{{ site.baseurl }}/images/2013/04/10e1e54857e4985eb0fa6903da975294.jpg"><img class="alignnone size-full wp-image-1715" title="10e1e54857e4985eb0fa6903da975294" src="{{ site.baseurl }}/assets/10e1e54857e4985eb0fa6903da975294.jpg" alt="" width="398" height="400" /></a></p>
+    <content type="html"><![CDATA[<p><a href="/images/2013/04/10e1e54857e4985eb0fa6903da975294.jpg"><img class="alignnone size-full wp-image-1715" title="10e1e54857e4985eb0fa6903da975294" src="/assets/10e1e54857e4985eb0fa6903da975294.jpg" alt="" width="398" height="400" /></a></p>
 <p>В дву постах на хабре я описываю основы применения GSM-модуля M10 фирмы Quectel и его AT-команды.</p>
 <p>Ссылки на хабр: <a href="http://habrahabr.ru/post/174783/">часть 1</a>, <a href="http://habrahabr.ru/post/174803/">часть 2</a>.</p>
 <p>&nbsp;</p>
@@ -31,9 +31,9 @@
     <updated>2012-09-13T05:14:26+06:00</updated>
     <id>http://arktur04.github.io/blog/2012/09/13/%d0%be%d1%82%d0%bb%d0%b0%d0%b4%d0%be%d1%87%d0%bd%d0%b0%d1%8f-%d0%bf%d0%bb%d0%b0%d1%82%d1%84%d0%be%d1%80%d0%bc%d0%b0-%d0%bd%d0%b0-raspberry-pi</id>
     <content type="html"><![CDATA[<p>На основе платы  Raspberry Pi (процессор Broadcom BCM2835 700 MHz ARM11 ARM1176JZF-S) сделал такое устройство, для удобства работы с платой и подключения к Raspberry Pi других устройств.</p>
-<p><img class="alignnone size-medium wp-image-1637" title="raspberrypi" src="{{ site.baseurl }}/assets/raspberrypi-300x221.jpg" alt="" width="300" height="221" /></p>
+<p><img class="alignnone size-medium wp-image-1637" title="raspberrypi" src="/assets/raspberrypi-300x221.jpg" alt="" width="300" height="221" /></p>
 <p>Плата Rasperry Pi.</p>
-<p><a href="{{ site.baseurl }}/images/2012/09/9f9d45dae2a6482c406ee78f823a4706.jpg"><img class="alignnone size-medium wp-image-1638" title="9f9d45dae2a6482c406ee78f823a4706" src="{{ site.baseurl }}/assets/9f9d45dae2a6482c406ee78f823a4706-300x157.jpg" alt="" width="300" height="157" /></a></p>
+<p><a href="/images/2012/09/9f9d45dae2a6482c406ee78f823a4706.jpg"><img class="alignnone size-medium wp-image-1638" title="9f9d45dae2a6482c406ee78f823a4706" src="/assets/9f9d45dae2a6482c406ee78f823a4706-300x157.jpg" alt="" width="300" height="157" /></a></p>
 <p>Фото устройства. (Картинка кликабельна)</p>
 <p>На Raspberry Pi установлена операционная система Debian Wheezy.</p>
 <p>Подробнее можно прочитать <a href="http://habrahabr.ru/post/151113/#habracut">здесь</a>.</p>
@@ -48,7 +48,7 @@
     <id>http://arktur04.github.io/blog/2012/03/24/%d0%bf%d0%be%d0%b4%d0%ba%d0%bb%d1%8e%d1%87%d0%b5%d0%bd%d0%b8%d0%b5-%d1%86%d0%b2%d0%b5%d1%82%d0%bd%d0%be%d0%b3%d0%be-lcd-%d1%81-%d1%81%d0%b5%d0%bd%d1%81%d0%be%d1%80%d0%bd%d1%8b%d0%bc-%d1%8d%d0%ba%d1%80</id>
     <content type="html"><![CDATA[<p>Перепост с Хабрахабра:</p>
 <p><em>Добрый день, хабр. Сегодня я хотел бы поделиться некоторым опытом, касающимся подключения цветных LCD-индикаторов к микроконтроллеру. Эта тема уже поднималась на хабре (<a href="http://habrahabr.ru/post/139384/">http://habrahabr.ru/post/139384/</a>), поэтому данный пост может рассматриваться как дополнение к уже написанному моими уважаемыми коллегами.</em></p>
-<p><a href="{{ site.baseurl }}/images/2012/03/3879e634ce1f8ad979d8be1406f8e824.jpg"><img class="alignnone size-medium wp-image-1541" title="3879e634ce1f8ad979d8be1406f8e824" src="{{ site.baseurl }}/assets/3879e634ce1f8ad979d8be1406f8e824-300x244.jpg" alt="" width="300" height="244" /></a></p>
+<p><a href="/images/2012/03/3879e634ce1f8ad979d8be1406f8e824.jpg"><img class="alignnone size-medium wp-image-1541" title="3879e634ce1f8ad979d8be1406f8e824" src="/assets/3879e634ce1f8ad979d8be1406f8e824-300x244.jpg" alt="" width="300" height="244" /></a></p>
 <p>Читать далее:   <a href="http://habrahabr.ru/post/140415/">http://habrahabr.ru/post/140415/</a></p>
 ]]></content>
   </entry>
@@ -59,7 +59,7 @@
     <updated>2011-10-03T20:35:44+06:00</updated>
     <id>http://arktur04.github.io/blog/2011/10/03/%d0%b0%d0%bd%d0%b0%d0%bb%d0%be%d0%b3%d0%be-%d1%86%d0%b8%d1%84%d1%80%d0%be%d0%b2%d0%be%d0%b5-%d0%bf%d1%80%d0%b5%d0%be%d0%b1%d1%80%d0%b0%d0%b7%d0%be%d0%b2%d0%b0%d0%bd%d0%b8%d0%b5-%d0%b4%d0%bb%d1%8f-2</id>
     <content type="html"><![CDATA[<p>В этой статье рассмотрены основные вопросы, касающиеся принципа действия АЦП различных типов. При этом некоторые важные теоретические выкладки, касающиеся математического описания аналого-цифрового преобразования остались за рамками статьи, но приведены ссылки, по которым заинтересованный читатель сможет найти более глубокое рассмотрение теоретических аспектов работы АЦП. Таким образом, статья касается в большей степени понимания общих принципов функционирования АЦП, чем теоретического анализа их работы.</p>
-<p><a href="{{ site.baseurl }}/images/2011/10/2c166541.jpg"><img class="alignnone size-medium wp-image-1332" title="2c166541" src="{{ site.baseurl }}/assets/2c166541-300x113.jpg" alt="" width="300" height="113" /></a></p>
+<p><a href="/images/2011/10/2c166541.jpg"><img class="alignnone size-medium wp-image-1332" title="2c166541" src="/assets/2c166541-300x113.jpg" alt="" width="300" height="113" /></a></p>
 <p><em>Полный текст опубликован на Хабрахабре: <a href="http://habrahabr.ru/blogs/easyelectronics/125029/">http://habrahabr.ru/blogs/easyelectronics/125029/</a></em></p>
 ]]></content>
   </entry>

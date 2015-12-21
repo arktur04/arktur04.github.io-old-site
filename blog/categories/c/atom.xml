@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/c/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-20T21:34:28+05:00</updated>
+  <updated>2015-12-21T21:47:11+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -20,7 +20,7 @@
     <id>http://arktur04.github.io/blog/2015/12/16/knigha-qt</id>
     <content type="html"><![CDATA[<p>Прочитал книгу М. Шлее «Qt5.3. Профессиональное программирование на С++», 928 стр., и проработал (по мере возможности) все примеры кода.</p>
 
-<p><a href="{{ site.baseurl }}/images/2015/12/qt5.3_full.jpg"><img title="Qt5.3. Профессиональное программирование на С++" src="{{ site.baseurl }}/images/2015/12/qt5.3_small.jpg" alt="" height="300" /></a></p>
+<p><a href="/images/2015/12/qt5.3_full.jpg"><img title="Qt5.3. Профессиональное программирование на С++" src="/images/2015/12/qt5.3_small.jpg" alt="" height="300" /></a></p>
 
 <p>Раньше я читал Шлее “Qt 4.5”, новая книга стала больше, но в целом принципы работы Qt остались те же. Возможности системы описаны достаточно подробно, но во второй половине книги в коде попадаются странные ошибки.</p>
 

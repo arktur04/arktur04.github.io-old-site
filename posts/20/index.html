@@ -9,7 +9,7 @@
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="1. P-CAD 2004 и 2006 имеют глюк при работе в Windows 7: в редакторе PCB невозможно задать правила разводки (Options/Design Rules, вкладка Layer), &hellip;">
+  <meta name="description" content="Развёл плату нового прибора. Всего там будет 5 плат. ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -30,9 +30,55 @@
 <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
+<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
   
 
 </head>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [ ['$', '$'], ["\(", "\)"] ],
+        displayMath: [ ['$$', '$$'], ["\[", "\]"] ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+      //,
+      //displayAlign: "left",
+      //displayIndent: "2em"
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
 
 <body   >
   <header role="banner"><hgroup>
@@ -68,46 +114,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/04/12/p-cad-2006-%25d0%25b8-%25d0%25b5%25d0%25b3%25d0%25be-%25d0%25b3%25d0%25bb%25d1%258e%25d0%25ba%25d0%25b8/">P-CAD 2006 и его глюки</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2010-04-12T22:01:57+06:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>10:01 pm</span></time>
-        
-           | <a href="/blog/2010/04/12/p-cad-2006-%25d0%25b8-%25d0%25b5%25d0%25b3%25d0%25be-%25d0%25b3%25d0%25bb%25d1%258e%25d0%25ba%25d0%25b8/#disqus_thread"
-             data-disqus-identifier="http://arktur04.github.io/blog/2010/04/12/p-cad-2006-%25d0%25b8-%25d0%25b5%25d0%25b3%25d0%25be-%25d0%25b3%25d0%25bb%25d1%258e%25d0%25ba%25d0%25b8/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>1. P-CAD 2004 и 2006 имеют глюк при работе в Windows 7: в редакторе PCB невозможно задать правила разводки (Options/Design Rules, вкладка Layer), возникает ошибка. Без этих правил развести плату можно, но проверить DRC нельзя. P-CAD 2001 работает в семёрке нормально.  Под Windows XP всё работает нормально, поэтому пришлось отказаться от красот и удобств семёрки в пользу старой доброй XP.</p>
-<p>2.  P-CAD2006 имеет в панели инструментов кнопку Board outline. Этим инструментом задаётся контур платы. Зачем это нужно, непонятно, контур платы всегда успешно задавался линиями на слое Board.</p>
-<p>Более того, если вы создадите замкнутый контур из линий в слое Board, P-CAD автоматически создаст контур платы (Board outline). </p>
-<p>Глюк состоит в том, что этот контур в дальнейшем не редактируется. Вы можете передвигать линии в слое Board, но первоначально созданный контур платы останется на месте и будет мешать проверка DRC.</p>
-<p>Как быть, если нужно скорректировать контур платы? Сохраняем файл платы в формате ASCII, открываем его Блокнотом, ищем слово boardOutlineObj, и под ним список точек контура платы с координатами. Редактируем их вручную, сохраняем, открываем в P-CAD и, о чудо, контур платы переместился на нужное нам место.</p>
-<p>UPD: тут в комментариях написали:</p>
-<p>п.1 решается удалением манифестов из папки pcad<br />
-п.2 в option – selection mask поставить галочку на bourd outline</p>
-<p>Что я могу сказать... Век живи, век учись, <span style="text-decoration: line-through;">дураком помрёшь</span></p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -458,6 +464,47 @@
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/01/19/%25d0%25b1%25d0%25bb%25d0%25be%25d0%25ba-%25d0%25ba%25d0%25be%25d0%25bc%25d0%25bc%25d1%2583%25d1%2582%25d0%25b0%25d1%2586%25d0%25b8%25d0%25b8-%25d1%2581%25d0%25b8%25d0%25b3%25d0%25bd%25d0%25b0%25d0%25bb%25d0%25be%25d0%25b2/">Блок коммутации сигналов</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-01-19T21:52:00+05:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>9:52 pm</span></time>
+        
+           | <a href="/blog/2010/01/19/%25d0%25b1%25d0%25bb%25d0%25be%25d0%25ba-%25d0%25ba%25d0%25be%25d0%25bc%25d0%25bc%25d1%2583%25d1%2582%25d0%25b0%25d1%2586%25d0%25b8%25d0%25b8-%25d1%2581%25d0%25b8%25d0%25b3%25d0%25bd%25d0%25b0%25d0%25bb%25d0%25be%25d0%25b2/#disqus_thread"
+             data-disqus-identifier="http://arktur04.github.io/blog/2010/01/19/%25d0%25b1%25d0%25bb%25d0%25be%25d0%25ba-%25d0%25ba%25d0%25be%25d0%25bc%25d0%25bc%25d1%2583%25d1%2582%25d0%25b0%25d1%2586%25d0%25b8%25d0%25b8-%25d1%2581%25d0%25b8%25d0%25b3%25d0%25bd%25d0%25b0%25d0%25bb%25d0%25be%25d0%25b2/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class="separator" style="clear:both;text-align:center;"><a style="clear:left;float:left;margin-bottom:1em;margin-right:1em;" href="http://arktur04.files.wordpress.com/2010/01/p1000824.jpg"></a></div>
+<p style="text-align: left;">Эта конструкция из четырех плат предназначена для коммутации сигналов 24 датчиков. Всего коммутируется 96 цепей. Светодиоды сбоку индицируют, какие цепи включены в данный момент. Управление платами происходит с микроконтроллера по интерфейсу SPI. Устройство предназначено для проведения научных экспериментов.</p>
+<p><a href="/images/2010/01/post41/relays1-big.jpg"><img style="border: 0px;" src="/assets/relays1-small.jpg" border="0" alt="" /></a></p>
+<p>Рис. 1.</p>
+<p>Под катом еще фотки.</p>
+<p><a name="more"></a></p>
+<p></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2010/01/19/%25d0%25b1%25d0%25bb%25d0%25be%25d0%25ba-%25d0%25ba%25d0%25be%25d0%25bc%25d0%25bc%25d1%2583%25d1%2582%25d0%25b0%25d1%2586%25d0%25b8%25d0%25b8-%25d1%2581%25d0%25b8%25d0%25b3%25d0%25bd%25d0%25b0%25d0%25bb%25d0%25be%25d0%25b2/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
   <div class="pagination">
     
       <a class="prev" href="/posts/21">&larr; Older</a>
@@ -578,3 +625,19 @@
 
 </body>
 </html>
+
+<!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  messageStyle: "none",
+  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>

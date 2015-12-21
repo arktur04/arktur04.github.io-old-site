@@ -4,7 +4,7 @@
   <title><![CDATA[Category: юмор | My Octopress Blog]]></title>
   <link href="http://arktur04.github.io/blog/categories/iumor/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-20T21:34:28+05:00</updated>
+  <updated>2015-12-21T21:47:11+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -19,7 +19,7 @@
     <updated>2010-03-22T02:43:37+05:00</updated>
     <id>http://arktur04.github.io/blog/2010/03/22/write-in-c</id>
     <content type="html"><![CDATA[<p>(Если файл не воспроизводится, возможно,  вам следует установить<a href="http://www.apple.com/quicktime/"> QuickTime</a>)</p>
-<p><object style="width: 500px; height: 400px;" classid="clsid:02bf25d5-8c17-4b23-bc80-d3488abddc6b" width="500" height="400" codebase="http://www.apple.com/qtactivex/qtplugin.cab#version=6,0,2,0"><param name="autoplay" value="false" /><param name="targetcache" value="true" /><param name="src" value="{{ site.baseurl }}/images/2010/03/video.mp4" /><embed style="width: 500px; height: 400px;" type="video/quicktime" width="500" height="400" src="{{ site.baseurl }}/images/2010/03/video.mp4" targetcache="true" autoplay="false" /></object></p>
+<p><object style="width: 500px; height: 400px;" classid="clsid:02bf25d5-8c17-4b23-bc80-d3488abddc6b" width="500" height="400" codebase="http://www.apple.com/qtactivex/qtplugin.cab#version=6,0,2,0"><param name="autoplay" value="false" /><param name="targetcache" value="true" /><param name="src" value="/images/2010/03/video.mp4" /><embed style="width: 500px; height: 400px;" type="video/quicktime" width="500" height="400" src="/images/2010/03/video.mp4" targetcache="true" autoplay="false" /></object></p>
 ]]></content>
   </entry>
   
@@ -30,7 +30,7 @@
     <id>http://arktur04.github.io/blog/2009/12/06/%d0%bf%d0%b8%d1%81%d1%8c%d0%bc%d0%be</id>
     <content type="html"><![CDATA[<div style="border-bottom:medium none;border-left:medium none;border-right:medium none;border-top:medium none;">Вот такое письмо пришло однажды в нашу фирму (под катом).</div>
 <p><a name="more"></a><!--more--></p>
-<div class="separator" style="border-bottom:medium none;border-left:medium none;border-right:medium none;border-top:medium none;clear:both;text-align:center;"><a style="clear:left;float:left;margin-bottom:1em;margin-right:1em;" href="{{ site.baseurl }}/images/2010/01/post28/crazy_letter-big.jpg"><img style="border: 0px;" src="{{ site.baseurl }}/assets/crazy_letter-small.jpg" border="0" alt="" /></a></div>
+<div class="separator" style="border-bottom:medium none;border-left:medium none;border-right:medium none;border-top:medium none;clear:both;text-align:center;"><a style="clear:left;float:left;margin-bottom:1em;margin-right:1em;" href="/images/2010/01/post28/crazy_letter-big.jpg"><img style="border: 0px;" src="/assets/crazy_letter-small.jpg" border="0" alt="" /></a></div>
 <div class="separator" style="border-bottom:medium none;border-left:medium none;border-right:medium none;border-top:medium none;clear:both;text-align:left;">Нажмите на картинку, чтобы посмотреть в полный размер.</div>
 ]]></content>
   </entry>

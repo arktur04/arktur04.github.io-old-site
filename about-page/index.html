@@ -30,9 +30,55 @@
 <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="//fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
+<!-- MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for(i=0; i < all.length; i += 1) {
+            all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+    });
+</script>
+
+<script type="text/javascript"
+   src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
   
 
 </head>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      jax: ["input/TeX", "output/HTML-CSS"],
+      tex2jax: {
+        inlineMath: [ ['$', '$'], ["\(", "\)"] ],
+        displayMath: [ ['$$', '$$'], ["\[", "\]"] ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+      //,
+      //displayAlign: "left",
+      //displayIndent: "2em"
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
 
 <body   >
   <header role="banner"><hgroup>
@@ -79,11 +125,11 @@
 <time class='entry-date' datetime='2015-12-13T21:09:00+05:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>9:09 pm</span></time></p>
   </header>
   
-  <h2>О блоге</h2>
+  <h2 id="section">О блоге</h2>
 
 <p>Этот блог посвящен микроконтроллерам, FPGA и связанным с ними темам, таким, как программирование, цифровая и аналоговая схемотехника, ЦАП, АЦП, ПЛК, системы промышленной автоматики, SCADA-системы и т.п.</p>
 
-<h2>Обо мне</h2>
+<h2 id="section-1">Обо мне</h2>
 
 <p>Меня зовут Владимир, я живу в Екатеринбурге, работаю инженером-конструктором в одном НПО (бывшем НИИ), входящем в Федеральное Космическое Агентство (Роскосмос). Там я занимаюсь разработками не скажу чего, а в свободное от основной работы время я занимаюсь любимыми делами: изучением различных технологий и языков программирования.</p>
 
@@ -103,7 +149,7 @@
 
 <p>Если Вас интересует данная тема, не стесняйтесь, пишите комментарии, оставляйте ссылки на свои сайты и блоги, обращайтесь с вопросами и предложениями. Постараюсь ответить всем.</p>
 
-<h2>Как связаться со мной</h2>
+<h2 id="section-2">Как связаться со мной</h2>
 
 <p>Со мной всегда можно связаться через ЖЖ <a href="http://32bit_me.livejournal.com/">http://32bit_me.livejournal.com/</a></p>
 
@@ -255,3 +301,19 @@
 
 </body>
 </html>
+
+<!-- mathjax config similar to math.stackexchange -->
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$']],
+    processEscapes: true,
+    skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+  },
+  messageStyle: "none",
+  "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML" type="text/javascript"></script>
