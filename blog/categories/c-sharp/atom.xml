@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: C Sharp | My Octopress Blog]]></title>
+  <title><![CDATA[Category: C Sharp | Записная книжка разработчика]]></title>
   <link href="http://arktur04.github.io/blog/categories/c-sharp/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-26T22:05:12+05:00</updated>
+  <updated>2015-12-26T22:47:01+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
