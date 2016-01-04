@@ -4,7 +4,7 @@
   <title><![CDATA[Записная книжка разработчика]]></title>
   <link href="http://arktur04.github.io/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2016-01-04T20:27:53+05:00</updated>
+  <updated>2016-01-04T20:43:21+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -21,7 +21,7 @@
     <content type="html"><![CDATA[<p>Прочитал книгу Chen Chung-Shu "Creating an LLVM Backend for the Cpu0 Architecture", 575 стр., англ. язык.
 Книга по LLVM, единственная в своём роде книга, детально описывающая процесс разработки бэкенда.</p>
 
-<p><a href="http://arktur04.github.io/images/2016/01/line-tile.png"><img title="Creating an LLVM Backend for the Cpu0 Architecture" src="http://arktur04.github.io/2016/01/line-tile.png" alt="" height="300" /></a></p>
+<p><a href="http://arktur04.github.io/images/2016/01/line-tile.png"><img title="Creating an LLVM Backend for the Cpu0 Architecture" src="http://arktur04.github.io/images/2016/01/line-tile.png" alt="" height="300" /></a></p>
 
 <p>Я читал эту книгу ранее, но автор непрерывно вносит исправления и дополнения в текст (эта книга существует только в онлайновом виде), поэтому я решил перечитать всё полностью, с начала до конца, самый свежий вариант. Сейчас я могу сказать, что читал по LLVM всё, что опубликовано, и что имеет хотя бы немного существенное значение (можно также найти огромное количество статей в духе “мы разработали компилятор для нашего процессора, это круто”. Их я обычно не читаю). Источников по LLVM очень мало, печатных книг всего две, например.</p>
 
@@ -49,7 +49,7 @@
     <link href="http://arktur04.github.io/blog/2015/12/16/knigha-virt-kompiliatory/"/>
     <updated>2015-12-16T20:00:22+05:00</updated>
     <id>http://arktur04.github.io/blog/2015/12/16/knigha-virt-kompiliatory</id>
-    <content type="html"><![CDATA[<p>Прочитал книгу Вирт Н. “Построение компиляторов”, 192 стр.</p>
+    <content type="html"><![CDATA[<p>Прочитал книгу Вирт Н. “Построение компиляторов”, 192 стр., русск. язык.</p>
 
 <p><a href="http://arktur04.github.io/images/2015/12/vurt_full.jpg"><img title="Qt5.3. Профессиональное программирование на С++" src="http://arktur04.github.io/images/2015/12/vurt_small.jpg" alt="" height="300" /></a></p>
 
