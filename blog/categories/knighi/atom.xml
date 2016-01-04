@@ -4,7 +4,7 @@
   <title><![CDATA[Category: книги, | Записная книжка разработчика]]></title>
   <link href="http://arktur04.github.io/blog/categories/knighi/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2016-01-04T20:50:25+05:00</updated>
+  <updated>2016-01-04T20:52:06+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -18,7 +18,7 @@
     <link href="http://arktur04.github.io/blog/2016/01/04/knigha-chen-chung-shu-creating-an-llvm-backend-for-the-cpu0-architecture/"/>
     <updated>2016-01-04T20:17:43+05:00</updated>
     <id>http://arktur04.github.io/blog/2016/01/04/knigha-chen-chung-shu-creating-an-llvm-backend-for-the-cpu0-architecture</id>
-    <content type="html"><![CDATA[<p>Прочитал книгу Chen Chung-Shu "Creating an LLVM Backend for the Cpu0 Architecture", 575 стр., англ. язык.
+    <content type="html"><![CDATA[<p>Прочитал книгу Chen Chung-Shu “Creating an LLVM Backend for the Cpu0 Architecture”, 575 стр., англ. язык.
 Книга по LLVM, единственная в своём роде книга, детально описывающая процесс разработки бэкенда.</p>
 
 <p><a href="/images/2016/01/line-tile.png"><img title="Creating an LLVM Backend for the Cpu0 Architecture" src="/images/2016/01/line-tile_small.png" alt="" height="300" /></a></p>
