@@ -9,7 +9,8 @@
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="Прочитал книгу Andrew Moore “FPGA for dummies”, 44 стр., англ. язык. Книжка совсем простая, конечно, и объясняет совсем базовые вещи, типа, что такое &hellip;">
+  <meta name="description" content="Прочитал книгу Chen Chung-Shu "Creating an LLVM Backend for the Cpu0 Architecture", 575 стр., англ. язык.
+Книга по LLVM, единственная в своём роде &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -114,6 +115,49 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2016/01/04/knigha-chen-chung-shu-creating-an-llvm-backend-for-the-cpu0-architecture/">Книга Chen Chung-Shu "Creating an LLVM Backend for the Cpu0 Architecture"</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-01-04T20:17:43+05:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>4</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>8:17 pm</span></time>
+        
+           | <a href="/blog/2016/01/04/knigha-chen-chung-shu-creating-an-llvm-backend-for-the-cpu0-architecture/#disqus_thread"
+             data-disqus-identifier="http://arktur04.github.io/blog/2016/01/04/knigha-chen-chung-shu-creating-an-llvm-backend-for-the-cpu0-architecture/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Прочитал книгу Chen Chung-Shu "Creating an LLVM Backend for the Cpu0 Architecture", 575 стр., англ. язык.
+Книга по LLVM, единственная в своём роде книга, детально описывающая процесс разработки бэкенда.</p>
+
+<p><a href="/images/2016/01/line-tile.png"><img title="Creating an LLVM Backend for the Cpu0 Architecture" src="/2016/01/line-tile.png" alt="" height="300" /></a></p>
+
+<p>Я читал эту книгу ранее, но автор непрерывно вносит исправления и дополнения в текст (эта книга существует только в онлайновом виде), поэтому я решил перечитать всё полностью, с начала до конца, самый свежий вариант. Сейчас я могу сказать, что читал по LLVM всё, что опубликовано, и что имеет хотя бы немного существенное значение (можно также найти огромное количество статей в духе “мы разработали компилятор для нашего процессора, это круто”. Их я обычно не читаю). Источников по LLVM очень мало, печатных книг всего две, например.</p>
+
+<p>Проблема ещё и в том, что все процессоры разные, и нельзя просто скопировать исходник одного бэкенда, подправить там пару строк и получить другой. Они настолько различны, что вряд ли вы вообще найдёте в двух разных бэкендах похожие куски кода. Поэтому чтение этой книги не заменит вам собственного опыта.
+Желающим разработать свой компилятор, я могу посоветовать следующее:
+не бояться разбираться в существующем коде, как бэкендов, так и Core Library.
+не бояться экспериментировать и писать с нуля собственные алгоритмы оптимизаций.
+не пытаться изобрести велосипед. Если нужные функции есть в Core Library, их необходимо изучить и использовать. Если, напротив, каких-то функций нет ни в Core Library, ни в других бэкендах, значит, скорее всего, вы хотите странного, и, скорее всего, на самом деле это вам не нужно. Хотя могут быть исключения из этого правила.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -525,41 +569,6 @@ cleanup:
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/09/11/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-mayur-pandey-suyog-sarda-llvm-cookbook/">Книга Mayur Pandey, Suyog Sarda "LLVM Cookbook"</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-09-11T17:18:08+05:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>5:18 pm</span></time>
-        
-           | <a href="/blog/2015/09/11/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-mayur-pandey-suyog-sarda-llvm-cookbook/#disqus_thread"
-             data-disqus-identifier="http://arktur04.github.io/blog/2015/09/11/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-mayur-pandey-suyog-sarda-llvm-cookbook/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Прочитал книгу Mayur Pandey, Suyog Sarda "LLVM Cookbook", 284 стр, англ. язык.<br />
-Хорошая книга, описывает много интересных вещей об архитектуре и внутреннем устройстве инфраструктуры компиляторов LLVM.<br />
-Она дополняет другую книгу, "Getting Started with LLVM Core Libraries", про которую я уже <a href="http://arktur04.github.io/blog/2014/12/02/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-bruno-cardoso-lopes-getting-started-with-llvm-core-libraries/">писал</a>. Кстати,  Getting Started with LLVM Core Libraries переведена на русский язык и сейчас есть в продаже (я читал в оригинале).</p>
-<p><a href="/images/2015/09/5981OS_LLVM-Cookbook.jpg"><img class="alignnone size-medium wp-image-2137" alt="5981OS_LLVM Cookbook" src="/assets/5981OS_LLVM-Cookbook-243x300.jpg" width="243" height="300" /></a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -575,6 +584,10 @@ cleanup:
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/01/04/knigha-chen-chung-shu-creating-an-llvm-backend-for-the-cpu0-architecture/">Книга Chen Chung-Shu "Creating an LLVM Backend for the Cpu0 Architecture"</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/12/16/knigha-fpga-for-dummies/">Книга Andrew Moore "FPGA for Dummies"</a>
       </li>
     
@@ -588,10 +601,6 @@ cleanup:
     
       <li class="post">
         <a href="/blog/2015/11/23/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3/">Проект видеоадаптера. Часть 3</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/11/16/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-software-defined-radio-handbook-rodger-hosking/">Книга "Software Defined Radio Handbook", Rodger Hosking</a>
       </li>
     
   </ul>
@@ -636,7 +645,7 @@ cleanup:
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2015 - Your Name -
+  Copyright &copy; 2016 - Your Name -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

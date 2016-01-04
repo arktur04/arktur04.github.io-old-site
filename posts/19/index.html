@@ -120,6 +120,44 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/blog/2010/05/16/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-6/">Протокол Modbus в устройствах на базе микроконтроллеров. Часть 1.4</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-05-16T19:11:37+06:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>7:11 pm</span></time>
+        
+           | <a href="/blog/2010/05/16/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-6/#disqus_thread"
+             data-disqus-identifier="http://arktur04.github.io/blog/2010/05/16/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-6/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><em><a href="/images/2010/05/Рис-1.jpg"></a>Продолжение. </em><em>Начало здесь: </em><em> </em><a href="http://32bit.me/?p=355"><em>http://32bit.me/?p=355</em></a><em> - введение; </em><a href="http://32bit.me/?p=373"><em>http://32bit.me/?p=373</em></a><em> - часть 1.0; <a href="http://32bit.me/?p=377">http://32bit.me/?p=377</a> - часть 1.1; <a href="http://32bit.me/?p=395">http://32bit.me/?p=395</a> - часть 1.2; <a href="http://32bit.me/?p=406">http://32bit.me/?p=406</a> - часть 1.3.</em></p>
+<p>Перед тем, как перейти к программной реализации поддержки протокола Modbus, необходимо прояснить ещё один вопрос.</p>
+<p>Регистры протокола (3х и 4х) имеют разрядность 16 бит, а значения переменных, которые требуется передавать, часто имеют разрядность 32 бита. Каким образом 32-битные переменные передаются в 16-битных регистрах?</p>
+<p></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2010/05/16/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-6/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/blog/2010/05/16/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-5/">Протокол Modbus в устройствах на базе микроконтроллеров. Часть 1.3</a></h1>
     
     
@@ -454,46 +492,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/04/12/p-cad-2006-%25d0%25b8-%25d0%25b5%25d0%25b3%25d0%25be-%25d0%25b3%25d0%25bb%25d1%258e%25d0%25ba%25d0%25b8/">P-CAD 2006 и его глюки</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2010-04-12T22:01:57+06:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>10:01 pm</span></time>
-        
-           | <a href="/blog/2010/04/12/p-cad-2006-%25d0%25b8-%25d0%25b5%25d0%25b3%25d0%25be-%25d0%25b3%25d0%25bb%25d1%258e%25d0%25ba%25d0%25b8/#disqus_thread"
-             data-disqus-identifier="http://arktur04.github.io/blog/2010/04/12/p-cad-2006-%25d0%25b8-%25d0%25b5%25d0%25b3%25d0%25be-%25d0%25b3%25d0%25bb%25d1%258e%25d0%25ba%25d0%25b8/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>1. P-CAD 2004 и 2006 имеют глюк при работе в Windows 7: в редакторе PCB невозможно задать правила разводки (Options/Design Rules, вкладка Layer), возникает ошибка. Без этих правил развести плату можно, но проверить DRC нельзя. P-CAD 2001 работает в семёрке нормально.  Под Windows XP всё работает нормально, поэтому пришлось отказаться от красот и удобств семёрки в пользу старой доброй XP.</p>
-<p>2.  P-CAD2006 имеет в панели инструментов кнопку Board outline. Этим инструментом задаётся контур платы. Зачем это нужно, непонятно, контур платы всегда успешно задавался линиями на слое Board.</p>
-<p>Более того, если вы создадите замкнутый контур из линий в слое Board, P-CAD автоматически создаст контур платы (Board outline). </p>
-<p>Глюк состоит в том, что этот контур в дальнейшем не редактируется. Вы можете передвигать линии в слое Board, но первоначально созданный контур платы останется на месте и будет мешать проверка DRC.</p>
-<p>Как быть, если нужно скорректировать контур платы? Сохраняем файл платы в формате ASCII, открываем его Блокнотом, ищем слово boardOutlineObj, и под ним список точек контура платы с координатами. Редактируем их вручную, сохраняем, открываем в P-CAD и, о чудо, контур платы переместился на нужное нам место.</p>
-<p>UPD: тут в комментариях написали:</p>
-<p>п.1 решается удалением манифестов из папки pcad<br />
-п.2 в option – selection mask поставить галочку на bourd outline</p>
-<p>Что я могу сказать... Век живи, век учись, <span style="text-decoration: line-through;">дураком помрёшь</span></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/20">&larr; Older</a>
@@ -511,6 +509,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/01/04/knigha-chen-chung-shu-creating-an-llvm-backend-for-the-cpu0-architecture/">Книга Chen Chung-Shu "Creating an LLVM Backend for the Cpu0 Architecture"</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2015/12/16/knigha-fpga-for-dummies/">Книга Andrew Moore "FPGA for Dummies"</a>
       </li>
     
@@ -524,10 +526,6 @@
     
       <li class="post">
         <a href="/blog/2015/11/23/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3/">Проект видеоадаптера. Часть 3</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/11/16/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-software-defined-radio-handbook-rodger-hosking/">Книга "Software Defined Radio Handbook", Rodger Hosking</a>
       </li>
     
   </ul>
@@ -572,7 +570,7 @@
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2015 - Your Name -
+  Copyright &copy; 2016 - Your Name -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 

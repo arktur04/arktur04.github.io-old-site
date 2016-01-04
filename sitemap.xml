@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://arktur04.github.io/blog/2016/01/04/knigha-chen-chung-shu-creating-an-llvm-backend-for-the-cpu0-architecture/</loc>
+    <lastmod>2016-01-04T20:17:43+05:00</lastmod>
+  </url>
+  <url>
     <loc>http://arktur04.github.io/blog/2015/12/16/knigha-fpga-for-dummies/</loc>
     <lastmod>2015-12-16T21:41:38+05:00</lastmod>
   </url>

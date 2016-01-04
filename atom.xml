@@ -4,7 +4,7 @@
   <title><![CDATA[Записная книжка разработчика]]></title>
   <link href="http://arktur04.github.io/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2015-12-27T13:47:36+05:00</updated>
+  <updated>2016-01-04T20:27:53+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -12,6 +12,26 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Книга Chen Chung-Shu "Creating an LLVM Backend for the Cpu0 Architecture"]]></title>
+    <link href="http://arktur04.github.io/blog/2016/01/04/knigha-chen-chung-shu-creating-an-llvm-backend-for-the-cpu0-architecture/"/>
+    <updated>2016-01-04T20:17:43+05:00</updated>
+    <id>http://arktur04.github.io/blog/2016/01/04/knigha-chen-chung-shu-creating-an-llvm-backend-for-the-cpu0-architecture</id>
+    <content type="html"><![CDATA[<p>Прочитал книгу Chen Chung-Shu "Creating an LLVM Backend for the Cpu0 Architecture", 575 стр., англ. язык.
+Книга по LLVM, единственная в своём роде книга, детально описывающая процесс разработки бэкенда.</p>
+
+<p><a href="http://arktur04.github.io/images/2016/01/line-tile.png"><img title="Creating an LLVM Backend for the Cpu0 Architecture" src="http://arktur04.github.io/2016/01/line-tile.png" alt="" height="300" /></a></p>
+
+<p>Я читал эту книгу ранее, но автор непрерывно вносит исправления и дополнения в текст (эта книга существует только в онлайновом виде), поэтому я решил перечитать всё полностью, с начала до конца, самый свежий вариант. Сейчас я могу сказать, что читал по LLVM всё, что опубликовано, и что имеет хотя бы немного существенное значение (можно также найти огромное количество статей в духе “мы разработали компилятор для нашего процессора, это круто”. Их я обычно не читаю). Источников по LLVM очень мало, печатных книг всего две, например.</p>
+
+<p>Проблема ещё и в том, что все процессоры разные, и нельзя просто скопировать исходник одного бэкенда, подправить там пару строк и получить другой. Они настолько различны, что вряд ли вы вообще найдёте в двух разных бэкендах похожие куски кода. Поэтому чтение этой книги не заменит вам собственного опыта.
+Желающим разработать свой компилятор, я могу посоветовать следующее:
+не бояться разбираться в существующем коде, как бэкендов, так и Core Library.
+не бояться экспериментировать и писать с нуля собственные алгоритмы оптимизаций.
+не пытаться изобрести велосипед. Если нужные функции есть в Core Library, их необходимо изучить и использовать. Если, напротив, каких-то функций нет ни в Core Library, ни в других бэкендах, значит, скорее всего, вы хотите странного, и, скорее всего, на самом деле это вам не нужно. Хотя могут быть исключения из этого правила.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Книга Andrew Moore "FPGA for Dummies"]]></title>
@@ -520,15 +540,6 @@ end</pre>
 <p>Это происходит потому, что функция is_zero проверяет на равенство нулю все разряды, кроме value[`DATA_WIDTH - 1], который содержит знак.</p>
 <p>В остальном поведение модуля полностью соответствует стандартному FPU компьютера, что подтверждается тестом их &gt; 20.000 случайных пар чисел (10.000 для сложения и столько же для вычитания).</p>
 <p>Итак, у нас готовы основные арифметические операции, и можно сделать что-либо более интересное. Например, модуль вычисления синуса/косинуса. Но об этом я напишу в следующий раз.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ссылка от RS Components]]></title>
-    <link href="http://arktur04.github.io/blog/2015/06/17/%25d1%2581%25d1%2581%25d1%258b%25d0%25bb%25d0%25ba%25d0%25b0-%25d0%25be%25d1%2582-rs-components/"/>
-    <updated>2015-06-17T20:39:03+05:00</updated>
-    <id>http://arktur04.github.io/blog/2015/06/17/%d1%81%d1%81%d1%8b%d0%bb%d0%ba%d0%b0-%d0%be%d1%82-rs-components</id>
-    <content type="html"><![CDATA[<p>Инженерный портал <a href="http://www.rs-online.com/designspark/electronics/nodes/view/type:tool/slug:product-data-library">http://www.rs-online.com/designspark/electronics/nodes/view/type:tool/slug:product-data-library</a>, цель которого – предоставить инженеру техническую информацию от разных производителей – в одном месте.</p>
 ]]></content>
   </entry>
   
