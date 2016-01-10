@@ -4,7 +4,7 @@
   <title><![CDATA[Category: самообразование, | Записная книжка разработчика]]></title>
   <link href="http://arktur04.github.io/blog/categories/samoobrazovaniie/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2016-01-10T21:08:31+05:00</updated>
+  <updated>2016-01-10T21:23:17+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -12,6 +12,22 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Книга Steven W. Smith "the Scientist and Engineer’s Guide to Digital Signal Processing"]]></title>
+    <link href="http://arktur04.github.io/blog/2016/01/10/knigha-steven-w-smith-the-scientist-and-engineers-guide-to-digital-signal-processing/"/>
+    <updated>2016-01-10T20:51:57+05:00</updated>
+    <id>http://arktur04.github.io/blog/2016/01/10/knigha-steven-w-smith-the-scientist-and-engineers-guide-to-digital-signal-processing</id>
+    <content type="html"><![CDATA[<p>Steven W. Smith “The Scientist and Engineer’s Guide to Digital Signal Processing”, 626 стр, англ. язык. Книга легально и бесплатно доступна для скачивания с сайта Analog Devices.
+Я читал эту книгу когда-то давно, но отдельными главами, а сейчас решил освежить в памяти ключевые моменты DSP.</p>
+
+<p><a href="/images/2016/01/47958_600.gif"><img title="The Scientist and Engineer’s Guide to Digital Signal Processing" src="/images/2016/01/47958_600_small.png" alt="" height="300" /></a></p>
+
+<p>Книга достаточно простая, и обходится абсолютным минимумом математических формул. Автор делает основной упор на то, чтобы читатель наглядно представлял себе, как связаны между собой различные преобразования, используемые в DSP: фильтрация, ДПФ, свёртка и т. п.
+В книге приведены основные алгоритмы DSP: фильтры, КИХ и БИХ, ДПФ прямое и обратное и некоторые другие. Таким образом, вы можете воспользоваться готовыми программами, переписать их на С или на ассемблере и не вдаваться глубоко в математику.
+Если интересна именно математика, лежащая в основе DSP, нужно читать Оппенгейма-Шафера.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Книга Chen Chung-Shu "Creating an LLVM Backend for the Cpu0 Architecture"]]></title>
