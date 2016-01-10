@@ -9,8 +9,7 @@
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="Прочитал книгу Mayur Pandey, Suyog Sarda "LLVM Cookbook", 284 стр, англ. язык.
-Хорошая книга, описывает много интересных вещей об архитектуре и &hellip;">
+  <meta name="description" content="Приведённый ниже код писал не я, он взят отсюда: https://zhehaomao.com/blog/fpga/2013/12/27/sockit-3.html, но я решил оставить его здесь, т.к. он &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -115,6 +114,112 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/09/23/%25d1%2583%25d0%25bf%25d1%2580%25d0%25b0%25d0%25b2%25d0%25bb%25d0%25b5%25d0%25bd%25d0%25b8%25d0%25b5-fpga-%25d0%25b8%25d0%25b7-%25d0%25bf%25d1%2580%25d0%25be%25d0%25b3%25d1%2580%25d0%25b0%25d0%25bc%25d0%25bc%25d1%258b/">Управление FPGA из программы</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-09-23T20:51:35+05:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2015</span></span> <span class='time'>8:51 pm</span></time>
+        
+           | <a href="/blog/2015/09/23/%25d1%2583%25d0%25bf%25d1%2580%25d0%25b0%25d0%25b2%25d0%25bb%25d0%25b5%25d0%25bd%25d0%25b8%25d0%25b5-fpga-%25d0%25b8%25d0%25b7-%25d0%25bf%25d1%2580%25d0%25be%25d0%25b3%25d1%2580%25d0%25b0%25d0%25bc%25d0%25bc%25d1%258b/#disqus_thread"
+             data-disqus-identifier="http://arktur04.github.io/blog/2015/09/23/%25d1%2583%25d0%25bf%25d1%2580%25d0%25b0%25d0%25b2%25d0%25bb%25d0%25b5%25d0%25bd%25d0%25b8%25d0%25b5-fpga-%25d0%25b8%25d0%25b7-%25d0%25bf%25d1%2580%25d0%25be%25d0%25b3%25d1%2580%25d0%25b0%25d0%25bc%25d0%25bc%25d1%258b/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Приведённый ниже код писал не я, он взят отсюда:<a href="https://zhehaomao.com/blog/fpga/2013/12/27/sockit-3.html"> https://zhehaomao.com/blog/fpga/2013/12/27/sockit-3.html</a>, но я решил оставить его здесь, т.к. он пригодится для дальнейших экспериментов.</p>
+<p>Напоминаю, что данная программа работает в ОС Linux GSRD на SoC Altera Cyclone V (ядро ARM Cortex A9). Компилятор Linaro GCC, берём здесь: <a href="http://releases.linaro.org/latest/components/toolchain/binaries/4.8/arm-linux-gnueabihf/">http://releases.linaro.org/latest/components/toolchain/binaries/4.8/arm-linux-gnueabihf/</a></p>
+<pre lang="c" line="1">#include <sys/mman.h>;
+#include <sys/mman.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <stdint.h>
+
+#define PAGE_SIZE 4096
+#define LWHPS2FPGA_BRIDGE_BASE 0xff200000
+#define BLINK_OFFSET 0x0
+
+volatile unsigned char *blink_mem;
+void *bridge_map;
+
+int main(int argc, char *argv[])
+{
+	int fd, ret = EXIT_FAILURE;
+	unsigned char value;
+	off_t blink_base = LWHPS2FPGA_BRIDGE_BASE;
+
+	if (argc < 2) {
+		fprintf(stderr, "Usage: %s number\n", argv[0]);
+		exit(EXIT_FAILURE);
+	}
+
+	/* check the bounds of the value being set */
+	value = atoi(argv[1]);
+	if (value < 1 || value > 15) {
+		fprintf(stderr, "Invalid delay setting."
+				"Delay must be between 1 and 15, inclusive.\n");
+		exit(EXIT_FAILURE);
+	}
+
+	/* open the memory device file */
+	fd = open("/dev/mem", O_RDWR|O_SYNC);
+	if (fd < 0) {
+		perror("open");
+		exit(EXIT_FAILURE);
+	}
+
+	/* map the LWHPS2FPGA bridge into process memory */
+	bridge_map = mmap(NULL, PAGE_SIZE, PROT_WRITE, MAP_SHARED,
+				fd, blink_base);
+	if (bridge_map == MAP_FAILED) {
+		perror("mmap");
+		goto cleanup;
+	}
+
+	/* get the delay_ctrl peripheral's base address */
+	blink_mem = (unsigned char *) (bridge_map + BLINK_OFFSET);
+
+	/* write the value */
+	*blink_mem = value;
+
+	if (munmap(bridge_map, PAGE_SIZE) < 0) {
+		perror("munmap");
+		goto cleanup;
+	}
+
+	ret = 0;
+
+cleanup:
+	close(fd);
+	return ret;
+}</stdint.h></unistd.h></stdlib.h></stdio.h></fcntl.h></pre>
+<p>Программа управляет частотой мигания светодиода, сам делитель частоты расположен в FPGA, частота задаётся регистром.</p>
+<p></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/09/23/%25d1%2583%25d0%25bf%25d1%2580%25d0%25b0%25d0%25b2%25d0%25bb%25d0%25b5%25d0%25bd%25d0%25b8%25d0%25b5-fpga-%25d0%25b8%25d0%25b7-%25d0%25bf%25d1%2580%25d0%25be%25d0%25b3%25d1%2580%25d0%25b0%25d0%25bc%25d0%25bc%25d1%258b/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -483,45 +588,6 @@ end
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/06/19/fpu-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-5-%25d1%2581%25d1%2583%25d0%25bc%25d0%25bc%25d0%25b0%25d1%2582%25d0%25be%25d1%2580-%25d1%2582%25d0%25b5%25d1%2581%25d1%2582-%25d0%25b8-rtl/">FPU. Часть 5. Сумматор, тест и RTL</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-06-19T21:44:03+05:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>9:44 pm</span></time>
-        
-           | <a href="/blog/2015/06/19/fpu-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-5-%25d1%2581%25d1%2583%25d0%25bc%25d0%25bc%25d0%25b0%25d1%2582%25d0%25be%25d1%2580-%25d1%2582%25d0%25b5%25d1%2581%25d1%2582-%25d0%25b8-rtl/#disqus_thread"
-             data-disqus-identifier="http://arktur04.github.io/blog/2015/06/19/fpu-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-5-%25d1%2581%25d1%2583%25d0%25bc%25d0%25bc%25d0%25b0%25d1%2582%25d0%25be%25d1%2580-%25d1%2582%25d0%25b5%25d1%2581%25d1%2582-%25d0%25b8-rtl/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Итак, сумматор чисел в формате IEEE 754 с разрядностью 32 или 64 бита.<br />
-Исходники можно скачать на Github: <a href="https://github.com/arktur04/FPU" data-cke-saved-href="https://github.com/arktur04/FPU">https://github.com/arktur04/FPU</a>.</p>
-<p>КДПВ (кликабельно):</p>
-<p><a href="/images/2015/06/pic1.png"><img class="alignnone size-medium wp-image-2078" alt="pic1" src="/assets/pic1-300x58.png" width="300" height="58" /></a></p>
-<p></div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/06/19/fpu-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-5-%25d1%2581%25d1%2583%25d0%25bc%25d0%25bc%25d0%25b0%25d1%2582%25d0%25be%25d1%2580-%25d1%2582%25d0%25b5%25d1%2581%25d1%2582-%25d0%25b8-rtl/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/3">&larr; Older</a>
@@ -539,6 +605,10 @@ end
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/01/10/knigha-steven-w-smith-the-scientist-and-engineers-guide-to-digital-signal-processing/">Книга Steven W. Smith "the Scientist and Engineer’s Guide to Digital Signal Processing"</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/01/04/knigha-chen-chung-shu-creating-an-llvm-backend-for-the-cpu0-architecture/">Книга Chen Chung-Shu "Creating an LLVM Backend for the Cpu0 Architecture"</a>
       </li>
     
@@ -552,10 +622,6 @@ end
     
       <li class="post">
         <a href="/blog/2015/12/16/knigha-qt/">Книга М. Шлее «Qt5.3. Профессиональное программирование на С++»</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/11/23/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3/">Проект видеоадаптера. Часть 3</a>
       </li>
     
   </ul>

@@ -9,8 +9,7 @@
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="http://atgreen.github.io/ggx/
-">
+  <meta name="description" content="Каждый раз, когда я пытаюсь запустить какой-либо исполняемый файл, а система пишет мне, что такого файла нет, хотя он очевидно есть, это вызывает у &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -115,6 +114,46 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2014/11/25/%25d0%25be-%25d0%25b3%25d1%2580%25d0%25b0%25d0%25b1%25d0%25bb%25d1%258f%25d1%2585/">О граблях</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-11-25T20:24:21+05:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>8:24 pm</span></time>
+        
+           | <a href="/blog/2014/11/25/%25d0%25be-%25d0%25b3%25d1%2580%25d0%25b0%25d0%25b1%25d0%25bb%25d1%258f%25d1%2585/#disqus_thread"
+             data-disqus-identifier="http://arktur04.github.io/blog/2014/11/25/%25d0%25be-%25d0%25b3%25d1%2580%25d0%25b0%25d0%25b1%25d0%25bb%25d1%258f%25d1%2585/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Каждый раз, когда я пытаюсь запустить какой-либо исполняемый файл, а система пишет мне, что такого файла нет, хотя он очевидно есть, это вызывает у мня лёгкое замешательство, хотя вроде бы уже не в первый раз замужем.</p>
+<p>Итак, запоминаем раз и навсегда: так происходит, когда мы пытаемся запустить нечто 32-битное на 64-битной системе. Лечится так:</p>
+<p><strong>sudo apt-get update</strong></p>
+<p><strong>sudo apt-get install ia32-libs</strong></p>
+<p>Вот и всё. Довольно просто.</p>
+<p>UPD:</p>
+<p>Если система пишет, что не может установить библиотеку и т.п., то пишем следующее:</p>
+<pre><strong><code>dpkg --add-architecture i386
+apt-get update</code></strong></pre>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -416,38 +455,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/09/20/%25d1%2580%25d0%25b5%25d0%25ba%25d0%25be%25d0%25bc%25d0%25b5%25d0%25bd%25d0%25b4%25d1%2583%25d1%258e-%25d0%25ba-%25d0%25b8%25d0%25b7%25d1%2583%25d1%2587%25d0%25b5%25d0%25bd%25d0%25b8%25d1%258e/">Рекомендую к изучению</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-09-20T09:17:18+06:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:17 am</span></time>
-        
-           | <a href="/blog/2014/09/20/%25d1%2580%25d0%25b5%25d0%25ba%25d0%25be%25d0%25bc%25d0%25b5%25d0%25bd%25d0%25b4%25d1%2583%25d1%258e-%25d0%25ba-%25d0%25b8%25d0%25b7%25d1%2583%25d1%2587%25d0%25b5%25d0%25bd%25d0%25b8%25d1%258e/#disqus_thread"
-             data-disqus-identifier="http://arktur04.github.io/blog/2014/09/20/%25d1%2580%25d0%25b5%25d0%25ba%25d0%25be%25d0%25bc%25d0%25b5%25d0%25bd%25d0%25b4%25d1%2583%25d1%258e-%25d0%25ba-%25d0%25b8%25d0%25b7%25d1%2583%25d1%2587%25d0%25b5%25d0%25bd%25d0%25b8%25d1%258e/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="https://www.tcl.tk/man/tcl8.5/tutorial/">https://www.tcl.tk/man/tcl8.5/tutorial/</a> - руководство по языку tcl (без tk). Полезная вещь.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/7">&larr; Older</a>
@@ -465,6 +472,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/01/10/knigha-steven-w-smith-the-scientist-and-engineers-guide-to-digital-signal-processing/">Книга Steven W. Smith "the Scientist and Engineer’s Guide to Digital Signal Processing"</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/01/04/knigha-chen-chung-shu-creating-an-llvm-backend-for-the-cpu0-architecture/">Книга Chen Chung-Shu "Creating an LLVM Backend for the Cpu0 Architecture"</a>
       </li>
     
@@ -478,10 +489,6 @@
     
       <li class="post">
         <a href="/blog/2015/12/16/knigha-qt/">Книга М. Шлее «Qt5.3. Профессиональное программирование на С++»</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/11/23/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3/">Проект видеоадаптера. Часть 3</a>
       </li>
     
   </ul>
