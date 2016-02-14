@@ -4,7 +4,7 @@
   <title><![CDATA[Category: программирование, | Записная книжка разработчика]]></title>
   <link href="http://arktur04.github.io/blog/categories/proghrammirovaniie/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2016-01-10T21:23:17+05:00</updated>
+  <updated>2016-02-14T22:14:28+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -12,6 +12,21 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Книга Gabriel S. Hjort Blindell "Survey on Instruction Selection"]]></title>
+    <link href="http://arktur04.github.io/blog/2016/02/14/knigha-gabriel-s-hjort-blindell-survey-on-instruction-selection/"/>
+    <updated>2016-02-14T22:06:06+05:00</updated>
+    <id>http://arktur04.github.io/blog/2016/02/14/knigha-gabriel-s-hjort-blindell-survey-on-instruction-selection</id>
+    <content type="html"><![CDATA[<p>Прочитал книгу Gabriel S. Hjort Blindell “Survey on Instruction Selection”, 139 стр, англ. язык.
+Книга про то, как осуществляется одна из самых важных стадий работы компилятора, выбор инструкций. Рассмотрены различные подходы и алгоритмы решения этой задачи, от первых компиляторов 1950-х годов до современных.</p>
+
+<p><a href="/images/2016/02/49450_600.png"><img title="Creating an LLVM Backend for the Cpu0 Architecture" src="/images/2016/02/49450_600_small.png" alt="" height="300" /></a></p>
+
+<p>Немного написано и про алгоритм, используемый в LLVM. К сожалению, ничего особенно нового эта информация мне не дала. Этот участок компилятора весьма сложен, и возможности для ручного вмешательства в его работу очень ограничены (хотя и существуют).</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Книга Chen Chung-Shu "Creating an LLVM Backend for the Cpu0 Architecture"]]></title>

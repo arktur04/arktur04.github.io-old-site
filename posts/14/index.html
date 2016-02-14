@@ -9,7 +9,8 @@
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="Книга "Изучаем Python", автор Марк Лутц, является весьма объёмным (848 стр.) введением в язык Python. В книге рассмотрена версия Python 2.5, текущая &hellip;">
+  <meta name="description" content="Столкнулся с неожиданной проблемой при использовании библиотеки urllib (язык Python 3).
+Допустим, нужно получить html-код документа, лежащего по &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -114,6 +115,54 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/04/10/python-%25d0%25b8-urllib/">Python и Urllib</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-04-10T07:32:01+06:00'><span class='date'><span class='date-month'>Apr</span> <span class='date-day'>10</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>7:32 am</span></time>
+        
+           | <a href="/blog/2011/04/10/python-%25d0%25b8-urllib/#disqus_thread"
+             data-disqus-identifier="http://arktur04.github.io/blog/2011/04/10/python-%25d0%25b8-urllib/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Столкнулся с неожиданной проблемой при использовании библиотеки urllib (язык Python 3).</p>
+<p>Допустим, нужно получить html-код документа, лежащего по определённому адресу. Для этого предназначена функция urllib.request.urlopen(url), возвращающая объект, имеющий интерфейс файла (т.е. поддерживающий те же функции, что и обычные файловые объекты). Далее можно просто прочитать из него текст в соответствующей кодировке: <em>fileobj</em>.read().decode('utf-8'), где <em>fileobj</em> - объект, возвращённый функцией urlopen().</p>
+<p>При возникновении ошибки при открытии url функция urlopen() вызывает исключение. Поэтому его нужно обработать и повторять попытку открытия url до тех пор, пока операция не завершится без вызова исключения:</p>
+<pre lang="python" line="1">while 1:
+  try:
+    html = urllib.request.urlopen(url).read().decode('utf-8')
+  except: print('Url Open Error') #Здесь можно записывать сообщения об ошибке в консоль или в лог
+  else:
+    break</pre>
+<p>Однако, проблема состоит в том, что urlopen() не всегда вызывает исключение. Если сервер не отвечает, она просто висит, полностью блокируя работу программы. При этом, при перезапуска программы вручную, документ нормально открывается. Поэтому в качестве параметра ей нужно передавать ещё и величину тайм-аута в секундах:</p>
+<pre lang="python" line="1">while 1:
+  try:
+    html = urllib.request.urlopen(url, timeout = 10).read().decode('utf-8')
+  except: print('Url Open Error') #Здесь можно записывать сообщения об ошибке в консоль или в лог
+  else:
+    break</pre>
+<p>Теперь всё работает правильно.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -448,40 +497,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/01/07/%25d0%25b5%25d1%2589%25d1%2591-%25d1%2581%25d1%2582%25d0%25b0%25d1%2580%25d0%25b0%25d1%258f-%25d0%25bf%25d0%25bb%25d0%25b0%25d1%2582%25d0%25b0/">Ещё старая плата</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2011-01-07T00:33:29+05:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>12:33 am</span></time>
-        
-           | <a href="/blog/2011/01/07/%25d0%25b5%25d1%2589%25d1%2591-%25d1%2581%25d1%2582%25d0%25b0%25d1%2580%25d0%25b0%25d1%258f-%25d0%25bf%25d0%25bb%25d0%25b0%25d1%2582%25d0%25b0/#disqus_thread"
-             data-disqus-identifier="http://arktur04.github.io/blog/2011/01/07/%25d0%25b5%25d1%2589%25d1%2591-%25d1%2581%25d1%2582%25d0%25b0%25d1%2580%25d0%25b0%25d1%258f-%25d0%25bf%25d0%25bb%25d0%25b0%25d1%2582%25d0%25b0/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="/images/2011/01/board.jpg"><img class="alignnone size-medium wp-image-1038" title="board" src="/assets/board-300x283.jpg" alt="" width="300" height="283" /></a></p>
-<p>Старая плата (точнее, сборка из двух плат), представляющая собой программируемый контроллер для промышленного применения. Основан на микроконтроллере Fujitsu, имеет 4 дискретных выхода (реле), 8 дискретных гальванически изолированных входов, интерфейсы RS-232 и RS-485, часы реального времени, алфавитно-цифровой дисплей 2х8 символов. Питание устройства осуществляется от источника 24В. Программа прошивается через порт RS-232.</p>
-<p>На устройство получен сертификат соответствия.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/15">&larr; Older</a>
@@ -499,6 +514,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/02/14/knigha-gabriel-s-hjort-blindell-survey-on-instruction-selection/">Книга Gabriel S. Hjort Blindell "Survey on Instruction Selection"</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/01/10/knigha-steven-w-smith-the-scientist-and-engineers-guide-to-digital-signal-processing/">Книга Steven W. Smith "the Scientist and Engineer’s Guide to Digital Signal Processing"</a>
       </li>
     
@@ -512,10 +531,6 @@
     
       <li class="post">
         <a href="/blog/2015/12/16/knigha-virt-kompiliatory/">Книга Вирт Н. "Построение компиляторов"</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/12/16/knigha-qt/">Книга М. Шлее «Qt5.3. Профессиональное программирование на С++»</a>
       </li>
     
   </ul>

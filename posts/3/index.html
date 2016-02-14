@@ -9,9 +9,7 @@
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="Итак, сумматор чисел в формате IEEE 754 с разрядностью 32 или 64 бита.
-Исходники можно скачать на Github: https://github.com/arktur04/FPU.
-КДПВ ( &hellip;">
+  <meta name="description" content="Пусть в проекте FPGA необходимо ПЗУ, в которое записана определённая информация, имеющаяся у нас в виде бинарного файла. ПЗУ, как правило, &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -116,6 +114,69 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/21/%25d0%25b3%25d0%25b5%25d0%25bd%25d0%25b5%25d1%2580%25d0%25b0%25d1%2586%25d0%25b8%25d1%258f-%25d1%2584%25d0%25b0%25d0%25b9%25d0%25bb%25d0%25be%25d0%25b2-mif/">Генерация файлов .mif и Case-конструкций</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-21T09:13:34+05:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>9:13 am</span></time>
+        
+           | <a href="/blog/2015/06/21/%25d0%25b3%25d0%25b5%25d0%25bd%25d0%25b5%25d1%2580%25d0%25b0%25d1%2586%25d0%25b8%25d1%258f-%25d1%2584%25d0%25b0%25d0%25b9%25d0%25bb%25d0%25be%25d0%25b2-mif/#disqus_thread"
+             data-disqus-identifier="http://arktur04.github.io/blog/2015/06/21/%25d0%25b3%25d0%25b5%25d0%25bd%25d0%25b5%25d1%2580%25d0%25b0%25d1%2586%25d0%25b8%25d1%258f-%25d1%2584%25d0%25b0%25d0%25b9%25d0%25bb%25d0%25be%25d0%25b2-mif/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Пусть в проекте FPGA необходимо ПЗУ, в которое записана определённая информация, имеющаяся у нас в виде бинарного файла. ПЗУ, как правило, реализуются на блоках BRAM, в которые при инициализации FPGA записывается требуемое содержимое.<br />
+Файлы инициализации памяти BRAM для FPGA, могут иметь формат MIF (Memory Initialization File) или формат HEX. </p>
+<p><a href="/images/2015/06/DSC_0522_EDIT.jpg"><img class="alignnone size-medium wp-image-2084" alt="DSC_0522_EDIT" src="/assets/DSC_0522_EDIT-300x200.jpg" width="300" height="200" /></a></p>
+<p>Нужный модуль памяти можно сгенерировать в Quartus II с помощью MegaWizard, в ISE - с помощью Xilinx Core Generator. Кроме этого, в QuartusII возможно использование специальной директивы:</p>
+<pre lang="verilog" line="1">reg [7:0] mem[0:2047] /* synthesis ram_init_file = "test.mif" */;</pre>
+<p>Эта директива позволяет создать RAM, инициированную значениями из файла .MIF. Использование RAM с предустановленными значениями, это очень плохая идея, но в качестве ROM такую память использовать вполне можно. Проблема в том, что эту директиву понимает только Quartus II, никакой кроссплатформенности.</p>
+<p>Quartus II предоставляет редактор файлов памяти, и возможность загрузки файлов .mif и .hex, Xilinx Core Generator требует загрузки файла .coe, имеющего другой формат, нежели MIF. Однако хочется иметь кроссплатформенное решение, которое не зависело бы от платформы.  Таким вариантом является генерация ROM в виде case-конструкции:</p>
+<pre lang="cpp" line="1">
+always@(posedge clk)
+begin
+  case(in)
+  ...
+  11'h00d: out = 8'h99;
+  11'h00e: out = 8'h81;
+  11'h00f: out = 8'h7e;
+  11'h010: out = 8'h7e;
+  11'h011: out = 8'hff;
+  11'h012: out = 8'hdb;
+  11'h013: out = 8'hff;
+  11'h014: out = 8'hc3;
+  11'h015: out = 8'he7;
+  11'h016: out = 8'hff;
+  ...
+  endcase
+end
+</pre>
+<p>Полезная ссылка: различные конструкции для генерации разных типов RAM, ROM и других модулей можно найти в руководстве Altera "Recommended HDL Coding Styles": <a href="https://www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/hb/qts/qts_qii51007.pdf">https://www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/hb/qts/qts_qii51007.pdf</a><br />
+Я написал две простые утилиты, которая преобразует бинарный файл в MIF и в тело конструкции case.</p>
+<p></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/06/21/%25d0%25b3%25d0%25b5%25d0%25bd%25d0%25b5%25d1%2580%25d0%25b0%25d1%2586%25d0%25b8%25d1%258f-%25d1%2584%25d0%25b0%25d0%25b9%25d0%25bb%25d0%25be%25d0%25b2-mif/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -469,41 +530,6 @@ endfunction</pre>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/05/06/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-%25d0%25b1-%25d1%2581%25d1%2582%25d1%2580%25d0%25b0%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d1%2583%25d0%25bf-%25d0%25b4%25d0%25b8%25d0%25b7%25d0%25b0%25d0%25b9%25d0%25bd-%25d0%25b8-%25d1%258d%25d0%25b2%25d0%25be%25d0%25bb%25d1%258e%25d1%2586%25d0%25b8%25d1%258f-c/">Книга Б. Страуструп "Дизайн и эволюция C++"</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-05-06T15:25:31+05:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:25 pm</span></time>
-        
-           | <a href="/blog/2015/05/06/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-%25d0%25b1-%25d1%2581%25d1%2582%25d1%2580%25d0%25b0%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d1%2583%25d0%25bf-%25d0%25b4%25d0%25b8%25d0%25b7%25d0%25b0%25d0%25b9%25d0%25bd-%25d0%25b8-%25d1%258d%25d0%25b2%25d0%25be%25d0%25bb%25d1%258e%25d1%2586%25d0%25b8%25d1%258f-c/#disqus_thread"
-             data-disqus-identifier="http://arktur04.github.io/blog/2015/05/06/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-%25d0%25b1-%25d1%2581%25d1%2582%25d1%2580%25d0%25b0%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d1%2583%25d0%25bf-%25d0%25b4%25d0%25b8%25d0%25b7%25d0%25b0%25d0%25b9%25d0%25bd-%25d0%25b8-%25d1%258d%25d0%25b2%25d0%25be%25d0%25bb%25d1%258e%25d1%2586%25d0%25b8%25d1%258f-c/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Дочитал книгу "Дизайн и эволюция С++".</p>
-<p><a href="/images/2015/05/1231405218_dizajjn-i-jevoljucija.jpg"><img class="alignnone size-full wp-image-2035" alt="1231405218_dizajjn-i-jevoljucija" src="/assets/1231405218_dizajjn-i-jevoljucija.jpg" width="350" height="489" /></a></p>
-<p>Книга не является учебником по С++, это очень интересный рассказ автора языка о причинах, по которым в язык были введены или не были введены те или иные конструкции.<br />
-Рекомендуется тем, кто интересуется языком С++ в его глубоких аспектах (несмотря на кажущуюся простоту, это очень глубокий язык с множеством подводных камней).</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/4">&larr; Older</a>
@@ -521,6 +547,10 @@ endfunction</pre>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/02/14/knigha-gabriel-s-hjort-blindell-survey-on-instruction-selection/">Книга Gabriel S. Hjort Blindell "Survey on Instruction Selection"</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/01/10/knigha-steven-w-smith-the-scientist-and-engineers-guide-to-digital-signal-processing/">Книга Steven W. Smith "the Scientist and Engineer’s Guide to Digital Signal Processing"</a>
       </li>
     
@@ -534,10 +564,6 @@ endfunction</pre>
     
       <li class="post">
         <a href="/blog/2015/12/16/knigha-virt-kompiliatory/">Книга Вирт Н. "Построение компиляторов"</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/12/16/knigha-qt/">Книга М. Шлее «Qt5.3. Профессиональное программирование на С++»</a>
       </li>
     
   </ul>

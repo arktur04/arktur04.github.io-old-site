@@ -4,7 +4,7 @@
   <title><![CDATA[Записная книжка разработчика]]></title>
   <link href="http://arktur04.github.io/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2016-01-10T21:23:17+05:00</updated>
+  <updated>2016-02-14T22:14:28+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -12,6 +12,21 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Книга Gabriel S. Hjort Blindell "Survey on Instruction Selection"]]></title>
+    <link href="http://arktur04.github.io/blog/2016/02/14/knigha-gabriel-s-hjort-blindell-survey-on-instruction-selection/"/>
+    <updated>2016-02-14T22:06:06+05:00</updated>
+    <id>http://arktur04.github.io/blog/2016/02/14/knigha-gabriel-s-hjort-blindell-survey-on-instruction-selection</id>
+    <content type="html"><![CDATA[<p>Прочитал книгу Gabriel S. Hjort Blindell “Survey on Instruction Selection”, 139 стр, англ. язык.
+Книга про то, как осуществляется одна из самых важных стадий работы компилятора, выбор инструкций. Рассмотрены различные подходы и алгоритмы решения этой задачи, от первых компиляторов 1950-х годов до современных.</p>
+
+<p><a href="http://arktur04.github.io/images/2016/02/49450_600.png"><img title="Creating an LLVM Backend for the Cpu0 Architecture" src="http://arktur04.github.io/images/2016/02/49450_600_small.png" alt="" height="300" /></a></p>
+
+<p>Немного написано и про алгоритм, используемый в LLVM. К сожалению, ничего особенно нового эта информация мне не дала. Этот участок компилятора весьма сложен, и возможности для ручного вмешательства в его работу очень ограничены (хотя и существуют).</p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Книга Steven W. Smith "the Scientist and Engineer’s Guide to Digital Signal Processing"]]></title>
@@ -391,131 +406,6 @@ echo 1 > /sys/class/fpga-bridge/lwhps2fpga/enable
     <id>http://arktur04.github.io/blog/2015/06/29/%d1%81%d1%82%d0%b0%d1%82%d1%8c%d1%8f-ten-c11-features-every-c-developer-should-use</id>
     <content type="html"><![CDATA[<p>Прочитал статью "Ten C++11 Features Every C++ Developer Should Use", автор Marius Bancila, ссылка: <a href="http://www.codeproject.com/Articles/570638/Ten-Cplusplus-Features-Every-Cplusplus-Developer">http://www.codeproject.com/Articles/570638/Ten-Cplusplus-Features-Every-Cplusplus-Developer</a>. Весьма интересно и познавательно. Я, конечно, основные моменты знал и ранее, но после прочтения познания в C++11 несколько упорядочились.<br />
 Вообще, <a href="http://www.codeproject.com">www.codeproject.com</a> - хороший сайт, надо почаще заглядывать.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Генерация файлов .mif и Case-конструкций]]></title>
-    <link href="http://arktur04.github.io/blog/2015/06/21/%25d0%25b3%25d0%25b5%25d0%25bd%25d0%25b5%25d1%2580%25d0%25b0%25d1%2586%25d0%25b8%25d1%258f-%25d1%2584%25d0%25b0%25d0%25b9%25d0%25bb%25d0%25be%25d0%25b2-mif/"/>
-    <updated>2015-06-21T09:13:34+05:00</updated>
-    <id>http://arktur04.github.io/blog/2015/06/21/%d0%b3%d0%b5%d0%bd%d0%b5%d1%80%d0%b0%d1%86%d0%b8%d1%8f-%d1%84%d0%b0%d0%b9%d0%bb%d0%be%d0%b2-mif</id>
-    <content type="html"><![CDATA[<p>Пусть в проекте FPGA необходимо ПЗУ, в которое записана определённая информация, имеющаяся у нас в виде бинарного файла. ПЗУ, как правило, реализуются на блоках BRAM, в которые при инициализации FPGA записывается требуемое содержимое.<br />
-Файлы инициализации памяти BRAM для FPGA, могут иметь формат MIF (Memory Initialization File) или формат HEX. </p>
-<p><a href="http://arktur04.github.io/images/2015/06/DSC_0522_EDIT.jpg"><img class="alignnone size-medium wp-image-2084" alt="DSC_0522_EDIT" src="http://arktur04.github.io/assets/DSC_0522_EDIT-300x200.jpg" width="300" height="200" /></a></p>
-<p>Нужный модуль памяти можно сгенерировать в Quartus II с помощью MegaWizard, в ISE - с помощью Xilinx Core Generator. Кроме этого, в QuartusII возможно использование специальной директивы:</p>
-<pre lang="verilog" line="1">reg [7:0] mem[0:2047] /* synthesis ram_init_file = "test.mif" */;</pre>
-<p>Эта директива позволяет создать RAM, инициированную значениями из файла .MIF. Использование RAM с предустановленными значениями, это очень плохая идея, но в качестве ROM такую память использовать вполне можно. Проблема в том, что эту директиву понимает только Quartus II, никакой кроссплатформенности.</p>
-<p>Quartus II предоставляет редактор файлов памяти, и возможность загрузки файлов .mif и .hex, Xilinx Core Generator требует загрузки файла .coe, имеющего другой формат, нежели MIF. Однако хочется иметь кроссплатформенное решение, которое не зависело бы от платформы.  Таким вариантом является генерация ROM в виде case-конструкции:</p>
-<pre lang="cpp" line="1">
-always@(posedge clk)
-begin
-  case(in)
-  ...
-  11'h00d: out = 8'h99;
-  11'h00e: out = 8'h81;
-  11'h00f: out = 8'h7e;
-  11'h010: out = 8'h7e;
-  11'h011: out = 8'hff;
-  11'h012: out = 8'hdb;
-  11'h013: out = 8'hff;
-  11'h014: out = 8'hc3;
-  11'h015: out = 8'he7;
-  11'h016: out = 8'hff;
-  ...
-  endcase
-end
-</pre>
-<p>Полезная ссылка: различные конструкции для генерации разных типов RAM, ROM и других модулей можно найти в руководстве Altera "Recommended HDL Coding Styles": <a href="https://www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/hb/qts/qts_qii51007.pdf">https://www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/hb/qts/qts_qii51007.pdf</a><br />
-Я написал две простые утилиты, которая преобразует бинарный файл в MIF и в тело конструкции case.</p>
-<p><!--more--></p>
-<p>Вот её полный исходник:</p>
-<pre lang="cpp" line="1">
-#include <fstream>
-#include <vector>
-#include <sstream>
-#include <string>
-#include <iostream>
-#include <iomanip>
-#include <math.h>
-
-std::vector<unsigned char> readFile(const char* filename)
-{
-    // open the file:
-    std::streampos fileSize;
-    std::ifstream file(filename, std::ios::binary);
-    // get its size:
-    file.seekg(0, std::ios::end);
-    fileSize = file.tellg();
-    file.seekg(0, std::ios::beg);
-    // read the data:
-	std::vector<unsigned char> fileData(fileSize);
-    file.read((char*) &fileData[0], fileSize);
-    return fileData;
-}
-
-unsigned getWidth(unsigned size)
-{
-	return size / 4 + ((size % 4)? 1: 0);
-}
-
-int main(int argc, char *argv[])
-{
-	if(argc < 5)
-	{
-		std::cout << "äîëæíû áûòü àðãóìåíòû: èìÿ_âõîäíîãî_ôàéëà èìÿ_âûõîäíîãî_ôàéëà ðàçìåð_âõîäíîé_ïåðåìåííîé ðàçìåð_âûõîäíîé_ïåðåìåííîé" << std::endl;
-		std::cout << "íàïðèìåð: out_file.v 11 8" << std::endl;
-		return 0;
-	}
-	std::vector<unsigned char> inputFile = readFile(argv[1]);
-	std::ofstream out(argv[2], std::ofstream::out);
-	unsigned num = 0;
-	unsigned inSize = atoi(argv[3]), outSize = atoi(argv[4]);
-	unsigned inWidth = getWidth(inSize),
-		depth = pow(2, inSize),
-		outWidth = getWidth(outSize);
-	out << "width=" << outSize << ";" << std::endl;
-	out << "depth=" << depth << ";" << std::endl;
-	out << "address_radix=hex;" << std::endl;
-	out << "data_radix=hex;" << std::endl;
-	out << "content begin" << std::endl;
-	out.fill('0');
-	for(auto ch:inputFile)
-	{
-		out << std::setw(inWidth) << std::hex << num++ << ": " << std::setw(outWidth) << std::right << std::hex << (int)ch << ";" << std::endl;
-	}
-	out << "end" << std::endl;
-	out.close();
-    return 0;
-}
-</unsigned></unsigned></unsigned></math.h></iomanip></iostream></string></sstream></vector></fstream></pre>
-<p>С её помощью можно преобразовать бинарный файл в MIF-формат, указав имя входного файла, имя выходного файла, размер переменной адреса в битах и размер данных в битах, например:</p>
-<pre lang="text" line="1">hex2mif "866.008" "008.mif" 11 8</pre>
-<p>Вторая утилита отличается незначительно:</p>
-<pre lang="cpp" line="1">
-  //основное отличие в этой строке:
-  out << std::dec << std::setw(0) << inSize << "'h" << std::setw(inWidth) << std::hex << num++ << ": " << std::dec << std::setw(0) << outName << " = " << outSize << "'h" << std::setw(outWidth) << std::hex << (int)ch << ";" << std::endl;
-</pre>
-<p>В качестве пятого параметра ей нужно указывать имя выходного регистра:</p>
-<pre lang="text" line="1">hex2case "866.008" "008.mif" 11 8 out</pre>
-<p>Обе утилиты кроссплатформенные и могут быть скомпилированы как в Windows, так и в Linux.</p>
-<p>Теперь можно использовать этот файл для инициализации памяти в verilog:</p>
-<pre lang="verilog" line="1">
-module rom_test(
-  input wire clk, rst_n,
-  input wire [10:0] in,
-  output reg [7:0] out
-);
-
-always@(posedge clk)
-begin
-  case(in)
-  `include "008.inc"
-  endcase
-end
-
-endmodule
-</pre>
-<p>Ссылка на Github: <a href="https://github.com/arktur04/bin2mif">https://github.com/arktur04/bin2mif</a></p>
 ]]></content>
   </entry>
   
