@@ -9,7 +9,7 @@
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="Продолжаю эксперименты с Altera Cyclone V. На этот раз объектом эксперимента стал драйвер для той прошивки FPGA, про которую я писал ранее. Сама &hellip;">
+  <meta name="description" content="Приведённый ниже код писал не я, он взят отсюда: https://zhehaomao.com/blog/fpga/2013/12/27/sockit-3.html, но я решил оставить его здесь, т.к. он &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -114,46 +114,6 @@
     <div id="content">
       <div class="blog-index">
   
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/10/02/%25d0%25b4%25d1%2580%25d0%25b0%25d0%25b9%25d0%25b2%25d0%25b5%25d1%2580-%25d0%25b4%25d0%25bb%25d1%258f-linux-%25d0%25bf%25d0%25b5%25d1%2580%25d0%25b2%25d1%258b%25d0%25b9-%25d1%2588%25d0%25b0%25d0%25b3/">Драйвер для Linux: первый шаг</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-10-02T22:11:34+05:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2015</span></span> <span class='time'>10:11 pm</span></time>
-        
-           | <a href="/blog/2015/10/02/%25d0%25b4%25d1%2580%25d0%25b0%25d0%25b9%25d0%25b2%25d0%25b5%25d1%2580-%25d0%25b4%25d0%25bb%25d1%258f-linux-%25d0%25bf%25d0%25b5%25d1%2580%25d0%25b2%25d1%258b%25d0%25b9-%25d1%2588%25d0%25b0%25d0%25b3/#disqus_thread"
-             data-disqus-identifier="http://arktur04.github.io/blog/2015/10/02/%25d0%25b4%25d1%2580%25d0%25b0%25d0%25b9%25d0%25b2%25d0%25b5%25d1%2580-%25d0%25b4%25d0%25bb%25d1%258f-linux-%25d0%25bf%25d0%25b5%25d1%2580%25d0%25b2%25d1%258b%25d0%25b9-%25d1%2588%25d0%25b0%25d0%25b3/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Продолжаю эксперименты с Altera Cyclone V. На этот раз объектом эксперимента стал драйвер для той прошивки FPGA, про которую я писал ранее. Сама прошивка простейшая: она просто мигает светодиодами с частотой, которую можно задавать программно. В прошлом посте на эту тему я сделал управление частотой мигания из обычной (user-space) программы, которая получает доступ к физической памяти через функции open("/dev/mem") и mmap().<br />
-Однако такой путь считается "hacky and unsafe". Поэтому следующим логичным шагом должно стать написание драйвера.</p>
-<p><a href="/images/2015/10/Tux-linux-and-ARM-multiplatform-support.jpg"><img class="alignnone size-full wp-image-2147" alt="Tux-linux-and-ARM-multiplatform-support" src="/assets/Tux-linux-and-ARM-multiplatform-support.jpg" width="672" height="370" /></a></p>
-<p>Я воспользовался готовым исходником драйвера (<a href="https://github.com/zhemao/sockit_test/tree/master/software/blinker">ссылка</a>) за авторством Howard Mao (он на самом деле не Howard, а Zhe Hao Mao). Конечно, для того, чтобы разобраться в работе кода, почитал отдельные главы книги Linux Device Drivers (есть русский перевод).</p>
-<p>Для компиляции пришлось вытаскивать архив Arrow SocKit 13.1 GSRD Linux отсюда: <a href="http://releases.rocketboards.org/release/2013.11/gsrd/src">http://releases.rocketboards.org/release/2013.11/gsrd/src</a>, файл linux-socfpga-gsrd-13.1-src.bsx. Объем архива около 1.1 Гб, но сервер очень медленный, качается несколько часов. Честно говоря, я впервые увидел файл с расширением bsx, оказалось, что это самораспаковывающийся архив. Просто запускаем его и он разворачивается в указанную папку. В ней в папке sources находится файл linux-socfpga.tgz. Его тоже нужно распаковать, естественно. Это и есть как таковое ядро системы, которое нужно указывать при компиляции драйвера.</p>
-<p>Однако всё не так просто. После компиляции записываем скомпилированный драйвер blinker.ko на SD-карту, после загрузки Linux пишем<strong> insmod blinker.ko</strong> и получаем следующее: "<em>blinker: version magic '3.9.0-00161-ged01b8c SMP mod_unload ARMv7 p2v8 ' should be '3.9.0 SMP mod_unload ARMv7 p2v8'</em>". Не совпали волшебные номерки. Причем версия одна и та же, просто зачем-то к ней приделан какой-то добавочный номер.</p>
-<p>Решений может быть три: 1. Скомпилировать Linux именно из этого скачанного исходника (очень неохота) или 2. Подправить номер в исходниках ядра Linux. 3. Использовать команду modprobe с ключом -f, который заставляет систему игнорировать "волшебные цифры".  Однако этот способ почему-то не заработал.<br />
-Итак, способ номер 2, подправить номер в исходнике ядра. Данный номер записан в файле /include/generated/utsrelease.h. Исправляем то, что там было, на "3.9.0", и перекомпилируем драйвер. На всякий случай смотрим hex-редактором файл blinker.ko, чтобы убедиться, что волшебные циферки такие, как нужно. Снова записываем драйвер на SD-карту, запускаем insmod, всё прошло гладко. Теперь можно проверить работу драйвера, посылая ему числа от 1 до 15 для управления частотой миганий: echo 1 &gt; blinker - мигает быстро, echo 15 &gt; blinker - мигает медленно. Пока всё. Немного, но путь в тысячу ли начинается с одного шага.</p>
-<p>Эксперименты продолжаются.</p>
-</div>
-  
-  
-
-
-    </article>
   
   
     <article>
@@ -560,6 +520,69 @@ echo 1 > /sys/class/fpga-bridge/lwhps2fpga/enable
 Вообще, <a href="http://www.codeproject.com">www.codeproject.com</a> - хороший сайт, надо почаще заглядывать.</p>
 </div>
   
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/21/%25d0%25b3%25d0%25b5%25d0%25bd%25d0%25b5%25d1%2580%25d0%25b0%25d1%2586%25d0%25b8%25d1%258f-%25d1%2584%25d0%25b0%25d0%25b9%25d0%25bb%25d0%25be%25d0%25b2-mif/">Генерация файлов .mif и Case-конструкций</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-21T09:13:34+05:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>9:13 am</span></time>
+        
+           | <a href="/blog/2015/06/21/%25d0%25b3%25d0%25b5%25d0%25bd%25d0%25b5%25d1%2580%25d0%25b0%25d1%2586%25d0%25b8%25d1%258f-%25d1%2584%25d0%25b0%25d0%25b9%25d0%25bb%25d0%25be%25d0%25b2-mif/#disqus_thread"
+             data-disqus-identifier="http://arktur04.github.io/blog/2015/06/21/%25d0%25b3%25d0%25b5%25d0%25bd%25d0%25b5%25d1%2580%25d0%25b0%25d1%2586%25d0%25b8%25d1%258f-%25d1%2584%25d0%25b0%25d0%25b9%25d0%25bb%25d0%25be%25d0%25b2-mif/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Пусть в проекте FPGA необходимо ПЗУ, в которое записана определённая информация, имеющаяся у нас в виде бинарного файла. ПЗУ, как правило, реализуются на блоках BRAM, в которые при инициализации FPGA записывается требуемое содержимое.<br />
+Файлы инициализации памяти BRAM для FPGA, могут иметь формат MIF (Memory Initialization File) или формат HEX. </p>
+<p><a href="/images/2015/06/DSC_0522_EDIT.jpg"><img class="alignnone size-medium wp-image-2084" alt="DSC_0522_EDIT" src="/assets/DSC_0522_EDIT-300x200.jpg" width="300" height="200" /></a></p>
+<p>Нужный модуль памяти можно сгенерировать в Quartus II с помощью MegaWizard, в ISE - с помощью Xilinx Core Generator. Кроме этого, в QuartusII возможно использование специальной директивы:</p>
+<pre lang="verilog" line="1">reg [7:0] mem[0:2047] /* synthesis ram_init_file = "test.mif" */;</pre>
+<p>Эта директива позволяет создать RAM, инициированную значениями из файла .MIF. Использование RAM с предустановленными значениями, это очень плохая идея, но в качестве ROM такую память использовать вполне можно. Проблема в том, что эту директиву понимает только Quartus II, никакой кроссплатформенности.</p>
+<p>Quartus II предоставляет редактор файлов памяти, и возможность загрузки файлов .mif и .hex, Xilinx Core Generator требует загрузки файла .coe, имеющего другой формат, нежели MIF. Однако хочется иметь кроссплатформенное решение, которое не зависело бы от платформы.  Таким вариантом является генерация ROM в виде case-конструкции:</p>
+<pre lang="cpp" line="1">
+always@(posedge clk)
+begin
+  case(in)
+  ...
+  11'h00d: out = 8'h99;
+  11'h00e: out = 8'h81;
+  11'h00f: out = 8'h7e;
+  11'h010: out = 8'h7e;
+  11'h011: out = 8'hff;
+  11'h012: out = 8'hdb;
+  11'h013: out = 8'hff;
+  11'h014: out = 8'hc3;
+  11'h015: out = 8'he7;
+  11'h016: out = 8'hff;
+  ...
+  endcase
+end
+</pre>
+<p>Полезная ссылка: различные конструкции для генерации разных типов RAM, ROM и других модулей можно найти в руководстве Altera "Recommended HDL Coding Styles": <a href="https://www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/hb/qts/qts_qii51007.pdf">https://www.altera.com/content/dam/altera-www/global/en_US/pdfs/literature/hb/qts/qts_qii51007.pdf</a><br />
+Я написал две простые утилиты, которая преобразует бинарный файл в MIF и в тело конструкции case.</p>
+<p></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/06/21/%25d0%25b3%25d0%25b5%25d0%25bd%25d0%25b5%25d1%2580%25d0%25b0%25d1%2586%25d0%25b8%25d1%258f-%25d1%2584%25d0%25b0%25d0%25b9%25d0%25bb%25d0%25be%25d0%25b2-mif/">Read on &rarr;</a>
+    </footer>
   
 
 
