@@ -4,7 +4,7 @@
   <title><![CDATA[Category: и | Записная книжка разработчика]]></title>
   <link href="http://arktur04.github.io/blog/categories/i/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2016-02-28T22:10:32+05:00</updated>
+  <updated>2016-02-28T22:14:13+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -22,7 +22,7 @@
 
 <p>В статье рассматривается применение инфраструктуры компиляторов LLVM для построения собственных решений на её основе.</p>
 
-<p><a href="/images/2016/02/84e79ac13efb48f19f490840a2339c27.jpeg"><img title="Creating an LLVM Backend for the Cpu0 Architecture" src="/images/2016/02/84e79ac13efb48f19f490840a2339c27_small.jpeg" alt="" height="300" /></a></p>
+<p><a href="/images/2016/02/84e79ac13efb48f19f490840a2339c27.jpeg"><img title="КДПВ" src="/images/2016/02/84e79ac13efb48f19f490840a2339c27_small.jpeg" alt="" height="300" /></a></p>
 
 <p>В статье рассматривается применение инфраструктуры компиляторов LLVM для построения собственных решений на её основе.</p>
 ]]></content>
