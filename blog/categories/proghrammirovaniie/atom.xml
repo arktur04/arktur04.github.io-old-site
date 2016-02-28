@@ -4,7 +4,7 @@
   <title><![CDATA[Category: программирование, | Записная книжка разработчика]]></title>
   <link href="http://arktur04.github.io/blog/categories/proghrammirovaniie/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2016-02-22T14:59:33+05:00</updated>
+  <updated>2016-02-28T21:44:41+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -12,6 +12,22 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Книга А. Ахо, М. С. Лам, Р. Сети, Д. Ульман "Компиляторы: принципы, технологии и инструментарий"]]></title>
+    <link href="http://arktur04.github.io/blog/2016/02/28/knigha-a-akho/"/>
+    <updated>2016-02-28T21:38:00+05:00</updated>
+    <id>http://arktur04.github.io/blog/2016/02/28/knigha-a-akho</id>
+    <content type="html"><![CDATA[<p>Легендарная “Книга дракона”, 2-е издание, русск. язык, 1184 стр.</p>
+
+<p><a href="/images/2016/02/50379_original.png"><img title="Creating an LLVM Backend for the Cpu0 Architecture" src="/images/2016/02/50379_small.png" alt="" height="300" /></a></p>
+
+<p>В книге излагается теория построения компиляторов, начиная от разбора исходников (токенайзер, лексер, парсер), до оптимизации машинного кода.
+Однако, в книге, несмотря на большой объём, я не нашёл некоторых важных вещей, например, нет ни слова про SSA-форму. А именно представление программы в SSA-форме может сделать очень эффективными многие алгоритмы оптимизации и генерации машинного кода.</p>
+
+<p>А в целом полезная книга, конечно, классика IT-литературы, всё-таки.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Книга Gabriel S. Hjort Blindell "Survey on Instruction Selection"]]></title>

@@ -9,8 +9,7 @@
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="Прочитал книгу Gabriel S. Hjort Blindell “Survey on Instruction Selection”, 139 стр, англ. язык.
-Книга про то, как осуществляется одна из самых &hellip;">
+  <meta name="description" content="Легендарная “Книга дракона”, 2-е издание, русск. язык, 1184 стр. В книге излагается теория построения компиляторов, начиная от разбора исходников ( &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -115,6 +114,45 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2016/02/28/knigha-a-akho/">Книга А. Ахо, М. С. Лам, Р. Сети, Д. Ульман "Компиляторы: принципы, технологии и инструментарий"</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2016-02-28T21:38:00+05:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>28</span><span class='date-suffix'>th</span>, <span class='date-year'>2016</span></span> <span class='time'>9:38 pm</span></time>
+        
+           | <a href="/blog/2016/02/28/knigha-a-akho/#disqus_thread"
+             data-disqus-identifier="http://arktur04.github.io/blog/2016/02/28/knigha-a-akho/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Легендарная “Книга дракона”, 2-е издание, русск. язык, 1184 стр.</p>
+
+<p><a href="/images/2016/02/50379_original.png"><img title="Creating an LLVM Backend for the Cpu0 Architecture" src="/images/2016/02/50379_small.png" alt="" height="300" /></a></p>
+
+<p>В книге излагается теория построения компиляторов, начиная от разбора исходников (токенайзер, лексер, парсер), до оптимизации машинного кода.
+Однако, в книге, несмотря на большой объём, я не нашёл некоторых важных вещей, например, нет ни слова про SSA-форму. А именно представление программы в SSA-форме может сделать очень эффективными многие алгоритмы оптимизации и генерации машинного кода.</p>
+
+<p>А в целом полезная книга, конечно, классика IT-литературы, всё-таки.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -462,46 +500,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/10/02/%25d0%25b4%25d1%2580%25d0%25b0%25d0%25b9%25d0%25b2%25d0%25b5%25d1%2580-%25d0%25b4%25d0%25bb%25d1%258f-linux-%25d0%25bf%25d0%25b5%25d1%2580%25d0%25b2%25d1%258b%25d0%25b9-%25d1%2588%25d0%25b0%25d0%25b3/">Драйвер для Linux: первый шаг</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-10-02T22:11:34+05:00'><span class='date'><span class='date-month'>Oct</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2015</span></span> <span class='time'>10:11 pm</span></time>
-        
-           | <a href="/blog/2015/10/02/%25d0%25b4%25d1%2580%25d0%25b0%25d0%25b9%25d0%25b2%25d0%25b5%25d1%2580-%25d0%25b4%25d0%25bb%25d1%258f-linux-%25d0%25bf%25d0%25b5%25d1%2580%25d0%25b2%25d1%258b%25d0%25b9-%25d1%2588%25d0%25b0%25d0%25b3/#disqus_thread"
-             data-disqus-identifier="http://arktur04.github.io/blog/2015/10/02/%25d0%25b4%25d1%2580%25d0%25b0%25d0%25b9%25d0%25b2%25d0%25b5%25d1%2580-%25d0%25b4%25d0%25bb%25d1%258f-linux-%25d0%25bf%25d0%25b5%25d1%2580%25d0%25b2%25d1%258b%25d0%25b9-%25d1%2588%25d0%25b0%25d0%25b3/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Продолжаю эксперименты с Altera Cyclone V. На этот раз объектом эксперимента стал драйвер для той прошивки FPGA, про которую я писал ранее. Сама прошивка простейшая: она просто мигает светодиодами с частотой, которую можно задавать программно. В прошлом посте на эту тему я сделал управление частотой мигания из обычной (user-space) программы, которая получает доступ к физической памяти через функции open("/dev/mem") и mmap().<br />
-Однако такой путь считается "hacky and unsafe". Поэтому следующим логичным шагом должно стать написание драйвера.</p>
-<p><a href="/images/2015/10/Tux-linux-and-ARM-multiplatform-support.jpg"><img class="alignnone size-full wp-image-2147" alt="Tux-linux-and-ARM-multiplatform-support" src="/assets/Tux-linux-and-ARM-multiplatform-support.jpg" width="672" height="370" /></a></p>
-<p>Я воспользовался готовым исходником драйвера (<a href="https://github.com/zhemao/sockit_test/tree/master/software/blinker">ссылка</a>) за авторством Howard Mao (он на самом деле не Howard, а Zhe Hao Mao). Конечно, для того, чтобы разобраться в работе кода, почитал отдельные главы книги Linux Device Drivers (есть русский перевод).</p>
-<p>Для компиляции пришлось вытаскивать архив Arrow SocKit 13.1 GSRD Linux отсюда: <a href="http://releases.rocketboards.org/release/2013.11/gsrd/src">http://releases.rocketboards.org/release/2013.11/gsrd/src</a>, файл linux-socfpga-gsrd-13.1-src.bsx. Объем архива около 1.1 Гб, но сервер очень медленный, качается несколько часов. Честно говоря, я впервые увидел файл с расширением bsx, оказалось, что это самораспаковывающийся архив. Просто запускаем его и он разворачивается в указанную папку. В ней в папке sources находится файл linux-socfpga.tgz. Его тоже нужно распаковать, естественно. Это и есть как таковое ядро системы, которое нужно указывать при компиляции драйвера.</p>
-<p>Однако всё не так просто. После компиляции записываем скомпилированный драйвер blinker.ko на SD-карту, после загрузки Linux пишем<strong> insmod blinker.ko</strong> и получаем следующее: "<em>blinker: version magic '3.9.0-00161-ged01b8c SMP mod_unload ARMv7 p2v8 ' should be '3.9.0 SMP mod_unload ARMv7 p2v8'</em>". Не совпали волшебные номерки. Причем версия одна и та же, просто зачем-то к ней приделан какой-то добавочный номер.</p>
-<p>Решений может быть три: 1. Скомпилировать Linux именно из этого скачанного исходника (очень неохота) или 2. Подправить номер в исходниках ядра Linux. 3. Использовать команду modprobe с ключом -f, который заставляет систему игнорировать "волшебные цифры".  Однако этот способ почему-то не заработал.<br />
-Итак, способ номер 2, подправить номер в исходнике ядра. Данный номер записан в файле /include/generated/utsrelease.h. Исправляем то, что там было, на "3.9.0", и перекомпилируем драйвер. На всякий случай смотрим hex-редактором файл blinker.ko, чтобы убедиться, что волшебные циферки такие, как нужно. Снова записываем драйвер на SD-карту, запускаем insmod, всё прошло гладко. Теперь можно проверить работу драйвера, посылая ему числа от 1 до 15 для управления частотой миганий: echo 1 &gt; blinker - мигает быстро, echo 15 &gt; blinker - мигает медленно. Пока всё. Немного, но путь в тысячу ли начинается с одного шага.</p>
-<p>Эксперименты продолжаются.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/2">&larr; Older</a>
@@ -517,6 +515,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/02/28/knigha-a-akho/">Книга А. Ахо, М. С. Лам, Р. Сети, Д. Ульман "Компиляторы: принципы, технологии и инструментарий"</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/02/14/knigha-gabriel-s-hjort-blindell-survey-on-instruction-selection/">Книга Gabriel S. Hjort Blindell "Survey on Instruction Selection"</a>
       </li>
     
@@ -530,10 +532,6 @@
     
       <li class="post">
         <a href="/blog/2015/12/16/knigha-fpga-for-dummies/">Книга Andrew Moore "FPGA for Dummies"</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/12/16/knigha-virt-kompiliatory/">Книга Вирт Н. "Построение компиляторов"</a>
       </li>
     
   </ul>
