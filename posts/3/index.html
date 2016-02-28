@@ -9,7 +9,7 @@
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="Пусть в проекте FPGA необходимо ПЗУ, в которое записана определённая информация, имеющаяся у нас в виде бинарного файла. ПЗУ, как правило, &hellip;">
+  <meta name="description" content="Прочитал статью "Ten C++11 Features Every C++ Developer Should Use", автор Marius Bancila, ссылка: http://www.codeproject.com/Articles/570638/Ten- &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -114,6 +114,39 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/06/29/%25d1%2581%25d1%2582%25d0%25b0%25d1%2582%25d1%258c%25d1%258f-ten-c11-features-every-c-developer-should-use/">Статья "Ten C++11 Features Every C++ Developer Should Use"</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-06-29T15:50:11+05:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>29</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:50 pm</span></time>
+        
+           | <a href="/blog/2015/06/29/%25d1%2581%25d1%2582%25d0%25b0%25d1%2582%25d1%258c%25d1%258f-ten-c11-features-every-c-developer-should-use/#disqus_thread"
+             data-disqus-identifier="http://arktur04.github.io/blog/2015/06/29/%25d1%2581%25d1%2582%25d0%25b0%25d1%2582%25d1%258c%25d1%258f-ten-c11-features-every-c-developer-should-use/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Прочитал статью "Ten C++11 Features Every C++ Developer Should Use", автор Marius Bancila, ссылка: <a href="http://www.codeproject.com/Articles/570638/Ten-Cplusplus-Features-Every-Cplusplus-Developer">http://www.codeproject.com/Articles/570638/Ten-Cplusplus-Features-Every-Cplusplus-Developer</a>. Весьма интересно и познавательно. Я, конечно, основные моменты знал и ранее, но после прочтения познания в C++11 несколько упорядочились.<br />
+Вообще, <a href="http://www.codeproject.com">www.codeproject.com</a> - хороший сайт, надо почаще заглядывать.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -490,46 +523,6 @@ endfunction</pre>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/05/13/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-1/">Проект видеоадаптера. Часть 1</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-05-13T22:21:00+05:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>10:21 pm</span></time>
-        
-           | <a href="/blog/2015/05/13/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-1/#disqus_thread"
-             data-disqus-identifier="http://arktur04.github.io/blog/2015/05/13/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-1/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Целью проекта является разработка видеоадаптера на FPGA. Выходом видеоадаптера является VGA, на данный момент поддерживается глубина цвета 6 бит (по 2 бита на цвет RGB).<br />
-Разъём VGA подключен к FPGA по следующей схеме:</p>
-<p><a href="/images/2015/05/schematics.jpg"><img class="alignnone  wp-image-2038" alt="schematics" src="/assets/schematics.jpg" width="475" height="358" /></a></p>
-<p>&nbsp;</p>
-<p>Резисторы R1-R6 образуют простейший ЦАП, для начала хватит такого, если нужна большая глубина цвета, то лучше использовать специализированные микросхемы видеоЦАП, например ADV7123.</p>
-<p></div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/05/13/%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582-%25d0%25b2%25d0%25b8%25d0%25b4%25d0%25b5%25d0%25be%25d0%25b0%25d0%25b4%25d0%25b0%25d0%25bf%25d1%2582%25d0%25b5%25d1%2580%25d0%25b0-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-1/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/4">&larr; Older</a>
@@ -547,6 +540,10 @@ endfunction</pre>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/02/28/llvm-kompiliator-svoimi-rukami-vviedieniie/">LLVM: компилятор своими руками. Введение</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/02/28/knigha-a-akho/">Книга А. Ахо, М. С. Лам, Р. Сети, Д. Ульман "Компиляторы: принципы, технологии и инструментарий"</a>
       </li>
     
@@ -560,10 +557,6 @@ endfunction</pre>
     
       <li class="post">
         <a href="/blog/2016/01/04/knigha-chen-chung-shu-creating-an-llvm-backend-for-the-cpu0-architecture/">Книга Chen Chung-Shu "Creating an LLVM Backend for the Cpu0 Architecture"</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/12/16/knigha-fpga-for-dummies/">Книга Andrew Moore "FPGA for Dummies"</a>
       </li>
     
   </ul>

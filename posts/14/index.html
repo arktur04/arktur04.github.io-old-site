@@ -9,8 +9,7 @@
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="Столкнулся с неожиданной проблемой при использовании библиотеки urllib (язык Python 3).
-Допустим, нужно получить html-код документа, лежащего по &hellip;">
+  <meta name="description" content="Для того, чтобы Windows видела содержимое расшаренных папок Ubuntu, необходимо в Windows зайти в Administrative Tools/Local Security Policy и &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -115,6 +114,39 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2011/05/06/ubuntu-%25d0%25b8-windows/">Ubuntu и Windows</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2011-05-06T20:33:40+06:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>6</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>8:33 pm</span></time>
+        
+           | <a href="/blog/2011/05/06/ubuntu-%25d0%25b8-windows/#disqus_thread"
+             data-disqus-identifier="http://arktur04.github.io/blog/2011/05/06/ubuntu-%25d0%25b8-windows/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Для того, чтобы Windows видела содержимое расшаренных папок Ubuntu, необходимо в Windows зайти в Administrative Tools/Local Security Policy и изменить значение ключа Network Security: LAN Manager Autentification Level на Send LM &amp; NTLM - Use NTLMv2 session security if negotiated. В русской версии Windows это Панель управления/Администрирование/Локальная политика безопасности, ключ "Сетевая безопасность: уровень проверки подлинности LAN Manager", значение "Отправлять LM и NTLM - использовать сеансовую безопасность NTLMv2 при согласовании".</p>
+<p>Проверено в Windows 7 и Windows XP.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -452,51 +484,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2011/01/20/%25d1%2586%25d0%25b5%25d0%25bf%25d1%258c-%25d0%25b7%25d0%25b0%25d1%2589%25d0%25b8%25d1%2582%25d1%258b-3/">Цепь защиты - 3</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2011-01-20T15:25:34+05:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>20</span><span class='date-suffix'>th</span>, <span class='date-year'>2011</span></span> <span class='time'>3:25 pm</span></time>
-        
-           | <a href="/blog/2011/01/20/%25d1%2586%25d0%25b5%25d0%25bf%25d1%258c-%25d0%25b7%25d0%25b0%25d1%2589%25d0%25b8%25d1%2582%25d1%258b-3/#disqus_thread"
-             data-disqus-identifier="http://arktur04.github.io/blog/2011/01/20/%25d1%2586%25d0%25b5%25d0%25bf%25d1%258c-%25d0%25b7%25d0%25b0%25d1%2589%25d0%25b8%25d1%2582%25d1%258b-3/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>После переделки цепи защиты её работа стала существенно лучше.</p>
-<p>В схему защиты были внесены следующие изменения:</p>
-<ul>
-<li> оптопары заменены на ADUM</li>
-<li>убран конденсатор фильтра датчика тока (датчик содержит встроенный ФНЧ, пост. времени которого задаётся внешним конденсатором)</li>
-</ul>
-<p>Порог срабатывания составляет около 8А.</p>
-<ul></ul>
-<p><a href="/images/2011/01/Osc1.jpg"><img class="alignnone size-full wp-image-1058" title="Osc1" src="/assets/Osc1.jpg" alt="" width="500" height="426" /></a></p>
-<p>На рисунке приведена осциллограмма переходного процесса при коротком замыкании в цепи нагрузки. Синий луч - сигнал на выходе датчика тока, жёлтый луч - сигнал на затворе силового ключа (MOSFET). Видно, что:</p>
-<ul>
-<li>время срабатывания уменьшилось до 8,8 мкс (было ~100 мкс);</li>
-<li>основной вклад вносит инерционность датчика тока (согласно документации, его время задержки составляет 6,6 мкс, что неплохо согласуется с экспериментом);</li>
-</ul>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/15">&larr; Older</a>
@@ -514,6 +501,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/02/28/llvm-kompiliator-svoimi-rukami-vviedieniie/">LLVM: компилятор своими руками. Введение</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/02/28/knigha-a-akho/">Книга А. Ахо, М. С. Лам, Р. Сети, Д. Ульман "Компиляторы: принципы, технологии и инструментарий"</a>
       </li>
     
@@ -527,10 +518,6 @@
     
       <li class="post">
         <a href="/blog/2016/01/04/knigha-chen-chung-shu-creating-an-llvm-backend-for-the-cpu0-architecture/">Книга Chen Chung-Shu "Creating an LLVM Backend for the Cpu0 Architecture"</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2015/12/16/knigha-fpga-for-dummies/">Книга Andrew Moore "FPGA for Dummies"</a>
       </li>
     
   </ul>

@@ -4,7 +4,7 @@
   <title><![CDATA[Записная книжка разработчика]]></title>
   <link href="http://arktur04.github.io/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2016-02-28T21:59:34+05:00</updated>
+  <updated>2016-02-28T22:10:32+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -12,6 +12,21 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[LLVM: компилятор своими руками. Введение]]></title>
+    <link href="http://arktur04.github.io/blog/2016/02/28/llvm-kompiliator-svoimi-rukami-vviedieniie/"/>
+    <updated>2016-02-28T22:02:44+05:00</updated>
+    <id>http://arktur04.github.io/blog/2016/02/28/llvm-kompiliator-svoimi-rukami-vviedieniie</id>
+    <content type="html"><![CDATA[<p>Опубликовал новый пост на Хабре: <a href="https://habrahabr.ru/post/277717/">ссылка</a>.</p>
+
+<p>В статье рассматривается применение инфраструктуры компиляторов LLVM для построения собственных решений на её основе.</p>
+
+<p><a href="http://arktur04.github.io/images/2016/02/84e79ac13efb48f19f490840a2339c27.jpeg"><img title="Creating an LLVM Backend for the Cpu0 Architecture" src="http://arktur04.github.io/images/2016/02/84e79ac13efb48f19f490840a2339c27_small.jpeg" alt="" height="300" /></a></p>
+
+<p>В статье рассматривается применение инфраструктуры компиляторов LLVM для построения собственных решений на её основе.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Книга А. Ахо, М. С. Лам, Р. Сети, Д. Ульман "Компиляторы: принципы, технологии и инструментарий"]]></title>
@@ -396,16 +411,6 @@ echo 1 > /sys/class/fpga-bridge/lwhps2fpga/enable
 Данная программа лабораторных работ основана на системе на кристалле (SoC) Altera Cyclone V. SoC состоит из двух процессорных ядер ARM Cortex A9 и FPGA, которые соединены мостами и могут взаимодействовать друг с другом. Первое руководство, Hardware, выполняется в Quartus II, и описывает конфигурирование и подключение периферии к процессору, а также симуляцию системы в ModelSim.<br />
 Вторая часть, Software, описывает процесс загрузки Linux, компиляцию простейшей программы (мигание светодиодом), отладку программы в ARM DS-5 Embedded Development Suite, и основы работы с SignalTap II Logic Analyzer в режиме совместной отладки программного кода и FPGA-проекта.</p>
 <p><a href="http://arktur04.github.io/images/2015/07/pic1.jpg"><img class="alignnone size-full wp-image-2101" alt="pic1" src="http://arktur04.github.io/assets/pic2015-07-28.jpg" width="1000" height="328" /></a></p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Статья "Ten C++11 Features Every C++ Developer Should Use"]]></title>
-    <link href="http://arktur04.github.io/blog/2015/06/29/%25d1%2581%25d1%2582%25d0%25b0%25d1%2582%25d1%258c%25d1%258f-ten-c11-features-every-c-developer-should-use/"/>
-    <updated>2015-06-29T15:50:11+05:00</updated>
-    <id>http://arktur04.github.io/blog/2015/06/29/%d1%81%d1%82%d0%b0%d1%82%d1%8c%d1%8f-ten-c11-features-every-c-developer-should-use</id>
-    <content type="html"><![CDATA[<p>Прочитал статью "Ten C++11 Features Every C++ Developer Should Use", автор Marius Bancila, ссылка: <a href="http://www.codeproject.com/Articles/570638/Ten-Cplusplus-Features-Every-Cplusplus-Developer">http://www.codeproject.com/Articles/570638/Ten-Cplusplus-Features-Every-Cplusplus-Developer</a>. Весьма интересно и познавательно. Я, конечно, основные моменты знал и ранее, но после прочтения познания в C++11 несколько упорядочились.<br />
-Вообще, <a href="http://www.codeproject.com">www.codeproject.com</a> - хороший сайт, надо почаще заглядывать.</p>
 ]]></content>
   </entry>
   
