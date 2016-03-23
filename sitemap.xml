@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://arktur04.github.io/blog/2016/03/23/knigha-the-architecture-of-open-source-applications-pod-ried-amy-brow/</loc>
+    <lastmod>2016-03-23T20:46:27+05:00</lastmod>
+  </url>
+  <url>
+    <loc>http://arktur04.github.io/blog/2016/03/23/knigha-suyog-sarda/</loc>
+    <lastmod>2016-03-23T20:37:00+05:00</lastmod>
+  </url>
+  <url>
     <loc>http://arktur04.github.io/blog/2016/02/28/llvm-kompiliator-svoimi-rukami-vviedieniie/</loc>
     <lastmod>2016-02-28T22:02:44+05:00</lastmod>
   </url>

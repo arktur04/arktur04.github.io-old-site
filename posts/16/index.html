@@ -9,7 +9,8 @@
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="Контроллер для промышленного применения. Содержит 4 входа термосопротивлений, 6 дискретных входов и 8 выходов реле (220 В, 5 А) и интерфейс связи &hellip;">
+  <meta name="description" content="
+">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -114,6 +115,82 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/12/16/%25d0%25bb%25d0%25b0%25d0%25b1%25d0%25be%25d1%2580%25d0%25b0%25d1%2582%25d0%25be%25d1%2580%25d0%25bd%25d1%258b%25d0%25b5-%25d0%25b8%25d1%2581%25d0%25bf%25d1%258b%25d1%2582%25d0%25b0%25d0%25bd%25d0%25b8%25d1%258f/">Лабораторные испытания</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-12-16T17:59:42+05:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>5:59 pm</span></time>
+        
+           | <a href="/blog/2010/12/16/%25d0%25bb%25d0%25b0%25d0%25b1%25d0%25be%25d1%2580%25d0%25b0%25d1%2582%25d0%25be%25d1%2580%25d0%25bd%25d1%258b%25d0%25b5-%25d0%25b8%25d1%2581%25d0%25bf%25d1%258b%25d1%2582%25d0%25b0%25d0%25bd%25d0%25b8%25d1%258f/#disqus_thread"
+             data-disqus-identifier="http://arktur04.github.io/blog/2010/12/16/%25d0%25bb%25d0%25b0%25d0%25b1%25d0%25be%25d1%2580%25d0%25b0%25d1%2582%25d0%25be%25d1%2580%25d0%25bd%25d1%258b%25d0%25b5-%25d0%25b8%25d1%2581%25d0%25bf%25d1%258b%25d1%2582%25d0%25b0%25d0%25bd%25d0%25b8%25d1%258f/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="/images/2010/12/dev_testing.jpg"><img class="alignnone size-medium wp-image-964" title="dev_testing" src="/assets/dev_testing-300x237.jpg" alt="" width="300" height="237" /></a></p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/12/14/%25d0%25bf%25d0%25b8%25d0%25b4-%25d1%2580%25d0%25b5%25d0%25b3%25d1%2583%25d0%25bb%25d1%258f%25d1%2582%25d0%25be%25d1%2580/">ПИД-регулятор</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-12-14T16:38:23+05:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>4:38 pm</span></time>
+        
+           | <a href="/blog/2010/12/14/%25d0%25bf%25d0%25b8%25d0%25b4-%25d1%2580%25d0%25b5%25d0%25b3%25d1%2583%25d0%25bb%25d1%258f%25d1%2582%25d0%25be%25d1%2580/#disqus_thread"
+             data-disqus-identifier="http://arktur04.github.io/blog/2010/12/14/%25d0%25bf%25d0%25b8%25d0%25b4-%25d1%2580%25d0%25b5%25d0%25b3%25d1%2583%25d0%25bb%25d1%258f%25d1%2582%25d0%25be%25d1%2580/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Реакция ПИД-регулятора, управляющего тепловым объектом, на изменения значения уставки.</p>
+<p>На рисунках хорошо видно, что объект имеет существенные нелинейности: время изменения температуры снизу вверх примерно в два раза меньше, чем в обратном направлении, изменение температуры на одинаковую величину (50°С) с уровня 600°С до уровня 650°С приводит к несколько иному переходному процессу, чем изменение температуры с уровня 650°С до уровня 700°С.</p>
+<p>В результате регулятор удерживает температуру с точностью +/-0,5 °С, эту точность можно ещё немного повысить. Перерегулирование во всех случаях не превышает 5°С (при скачке уставки 50°С).</p>
+<p>На рисунках приведены кривые переходных процессов в регуляторе. Желтая линия - величина рассогласования (вход регулятора) в градусах * 1000, красная кривая - выходной сигнал регулятора (он смещён так, чтобы при нулевой сумме П-, И- и Д-составляющих соответствовать температуре 650°С). Остальные кривые отображают выходы отдельных составляющих регулятора. Время  указано в секундах.</p>
+<p><a href="/images/2010/12/600-650.png"></a><a href="/images/2010/12/600-650.png"><img class="alignnone size-medium wp-image-954" title="600-650" src="/assets/600-650-300x161.png" alt="" width="300" height="161" /></a><br />
+Рис. 1. Переходный процесс при изменении температуры с 600°С до 650°С</p>
+<p><a href="/images/2010/12/650-600.png"><img class="alignnone size-medium wp-image-955" title="650-600" src="/assets/650-600-300x161.png" alt="" width="300" height="161" /></a></p>
+<p>Рис. 2. Переходный процесс при изменении температуры с 650°С до 600°С</p>
+<p>Ещё графики под катом.</p>
+<p></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2010/12/14/%25d0%25bf%25d0%25b8%25d0%25b4-%25d1%2580%25d0%25b5%25d0%25b3%25d1%2583%25d0%25bb%25d1%258f%25d1%2582%25d0%25be%25d1%2580/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -415,79 +492,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/11/12/%25d0%25bf%25d1%2580%25d0%25b5%25d1%2580%25d1%258b%25d0%25b2%25d0%25b0%25d0%25bd%25d0%25b8%25d1%258f-%25d0%25b2-cortex-m3-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-1/">Прерывания в Cortex M3. Часть 1</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2010-11-12T23:31:52+05:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>11:31 pm</span></time>
-        
-           | <a href="/blog/2010/11/12/%25d0%25bf%25d1%2580%25d0%25b5%25d1%2580%25d1%258b%25d0%25b2%25d0%25b0%25d0%25bd%25d0%25b8%25d1%258f-%25d0%25b2-cortex-m3-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-1/#disqus_thread"
-             data-disqus-identifier="http://arktur04.github.io/blog/2010/11/12/%25d0%25bf%25d1%2580%25d0%25b5%25d1%2580%25d1%258b%25d0%25b2%25d0%25b0%25d0%25bd%25d0%25b8%25d1%258f-%25d0%25b2-cortex-m3-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-1/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>По сравнению с микроконтроллерами ARM7, такими как LPC2368, в архитектуре Cortex M3 наибольшей модернизации подверглась система прерываний. Она стала существенно более сложной и гибкой. Ниже будут рассмотрены некоторые особенности нового контроллера прерываний (Nested Vectored Interrupt Controller, NVIC).</p>
-<p><strong></div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2010/11/12/%25d0%25bf%25d1%2580%25d0%25b5%25d1%2580%25d1%258b%25d0%25b2%25d0%25b0%25d0%25bd%25d0%25b8%25d1%258f-%25d0%25b2-cortex-m3-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-1/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/11/11/repetitive-interrupt-timer/">Repetitive Interrupt Timer</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2010-11-11T22:47:32+05:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>11</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>10:47 pm</span></time>
-        
-           | <a href="/blog/2010/11/11/repetitive-interrupt-timer/#disqus_thread"
-             data-disqus-identifier="http://arktur04.github.io/blog/2010/11/11/repetitive-interrupt-timer/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Repetitive Interrupt Timer (RIT) является ещё одним таймером, которого не было в ARM7, и который появился в Cortex M3. Как следует из названия, он предназначен для генерации прерываний, повторяющихся через определённые промежутки времени. Его структура намного проще, чем у обычного таймера-счётчика, но несколько сложнее, чем у SysTick, рассмотренного здесь: <a href="http://32bit.me/?p=796">http://32bit.me/?p=796</a>. В большинстве практических случаев эти таймеры взаимозаменяемы.<br />
-Ниже будет рассмотрено применение таймера RIT.</p>
-<p></div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2010/11/11/repetitive-interrupt-timer/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/17">&larr; Older</a>
@@ -505,6 +509,14 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/03/23/knigha-the-architecture-of-open-source-applications-pod-ried-amy-brow/">Книга "the Architecture of Open Source Applications" под ред. Amy Brow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/03/23/knigha-suyog-sarda/">Книга Suyog Sarda</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/02/28/llvm-kompiliator-svoimi-rukami-vviedieniie/">LLVM: компилятор своими руками. Введение</a>
       </li>
     
@@ -514,14 +526,6 @@
     
       <li class="post">
         <a href="/blog/2016/02/14/knigha-gabriel-s-hjort-blindell-survey-on-instruction-selection/">Книга Gabriel S. Hjort Blindell "Survey on Instruction Selection"</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/01/10/knigha-steven-w-smith-the-scientist-and-engineers-guide-to-digital-signal-processing/">Книга Steven W. Smith "the Scientist and Engineer’s Guide to Digital Signal Processing"</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/01/04/knigha-chen-chung-shu-creating-an-llvm-backend-for-the-cpu0-architecture/">Книга Chen Chung-Shu "Creating an LLVM Backend for the Cpu0 Architecture"</a>
       </li>
     
   </ul>

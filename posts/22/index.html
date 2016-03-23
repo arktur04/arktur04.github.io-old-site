@@ -9,7 +9,7 @@
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="Старая отладочная плата с микроконтроллером Fujitsu. С ее помощью было проделано множество интереснейших экспериментов. Плата содержит &hellip;">
+  <meta name="description" content="Для того, чтобы &lt;math.h&gt; нормально работал в IAR, нужно включать полную поддержку библиотеки (General Options/Library Configuration/Library: &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -114,6 +114,80 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/12/17/math-h/">math.h</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2009-12-17T01:32:00+05:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>17</span><span class='date-suffix'>th</span>, <span class='date-year'>2009</span></span> <span class='time'>1:32 am</span></time>
+        
+           | <a href="/blog/2009/12/17/math-h/#disqus_thread"
+             data-disqus-identifier="http://arktur04.github.io/blog/2009/12/17/math-h/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Для того, чтобы &lt;math.h&gt; нормально работал в IAR, нужно включать полную поддержку библиотеки (General Options/Library Configuration/Library: Full). Ниже приведены скорости исполнения некоторых функций &lt;math.h&gt;.<br />
+<a name="more"></a></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2009/12/17/math-h/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2009/12/07/%25d1%2581%25d0%25b8%25d1%2581%25d1%2582%25d0%25b5%25d0%25bc%25d0%25b0-%25d1%2581%25d0%25b1%25d0%25be%25d1%2580%25d0%25b0-%25d0%25b4%25d0%25b0%25d0%25bd%25d0%25bd%25d1%258b%25d1%2585/">Система сбора данных</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2009-12-07T20:41:00+05:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>7</span><span class='date-suffix'>th</span>, <span class='date-year'>2009</span></span> <span class='time'>8:41 pm</span></time>
+        
+           | <a href="/blog/2009/12/07/%25d1%2581%25d0%25b8%25d1%2581%25d1%2582%25d0%25b5%25d0%25bc%25d0%25b0-%25d1%2581%25d0%25b1%25d0%25be%25d1%2580%25d0%25b0-%25d0%25b4%25d0%25b0%25d0%25bd%25d0%25bd%25d1%258b%25d1%2585/#disqus_thread"
+             data-disqus-identifier="http://arktur04.github.io/blog/2009/12/07/%25d1%2581%25d0%25b8%25d1%2581%25d1%2582%25d0%25b5%25d0%25bc%25d0%25b0-%25d1%2581%25d0%25b1%25d0%25be%25d1%2580%25d0%25b0-%25d0%25b4%25d0%25b0%25d0%25bd%25d0%25bd%25d1%258b%25d1%2585/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Модуль аналогового ввода позволяет подключать до 24 аналоговых сигналов. Плата АЦП построена на основе четырех АЦП AD73360, каждая из которых имеет 6 независимых 16-и битных АЦП (речь идет не о мультиплексировании, а именно об отдельных АЦП). Частота опросов задается программно, максимальная скорость составляет 64ksps.</p>
+<div class="separator" style="clear: both; text-align: center;"><a style="clear: left; float: left; margin-bottom: 1em; margin-right: 1em;" href="/images/2010/01/post30/das-big.jpg"><img style="border: 0px;" src="/assets/das-small.jpg" border="0" alt="" /></a></div>
+<div class="separator" style="clear: both; text-align: left;">Всего в устройстве могут быть две такие платы, образующие 48-канальную систему сбора данных. Плата подключается к компьютеру по USB, который работает в режиме Hi-speed (одна плата АЦП при работе генерирует поток данных 24*16*64000 = 24Мбит/c, что выходит за рамки обычного Full-speed). Интерфейс USB и процессор находятся на нижней плате (фото под катом).</div>
+<p><a name="more"></a></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2009/12/07/%25d1%2581%25d0%25b8%25d1%2581%25d1%2582%25d0%25b5%25d0%25bc%25d0%25b0-%25d1%2581%25d0%25b1%25d0%25be%25d1%2580%25d0%25b0-%25d0%25b4%25d0%25b0%25d0%25bd%25d0%25bd%25d1%258b%25d1%2585/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -424,73 +498,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/09/26/%25d1%2586%25d0%25b5%25d0%25bd%25d1%2582%25d1%2580%25d0%25b0%25d0%25bb%25d1%258c%25d0%25bd%25d0%25b0%25d1%258f-%25d0%25bf%25d1%2580%25d0%25be%25d0%25b1%25d0%25bb%25d0%25b5%25d0%25bc%25d0%25b0-%25d0%25b8%25d0%25bd%25d1%2584%25d0%25be%25d1%2580%25d0%25bc%25d0%25b0%25d1%2582%25d0%25b8%25d0%25ba%25d0%25b8/">Центральная проблема информатики</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2009-09-26T19:32:00+06:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>26</span><span class='date-suffix'>th</span>, <span class='date-year'>2009</span></span> <span class='time'>7:32 pm</span></time>
-        
-           | <a href="/blog/2009/09/26/%25d1%2586%25d0%25b5%25d0%25bd%25d1%2582%25d1%2580%25d0%25b0%25d0%25bb%25d1%258c%25d0%25bd%25d0%25b0%25d1%258f-%25d0%25bf%25d1%2580%25d0%25be%25d0%25b1%25d0%25bb%25d0%25b5%25d0%25bc%25d0%25b0-%25d0%25b8%25d0%25bd%25d1%2584%25d0%25be%25d1%2580%25d0%25bc%25d0%25b0%25d1%2582%25d0%25b8%25d0%25ba%25d0%25b8/#disqus_thread"
-             data-disqus-identifier="http://arktur04.github.io/blog/2009/09/26/%25d1%2586%25d0%25b5%25d0%25bd%25d1%2582%25d1%2580%25d0%25b0%25d0%25bb%25d1%258c%25d0%25bd%25d0%25b0%25d1%258f-%25d0%25bf%25d1%2580%25d0%25be%25d0%25b1%25d0%25bb%25d0%25b5%25d0%25bc%25d0%25b0-%25d0%25b8%25d0%25bd%25d1%2584%25d0%25be%25d1%2580%25d0%25bc%25d0%25b0%25d1%2582%25d0%25b8%25d0%25ba%25d0%25b8/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><span id="fullpost"></p>
-<p>Как известео, центральной проблемой современной информатики является вычисление значения i (<a href="http://lurkmore.ru/%2B%2Bi_%2B_%2B%2Bi">линк</a>):</p>
-<p>int i = 5;<br />i = ++i + ++i;</p>
-<p></span></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2009/09/12/%25d1%2581-%25d0%25b4%25d0%25bd%25d0%25b5%25d0%25bc-%25d0%25bf%25d1%2580%25d0%25be%25d0%25b3%25d1%2580%25d0%25b0%25d0%25bc%25d0%25bc%25d0%25b8%25d1%2581%25d1%2582%25d0%25b0/">С днем программиста!</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2009-09-12T13:14:00+06:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2009</span></span> <span class='time'>1:14 pm</span></time>
-        
-           | <a href="/blog/2009/09/12/%25d1%2581-%25d0%25b4%25d0%25bd%25d0%25b5%25d0%25bc-%25d0%25bf%25d1%2580%25d0%25be%25d0%25b3%25d1%2580%25d0%25b0%25d0%25bc%25d0%25bc%25d0%25b8%25d1%2581%25d1%2582%25d0%25b0/#disqus_thread"
-             data-disqus-identifier="http://arktur04.github.io/blog/2009/09/12/%25d1%2581-%25d0%25b4%25d0%25bd%25d0%25b5%25d0%25bc-%25d0%25bf%25d1%2580%25d0%25be%25d0%25b3%25d1%2580%25d0%25b0%25d0%25bc%25d0%25bc%25d0%25b8%25d1%2581%25d1%2582%25d0%25b0/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>С днем программиста!</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/23">&larr; Older</a>
@@ -508,6 +515,14 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/03/23/knigha-the-architecture-of-open-source-applications-pod-ried-amy-brow/">Книга "the Architecture of Open Source Applications" под ред. Amy Brow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/03/23/knigha-suyog-sarda/">Книга Suyog Sarda</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/02/28/llvm-kompiliator-svoimi-rukami-vviedieniie/">LLVM: компилятор своими руками. Введение</a>
       </li>
     
@@ -517,14 +532,6 @@
     
       <li class="post">
         <a href="/blog/2016/02/14/knigha-gabriel-s-hjort-blindell-survey-on-instruction-selection/">Книга Gabriel S. Hjort Blindell "Survey on Instruction Selection"</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/01/10/knigha-steven-w-smith-the-scientist-and-engineers-guide-to-digital-signal-processing/">Книга Steven W. Smith "the Scientist and Engineer’s Guide to Digital Signal Processing"</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/01/04/knigha-chen-chung-shu-creating-an-llvm-backend-for-the-cpu0-architecture/">Книга Chen Chung-Shu "Creating an LLVM Backend for the Cpu0 Architecture"</a>
       </li>
     
   </ul>

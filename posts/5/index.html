@@ -9,8 +9,9 @@
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="Дочитал книгу "The Zynq Book", руководство по системе на кристалле (SoC) Zynq-7000 фирмы Xilinx.
-Напомню, что Zynq-7000 состоит из двух ядер ARM &hellip;">
+  <meta name="description" content="Продолжение. Начало здесь: часть 1, часть 2.
+Итак, тест готов, теперь можно написать сам код делителя.
+Для удобства нарисуем интерфейс модуля в таком &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -115,6 +116,82 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/03/13/fpu-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3-%25d0%25b4%25d0%25b5%25d0%25bb%25d0%25b8%25d1%2582%25d0%25b5%25d0%25bb%25d1%258c-rtl/">FPU. Часть 3. Делитель, RTL</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-03-13T03:59:18+05:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>13</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:59 am</span></time>
+        
+           | <a href="/blog/2015/03/13/fpu-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3-%25d0%25b4%25d0%25b5%25d0%25bb%25d0%25b8%25d1%2582%25d0%25b5%25d0%25bb%25d1%258c-rtl/#disqus_thread"
+             data-disqus-identifier="http://arktur04.github.io/blog/2015/03/13/fpu-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3-%25d0%25b4%25d0%25b5%25d0%25bb%25d0%25b8%25d1%2582%25d0%25b5%25d0%25bb%25d1%258c-rtl/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><i>Продолжение. Начало здесь: <a href="http://arktur04.github.io/blog/2015/02/17/fpu-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-1/">часть 1</a>, <a href="http://arktur04.github.io/blog/2015/02/28/fpu-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-2-%25d0%25b4%25d0%25b5%25d0%25bb%25d0%25b8%25d1%2582%25d0%25b5%25d0%25bb%25d1%258c/">часть 2</a>.</i></p>
+<p>Итак, тест готов, теперь можно написать сам код делителя.<br />
+Для удобства нарисуем интерфейс модуля в таком виде:</p>
+<p><a href="/images/2015/03/pic1.png"><img class="alignnone size-full wp-image-1972" alt="pic1" src="/assets/pic1-300x124.png" width="929" height="384" /></a></p>
+<p></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2015/03/13/fpu-%25d1%2587%25d0%25b0%25d1%2581%25d1%2582%25d1%258c-3-%25d0%25b4%25d0%25b5%25d0%25bb%25d0%25b8%25d1%2582%25d0%25b5%25d0%25bb%25d1%258c-rtl/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/03/08/%25d0%25b7%25d0%25b0%25d1%2589%25d0%25b8%25d1%2582%25d0%25b0-%25d0%25be%25d1%2582-%25d0%25bf%25d0%25b5%25d1%2580%25d0%25b5%25d0%25bf%25d0%25be%25d0%25bb%25d1%258e%25d1%2581%25d0%25be%25d0%25b2%25d0%25ba%25d0%25b8-%25d0%25bf%25d0%25be-%25d0%25bf%25d0%25b8%25d1%2582%25d0%25b0%25d0%25bd%25d0%25b8%25d1%258e/">Защита от переполюсовки по питанию</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-03-08T18:14:21+05:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>8</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>6:14 pm</span></time>
+        
+           | <a href="/blog/2015/03/08/%25d0%25b7%25d0%25b0%25d1%2589%25d0%25b8%25d1%2582%25d0%25b0-%25d0%25be%25d1%2582-%25d0%25bf%25d0%25b5%25d1%2580%25d0%25b5%25d0%25bf%25d0%25be%25d0%25bb%25d1%258e%25d1%2581%25d0%25be%25d0%25b2%25d0%25ba%25d0%25b8-%25d0%25bf%25d0%25be-%25d0%25bf%25d0%25b8%25d1%2582%25d0%25b0%25d0%25bd%25d0%25b8%25d1%258e/#disqus_thread"
+             data-disqus-identifier="http://arktur04.github.io/blog/2015/03/08/%25d0%25b7%25d0%25b0%25d1%2589%25d0%25b8%25d1%2582%25d0%25b0-%25d0%25be%25d1%2582-%25d0%25bf%25d0%25b5%25d1%2580%25d0%25b5%25d0%25bf%25d0%25be%25d0%25bb%25d1%258e%25d1%2581%25d0%25be%25d0%25b2%25d0%25ba%25d0%25b8-%25d0%25bf%25d0%25be-%25d0%25bf%25d0%25b8%25d1%2582%25d0%25b0%25d0%25bd%25d0%25b8%25d1%258e/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://ru-radio-electr.livejournal.com/1295897.html">Отсюда</a>.</p>
+<p><a href="/images/2015/03/111307_900.png"><img class="alignnone size-medium wp-image-1960" alt="111307_900" src="/assets/111307_900-300x66.png" width="300" height="66" /></a></p>
+<p>&nbsp;</p>
+<p>Кликните картинку для просмотра полного размера.</p>
+<p>Защита сделана на N-канальном MOSFET транзисторе. Такое решение позволяет обеспечить почти нулевое падение напряжения, по сравнению с защитой на диоде. Например, при токе 3А 12В диод довольно сильно грелся бы, более Ватта.<br />
+У этой схемы есть небольшой недостаток: для повышенного напряжения, более 20В, резистор R6 надо заменить на 10-вольтовый стабилитрон.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -417,73 +494,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/12/22/gnome-3-failed-to-load/">Gnome 3 Failed to Load</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-12-22T05:15:25+05:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>22</span><span class='date-suffix'>nd</span>, <span class='date-year'>2014</span></span> <span class='time'>5:15 am</span></time>
-        
-           | <a href="/blog/2014/12/22/gnome-3-failed-to-load/#disqus_thread"
-             data-disqus-identifier="http://arktur04.github.io/blog/2014/12/22/gnome-3-failed-to-load/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Если в Debian под Vmware не устанавливается Gnome 3, то вот танец с бубном:</p>
-<p><a href="http://www.neowin.net/forum/topic/1217775-debian-how-to-fix-gnome-3-failed-to-load-running-debian-in-vmware/">http://www.neowin.net/forum/topic/1217775-debian-how-to-fix-gnome-3-failed-to-load-running-debian-in-vmware/</a></p>
-<p>Конечно, нужно еще в Settings машины включить Display/Accelerate 3D graphics</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2014/12/15/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-%25d0%25bc%25d0%25b0%25d0%25ba%25d1%2581%25d1%2584%25d0%25b8%25d0%25bb%25d0%25b4-%25d0%25ba-%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582%25d0%25b8%25d1%2580%25d0%25be%25d0%25b2%25d0%25b0%25d0%25bd%25d0%25b8%25d0%25b5-%25d0%25bd%25d0%25b0-%25d0%25bf%25d0%25bb/">Книга Максфилд К. "Проектирование на ПЛИС. Архитектура, средства и методы"</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-12-15T18:29:36+05:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>6:29 pm</span></time>
-        
-           | <a href="/blog/2014/12/15/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-%25d0%25bc%25d0%25b0%25d0%25ba%25d1%2581%25d1%2584%25d0%25b8%25d0%25bb%25d0%25b4-%25d0%25ba-%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582%25d0%25b8%25d1%2580%25d0%25be%25d0%25b2%25d0%25b0%25d0%25bd%25d0%25b8%25d0%25b5-%25d0%25bd%25d0%25b0-%25d0%25bf%25d0%25bb/#disqus_thread"
-             data-disqus-identifier="http://arktur04.github.io/blog/2014/12/15/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-%25d0%25bc%25d0%25b0%25d0%25ba%25d1%2581%25d1%2584%25d0%25b8%25d0%25bb%25d0%25b4-%25d0%25ba-%25d0%25bf%25d1%2580%25d0%25be%25d0%25b5%25d0%25ba%25d1%2582%25d0%25b8%25d1%2580%25d0%25be%25d0%25b2%25d0%25b0%25d0%25bd%25d0%25b8%25d0%25b5-%25d0%25bd%25d0%25b0-%25d0%25bf%25d0%25bb/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Прочитал эту книжку, не очень понравилось. Одна вода. Автор не рассматривает никаких языков, никаких методологий проектирования и верификации, только общие слова. Единственное, что меня заинтересовало, это упоминания о SystemC и о проектировании на ПЛИС с использованием языков программирования высокого уровня, таких, как С, с последующей генерацией эквивалентного RTL-кода. Но в книге эти темы только упоминаются, и не описаны подробно.</p>
-<p><a href="/images/2014/12/0452.jpg"><img class="alignnone size-full wp-image-1890" alt="0452" src="/assets/0452.jpg" width="600" height="855" /></a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/6">&larr; Older</a>
@@ -501,6 +511,14 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/03/23/knigha-the-architecture-of-open-source-applications-pod-ried-amy-brow/">Книга "the Architecture of Open Source Applications" под ред. Amy Brow</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/03/23/knigha-suyog-sarda/">Книга Suyog Sarda</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/02/28/llvm-kompiliator-svoimi-rukami-vviedieniie/">LLVM: компилятор своими руками. Введение</a>
       </li>
     
@@ -510,14 +528,6 @@
     
       <li class="post">
         <a href="/blog/2016/02/14/knigha-gabriel-s-hjort-blindell-survey-on-instruction-selection/">Книга Gabriel S. Hjort Blindell "Survey on Instruction Selection"</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/01/10/knigha-steven-w-smith-the-scientist-and-engineers-guide-to-digital-signal-processing/">Книга Steven W. Smith "the Scientist and Engineer’s Guide to Digital Signal Processing"</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/01/04/knigha-chen-chung-shu-creating-an-llvm-backend-for-the-cpu0-architecture/">Книга Chen Chung-Shu "Creating an LLVM Backend for the Cpu0 Architecture"</a>
       </li>
     
   </ul>

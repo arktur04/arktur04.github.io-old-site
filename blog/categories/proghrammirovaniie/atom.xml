@@ -4,7 +4,7 @@
   <title><![CDATA[Category: программирование, | Записная книжка разработчика]]></title>
   <link href="http://arktur04.github.io/blog/categories/proghrammirovaniie/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2016-02-29T22:11:45+05:00</updated>
+  <updated>2016-03-23T20:55:35+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -12,6 +12,32 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Книга "the Architecture of Open Source Applications" под ред. Amy Brow]]></title>
+    <link href="http://arktur04.github.io/blog/2016/03/23/knigha-the-architecture-of-open-source-applications-pod-ried-amy-brow/"/>
+    <updated>2016-03-23T20:46:27+05:00</updated>
+    <id>http://arktur04.github.io/blog/2016/03/23/knigha-the-architecture-of-open-source-applications-pod-ried-amy-brow</id>
+    <content type="html"><![CDATA[<p>Прочитал главу 11 (LLVM, Chris Lattner), 15 стр, англ. язык.</p>
+
+<p><a href="/images/2016/03/52401_original.jpg"><img title="КДПВ" src="/images/2016/03/52401_original_small.jpg" alt="" height="300" /></a></p>
+
+<p>Книга “The Architecture of Open Source Applications” содержит краткое описание множества open-source продуктов, включая LLVM. Автор главы про LLVM даёт описание архитектуры системы, уделяя особое внимание преимуществам LLVM перед другими open-source компиляторами. Также рассматриваются различные необычные применения  LLVM, например, в системе обработки изображений.</p>
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[Книга Suyog Sarda]]></title>
+    <link href="http://arktur04.github.io/blog/2016/03/23/knigha-suyog-sarda/"/>
+    <updated>2016-03-23T20:37:00+05:00</updated>
+    <id>http://arktur04.github.io/blog/2016/03/23/knigha-suyog-sarda</id>
+    <content type="html"><![CDATA[<p>Прочитал книгу Suyog Sarda, Mayur Pandey “LLVM Essentials”, 166 стр., англ. язык.</p>
+
+<p><a href="/images/2016/03/52027_original.jpg"><img title="КДПВ" src="/images/2016/03/52027_original_small.jpg" alt="" height="300" /></a></p>
+
+<p>Ничего нового для себя не почерпнул, книга очень маленькая, но если вы решили начать изучение инфраструктуры компиляторов LLVM, то эта книга может дать некоторое начальное представление.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[LLVM: компилятор своими руками. Введение]]></title>
@@ -54,40 +80,6 @@
 
 <p>Немного написано и про алгоритм, используемый в LLVM. К сожалению, ничего особенно нового эта информация мне не дала. Этот участок компилятора весьма сложен, и возможности для ручного вмешательства в его работу очень ограничены (хотя и существуют).</p>
 
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Книга Chen Chung-Shu "Creating an LLVM Backend for the Cpu0 Architecture"]]></title>
-    <link href="http://arktur04.github.io/blog/2016/01/04/knigha-chen-chung-shu-creating-an-llvm-backend-for-the-cpu0-architecture/"/>
-    <updated>2016-01-04T20:17:43+05:00</updated>
-    <id>http://arktur04.github.io/blog/2016/01/04/knigha-chen-chung-shu-creating-an-llvm-backend-for-the-cpu0-architecture</id>
-    <content type="html"><![CDATA[<p>Прочитал книгу Chen Chung-Shu “Creating an LLVM Backend for the Cpu0 Architecture”, 575 стр., англ. язык.
-Книга по LLVM, единственная в своём роде книга, детально описывающая процесс разработки бэкенда.</p>
-
-<p><a href="/images/2016/01/line-tile.png"><img title="Creating an LLVM Backend for the Cpu0 Architecture" src="/images/2016/01/line-tile_small.png" alt="" height="300" /></a></p>
-
-<p>Я читал эту книгу ранее, но автор непрерывно вносит исправления и дополнения в текст (эта книга существует только в онлайновом виде), поэтому я решил перечитать всё полностью, с начала до конца, самый свежий вариант. Сейчас я могу сказать, что читал по LLVM всё, что опубликовано, и что имеет хотя бы немного существенное значение (можно также найти огромное количество статей в духе “мы разработали компилятор для нашего процессора, это круто”. Их я обычно не читаю). Источников по LLVM очень мало, печатных книг всего две, например.</p>
-
-<p>Проблема ещё и в том, что все процессоры разные, и нельзя просто скопировать исходник одного бэкенда, подправить там пару строк и получить другой. Они настолько различны, что вряд ли вы вообще найдёте в двух разных бэкендах похожие куски кода. Поэтому чтение этой книги не заменит вам собственного опыта.
-Желающим разработать свой компилятор, я могу посоветовать следующее:
-не бояться разбираться в существующем коде, как бэкендов, так и Core Library.
-не бояться экспериментировать и писать с нуля собственные алгоритмы оптимизаций.
-не пытаться изобрести велосипед. Если нужные функции есть в Core Library, их необходимо изучить и использовать. Если, напротив, каких-то функций нет ни в Core Library, ни в других бэкендах, значит, скорее всего, вы хотите странного, и, скорее всего, на самом деле это вам не нужно. Хотя могут быть исключения из этого правила.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Книга Вирт Н. "Построение компиляторов"]]></title>
-    <link href="http://arktur04.github.io/blog/2015/12/16/knigha-virt-kompiliatory/"/>
-    <updated>2015-12-16T20:00:22+05:00</updated>
-    <id>http://arktur04.github.io/blog/2015/12/16/knigha-virt-kompiliatory</id>
-    <content type="html"><![CDATA[<p>Прочитал книгу Вирт Н. “Построение компиляторов”, 192 стр., русск. язык.</p>
-
-<p><a href="/images/2015/12/vurt_full.jpg"><img title="Qt5.3. Профессиональное программирование на С++" src="/images/2015/12/vurt_small.jpg" alt="" height="300" /></a></p>
-
-<p>Книга может служить хорошим введением в тему, хотя классическим трудом по компиляторам является <a href="https://ru.wikipedia.org/wiki/%D0%9A%D0%BE%D0%BC%D0%BF%D0%B8%D0%BB%D1%8F%D1%82%D0%BE%D1%80%D1%8B:_%D0%BF%D1%80%D0%B8%D0%BD%D1%86%D0%B8%D0%BF%D1%8B,_%D1%82%D0%B5%D1%85%D0%BD%D0%BE%D0%BB%D0%BE%D0%B3%D0%B8%D0%B8_%D0%B8_%D0%B8%D0%BD%D1%81%D1%82%D1%80%D1%83%D0%BC%D0%B5%D0%BD%D1%82%D1%8B">“книга дракона”</a>.
-Вирт в настоящее время несколько утратил былую славу, во многом из-за странного языка Оберон, который очень сильно уступает современным языкам. Все примеры в книге на Обероне. К счастью, он практически неотличим от Паскаля, с которого я когда-то начинал. Как краткое введение книгу читать можно.</p>
 ]]></content>
   </entry>
   
