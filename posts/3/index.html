@@ -9,7 +9,9 @@
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="Прочитал книгу Scott Meyers "Effective Modern C++", O'Reilly Media, 2014 г., 336 стр, англ. язык. Замечательная книга, одна из лучших, которые я &hellip;">
+  <meta name="description" content="В общем, ничего сложного.
+Для того, чтобы заливать прошивку в FPGA из процессорного ядра, нужно сделать следующее:
+1. Подготовить файл rbf, это и &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -114,6 +116,99 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/08/21/%25d0%25bf%25d1%2580%25d0%25be%25d1%2588%25d0%25b8%25d0%25b2%25d0%25b0%25d0%25b5%25d0%25bc-fpga-%25d0%25b2-run-time/">Прошиваем FPGA в Run-time</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-21T22:22:04+05:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>21</span><span class='date-suffix'>st</span>, <span class='date-year'>2015</span></span> <span class='time'>10:22 pm</span></time>
+        
+           | <a href="/blog/2015/08/21/%25d0%25bf%25d1%2580%25d0%25be%25d1%2588%25d0%25b8%25d0%25b2%25d0%25b0%25d0%25b5%25d0%25bc-fpga-%25d0%25b2-run-time/#disqus_thread"
+             data-disqus-identifier="http://arktur04.github.io/blog/2015/08/21/%25d0%25bf%25d1%2580%25d0%25be%25d1%2588%25d0%25b8%25d0%25b2%25d0%25b0%25d0%25b5%25d0%25bc-fpga-%25d0%25b2-run-time/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>В общем, ничего сложного.<br />
+Для того, чтобы заливать прошивку в FPGA из процессорного ядра, нужно сделать следующее:<br />
+1. Подготовить файл rbf, это и есть файл прошивки. Он делается из файла sof с помощью утилиты Quartus:</p>
+<p>quartus_cpf -c output_files/sockit_test.sof output_files/sockit_test.rbf</p>
+<p>Положить этот файл в основной раздел SD-карты, например, в корень.</p>
+<p>2. После загрузки linux, отключить мосты между FPGA и HPS (HPS - это процессорное ядро):</p>
+<p>echo 0 &gt; /sys/class/fpga-bridge/fpga2hps/enable<br />
+echo 0 &gt; /sys/class/fpga-bridge/hps2fpga/enable<br />
+echo 0 &gt; /sys/class/fpga-bridge/lwhps2fpga/enable</p>
+<p>И заливаем файл в FPGA:</p>
+<p>dd if=/sockit_test.rbf of=/dev/fpga0 bs=1M</p>
+<p>Собственно, всё. Мосты можно включить обратно, если нужно:</p>
+<p>echo 1 &gt; /sys/class/fpga-bridge/fpga2hps/enable<br />
+echo 1 &gt; /sys/class/fpga-bridge/hps2fpga/enable<br />
+echo 1 &gt; /sys/class/fpga-bridge/lwhps2fpga/enable</p>
+<p>Разумеется, всё это можно делать скриптом.<br />
+Пишем файл gsrd_init.sh:</p>
+<pre lang="bash" line="1">#!/bin/sh
+
+echo 0 > /sys/class/fpga-bridge/fpga2hps/enable
+echo 0 > /sys/class/fpga-bridge/hps2fpga/enable
+echo 0 > /sys/class/fpga-bridge/lwhps2fpga/enable
+dd if=/sockit_test.rbf of=/dev/fpga0 bs=1M
+echo 1 > /sys/class/fpga-bridge/fpga2hps/enable
+echo 1 > /sys/class/fpga-bridge/hps2fpga/enable
+echo 1 > /sys/class/fpga-bridge/lwhps2fpga/enable
+</pre>
+<p>Кладём его в /etc/init.d. Теперь после загрузки Linux прошивка FPGA будет загружаться автоматически.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2015/08/14/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-b-stroustrup-a-tour-of-c/">Книга B. Stroustrup "a Tour of C++"</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2015-08-14T15:52:56+05:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>14</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>3:52 pm</span></time>
+        
+           | <a href="/blog/2015/08/14/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-b-stroustrup-a-tour-of-c/#disqus_thread"
+             data-disqus-identifier="http://arktur04.github.io/blog/2015/08/14/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-b-stroustrup-a-tour-of-c/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Прочитал книгу B. Stroustrup "A Tour of C++", Addison-Wesley, 2013, 180 стр, англ. язык.</p>
+<p><a href="/images/2015/08/51xVLzxX4vL._SX370_BO1204203200_.jpg"><img class="alignnone size-full wp-image-2111" alt="51xVLzxX4vL._SX370_BO1,204,203,200_" src="/assets/51xVLzxX4vL._SX370_BO1204203200_.jpg" width="372" height="499" /></a></p>
+<p>Книга не является ни учебником по С++, ни полным справочником по С++, это именно "тур", обзор основных возможностей С++11, причем и тех, которые были в стандарте С++98, и новых. Рекомендую прочитать тем, кто знает язык, но хочет усовершенствовать эти знания.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -426,92 +521,6 @@ end
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/06/12/%25d0%25be-%25d0%25bf%25d0%25be%25d0%25b4%25d1%2581%25d1%2587%25d0%25b5%25d1%2582%25d0%25b5-%25d0%25bd%25d1%2583%25d0%25bb%25d0%25b5%25d0%25b9/">О подсчете нулей</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-06-12T14:30:05+05:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2015</span></span> <span class='time'>2:30 pm</span></time>
-        
-           | <a href="/blog/2015/06/12/%25d0%25be-%25d0%25bf%25d0%25be%25d0%25b4%25d1%2581%25d1%2587%25d0%25b5%25d1%2582%25d0%25b5-%25d0%25bd%25d1%2583%25d0%25bb%25d0%25b5%25d0%25b9/#disqus_thread"
-             data-disqus-identifier="http://arktur04.github.io/blog/2015/06/12/%25d0%25be-%25d0%25bf%25d0%25be%25d0%25b4%25d1%2581%25d1%2587%25d0%25b5%25d1%2582%25d0%25b5-%25d0%25bd%25d1%2583%25d0%25bb%25d0%25b5%25d0%25b9/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>В задачах, связанных с арифметическими функциями, часто необходимо подсчитать количество нулей в старших разрядах числа. Эту функцию можно реализовать по-разному.</p>
-<p>Итак, вариант 1:</p>
-<pre lang="verilog" line="1">function [ZERO_DATA_WIDTH - 1: 0] zero_cnt;
-input [DATA_WIDTH - 1: 0] in;
-integer i;
-begin
-  zero_cnt = DATA_WIDTH;
-  for(i = DATA_WIDTH - 1; i >= 0; i = i - 1)
-  begin
-    if(in[i] && zero_cnt == DATA_WIDTH)
-	   zero_cnt = DATA_WIDTH - i - 1;
-  end
-end
-endfunction</pre>
-<p></div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2015/06/12/%25d0%25be-%25d0%25bf%25d0%25be%25d0%25b4%25d1%2581%25d1%2587%25d0%25b5%25d1%2582%25d0%25b5-%25d0%25bd%25d1%2583%25d0%25bb%25d0%25b5%25d0%25b9/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2015/06/02/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-jane-smith-verilog-coding-guidelines/">Книга Jane Smith "Verilog Coding Guidelines"</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2015-06-02T20:05:53+05:00'><span class='date'><span class='date-month'>Jun</span> <span class='date-day'>2</span><span class='date-suffix'>nd</span>, <span class='date-year'>2015</span></span> <span class='time'>8:05 pm</span></time>
-        
-           | <a href="/blog/2015/06/02/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-jane-smith-verilog-coding-guidelines/#disqus_thread"
-             data-disqus-identifier="http://arktur04.github.io/blog/2015/06/02/%25d0%25ba%25d0%25bd%25d0%25b8%25d0%25b3%25d0%25b0-jane-smith-verilog-coding-guidelines/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Это не совсем книга, впрочем, это просто документ, стилевой гайд по Verilog  фирмы Cisco System.</p>
-<p><a href="/images/2015/06/pic.png"><img class="alignnone size-medium wp-image-2056" alt="pic" src="/assets/pic-300x102.png" width="300" height="102" /></a></p>
-<p>Объём небольшой, всего 17 страниц. Описывается стиль кода, отступы, именование сигналов и регистров, и т.п.</p>
-<p>Лично мне не вполне нравится тот стиль, который описан в документе, например, документ рекомендует выравнивать все декларации сигналов, комментарии и т.п. "в столбик", да ещё с использованием табуляций.  Но наличие любого стайлгайда лучше, чем отсутствие такового, тем более при командной работе.</p>
-<p>Любой стиль кодирования есть всего лишь отражение чьих-то вкусов, не существует "единственно верного" стиля.</p>
-<p>Такой документ, даже если вы придерживаетесь другого стиля кодирования, может послужить образцом для составления вашего собственного стилевого руководства.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/4">&larr; Older</a>
@@ -529,6 +538,14 @@ endfunction</pre>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/04/10/knigha-c-maxfield-fpgas-instant-access/">Книга C Maxfield "FPGAs: Instant Access"</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/04/10/knigha-michael-barr-and-anthony-massa-programming-embedded-systems/">Книга Michael Barr and Anthony Massa "Programming Embedded Systems"</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/03/23/knigha-the-architecture-of-open-source-applications-pod-ried-amy-brow/">Книга " the Architecture of Open Source Applications" под ред. Amy Brow</a>
       </li>
     
@@ -538,14 +555,6 @@ endfunction</pre>
     
       <li class="post">
         <a href="/blog/2016/02/28/llvm-kompiliator-svoimi-rukami-vviedieniie/">LLVM: компилятор своими руками. Введение</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/02/28/knigha-a-akho/">Книга А. Ахо, М. С. Лам, Р. Сети, Д. Ульман "Компиляторы: принципы, технологии и инструментарий"</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/02/14/knigha-gabriel-s-hjort-blindell-survey-on-instruction-selection/">Книга Gabriel S. Hjort Blindell "Survey on Instruction Selection"</a>
       </li>
     
   </ul>

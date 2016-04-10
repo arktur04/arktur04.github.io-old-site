@@ -9,7 +9,8 @@
   <meta name="author" content="Your Name">
 
   
-  <meta name="description" content="На самом деле это плата Ethernet-контроллера Wiznet W5100 (вверху), соединённая с отладочной платой c микроконтроллером ARM (LPC). Плата между ними &hellip;">
+  <meta name="description" content="Продолжение. Начало здесь: http://32bit.me/?p=355 - введение; http://32bit.me/?p=373 - часть 1.0.
+Продолжим эксперименты по исследованию протокола &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -114,6 +115,85 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/05/12/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-3/">Протокол Modbus в устройствах на базе микроконтроллеров. Часть 1.1</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-05-12T21:48:10+06:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>9:48 pm</span></time>
+        
+           | <a href="/blog/2010/05/12/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-3/#disqus_thread"
+             data-disqus-identifier="http://arktur04.github.io/blog/2010/05/12/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-3/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><em><a href="/images/2010/05/Рис-1.jpg"></a>Продолжение. </em><em>Начало здесь: </em><em> </em><a href="http://32bit.me/?p=355"><em>http://32bit.me/?p=355</em></a><em> - введение; </em><a href="http://32bit.me/?p=373"><em>http://32bit.me/?p=373</em></a><em> - часть 1.0.</em></p>
+<p>Продолжим эксперименты по исследованию протокола Modbus. Для этого воспользуемся контроллером ICP-DAS i7188EGD:</p>
+<p><a href="/images/2010/05/i-7188egd.jpg"><img title="i-7188egd" src="/assets/i-7188egd.jpg" alt="" width="169" height="200" /></a></p>
+<p>Он может служить ведомым устройством с поддержкой протокола Modbus RTU.</p>
+<p style="padding-left: 30px;"></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2010/05/12/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-3/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/blog/2010/05/12/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-2/">Протокол Modbus в устройствах на базе микроконтроллеров. Часть 1.0</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2010-05-12T16:32:07+06:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>4:32 pm</span></time>
+        
+           | <a href="/blog/2010/05/12/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-2/#disqus_thread"
+             data-disqus-identifier="http://arktur04.github.io/blog/2010/05/12/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-2/">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><em>Продолжение. Начало здесь: </em><a href="http://32bit.me/?p=355"><em>http://32bit.me/?p=355</em></a></p>
+<p>Оставим пока в стороне скучную теорию и примемся за эксперименты.</p>
+<p>Возьмём панель оператора Weintek MT6070TV и зальём в неё проект, состоящий из нескольких числовых полей (Numeric Display) и кнопки, устанавливающей значение переменной (Set Word). Вид экрана изображён на рис 1.</p>
+<p><a href="/images/2010/05/panelscr.jpg"><img class="alignnone size-medium wp-image-374" title="panelscr" src="/assets/panelscr-300x146.jpg" alt="" width="300" height="146" /></a></p>
+<p>Рис. 1. Вид экрана панели</p>
+<p></div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/blog/2010/05/12/%25d0%25bf%25d1%2580%25d0%25be%25d1%2582%25d0%25be%25d0%25ba%25d0%25be%25d0%25bb-modbus-%25d0%25b2-%25d1%2583%25d1%2581%25d1%2582%25d1%2580%25d0%25be%25d0%25b9%25d1%2581%25d1%2582%25d0%25b2%25d0%25b0%25d1%2585-%25d0%25bd%25d0%25b0-%25d0%25b1%25d0%25b0%25d0%25b7%25d0%25b5-%25d0%25bc%25d0%25b8%25d0%25ba%25d1%2580%25d0%25be-2/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -407,80 +487,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/01/31/%25d1%2583%25d1%2581%25d0%25b8%25d0%25bb%25d0%25b8%25d1%2582%25d0%25b5%25d0%25bb%25d1%258c-%25d1%2581-%25d0%25ba%25d0%25be%25d1%258d%25d1%2584%25d1%2584%25d0%25b8%25d1%2586%25d0%25b8%25d0%25b5%25d0%25bd%25d1%2582%25d0%25be%25d0%25bc-%25d1%2583%25d1%2581%25d0%25b8%25d0%25bb%25d0%25b5%25d0%25bd%25d0%25b8%25d1%258f-%25d0%25bf/">Усилитель с коэффициентом усиления, переключаемым с помощью микроконтроллера</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2010-01-31T23:39:00+05:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>31</span><span class='date-suffix'>st</span>, <span class='date-year'>2010</span></span> <span class='time'>11:39 pm</span></time>
-        
-           | <a href="/blog/2010/01/31/%25d1%2583%25d1%2581%25d0%25b8%25d0%25bb%25d0%25b8%25d1%2582%25d0%25b5%25d0%25bb%25d1%258c-%25d1%2581-%25d0%25ba%25d0%25be%25d1%258d%25d1%2584%25d1%2584%25d0%25b8%25d1%2586%25d0%25b8%25d0%25b5%25d0%25bd%25d1%2582%25d0%25be%25d0%25bc-%25d1%2583%25d1%2581%25d0%25b8%25d0%25bb%25d0%25b5%25d0%25bd%25d0%25b8%25d1%258f-%25d0%25bf/#disqus_thread"
-             data-disqus-identifier="http://arktur04.github.io/blog/2010/01/31/%25d1%2583%25d1%2581%25d0%25b8%25d0%25bb%25d0%25b8%25d1%2582%25d0%25b5%25d0%25bb%25d1%258c-%25d1%2581-%25d0%25ba%25d0%25be%25d1%258d%25d1%2584%25d1%2584%25d0%25b8%25d1%2586%25d0%25b8%25d0%25b5%25d0%25bd%25d1%2582%25d0%25be%25d0%25bc-%25d1%2583%25d1%2581%25d0%25b8%25d0%25bb%25d0%25b5%25d0%25bd%25d0%25b8%25d1%258f-%25d0%25bf/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Если в системе требуется программно переключить коэффициент усиления (Ку) усилителя, необязательно применять цифровой потенциометр. Если не требуется плавного изменения Ку, то достаточно и обычного операционного усилителя.<br />
-<a name="more"></a>В статье показан способ реализации усилителя, коэффициент которого можно выбирать из нескольких значений с помощью микроконтроллера. В качестве примера применения такого усилителя можно привести узел аналогового ввода на базе встроенного в микроконтроллер АЦП, диапазон входных сигналов которого можно изменять программно, например, для подключения нескольких типов датчиков.</p>
-<div style="border-bottom:medium none;border-left:medium none;border-right:medium none;border-top:medium none;"></div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/blog/2010/01/31/%25d1%2583%25d1%2581%25d0%25b8%25d0%25bb%25d0%25b8%25d1%2582%25d0%25b5%25d0%25bb%25d1%258c-%25d1%2581-%25d0%25ba%25d0%25be%25d1%258d%25d1%2584%25d1%2584%25d0%25b8%25d1%2586%25d0%25b8%25d0%25b5%25d0%25bd%25d1%2582%25d0%25be%25d0%25bc-%25d1%2583%25d1%2581%25d0%25b8%25d0%25bb%25d0%25b5%25d0%25bd%25d0%25b8%25d1%258f-%25d0%25bf/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/blog/2010/01/25/%25d0%25bc%25d0%25b0%25d0%25ba%25d0%25b5%25d1%2582-%25d0%25b0%25d1%2586%25d0%25bf/">Макет АЦП</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2010-01-25T20:10:00+05:00'><span class='date'><span class='date-month'>Jan</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2010</span></span> <span class='time'>8:10 pm</span></time>
-        
-           | <a href="/blog/2010/01/25/%25d0%25bc%25d0%25b0%25d0%25ba%25d0%25b5%25d1%2582-%25d0%25b0%25d1%2586%25d0%25bf/#disqus_thread"
-             data-disqus-identifier="http://arktur04.github.io/blog/2010/01/25/%25d0%25bc%25d0%25b0%25d0%25ba%25d0%25b5%25d1%2582-%25d0%25b0%25d1%2586%25d0%25bf/">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class="separator" style="clear:both;text-align:center;"><a style="clear:left;float:left;margin-bottom:1em;margin-right:1em;" href="http://1.bp.blogspot.com/_j4sF4cbh73E/S131CDlFFII/AAAAAAAAAIM/uVUQ73_RHUU/s1600/adc.png"></a></div>
-<p>Макет платы АЦП на базе микросхемы AD7714.</p>
-<p><a href="/images/2010/01/post48/adc-big.jpg"><img class="alignnone size-full wp-image-202" title="adc-small" src="/assets/adc-small.jpg" alt="adc-small" /></a></p>
-<p>Разрядность 24 бита, гальванически изолирован от микроконтроллера. На плате расположено два изолированных друг от друга канала, на фото установлены микросхемы только для одного канала.<br />
-При низкой скорости преобразования является чрезвычайно точным устройством, эффективное разрешение не хуже 21 разряда, т.е. 1/2000000 от полного диапазона.<br />
-Высокая точность достигается, в том числе, за счет высокоточного и высокостабильного источника опорного напряжения REF192 фирмы Analog Devices.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/posts/21">&larr; Older</a>
@@ -498,6 +504,14 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/blog/2016/04/10/knigha-c-maxfield-fpgas-instant-access/">Книга C Maxfield "FPGAs: Instant Access"</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2016/04/10/knigha-michael-barr-and-anthony-massa-programming-embedded-systems/">Книга Michael Barr and Anthony Massa "Programming Embedded Systems"</a>
+      </li>
+    
+      <li class="post">
         <a href="/blog/2016/03/23/knigha-the-architecture-of-open-source-applications-pod-ried-amy-brow/">Книга " the Architecture of Open Source Applications" под ред. Amy Brow</a>
       </li>
     
@@ -507,14 +521,6 @@
     
       <li class="post">
         <a href="/blog/2016/02/28/llvm-kompiliator-svoimi-rukami-vviedieniie/">LLVM: компилятор своими руками. Введение</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/02/28/knigha-a-akho/">Книга А. Ахо, М. С. Лам, Р. Сети, Д. Ульман "Компиляторы: принципы, технологии и инструментарий"</a>
-      </li>
-    
-      <li class="post">
-        <a href="/blog/2016/02/14/knigha-gabriel-s-hjort-blindell-survey-on-instruction-selection/">Книга Gabriel S. Hjort Blindell "Survey on Instruction Selection"</a>
       </li>
     
   </ul>

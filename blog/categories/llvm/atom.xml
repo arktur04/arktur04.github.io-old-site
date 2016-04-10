@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Llvm | Записная книжка разработчика]]></title>
+  <title><![CDATA[Category: Llvm, | Записная книжка разработчика]]></title>
   <link href="http://arktur04.github.io/blog/categories/llvm/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2016-03-23T21:36:53+05:00</updated>
+  <updated>2016-04-10T19:50:30+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -23,67 +23,6 @@
 <p><a href="/images/2016/03/52401_original.jpg"><img title="КДПВ" src="/images/2016/03/52401_original_small.jpg" alt="" height="300" /></a></p>
 
 <p>Книга “The Architecture of Open Source Applications” содержит краткое описание множества open-source продуктов, включая LLVM. Автор главы про LLVM даёт описание архитектуры системы, уделяя особое внимание преимуществам LLVM перед другими open-source компиляторами. Также рассматриваются различные необычные применения  LLVM, например, в системе обработки изображений.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Книга Suyog Sarda and Mayur Pandey "LLVM Essentials"]]></title>
-    <link href="http://arktur04.github.io/blog/2016/03/23/knigha-suyog-sarda/"/>
-    <updated>2016-03-23T20:37:00+05:00</updated>
-    <id>http://arktur04.github.io/blog/2016/03/23/knigha-suyog-sarda</id>
-    <content type="html"><![CDATA[<p>Прочитал книгу Suyog Sarda, Mayur Pandey “LLVM Essentials”, 166 стр., англ. язык.</p>
-
-<p><a href="/images/2016/03/52027_original.jpg"><img title="КДПВ" src="/images/2016/03/52027_original_small.jpg" alt="" height="300" /></a></p>
-
-<p>Ничего нового для себя не почерпнул, книга очень маленькая, но если вы решили начать изучение инфраструктуры компиляторов LLVM, то эта книга может дать некоторое начальное представление.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[LLVM: компилятор своими руками. Введение]]></title>
-    <link href="http://arktur04.github.io/blog/2016/02/28/llvm-kompiliator-svoimi-rukami-vviedieniie/"/>
-    <updated>2016-02-28T22:02:44+05:00</updated>
-    <id>http://arktur04.github.io/blog/2016/02/28/llvm-kompiliator-svoimi-rukami-vviedieniie</id>
-    <content type="html"><![CDATA[<p>Опубликовал новый пост на Хабре: <a href="https://habrahabr.ru/post/277717/">ссылка</a>.</p>
-
-<p><a href="/images/2016/02/84e79ac13efb48f19f490840a2339c27.jpeg"><img title="КДПВ" src="/images/2016/02/84e79ac13efb48f19f490840a2339c27_small.jpeg" alt="" height="300" /></a></p>
-
-<p>В статье рассматривается применение инфраструктуры компиляторов LLVM для построения собственных решений на её основе.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Книга Gabriel S. Hjort Blindell "Survey on Instruction Selection"]]></title>
-    <link href="http://arktur04.github.io/blog/2016/02/14/knigha-gabriel-s-hjort-blindell-survey-on-instruction-selection/"/>
-    <updated>2016-02-14T22:06:06+05:00</updated>
-    <id>http://arktur04.github.io/blog/2016/02/14/knigha-gabriel-s-hjort-blindell-survey-on-instruction-selection</id>
-    <content type="html"><![CDATA[<p>Прочитал книгу Gabriel S. Hjort Blindell “Survey on Instruction Selection”, 139 стр, англ. язык.
-Книга про то, как осуществляется одна из самых важных стадий работы компилятора, выбор инструкций. Рассмотрены различные подходы и алгоритмы решения этой задачи, от первых компиляторов 1950-х годов до современных.</p>
-
-<p><a href="/images/2016/02/49450_600.png"><img title="Creating an LLVM Backend for the Cpu0 Architecture" src="/images/2016/02/49450_600-small.png" alt="" height="300" /></a></p>
-
-<p>Немного написано и про алгоритм, используемый в LLVM. К сожалению, ничего особенно нового эта информация мне не дала. Этот участок компилятора весьма сложен, и возможности для ручного вмешательства в его работу очень ограничены (хотя и существуют).</p>
-
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Книга Chen Chung-Shu "Creating an LLVM Backend for the Cpu0 Architecture"]]></title>
-    <link href="http://arktur04.github.io/blog/2016/01/04/knigha-chen-chung-shu-creating-an-llvm-backend-for-the-cpu0-architecture/"/>
-    <updated>2016-01-04T20:17:43+05:00</updated>
-    <id>http://arktur04.github.io/blog/2016/01/04/knigha-chen-chung-shu-creating-an-llvm-backend-for-the-cpu0-architecture</id>
-    <content type="html"><![CDATA[<p>Прочитал книгу Chen Chung-Shu “Creating an LLVM Backend for the Cpu0 Architecture”, 575 стр., англ. язык.
-Книга по LLVM, единственная в своём роде книга, детально описывающая процесс разработки бэкенда.</p>
-
-<p><a href="/images/2016/01/line-tile.png"><img title="Creating an LLVM Backend for the Cpu0 Architecture" src="/images/2016/01/line-tile_small.png" alt="" height="300" /></a></p>
-
-<p>Я читал эту книгу ранее, но автор непрерывно вносит исправления и дополнения в текст (эта книга существует только в онлайновом виде), поэтому я решил перечитать всё полностью, с начала до конца, самый свежий вариант. Сейчас я могу сказать, что читал по LLVM всё, что опубликовано, и что имеет хотя бы немного существенное значение (можно также найти огромное количество статей в духе “мы разработали компилятор для нашего процессора, это круто”. Их я обычно не читаю). Источников по LLVM очень мало, печатных книг всего две, например.</p>
-
-<p>Проблема ещё и в том, что все процессоры разные, и нельзя просто скопировать исходник одного бэкенда, подправить там пару строк и получить другой. Они настолько различны, что вряд ли вы вообще найдёте в двух разных бэкендах похожие куски кода. Поэтому чтение этой книги не заменит вам собственного опыта.
-Желающим разработать свой компилятор, я могу посоветовать следующее:
-не бояться разбираться в существующем коде, как бэкендов, так и Core Library.
-не бояться экспериментировать и писать с нуля собственные алгоритмы оптимизаций.
-не пытаться изобрести велосипед. Если нужные функции есть в Core Library, их необходимо изучить и использовать. Если, напротив, каких-то функций нет ни в Core Library, ни в других бэкендах, значит, скорее всего, вы хотите странного, и, скорее всего, на самом деле это вам не нужно. Хотя могут быть исключения из этого правила.</p>
 ]]></content>
   </entry>
   

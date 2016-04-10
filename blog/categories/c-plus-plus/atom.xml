@@ -4,7 +4,7 @@
   <title><![CDATA[Category: C++, | Записная книжка разработчика]]></title>
   <link href="http://arktur04.github.io/blog/categories/c-plus-plus/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2016-03-23T21:36:53+05:00</updated>
+  <updated>2016-04-10T19:50:30+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -12,6 +12,20 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Книга C Maxfield "FPGAs: Instant Access"]]></title>
+    <link href="http://arktur04.github.io/blog/2016/04/10/knigha-c-maxfield-fpgas-instant-access/"/>
+    <updated>2016-04-10T19:30:40+05:00</updated>
+    <id>http://arktur04.github.io/blog/2016/04/10/knigha-c-maxfield-fpgas-instant-access</id>
+    <content type="html"><![CDATA[<p>Прочитал книгу C  Maxfield   “FPGAs: Instant Access”, 216 стр., англ. язык.
+Хорошее введение в предмет, но только общие слова, без конкретики, без примеров кода, без описания конкретных FPGA.
+Подойдёт для первого знакомства с предметом, однако лично мне хочется чего-то более основательного.</p>
+
+<p><a href="/images/2016/04/54012_original.jpg"><img title="КДПВ" src="/images/2016/04/54012_small.jpg" alt="" height="300" /></a></p>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Книга " the Architecture of Open Source Applications" под ред. Amy Brow]]></title>

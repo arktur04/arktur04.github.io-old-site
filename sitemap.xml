@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>http://arktur04.github.io/blog/2016/04/10/knigha-c-maxfield-fpgas-instant-access/</loc>
+    <lastmod>2016-04-10T19:30:40+05:00</lastmod>
+  </url>
+  <url>
+    <loc>http://arktur04.github.io/blog/2016/04/10/knigha-michael-barr-and-anthony-massa-programming-embedded-systems/</loc>
+    <lastmod>2016-04-10T19:25:42+05:00</lastmod>
+  </url>
+  <url>
     <loc>http://arktur04.github.io/blog/2016/03/23/knigha-the-architecture-of-open-source-applications-pod-ried-amy-brow/</loc>
     <lastmod>2016-03-23T20:46:27+05:00</lastmod>
   </url>
@@ -1048,6 +1056,9 @@
   </url>
   <url>
     <loc>http://arktur04.github.io/blog/categories/samoobrazovaniie/</loc>
+  </url>
+  <url>
+    <loc>http://arktur04.github.io/blog/categories/llvm/</loc>
   </url>
   <url>
     <loc>http://arktur04.github.io/blog/categories/llvm/</loc>
