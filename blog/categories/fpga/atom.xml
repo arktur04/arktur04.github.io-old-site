@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Fpga, | Записная книжка разработчика]]></title>
   <link href="http://arktur04.github.io/blog/categories/fpga/atom.xml" rel="self"/>
   <link href="http://arktur04.github.io/"/>
-  <updated>2016-04-10T19:50:30+05:00</updated>
+  <updated>2016-04-10T19:55:13+05:00</updated>
   <id>http://arktur04.github.io/</id>
   <author>
     <name><![CDATA[Your Name]]></name>
@@ -18,9 +18,7 @@
     <link href="http://arktur04.github.io/blog/2016/04/10/knigha-michael-barr-and-anthony-massa-programming-embedded-systems/"/>
     <updated>2016-04-10T19:25:42+05:00</updated>
     <id>http://arktur04.github.io/blog/2016/04/10/knigha-michael-barr-and-anthony-massa-programming-embedded-systems</id>
-    <content type="html"><![CDATA[<p>Прочитал книгу C  Maxfield   “FPGAs: Instant Access”, 216 стр., англ. язык.
-Хорошее введение в предмет, но только общие слова, без конкретики, без примеров кода, без описания конкретных FPGA.
-Подойдёт для первого знакомства с предметом, однако лично мне хочется чего-то более основательного.</p>
+    <content type="html"><![CDATA[<p>Прочитал книгу Michael Barr and Anthony Massa “Programming Embedded Systems, Second Edition”, 288 стр., англ. язык.</p>
 
 <p><a href="/images/2016/04/53210_original.jpg"><img title="КДПВ" src="/images/2016/04/53210_small.jpg" alt="" height="300" /></a></p>
 
